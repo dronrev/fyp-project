@@ -1,0 +1,68 @@
+<div class="header-login">
+  <div class="container header-login">
+    <div class="row">
+      <div class="col logo"><img src="assets/images/logo.png" alt=""></div>
+      <div class="col-8 title-system">
+        Welcome to PMFKI activity management system
+      </div>
+    </div>
+  </div>
+</div>
+<div class="body">
+  <div class="login-page d-flex">
+    <div class="container first-section col-4">
+      <p>Are you new here?</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam atque expedita dolor vitae neque sunt dolores labore ipsum aut aperiam placeat repudiandae amet, nihil magnam autem eum, deserunt laboriosam. Modi?</p>
+      <p>Click the link below</p>
+    </div>
+    <div class="container body-login col-8">
+      <div class="background-login">
+        <form [formGroup]= "LoginForm" (ngSubmit)="onLogin()">
+          <!--ion-list>
+            <ion-item>
+              <ion-select placeholder="Select role" #role>
+                <ion-select-option></ion-select-option>
+              </ion-select>
+            </ion-item>
+          </!--ion-list-->
+          <div>
+            <select name="" id="" formControlName="user_role">
+              <option *ngFor="let roles of role" [ngValue]="roles.id"> {{ roles.name }}</option>
+            </select>
+          </div>
+          <div class="first-layer-login">
+            <h1>Log in</h1>
+            <div class="uname mb-3 d-flex">
+              <div class="icon-user">
+               <ion-icon name="people-outline"></ion-icon>
+              </div>
+              <div class="input-user">
+                <input type="text" class="" placeholder="bi19xxxxxx"  style="text-align: center;" formControlName="email_address">
+              </div>
+            </div>
+            <div class="pass mb-3 d-flex">
+              <div class="icon-pass">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+              </div>
+              <div class="input-pass">
+                <input type="password" class="" placeholder="john123@" minlength="6" style="text-align: center;" formControlName="password">
+              </div>
+            </div>
+            <div class="show-password">
+              <ion-item>
+                <ion-checkbox slot="start"></ion-checkbox>
+                <ion-label>Show Password</ion-label>
+              </ion-item>
+            </div>
+            <div class="mb-3 mt-3">
+              <button class="login-button" type="submit">Login</button>
+            </div>
+            <div class="reset-password">
+              <a href="">Forgot your password ?</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

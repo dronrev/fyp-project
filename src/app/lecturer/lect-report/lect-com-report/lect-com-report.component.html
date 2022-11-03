@@ -1,0 +1,17 @@
+<ion-card *ngFor="let report of reports; let key = index;">
+  <ion-item>
+    <ion-label><h1><a href="" class="nav-link">{{ report.title }}</a></h1></ion-label>
+    <ion-button fill="outline" slot="end" routerLink="/editreport" (click)="getReport(key)">Edit</ion-button>
+    <ion-button fill="outline" slot="end" routerLink="/editreport">Delete</ion-button>
+  </ion-item>
+
+  <ion-card-content>
+    <div>
+      Location : {{ report.location}}
+    </div>
+    <div>
+      Report Status :
+    </div>
+  </ion-card-content>
+</ion-card>
+

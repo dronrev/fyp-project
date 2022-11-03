@@ -1,0 +1,36 @@
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <app-nav-bar></app-nav-bar>
+  </ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Contact</ion-title>
+      <ion-button slot="end"><a href="" class="nav-link" routerLink="/login" style="color: white;">Sign out</a></ion-button>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <div class="row grid" style="--bs-gap: .25rem 1rem;">
+      <div class="col-4">
+        <div class="card" style="width: 18rem;">
+          <img src="robertomancini.jpg" alt="" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Roberto Mancini</h5>
+            <p class="card-text">Address : Blok A</p>
+            <p>Phone number : 0123456789</p>
+            <a href="#" class="btn btn-primary">Email Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</div>

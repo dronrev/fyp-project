@@ -1,0 +1,8 @@
+.form textarea,label{
+  font-family: Tahoma;
+  color: black;
+}
+ion-content{
+  --ion-background-color:#99CCED;
+  --color:black;
+}

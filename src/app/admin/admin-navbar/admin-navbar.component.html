@@ -1,0 +1,91 @@
+<!--nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#" routerLink="/AdminHome">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Report</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/register-user">Register User</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Admin 1
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav-->
+<ion-accordion-group>
+  <ul class="navbar-nav">
+    <li class="nav-item" routerLinkActive="active">
+        <div class="ion-padding" style="background-color: grey;">
+          <a routerLink="/home-admin" class="nav-link" style="color: white;">Home</a>
+        </div>
+    </li>
+    <li class="nav-item" routerLinkActive="active">
+      <div class="ion-padding" style="background-color: grey;">
+        <a href="" class="nav-link" style="color: white;">Dashboard</a>
+      </div>
+    </li>
+    <li class="nav-item" routerLinkActive="active">
+        <ion-accordion value="first">
+          <ion-item slot="header" color="light">
+            <ion-label>Report</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <a routerLink="/report" class="nav-link">My Report</a>
+          </div>
+          <div class="ion-padding" slot="content">
+            <a routerLink="/create-report" class="nav-link">Create New Report</a>
+          </div>
+        </ion-accordion>
+
+    </li>
+    <li class="nav-item" routerLinkActive="active">
+      <ion-accordion value="second">
+        <ion-item slot="header" color="light">
+          <ion-label>Events</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          <a href="#" routerLink="/event" class="nav-link">Show Event</a>
+        </div>
+      </ion-accordion></li>
+    <li class="nav-item" routerLinkActive="active">
+      <div class="ion-padding" style="background-color: grey;">
+        <a href="#" routerLink="/contact" class="nav-link" style="color: white;">Contact</a>
+      </div>
+    </li>
+    <li class="nav-item" routerLinkActive="active">
+      <div class="ion-padding" style="background-color: grey;">
+        <a href="#" routerLink="/contact" class="nav-link" style="color: white;">Announcement</a>
+      </div>
+    </li>
+    <li class="nav-item" routerLinkActive="active">
+      <div class="ion-padding" style="background-color: grey;">
+        <a href="#" routerLink="/assign" class="nav-link" style="color: white;">Role Assigning</a>
+      </div>
+    </li>
+    <li class="nav-item" routerLinkActive="active">
+      <div class="ion-padding" style="background-color: grey;">
+        <a href="#" routerLink="/register-user" class="nav-link" style="color: white;">Register User</a>
+      </div>
+    </li>
+  </ul>
+</ion-accordion-group>

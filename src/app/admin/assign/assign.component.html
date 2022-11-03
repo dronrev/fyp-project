@@ -1,0 +1,60 @@
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <admin-navbar></admin-navbar>
+</ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <app-top-nav-admin></app-top-nav-admin>
+  <ion-content class="ion-padding">
+    <ion-button>Update</ion-button>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div style="border: 1px solid;align-items: center;text-align: center;height: 60vh;">
+            <div style="border-bottom: 1px solid;">
+              <h1>President of PMFKI UMS Induk</h1>
+            </div>
+            <div style="margin-top: 18vh;">
+              <ion-button color="success" (click)="selectPresident()">Select</ion-button>
+            </div>
+          </div>
+        </ion-col>
+
+        <ion-col>
+          <div style="border: 1px solid;align-items: center;text-align: center;height: 60vh;">
+            <div style="border-bottom: 1px solid;">
+              <h1>President of PMFKI UMSKAL</h1>
+            </div>
+            <div [hidden]="!click1">
+              <div class="item">
+                <ion-card color="dark">
+                  <img alt="Silhouette of mountains" src="https://www.cnet.com/a/img/resize/80a6258ea6642c4c0331f7d82bbc41a7bea36440/hub/2022/08/24/34d4ade1-6ac2-4016-8113-182347693167/screenshot-2022-08-24-143409.png?auto=webp&fit=crop&height=1200&width=1200" />
+                  <ion-card-header>
+                    <ion-card-title>Andrew Tate</ion-card-title>
+                    <ion-card-subtitle>TOP G</ion-card-subtitle>
+                  </ion-card-header>
+
+                  <ion-card-content>
+                    What colour is your Bugatti !?
+                  </ion-card-content>
+                </ion-card>
+              </div>
+              <div>
+                <ion-button color="danger" (click) = "onClick2()">Delete</ion-button>
+              </div>
+            </div>
+            <div style="margin-top: 18vh;" [hidden]="click1">
+              <ion-button color="success" (click) = "onClick()">Select</ion-button>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</div>
+

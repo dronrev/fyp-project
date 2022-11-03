@@ -1,0 +1,87 @@
+.login-page{
+  background-color: grey;
+  height: 74vh;
+}
+.header-login {
+  background-color: blanchedalmond;
+}
+.logo{
+  position: relative;
+}
+.title-system{
+ padding-top: 90px;
+ font-family: Arial, Helvetica, sans-serif;
+}
+
+.first-section{
+  color: white;
+}
+.body-login{
+  background-color: white;
+  background-image: url('/assets/images/ums-background.jpeg');
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.first-layer-login{
+  text-align: center;
+}
+.uname{
+  border: 2px solid;
+  border-radius: 10px;
+  width: 100%;
+  text-align: center;
+  background-color: white;
+}
+.uname input{
+  border: none;
+  background: none;
+}
+.input-user{
+  border-left: solid;
+}
+.pass{
+  border: 2px solid;
+  border-radius: 10px;
+  width: 100%;
+  text-align: center;
+  background-color: white;
+}
+.pass input{
+  border: none;
+  background: none;
+}
+.input-pass{
+  border-left: solid;
+}
+.login-button{
+  color: white;
+  border-radius: 25px;
+  width: 100%;
+  background-color: grey;
+  height: 5vh;
+}
+.background-login{
+  border:2px solid antiquewhite;
+  box-shadow: 5px 10px 8px #888888;
+  border-radius: 25px;
+  background-color: antiquewhite;
+  opacity: 0.9;
+  width: 50%;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reset-password{
+  border: 1px solid aquamarine;
+  background-color: aquamarine;
+  border-radius: 10px;
+  box-shadow: 2px 5px 8px 4px #888888;
+}
+.reset-password a{
+  text-decoration: none;
+  color: black;
+}

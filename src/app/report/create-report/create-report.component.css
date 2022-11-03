@@ -1,0 +1,8 @@
+.create-report{
+  box-shadow: 2px 5px green;
+  border-radius: 25px 25px;
+  width: 100px;
+}
+ion-content{
+  /*--background: url("assets/images/form-background.jpg") no-repeat center/cover fixed;*/
+}

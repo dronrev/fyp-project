@@ -1,0 +1,55 @@
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <app-nav-bar></app-nav-bar>
+</ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <app-top-nav></app-top-nav>
+  <ion-content class="ion-padding">
+    <h1>Add Participants For : Report Title</h1>
+    <div>
+      <form action="" [formGroup]="addStudent" (ngSubmit)="add()">
+        <ion-list>
+          <ion-item>
+            <ion-label color="primary">Name</ion-label>
+            <ion-input placeholder="Text Input" clearInput formControlName="name"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label color="primary">Matric Number</ion-label>
+            <ion-input placeholder="Text Input" clearInput formControlName="matric_no"></ion-input>
+          </ion-item>
+        </ion-list>
+        <ion-button type="submit">Add<ion-icon name="add-circle-outline"></ion-icon></ion-button>
+      </form>
+    </div>
+    <div>
+      <h2>List Of Participants</h2><ion-button color="primary" (click) = "createFile()">Get All E-Cert</ion-button>
+      <div>
+        <ion-grid>
+          <ion-row>
+            <ion-col><ion-item>#</ion-item></ion-col>
+            <ion-col><ion-item>Name</ion-item></ion-col>
+            <ion-col><ion-item>Matric Number</ion-item></ion-col>
+            <ion-col><ion-item>Edit/Delete</ion-item></ion-col>
+          </ion-row>
+          <ion-row  *ngFor="let student of list;let key = index">
+            <ion-col><ion-input [value]="" [readonly]="true">{{ key+1 }}</ion-input></ion-col>
+            <ion-col><ion-input [value]="student.name" [readonly]="true"></ion-input></ion-col>
+            <ion-col><ion-input [value]="student.matric_no" [readonly]="true"></ion-input></ion-col>
+            <ion-col>
+              <ion-button color="primary">Edit</ion-button>
+              <ion-button color="danger" (click) = "deleting(student.matric_no)">Delete</ion-button>
+              <ion-button color="success" (click) = "getCerti(student.name,student.matric_no)">Get</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+  </ion-content>
+</div>

@@ -1,0 +1,11 @@
+ion-content{
+  --ion-background-color: purple;
+}
+.summary{
+  background-color: #66D7EB;
+  border-radius: 10px 10px;
+}
+.report-status{
+  background-color: #1C3D52;
+  border-radius: 10px 10px;
+}

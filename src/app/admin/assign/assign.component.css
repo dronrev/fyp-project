@@ -1,0 +1,11 @@
+img{
+  max-width: 100%;
+  height: 20vh;
+}
+.item{
+  min-height: 120px;
+  max-height: auto;
+}
+.ion-padding{
+  --ion-background-color: rgba(67, 151, 151, 0.553);
+}

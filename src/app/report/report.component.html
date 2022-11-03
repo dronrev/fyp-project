@@ -1,0 +1,31 @@
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <app-nav-bar></app-nav-bar>
+</ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <app-top-nav></app-top-nav>
+  <ion-content class="ion-padding">
+    <ion-breadcrumbs color="primary">
+      <ion-breadcrumb href="#home">Report</ion-breadcrumb>
+      <ion-breadcrumb href="#electronics">My Report</ion-breadcrumb>
+    </ion-breadcrumbs>
+    <main>
+      <div class="container">
+          <div class="create-report">
+              <ion-button><a routerLink="/create-report" class="nav-link">Create New Report</a></ion-button>
+          </div>
+      </div>
+      <div class="your-report">
+          <h2 class="report-head">Your Report</h2>
+          <report></report>
+      </div>
+    </main>
+  </ion-content>
+</div>
+

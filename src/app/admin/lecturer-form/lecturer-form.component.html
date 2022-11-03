@@ -1,0 +1,20 @@
+<div class="container">
+  <form action="" class="form" (ngSubmit)="addLecturer(stuForm.value)" #stuForm="ngForm">
+    <div>
+      <label for="" class="form-label">Lecturer Name</label>
+      <input type="text" class="form-control" name="lecturername" ngModel>
+    </div>
+    <div>
+      <label for="" class="form-label">Password</label>
+      <input type="password" class="form-control" name="password" ngModel>
+    </div>
+    <div>
+      <label for="" class="form-label">Email Address</label>
+      <input type="text" class="form-control" name="email" ngModel>
+    </div>
+    <div class="mt-2">
+      <button class="btn btn-success" type="submit">Submit</button>
+    </div>
+  </form>
+</div>
+

@@ -1,0 +1,26 @@
+<p>sign-in Page</p>
+<div class="row" >
+  <form [formGroup] = "enterPage" (ngSubmit)="Login()">
+    <div class="col-lg-6 offset-lg-3">
+      <div class="form-group">
+        <label for="">Username</label>
+        <input #name type="text" class="form-control" formControlName="email_address">
+      </div>
+      <div class="form-group">
+        <label for="">Password</label>
+        <input type="password" class="form-control" #role formControlName="password">
+      </div>
+      <div class="form-group">
+        <select name="" id="">
+          <option value="Student">Student</option>
+          <option value="Lecturer">Lecturer</option>
+          <option value="Admin">Admin</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <br>
+       <button class="btn btn-primary" type="submit">Sign In</button>
+      </div>
+    </div>
+</form>
+</div>
