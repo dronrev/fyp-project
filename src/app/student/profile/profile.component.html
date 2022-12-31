@@ -1,0 +1,37 @@
+<ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="image-preview">
+          <img [src]="imageURL || defaultImg" alt="">
+        </div>
+        <input type="file" (change)="showPreview($event)" accept="image/*">
+        <button (click)="submit()">ok</button>
+        <ion-item>
+          <ion-input>
+              <span>Name : </span> {{ name }}
+          </ion-input>
+          <ion-button>
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-input>
+              Course Code : {{ course }}
+          </ion-input>
+          <ion-button>
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-input>
+              Email : {{ email }}
+          </ion-input>
+          <ion-button>
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-item>

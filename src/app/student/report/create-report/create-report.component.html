@@ -1,0 +1,59 @@
+<ion-breadcrumbs color="secondary">
+  <ion-breadcrumb routerLink="/report">Report</ion-breadcrumb>
+  <ion-breadcrumb routerLink="/report">My Report</ion-breadcrumb>
+  <ion-breadcrumb routerLink="/report/create-report">New Report</ion-breadcrumb>
+</ion-breadcrumbs>
+<div class="container new-report">
+  <!--div>
+    <form action="" [formGroup]="exform" (ngSubmit)="createReport()">
+      <label for="" class="form-label mt-3">Title</label>
+      <input formControlName="title" type="text" class="form-control">
+
+      <label for="" class="form-label">Organizer</label>
+      <input formControlName="organizer" type="text" class="form-control">
+
+      <label for="" class="form-label">Location</label>
+      <input formControlName="location" type="text" class="form-control">
+
+      <label for="" class="form-label">Lecturer in Charge</label>
+      <div class="select-option">
+        <ion-select placeholder="Select Lecturer"  formControlName="value">
+          <ion-select-option [value]="item.lecturer_id" *ngFor="let item of lecturer; let key = index">{{ item.name }}</ion-select-option>
+        </ion-select>
+      </div>
+      <button class="btn btn-success mt-2 create-report" type="submit">Submit</button>
+            <div class="card-report" *ngFor="let item of list">
+        <input type="radio">
+        <div class="title-card">
+          <h2>Title : {{item}}</h2>
+        </div>
+        <div class="body-card">
+          <h2>Title : {{item}}</h2>
+        </div>
+      </div>
+      <div class="lecturer-in-charge">
+        <select name="" id="">
+          <option value="" *ngFor="let person of lecturer">{{ person.name }}</option>
+        </select>
+      </div>
+    </form>
+  </div-->
+  <div class="report-card" *ngFor="let item of list">
+    <div class="card-title">
+      <h2>{{ item.name_activity }}</h2>
+    </div>
+    <div class="body-card">
+      <div class="location-card">
+        Location : {{item.location}}
+      </div>
+      <div class="date-card">
+        Date : {{item.date}}
+      </div>
+    </div>
+    <div class="button-create">
+      <button (click)="addReport(item.activity_id)">Add</button>
+    </div>
+  </div>
+</div>
+
+

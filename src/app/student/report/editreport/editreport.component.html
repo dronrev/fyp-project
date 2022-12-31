@@ -1,0 +1,166 @@
+<div class="container">
+  <div>
+    <h1>Report ID</h1>
+  </div>
+  <ion-button (click)="editButton()" [hidden]="edit">Update</ion-button>
+  <ion-button (click)="editButton()" [hidden]="!edit" color="success">Stop Editing</ion-button>
+  <div class="form">
+    <form action="" class="" [formGroup]="thereport">
+      <!--Title-->
+      <div class="title">
+        <label for="" class="form-label">Title : </label>
+        <ion-item>
+          <ion-textarea placeholder="Type something here"
+          [autoGrow]="true"
+          formControlName="title"
+          [value]="this.title"
+          [readonly]="!edit">
+          </ion-textarea>
+
+        </ion-item>
+      </div>
+      <!--Objective-->
+      <div class="objective">
+        <label for="" class="form-label">Objective : </label>
+        <ion-item>
+          <ion-textarea placeholder="Type something here"
+          [autoGrow]="true"
+          formControlName="objective"
+          [readonly]="!edit"
+          [value]="this.objective">
+          </ion-textarea>
+
+        </ion-item>
+      </div>
+      <!--Introduction-->
+      <div class="introduction">
+        <label for="" class="form-label">Introduction :</label>
+        <ion-item>
+          <ion-textarea placeholder="Type something here"
+          [autoGrow]="true"
+          [value]="this.introduction"
+          [readonly]="!edit"
+          formControlName="introduction">
+          </ion-textarea>
+
+        </ion-item>
+      </div>
+      <!--Involvement-->
+      <div class="involvement">
+        <label for="" class="form-label">Involvement :</label>
+        <ion-item>
+          <ion-textarea placeholder="Type something here"
+          [autoGrow]="true"
+          [value]="this.involvement"
+          [readonly]="!edit"
+          formControlName="involvement">
+          </ion-textarea>
+
+        </ion-item>
+      </div>
+      <!--Perkara hendak maklum-->
+      <div class="perkara-hendak">
+        <label for="" class="form-label">Perkara hendak dimaklumkan  :</label>
+        <ion-item>
+          <ion-textarea placeholder="Type something here"
+          [autoGrow]="true"
+          [value]="this.perkara_hendak_maklum"
+          [readonly]="!edit"
+          formControlName="perkara">
+          </ion-textarea>
+
+        </ion-item>
+      </div>
+      <!--VIP-->
+      <div class="VIP">
+        <label for="" class="form-label">Jemputan VIP :</label>
+        <ion-item>
+          <ion-textarea placeholder="Type something here"
+          [autoGrow]="true"
+          [value]="this.jemputan_vip"
+          [readonly]="!edit"
+          formControlName="vip">
+          </ion-textarea>
+
+        </ion-item>
+      </div>
+      <!--Impak-->
+      <div class="impak">
+        <label for="" class="form-label">Impak Program :</label>
+        <ion-item>
+          <ion-textarea placeholder="Type something here"
+          [autoGrow]="true"
+          [value]="this.impak_program"
+          [readonly]="!edit"
+          formControlName="impak">
+          </ion-textarea>
+
+        </ion-item>
+      </div>
+      <!--Pencapaian-->
+      <div class="pencapaian">
+        <label for="" class="form-label">Pencapaian :</label>
+        <ion-item>
+          <ion-textarea placeholder="Type something here"
+          [autoGrow]="true"
+          [value]="this.pencapaian"
+          [readonly]="!edit"
+          formControlName="pencapaian">
+          </ion-textarea>
+
+        </ion-item>
+      </div>
+      <!--Rumusan-->
+      <div class="rumusan">
+        <label for="" class="form-label">Rumusan :</label>
+        <ion-item>
+          <ion-textarea placeholder="Type something here"
+          [autoGrow]="true"
+          [value]="this.rumusan"
+          [readonly]="!edit"
+          formControlName="rumusan">
+          </ion-textarea>
+
+        </ion-item>
+      </div>
+      <!--Cadangan-->
+      <div class="cadangan">
+        <label for="" class="form-label">Cadangan :</label>
+        <ion-item>
+          <ion-textarea placeholder="Type something here"
+          [autoGrow]="true"
+          [value]="this.cadangan"
+          [readonly]="!edit"
+          formControlName="cadangan">
+          </ion-textarea>
+
+        </ion-item>
+      </div>
+      <!--Attachment Preview-->
+      <div class="attachment-part"></div>
+      <!--Button-->
+      <div class="submit-button mt-2 column">
+        <ion-button name="" color="success" (click)="saveReport()">
+          Save Report
+          <ion-icon name="save-sharp"></ion-icon>
+        </ion-button>
+        <ion-button name="" color="danger" (click)="clearForm()">
+          Clear All Text
+          <ion-icon name="trash-sharp"></ion-icon>
+        </ion-button>
+        <ion-button name="" color="warning">
+          <input type="file" multiple>
+          <ion-icon name="camera-sharp"></ion-icon>
+        </ion-button>
+      </div>
+      <div>
+        <ion-button name="" color="secondary" (click)="sendToLecturer(thereport.value)">
+          SEND REPORT
+        </ion-button>
+        <ion-button routerLink="/addParticipant">Add Participants</ion-button>
+        <!--app-upload-image></!--app-upload-image-->
+        <ion-button>See Attachment</ion-button>
+      </div>
+    </form>
+  </div>
+</div>

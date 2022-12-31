@@ -1,0 +1,6 @@
+ion-item{
+  --background:white;
+}
+.container{
+  background-image: linear-gradient(rgb(105, 182, 241),rgb(44, 130, 173));
+}

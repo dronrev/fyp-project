@@ -10,11 +10,15 @@ import { LecturerComponent } from './lecturer.component';
 
 const routes: Routes = [
   //{path : '', redirectTo: 'home-admin', pathMatch: 'full'},
-  { path : 'Lecturer', component : LecturerComponent,canActivate:[RoleGuard]},
-  { path : 'HomeLecturer ', component : LecturerHomeComponent,canActivate:[RoleGuard] },
-  { path : 'ReportLecturer', component : LectReportComponent,canActivate:[RoleGuard]},
-  { path : 'Detail-Report', component : ReportDetailsComponent,canActivate:[RoleGuard]},
-  { path : 'LectDashboard', component : LectdashComponent,canActivate:[RoleGuard]}
+  { path : '', component : LecturerComponent,children:[
+    { path : 'HomeLecturer', component : LecturerHomeComponent},
+    { path : 'ReportLecturer', component : LectReportComponent},
+    { path : 'Detail-Report', component : ReportDetailsComponent},
+    { path : 'LectDashboard', component : LectdashComponent},
+    { path : 'lectEditReport', component : ReportDetailsComponent}
+    ],canActivate:[RoleGuard]
+  },
+
 ];
 
 @NgModule({

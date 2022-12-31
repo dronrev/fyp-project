@@ -1,0 +1,18 @@
+<table class="shadow p-3 mb-5 bg-white rounded">
+  <thead>
+    <th>#</th>
+    <th>Name</th>
+    <th>Course Code</th>
+    <th>KK/UMSKAL</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students;let key = index;">
+      <td>{{key+1}}</td>
+      <td>{{ student.username }}</td>
+      <td>{{ student.course_id }}</td>
+      <td>KK</td>
+      <td><ion-button color="danger" (click)="deleteUser(student.user_id)" class="delete-button">delete</ion-button></td>
+    </tr>
+  </tbody>
+</table>

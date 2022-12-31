@@ -2,8 +2,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { LoggingService, TheUser } from '../logging.service';
+import { AlertController } from '@ionic/angular';
 import { AuthService } from '../service/auth.service';
 import { Role } from './role.model';
 
@@ -16,7 +15,6 @@ export class LoginComponent implements OnInit {
 
   roleSelected = "";
   role : Role [] = [
-    new Role("0","Your Role"),
     new Role("1","Student"),
     new Role("2","Lecturer"),
     new Role("3","Admin")
@@ -33,15 +31,26 @@ export class LoginComponent implements OnInit {
   studentId : any;
   editData : any;
   responseData : any;
+  lectRole : any;
 
   response = "";
 
-  constructor(private router: Router, private http:AuthService) { }
+  constructor(private router: Router, private http:AuthService,private alertcontrol : AlertController) { }
 
 
   ngOnInit(): void {
     localStorage.clear();
   }
+
+  async notify(){
+    const messages = await this.alertcontrol.create({
+      header : 'Login Failed',
+      message : 'Unknown Username or Email !',
+      buttons : ['Continue']
+    });
+    await messages.present();
+  }
+
   onLogin(){
     console.log(this.LoginForm.value);
     if(this.LoginForm.valid){
@@ -50,10 +59,9 @@ export class LoginComponent implements OnInit {
           console.log(res);
           if(res != null){
             //this.responseData = res;
-            console.log("wei");
             this.responseData = JSON.parse(res);
             if(this.responseData.token == undefined){
-              alert("Wrong Email or Password !")
+              this.notify();
               this.router.navigate(['login']);
             }
             else{
@@ -61,7 +69,7 @@ export class LoginComponent implements OnInit {
               localStorage.setItem('id',this.responseData.id);
               localStorage.setItem('name',this.responseData.name);
               localStorage.setItem('auth',this.LoginForm.value['user_role']);
-              this.router.navigate(['']);
+              this.router.navigate(['/student/home']);
               //this.http.changeName(this.responseData.name);
             }
           }
@@ -74,21 +82,42 @@ export class LoginComponent implements OnInit {
             //this.responseData = res;
             this.responseData = JSON.parse(res);
             if(this.responseData.token == undefined){
-              alert("Wrong Email or Password !")
+              this.notify();
               this.router.navigate(['login']);
             }
             else{
               localStorage.setItem('token',this.responseData.token);
               localStorage.setItem('id',this.responseData.id);
               localStorage.setItem('name',this.responseData.name);
+              this.http.isTDA(this.responseData.id).subscribe(
+                res=>{
+                  this.lectRole = JSON.parse(res);
+                  console.log(res)
+                  if(this.lectRole.role == "TDA"){
+                    localStorage.setItem('_sepesial_elor_rof_','TDA');
+                  }
+                  else{
+                    localStorage.setItem('_sepesial_elor_rof_','lecturer');
+                  }
+                }
+              )
               localStorage.setItem('auth',this.LoginForm.value['user_role']);
-              this.router.navigate(['Lecturer']);
+              this.router.navigate(['/lecturer']);
+
               //this.http.changeName(this.responseData.name);
             }
           }
         })
       }
     }
+  }
+
+  show = false;
+
+  showingP = "password";
+
+  showPassword(){
+    this.showingP = "text";
   }
 }
 

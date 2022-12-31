@@ -1,0 +1,15 @@
+ion-modal{
+  --border-color:pink;
+}
+
+.comment-content{
+  --background: #373737;
+}
+
+
+
+ion-textarea.comment-section{
+  --background: #373737;
+  --color: #fff;
+
+}

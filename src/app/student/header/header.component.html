@@ -1,0 +1,20 @@
+<div>
+  <form action="" [formGroup]="list" (ngSubmit)="add()">
+    <ion-item>
+      <div>
+        <ion-label>Name : </ion-label>
+      </div>
+      <ion-input formArrayName="vote"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <div>
+        <ion-label>Nigaruto : </ion-label>
+      </div>
+      <ion-input formControlName="yourname"></ion-input>
+    </ion-item>
+    <ion-button type="submit">Send</ion-button>
+    <ion-button (click)="remove()" color="danger">remove</ion-button>
+  </form>
+</div>
+

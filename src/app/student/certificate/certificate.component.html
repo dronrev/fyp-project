@@ -1,0 +1,26 @@
+
+<h1>E-certificate</h1>
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Location</th>
+      <th scope="col">Total Participants</th>
+      <th scope="col">E-Certificate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of list;let count of myData;let key = index">
+      <td>
+        {{ key+1}}
+      </td>
+      <td>{{ item.title }}</td>
+      <td>{{ item.location }}</td>
+      <td>{{ count[1] }}</td>
+      <td><a href="" class="nav-link">Some Link</a></td>
+    </tr>
+  </tbody>
+</table>
+
+

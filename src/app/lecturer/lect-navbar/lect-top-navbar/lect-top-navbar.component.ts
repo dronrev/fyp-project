@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class LectTopNavbarComponent implements OnInit {
 
   constructor() { }
-
+  username = localStorage.getItem('name');
   ngOnInit(): void {
   }
 

@@ -1,0 +1,10 @@
+ion-card{
+  --color:black;
+}
+ion-card-header{
+  display: flex;
+  flex-flow: column-reverse;
+}
+.nav-link{
+  color: black;
+}

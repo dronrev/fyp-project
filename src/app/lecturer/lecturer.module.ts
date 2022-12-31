@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { LectReportComponent } from './lect-report/lect-report.component';
 import { LecturerComponent } from './lecturer.component';
 import { LectNavbarComponent } from './lect-navbar/lect-navbar.component';
@@ -24,7 +25,7 @@ import { LectComReportComponent } from './lect-report/lect-com-report/lect-com-r
     LecturerHomeComponent,
     ReportDetailsComponent,
     LectdashComponent,
-    LectComReportComponent
+    LectComReportComponent,
   ],
   imports: [
     CommonModule,
@@ -32,7 +33,8 @@ import { LectComReportComponent } from './lect-report/lect-com-report/lect-com-r
     IonicModule,
     HttpClientModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ]
 })
 export class LecturerModule { }

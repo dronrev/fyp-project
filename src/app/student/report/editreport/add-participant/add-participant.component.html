@@ -1,0 +1,43 @@
+<h1>Add Participants For : Report Title</h1>
+<div>
+  <form action="" [formGroup]="addStudent" (ngSubmit)="add()">
+    <ion-list>
+      <ion-item>
+        <ion-label color="primary">Name</ion-label>
+        <ion-input placeholder="Text Input" clearInput formControlName="name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="primary">Matric Number</ion-label>
+        <ion-input placeholder="Text Input" clearInput formControlName="matric_no"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button type="submit">Add<ion-icon name="add-circle-outline"></ion-icon></ion-button>
+  </form>
+  <ion-button color="success">Import CSV</ion-button>
+  <input type="file" (change)="importCSV($event)"
+    accept=".xls,.xlsx,.csv">
+</div>
+<div>
+  <h2>List Of Participants</h2><ion-button color="primary" (click) = "createFile()" download>Get All E-Cert</ion-button>
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col><ion-item>#</ion-item></ion-col>
+        <ion-col><ion-item>Name</ion-item></ion-col>
+        <ion-col><ion-item>Matric Number</ion-item></ion-col>
+        <ion-col><ion-item>Edit/Delete</ion-item></ion-col>
+      </ion-row>
+      <ion-row  *ngFor="let student of list;let key = index;let import of importParticipants">
+        <ion-col><ion-input [value]="" [readonly]="true">{{ key+1 }}</ion-input></ion-col>
+        <ion-col><ion-input [value]="student.name | uppercase" [readonly]="true"></ion-input></ion-col>
+        <ion-col><ion-input [value]="student.matric_no" [readonly]="true"></ion-input></ion-col>
+        <ion-col>
+          <ion-button color="primary">Edit</ion-button>
+          <ion-button color="danger" (click) = "deleting(student.matric_no)">Delete</ion-button>
+          <ion-button color="success" (click) = "getCerti(student.name,student.matric_no)">Get</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</div>
