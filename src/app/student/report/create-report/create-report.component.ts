@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertController, mdTransitionAnimation } from '@ionic/angular';
 import { map } from 'rxjs/operators';
 import { EventsService } from '../../event/events.service';
 import { ReportsService } from '../reports.service';
@@ -13,16 +13,21 @@ import { ReportsService } from '../reports.service';
 export class CreateReportComponent implements OnInit {
 
   list:any;
-
+  existReport:any = [];
   lecturer:any;
+  notCreatedReport:any= [];
+  mylist:any = [];
 
   constructor(private service:ReportsService,private serviceE : EventsService, private alertcontrol : AlertController) { }
   exform!: FormGroup;
   ngOnInit(): void {
+    this.toCheckReportExist()
+    //console.log(this.existReport)
     this.exform = new FormGroup({
-      'title' : new FormControl(null, Validators.required),
-      'organizer' : new FormControl(null, Validators.required),
-      'location' : new FormControl(null, Validators.required),
+      //'title' : new FormControl(null, Validators.required),
+      //'organizer' : new FormControl(null, Validators.required),
+      //'location' : new FormControl(null, Validators.required),
+      'activity_id' : new FormControl(),
       'matric_id': new FormControl(localStorage.getItem('id')),
       'value' : new FormControl(null)
     });
@@ -31,15 +36,31 @@ export class CreateReportComponent implements OnInit {
     (map((data:any)=>data.filter
     ((myData:any)=>myData.role != "TDA"))).subscribe(
       res=>{
-        console.log(res);
         this.lecturer = res;
       }
     )
 
-    this.serviceE.displayEvent().subscribe(
-      res=>{
-        console.log(res)
+    this.serviceE.displayEvent()
+    .subscribe(
+      (res:any)=>{
+        //console.log(res)
         this.list = res;
+        this.mylist = res;
+
+        //check if the event has report already
+        for(let i = 0 ; i < this.mylist.length ; i++){
+          let check;
+          for(let item in this.existReport){
+            check = this.mylist[i].activity_id.includes(item)
+            if(check){
+              console.log(check)
+              this.mylist.splice(i,1)
+              break;
+            }
+          }
+        }
+
+        console.log(this.mylist)
       }
     )
   }
@@ -66,8 +87,33 @@ export class CreateReportComponent implements OnInit {
 
 
   addReport(data:any){
-    console.log(data)
+    this.exform.value['activity_id'] = data;
+    console.log(this.exform.value);
+    this.service.createReport(this.exform.value).subscribe(
+      res=>{
+        console.log(res);
+      }
+    )
   }
 
+  async addLecturer(){
+    const alert = await this.alertcontrol.create({
 
+    })
+  }
+
+  toCheckReportExist(){
+    this.service.displayAll().subscribe(
+      (res:any)=>{
+        //this.existReport = res;
+        //console.log(this.existReport)
+        for(let item of res){
+          //console.log(item.activity_id)
+          //item.activity_id = this.existReport;
+          this.existReport.push(item.activity_id)
+        }
+      }
+    )
+    //console.log(this.existReport)
+  }
 }

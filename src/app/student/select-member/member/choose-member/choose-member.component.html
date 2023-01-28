@@ -1,15 +1,16 @@
 <h2 *ngFor="let title of list">Vote member for this upcoming activity : {{title.name_activity}}</h2>
 <form action="">
-  <div class="d-flex row">
-    <div class="the-content col-2" *ngFor="let item of list_student;let key = index">
-        <ion-item color="medium">
-            <ion-checkbox (ionChange)="sendData($event,item)"></ion-checkbox>
-            <ion-label>{{ item.username }}</ion-label>
-        </ion-item>
+  <div class="the-content">
+    <div class="mycard"  *ngFor="let item of list_student;let key = index">
+      <div class="head"><h2>{{ item.username | uppercase }}</h2></div>
+      <div class="body"><img [src]="imageURL+item.profilepic" alt="" height="100" width="100"></div>
+      <ion-checkbox (ionChange)="sendData($event,item)"></ion-checkbox>
     </div>
-    <div>
-        <ion-button type="submit" hidden>Send Vote</ion-button>
-    </div>
+    <!--ion-item color="medium">
+
+        <ion-label>{{ item.username }}</ion-label>
+        <img [src]="imageURL+item.profilepic" alt="" height="50" width="50">
+    </!--ion-item-->
 </div>
-<ion-button color="warning" (click)="sending_to_db()">Sending</ion-button>
+<ion-button color="warning" (click)="sending_to_db()">Send Vote</ion-button>
 </form>

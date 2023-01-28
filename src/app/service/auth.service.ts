@@ -41,6 +41,6 @@ export class AuthService {
   }
 
   logOut(){
-    return this.router.navigate(['login'])
+    return this.router.navigate(['sign-in'])
   }
 }

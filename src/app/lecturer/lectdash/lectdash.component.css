@@ -1,0 +1,35 @@
+.upcoming-container{
+  background-color: white;
+  border-radius: 25px 25px;
+  align-items: center;
+  text-align: center;
+  width: 50%;
+}
+
+.upcoming-header{
+  border-bottom: solid;
+}
+.upcoming-body{
+  color: rgb(0, 63, 171);
+  background-color: bisque;
+  border-radius: 50px 50px;
+  width: 100%;
+}
+ion-list-header>ion-label{
+  text-align: center;
+  font-size: 30px;
+}
+ion-label{
+  text-align: center;
+}
+
+.date{
+  color: white;
+}
+.myCard{
+  border: 1px solid;
+  background-color: black;
+}
+.content{
+  background-color: white;
+}

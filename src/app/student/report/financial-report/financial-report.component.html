@@ -1,2 +1,7 @@
+<!--ion-breadcrumbs color="secondary">
+  <ion-breadcrumb routerLink="/report">Report</ion-breadcrumb>
+  <ion-breadcrumb routerLink="/report">My Report</ion-breadcrumb>
+  <ion-breadcrumb [routerLink]="['/report/editreport',report_id]">Current Report</ion-breadcrumb>
+</!--ion-breadcrumbs-->
 <app-financial-form (send)="test($event)"></app-financial-form>
 <app-report-detail (sendFinancial)="financialReport($event)"></app-report-detail>

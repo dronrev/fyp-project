@@ -1,6 +1,15 @@
 ion-item{
   --background:white;
 }
-.container{
-  background-image: linear-gradient(rgb(105, 182, 241),rgb(44, 130, 173));
+.financial-form{
+  border-radius: 15px;
+  box-shadow: 2px 2px 5px 5px #888888;
 }
+.send-button{
+  margin-bottom: 10px;
+}
+.btn{
+  box-shadow: 3px 3px 3px 3px;
+  border-radius: 25px 25px;
+}
+

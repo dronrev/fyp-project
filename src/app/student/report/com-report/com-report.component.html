@@ -17,11 +17,10 @@
 
 <ion-card *ngFor="let report of reports; let key = index;">
   <ion-card-header>
-
     <ion-item>
-      <ion-label><h1><a href="#" class="nav-link">{{ report.title }}</a></h1></ion-label>
-      <ion-button fill="solid" slot="end" [routerLink]="['/report/editreport',report.report_id]" (click)="getReport(key)" color="primary"><ion-icon name="create-outline"></ion-icon></ion-button>
-      <ion-button fill="solid" slot="end" (click)="deleteRep(report.report_id)"  color="danger"><ion-icon name="trash-outline"></ion-icon></ion-button>
+      <ion-label><h1><a href="#" class="nav-link">{{ report.name_activity }}</a></h1></ion-label>
+      <ion-button fill="solid" slot="end" [routerLink]="['/report/editreport',report.report_id]" (click)="getReport(key)" color="primary">Edit</ion-button>
+      <ion-button fill="solid" slot="end" (click)="deleteRep(report.report_id)"  color="danger">Delete</ion-button>
     </ion-item>
   </ion-card-header>
 

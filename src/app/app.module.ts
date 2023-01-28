@@ -25,6 +25,7 @@ import { StudentRoutingModule } from './student/student-routing.module';
 import { ManageUserComponent } from './admin/manage-user/manage-user.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

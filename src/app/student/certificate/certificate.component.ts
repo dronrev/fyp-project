@@ -30,25 +30,13 @@ export class CertificateComponent implements OnInit {
 
     this.service1.getAllParticipants().subscribe(
       res=>{
-
         this.myData.length = this.list.length;
         this.count = res;
-
-        let a = this.count.length;
-        let b = this.list.length;
-
-        //to count number of participants
-        for(let i = 0; i<a; i++)
-          for(let j = 0; j<b; j++){
-            if(this.count[i].report_id == this.list[j].report_id){
-              this.myData[j]++;
-            }
-          }
-        //console.log(this.list['report_id'])
-        console.log(this.myData);
-        console.log(res);
+        console.log(this.count[0].report_id)
       }
     )
+
+
 
     //console.log(this.list);
   }

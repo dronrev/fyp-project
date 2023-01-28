@@ -19,6 +19,7 @@ export class EventComponent implements OnInit {
   ngOnInit(): void {
     this.service.displayEvent().subscribe(
       (data:any)=>{
+        console.log(data)
         this.activities = data;
         //this.mydate = new Date(this.activities['date']);
       }

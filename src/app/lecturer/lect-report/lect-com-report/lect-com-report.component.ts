@@ -23,7 +23,7 @@ export class LectComReportComponent implements OnInit {
   ngOnInit(): void {
     if(localStorage.getItem('_sepesial_elor_rof_') == 'TDA'){
       console.log("test");
-      this.reportService.displayAll().pipe(map((data:any)=>data.filter((ok:any) => ok.status == "2"))).subscribe(
+      this.reportService.displayAll().pipe(map((data:any)=>data.filter((ok:any) => ok.status == "3"))).subscribe(
         (res:any)=>{
           //console.log(res);
           this.allReport = res;
@@ -31,16 +31,18 @@ export class LectComReportComponent implements OnInit {
         }
       )
     }
-
-    console.log(this.fetchReport.value);
-    //.pipe(filter((data:any) => data['status'] == 1))
-    this.reportService.displayReport(this.fetchReport.value).subscribe(
-      (results:any)=>{
-        console.log(results);
-        this.reports = JSON.parse(results);
-        localStorage.removeItem('reportID');
-      }
-    );
+    if(localStorage.getItem('_sepesial_elor_rof_') == 'lecturer'){
+      console.log(this.fetchReport.value);
+      //
+      this.reportService.displayReport(this.fetchReport.value)
+      .subscribe(
+        (results:any)=>{
+          console.log(results);
+          this.reports = JSON.parse(results);
+          localStorage.removeItem('reportID');
+        }
+      );
+    }
     //const data = ""
   }
   getReport(key:any){
@@ -48,7 +50,7 @@ export class LectComReportComponent implements OnInit {
     {
       console.log('yello');
       var report_data = JSON.stringify(this.allReport[key].report_id);
-      this.idService.setCurrentReport(this.reports[key].report_id);
+      this.idService.setCurrentReport(this.allReport[key].report_id);
       localStorage.setItem("reportID",report_data);
       localStorage.setItem("ReportID",this.idService.getCurrentReport());
     }
@@ -67,5 +69,7 @@ export class LectComReportComponent implements OnInit {
       }
     }
   }
+
+
 
 }

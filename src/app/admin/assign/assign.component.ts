@@ -13,7 +13,8 @@ import { map } from 'rxjs/operators';
 })
 export class AssignComponent implements OnInit {
   roleMessage: string = "";
-
+  defaultImg = "../assets/images/default-image-jpeg"
+  imageURL = '../assets/images/profile-picture/'
   presidentKK :any;
   presidentKAL :any;
 
@@ -38,18 +39,27 @@ export class AssignComponent implements OnInit {
     }
   }
 
+  onWillDismiss1(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+      this.message = `Hello, ${ev.detail.data}!`;
+    }
+  }
+
 
 
   constructor(private alertcontrol:AlertController,private service : UsersService) { }
   listUser:any;
+  listUserLabuan : any;
+
   ngOnInit(): void {
     this.service.fetchStudent().pipe
     (map((data:any)=>data.filter
     ((myData:any)=>myData.user_role != "PMFKIKAL" && "PMFKIKK"))).subscribe(
       (res:any)=>{
         console.log(res);
-        this.listUser = res;
-        //console.log(this.listUser[0]['matric_number']);
+        this.listUser = res.filter((myData:any)=>myData.cawangan == "KK");
+        this.listUserLabuan = res.filter((myData:any)=>myData.cawangan == "Labuan");
       }
     )
     this.addPresident();

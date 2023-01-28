@@ -1,0 +1,29 @@
+.home-header{
+  text-align: center;
+}
+
+.home-content{
+  display: flex;
+
+}
+
+ion-content{
+  --ion-background-color: rgba(67, 151, 151, 0.553);
+}
+ion-card{
+  color: white;
+  --ion-background-color: rgb(65, 62, 62);
+}
+ion-card-header{
+  background-color: white;
+  min-width: 350px;
+  transition: width 5s;
+}
+
+ion-card-header:hover{
+  background-color:rgb(65, 62, 62);
+}
+button{
+  border-radius: 15px;
+  box-shadow: 2px 2px 5px 5px #888888
+}

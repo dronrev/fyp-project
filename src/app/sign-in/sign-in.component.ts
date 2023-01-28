@@ -70,6 +70,7 @@ export class SignInComponent implements OnInit {
               localStorage.setItem('id',this.responseData.id);
               localStorage.setItem('name',this.responseData.name);
               localStorage.setItem('auth',this.LoginForm.value['user_role']);
+              localStorage.setItem('_elorfostudent_',this.responseData.role);
               this.router.navigate(['/student/home']);
               //this.http.changeName(this.responseData.name);
             }

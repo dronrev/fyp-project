@@ -13,3 +13,6 @@ ion-textarea.comment-section{
   --color: #fff;
 
 }
+ion-segment{
+  --background: grey;
+}

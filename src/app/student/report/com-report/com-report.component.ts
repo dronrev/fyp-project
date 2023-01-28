@@ -27,15 +27,37 @@ export class ComReportComponent implements OnInit {
 
     console.log(this.fetchReport.value);
     //const data = "";
-    this.reportService.displayReport(this.fetchReport.value)
-    .subscribe(
-      (results:any)=>{
-        //console.log(results);
-        this.reports = JSON.parse(results);
-        localStorage.removeItem('GetreportID');
-        localStorage.removeItem('reportID');
-      }
-    );
+    if(localStorage.getItem('_elorfostudent_') == 'student'){
+      this.reportService.displayReport(this.fetchReport.value)
+      .subscribe(
+        (results:any)=>{
+          console.log(results);
+          this.reports = JSON.parse(results);
+          localStorage.removeItem('GetreportID');
+          localStorage.removeItem('reportID');
+        }
+      );
+    }
+    if(localStorage.getItem('_elorfostudent_') == 'PMFKIKK' && 'PMFKIKAL'){
+      this.reportService.displayAll().pipe(map((res:any)=>res.filter((res1:any)=>res1.status == 0 || 1))).subscribe(
+        (results:any)=>{
+          console.log(results)
+          this.reports = results;
+          localStorage.removeItem('GetreportID');
+          localStorage.removeItem('reportID');
+        }
+      );
+      this.reportService.displayReport(this.fetchReport.value)
+      .subscribe(
+        (results:any)=>{
+          console.log(results);
+          //this.reports = JSON.parse(results);
+          //for(let item of results){ }
+          localStorage.removeItem('GetreportID');
+          localStorage.removeItem('reportID');
+        }
+      );
+    }
     //this.getReport(data);
   }
 

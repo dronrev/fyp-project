@@ -1,0 +1,14 @@
+.announcement-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: papayawhip;
+  box-shadow: 3px 3px 15px 3px;
+}
+.sender,.title,.content,.message{
+  background-color: white;
+  min-width: 80%;
+  border: 2px;
+  border-style: solid;
+  margin: 10px;
+}

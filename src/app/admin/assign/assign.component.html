@@ -9,7 +9,7 @@
         <div [hidden]="!click2">
           <div class="item">
             <ion-card color="dark" *ngFor="let item of presidentKK">
-              <img alt="Silhouette of mountains" src="https://www.cnet.com/a/img/resize/80a6258ea6642c4c0331f7d82bbc41a7bea36440/hub/2022/08/24/34d4ade1-6ac2-4016-8113-182347693167/screenshot-2022-08-24-143409.png?auto=webp&fit=crop&height=1200&width=1200" />
+              <img class="pt-2" [src]="imageURL+item.profilepic || defaultImg" />
               <ion-card-header>
                 <ion-card-title>{{ item.username | uppercase}}</ion-card-title>
                 <ion-card-subtitle>{{ item.user_id }}</ion-card-subtitle>
@@ -39,7 +39,7 @@
         <div [hidden]="!click1">
           <div class="item">
             <ion-card color="dark" *ngFor="let item of presidentKAL">
-              <img alt="Silhouette of mountains" src="https://www.cnet.com/a/img/resize/80a6258ea6642c4c0331f7d82bbc41a7bea36440/hub/2022/08/24/34d4ade1-6ac2-4016-8113-182347693167/screenshot-2022-08-24-143409.png?auto=webp&fit=crop&height=1200&width=1200" />
+              <img class="pt-2" [src]="imageURL+item.profilepic || defaultImg" />
               <ion-card-header>
                 <ion-card-title>{{ item.username | uppercase}}</ion-card-title>
                 <ion-card-subtitle>{{ item.user_id }}</ion-card-subtitle>
@@ -85,7 +85,7 @@
           <ion-item *ngFor="let item of listUser">
             <ion-label class="listStudent">
               <ion-card>
-                <img src="../assets/images/vernord.jpeg" alt="">
+                <img [src]="imageURL+item.profilepic" alt="">
                 <ion-card-header>
                   <ion-card-title>{{ item.username }}</ion-card-title>
                   <ion-card-subtitle color="dark">{{ item.course_id}}</ion-card-subtitle>
@@ -101,13 +101,12 @@
         </ion-radio-group>
       </ion-item>
     </ion-content>
-    <button class="btn btn-primary" (click)="checkValue(radioValue)">Test</button>
   </ng-template>
 </ion-modal>
 
 <!-- PMFKI Labuan Modal -->
 
-<ion-modal trigger="open-modalKAL" (willDismiss)="onWillDismiss($event)">
+<ion-modal trigger="open-modalKAL" (willDismiss)="onWillDismiss1($event)">
   <ng-template>
     <ion-header>
       <ion-toolbar>
@@ -126,10 +125,10 @@
         <ion-label>
       </ion-label>
         <ion-radio-group slot="start" [(ngModel)]="radioValueLabuan">
-          <ion-item *ngFor="let item of listUser">
+          <ion-item *ngFor="let item of listUserLabuan">
             <ion-label class="listStudent">
               <ion-card>
-                <img src="../assets/images/vernord.jpeg" alt="">
+                <img [src]="imageURL+item.profilepic" alt="">
                 <ion-card-header>
                   <ion-card-title>{{ item.username }}</ion-card-title>
                   <ion-card-subtitle color="dark">{{ item.course_id}}</ion-card-subtitle>
@@ -145,6 +144,5 @@
         </ion-radio-group>
       </ion-item>
     </ion-content>
-    <button class="btn btn-primary" (click)="checkValue1(radioValueLabuan)">Test</button>
   </ng-template>
 </ion-modal>

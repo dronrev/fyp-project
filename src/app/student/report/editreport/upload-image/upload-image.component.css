@@ -1,0 +1,34 @@
+.container{
+  display: grid;
+  place-items: center;
+  min-height: 90vh;
+}
+.upload-border{
+  display: grid;
+  place-items: center;
+  border-style: dotted;
+  min-height: 70vh;
+  border-color: black;
+  min-width: 50vw;
+}
+
+.show-image{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-self: start;
+}
+
+.image-list{
+  background-color: #f1f1f1;
+  margin: 10px;
+  box-shadow: 2px 2px 5px 5px #888888;
+  width: 320px;
+  height: 320px;
+}
+
+.image-list:hover{
+  box-shadow: 10px 2px 5px 5px #888888;
+  cursor: pointer;
+}
+

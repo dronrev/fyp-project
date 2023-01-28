@@ -1,14 +1,37 @@
-<div class="container">
-  <div>
-    <h1>Report ID</h1>
+<!--ion-breadcrumbs color="secondary">
+  <ion-breadcrumb routerLink="/report">Report</ion-breadcrumb>
+  <ion-breadcrumb routerLink="/report">My Report</ion-breadcrumb>
+  <ion-breadcrumb [routerLink]="['/report/editreport',report_id]">Current Report</ion-breadcrumb>
+</!--ion-breadcrumbs-->
+<ion-segment value="default" color="light">
+  <ion-segment-button value="actRep" (click)="actReport()">
+    <ion-label>Activity Reports</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="commentRep" (click)="commentReport()">
+    <ion-label>Comment</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="finRep" (click)="finReport()">
+    <ion-label>Financial Reports</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="attacRep" (click)="attachmentReport()">
+    <ion-label>Attachments</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="partRep" (click)="partReport()">
+    <ion-label>Participants</ion-label>
+  </ion-segment-button>
+</ion-segment>
+<div class="container" [hidden]="!actRep">
+  <h1>Laporan Aktiviti</h1>
+  <div class="pb-2">
+    <button class="btn btn-primary" (click)="editButton()" [hidden]="edit">EDIT</button>
+    <button class="btn btn-success" (click)="editButton()" [hidden]="!edit" >STOP EDITING</button>
   </div>
-  <ion-button (click)="editButton()" [hidden]="edit">Update</ion-button>
-  <ion-button (click)="editButton()" [hidden]="!edit" color="success">Stop Editing</ion-button>
+
   <div class="form">
     <form action="" class="" [formGroup]="thereport">
       <!--Title-->
       <div class="title">
-        <label for="" class="form-label">Title : </label>
+        <label for="" class="form-label">Tajuk : </label>
         <ion-item>
           <ion-textarea placeholder="Type something here"
           [autoGrow]="true"
@@ -21,7 +44,7 @@
       </div>
       <!--Objective-->
       <div class="objective">
-        <label for="" class="form-label">Objective : </label>
+        <label for="" class="form-label">Objektif : </label>
         <ion-item>
           <ion-textarea placeholder="Type something here"
           [autoGrow]="true"
@@ -34,7 +57,7 @@
       </div>
       <!--Introduction-->
       <div class="introduction">
-        <label for="" class="form-label">Introduction :</label>
+        <label for="" class="form-label">Pendahuluan :</label>
         <ion-item>
           <ion-textarea placeholder="Type something here"
           [autoGrow]="true"
@@ -47,7 +70,7 @@
       </div>
       <!--Involvement-->
       <div class="involvement">
-        <label for="" class="form-label">Involvement :</label>
+        <label for="" class="form-label">Penglibatan :</label>
         <ion-item>
           <ion-textarea placeholder="Type something here"
           [autoGrow]="true"
@@ -140,27 +163,26 @@
       <div class="attachment-part"></div>
       <!--Button-->
       <div class="submit-button mt-2 column">
-        <ion-button name="" color="success" (click)="saveReport()">
-          Save Report
-          <ion-icon name="save-sharp"></ion-icon>
-        </ion-button>
-        <ion-button name="" color="danger" (click)="clearForm()">
-          Clear All Text
-          <ion-icon name="trash-sharp"></ion-icon>
-        </ion-button>
-        <ion-button name="" color="warning">
-          <input type="file" multiple>
-          <ion-icon name="camera-sharp"></ion-icon>
-        </ion-button>
-      </div>
-      <div>
-        <ion-button name="" color="secondary" (click)="sendToLecturer(thereport.value)">
-          SEND REPORT
-        </ion-button>
-        <ion-button routerLink="/addParticipant">Add Participants</ion-button>
-        <!--app-upload-image></!--app-upload-image-->
-        <ion-button>See Attachment</ion-button>
+        <button class="btn btn-success" (click)="saveReport()">SAVE REPORT</button>
+        <button class="btn btn-danger" (click)="clearForm()">CLEAR ALL TEXT</button>
       </div>
     </form>
   </div>
+</div>
+<app-financial-report *ngIf="finRep;hidden"></app-financial-report>
+<app-upload-image *ngIf="attacRep;hidden"></app-upload-image>
+<h1 *ngIf="partRep;hidden">Add Participants For : {{title}}</h1>
+<app-add-participant *ngIf="partRep;hidden"></app-add-participant>
+<div *ngIf="partRep;hidden">
+  <button class="btn btn-primary"(click)="sendToPresident(thereport.value)" [hidden]="toLecturer">SEND TO PRESIDENT</button>
+  <button class="btn btn-primary" (click)="sendToLecturer(thereport.value)" [hidden]="!toLecturer">SEND TO LECTURER</button>
+</div>
+<div class="comment-section" *ngIf="comRep;hidden">
+  <label for="" class="form-label">Comment :</label>
+  <ion-textarea placeholder="No Comment"
+  [autoGrow]="true"
+  [value]="this.comment"
+  [readonly]="!edit">
+
+  </ion-textarea>
 </div>

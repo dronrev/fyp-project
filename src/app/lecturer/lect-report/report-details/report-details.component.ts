@@ -31,7 +31,10 @@ export class ReportDetailsComponent implements OnInit {
   lecturer_id?: string;
   edit = false;
   comment?: string;
-
+  actRep = false;
+  finRep = false;
+  attacRep = false;
+  partRep = false;
   hideSendTDA = true;
 
   constructor(private service : ReportsService,
@@ -71,6 +74,7 @@ export class ReportDetailsComponent implements OnInit {
         this.organizer=this.reports[0].organizer;
         this.location=this.reports[0].location;
         this.objective=this.reports[0].objective;
+        //this.thereport.value['objective'] = this.reports[0].objective
         this.introduction=this.reports[0].introduction;
         this.involvement=this.reports[0].involvement;
         this.perkara_hendak_maklum=this.reports[0].perkara_hendak_maklum;
@@ -79,6 +83,7 @@ export class ReportDetailsComponent implements OnInit {
         this.pencapaian=this.reports[0].pencapaian;
         this.rumusan=this.reports[0].rumusan;
         this.cadangan=this.reports[0].cadangan;
+        console.log(this.reports)
 
   });
   }
@@ -90,7 +95,7 @@ export class ReportDetailsComponent implements OnInit {
 
   approve(data: { reportId?: any, myStatus?: any }){
     this.thereport.value['report_id'] = localStorage.getItem('ReportID');
-    this.thereport.value['status'] = 1;
+    this.thereport.value['status'] = 3;
     data.reportId = "woi";
     console.log(data);
     console.log(this.thereport.value['status']);
@@ -104,7 +109,7 @@ export class ReportDetailsComponent implements OnInit {
 
   approveTDA(data: { reportId?: any, myStatus?: any }){
     this.thereport.value['report_id'] = localStorage.getItem('ReportID');
-    this.thereport.value['status'] = 3;
+    this.thereport.value['status'] = 4;
     data.reportId = "woi";
     console.log(data);
     console.log(this.thereport.value['status']);
@@ -140,7 +145,7 @@ export class ReportDetailsComponent implements OnInit {
   }
   rejectTDA(data: { reportId?: any, myStatus?: any }){
     this.thereport.value['report_id'] = localStorage.getItem('ReportID');
-    this.thereport.value['status'] = 1;
+    this.thereport.value['status'] = 0;
     data.reportId = "woi";
     console.log(data?.reportId);
     console.log(this.thereport.value['status']);
@@ -168,20 +173,32 @@ export class ReportDetailsComponent implements OnInit {
     this.modal.dismiss(null, 'cancel');
   }
 
-  sendComment(data:any){
-    console.log(this.reports[0]);
-    this.commentService.sendComment(data).subscribe(
+  sendComment(){
+    console.log(this.thereport.value)
+    this.thereport.value.report_id = localStorage.getItem('ReportID')
+    //console.log(data)
+    //console.log(this.reports[0].report_id);
+    this.commentService.sendComment(this.thereport.value).subscribe(
       res=>{
-        console.log(res);
+        this.alertComment(JSON.parse(res).comment)
       }
     )
+  }
+
+  async alertComment(data:any){
+    const alert = await this.alertcontrol.create({
+      header: 'Report Update',
+      message : data,
+      buttons : ['OK']
+    });
+    await alert.present();
   }
 
   //send report to TDA
   sendToTDA(data: { reportId?: any, myStatus?: any }){
     console.log('gimme your fking money!');
     this.thereport.value['report_id'] = localStorage.getItem('ReportID');
-    this.thereport.value['status'] = 2;
+    this.thereport.value['status'] = 3;
     data.reportId = "woi";
     console.log(data);
     console.log(this.thereport.value['status']);
@@ -191,6 +208,31 @@ export class ReportDetailsComponent implements OnInit {
       }
     )
     this.alertMessage();
+  }
+
+  actReport(){
+    this.actRep = true;
+    this.finRep = false;
+    this.attacRep = false;
+    this.partRep = false;
+  }
+  finReport(){
+    this.actRep = false;
+    this.finRep = true;
+    this.attacRep = false;
+    this.partRep = false;
+  }
+  attachmentReport(){
+    this.actRep = false;
+    this.finRep = false;
+    this.attacRep = true;
+    this.partRep = false;
+  }
+  partReport(){
+    this.actRep = false;
+    this.finRep = false;
+    this.attacRep = false;
+    this.partRep = true;
   }
 
 }

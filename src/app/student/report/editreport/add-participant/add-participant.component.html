@@ -1,4 +1,3 @@
-<h1>Add Participants For : Report Title</h1>
 <div>
   <form action="" [formGroup]="addStudent" (ngSubmit)="add()">
     <ion-list>
@@ -12,14 +11,17 @@
         <ion-input placeholder="Text Input" clearInput formControlName="matric_no"></ion-input>
       </ion-item>
     </ion-list>
-    <ion-button type="submit">Add<ion-icon name="add-circle-outline"></ion-icon></ion-button>
+    <button class="btn btn-primary mb-2" type="submit">Add</button>
   </form>
-  <ion-button color="success">Import CSV</ion-button>
-  <input type="file" (change)="importCSV($event)"
+  <input class="" type="file" (change)="importCSV($event)"
     accept=".xls,.xlsx,.csv">
+    <label for="" class="">To import participants, make sure the row of the excel file named following
+      ["Fullname"],["Matric Number"],["Email"]
+    </label>
+
 </div>
 <div>
-  <h2>List Of Participants</h2><ion-button color="primary" (click) = "createFile()" download>Get All E-Cert</ion-button>
+  <h2>List Of Participants</h2><button class="btn btn-primary" (click) = "createFile()" download>Get All E-Cert</button>
   <div>
     <ion-grid>
       <ion-row>
@@ -33,9 +35,7 @@
         <ion-col><ion-input [value]="student.name | uppercase" [readonly]="true"></ion-input></ion-col>
         <ion-col><ion-input [value]="student.matric_no" [readonly]="true"></ion-input></ion-col>
         <ion-col>
-          <ion-button color="primary">Edit</ion-button>
-          <ion-button color="danger" (click) = "deleting(student.matric_no)">Delete</ion-button>
-          <ion-button color="success" (click) = "getCerti(student.name,student.matric_no)">Get</ion-button>
+          <button class="buang-peserta" (click) = "deleting(student.matric_no)">Delete</button>
         </ion-col>
       </ion-row>
     </ion-grid>

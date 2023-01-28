@@ -1,0 +1,21 @@
+<h2>List Of Participants</h2>
+<div class="shadow p-3 mb-5 bg-white rounded">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">
+          #
+        </th>
+        <th>Name</th>
+        <th>Matric Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr scope="row" *ngFor="let item of list;let key = index">
+        <td>{{key+1}}</td>
+        <td>{{ item.name}}</td>
+        <td>{{item.matric_no}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

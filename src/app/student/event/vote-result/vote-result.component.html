@@ -1,0 +1,10 @@
+<div class="container">
+  <h2>Vote Result</h2>
+  <div class="list-event">
+    <div class="vote-card" *ngFor="let item of list">
+      <p>{{ item.name_activity }}</p>
+      <p>{{item.location}}</p>
+      <button class="vote-button" [routerLink]="[item.activity_id,'result']" (click)="setCurrentVoteId(item.activity_id)">Check</button>
+    </div>
+  </div>
+</div>

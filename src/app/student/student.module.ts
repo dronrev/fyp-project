@@ -35,6 +35,12 @@ import { FinancialChartComponent } from './dashboard/financial-chart/financial-c
 import { FinancialReportComponent } from './report/financial-report/financial-report.component';
 import { FinancialFormComponent } from './report/financial-report/financial-form/financial-form.component';
 import { ReportDetailComponent } from './report/financial-report/report-detail/report-detail.component';
+import { AnnouncementListComponent } from './announcement/announcement-list/announcement-list.component';
+import { AnnouncementDetailsComponent } from './announcement/announcement-list/announcement-details/announcement-details.component';
+import { VoteResultComponent } from './event/vote-result/vote-result.component';
+import { ResultsComponent } from './event/vote-result/results/results.component';
+import { ProfImage } from './profile/prof-img.component';
+import { PendingUserComponent } from './pending-user/pending-user.component';
 
 
 
@@ -70,7 +76,13 @@ import { ReportDetailComponent } from './report/financial-report/report-detail/r
     FinancialChartComponent,
     FinancialReportComponent,
     FinancialFormComponent,
-    ReportDetailComponent
+    ReportDetailComponent,
+    AnnouncementListComponent,
+    AnnouncementDetailsComponent,
+    VoteResultComponent,
+    ResultsComponent,
+    ProfImage,
+    PendingUserComponent
 
   ],
   imports: [

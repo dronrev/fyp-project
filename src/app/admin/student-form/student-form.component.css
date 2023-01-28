@@ -1,3 +1,6 @@
+input.ng-invalid{
+  border-color: red;
+}
 .btn-submit{
   background-color: #708eea;
 }

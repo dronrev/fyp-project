@@ -43,6 +43,7 @@ export class AddParticipantComponent implements OnInit {
   })
 
   genCert = new FormGroup({
+    report_id : new FormControl(localStorage.getItem('ReportID')),
     name : new FormControl("",Validators.required),
     matric_no : new FormControl("",Validators.required),
     title : new FormControl(null)

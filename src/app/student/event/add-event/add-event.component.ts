@@ -37,7 +37,7 @@ export class AddEventComponent implements OnInit {
     location : new FormControl("",Validators.required),
     tema : new FormControl("",Validators.required),
     organizer : new FormControl("",Validators.required),
-    date : new FormControl(""),
+    date : new FormControl("",Validators.required),
     pengarah : new FormControl(localStorage.getItem('id'))
   })
 
@@ -52,6 +52,9 @@ export class AddEventComponent implements OnInit {
       });
       console.log(this.eventForm.value);
     }
+    else{
+      this.notSuccessMessage()
+    }
     //console.log(this.eventForm.value);
   }
 
@@ -59,6 +62,18 @@ export class AddEventComponent implements OnInit {
     const alert = await this.alertController.create({
       header : 'Success !',
       message : 'Event added successfully!',
+      buttons : [
+        {
+          text : 'Continue'
+        }
+      ]
+    });
+    await alert.present();
+  }
+  async notSuccessMessage(){
+    const alert = await this.alertController.create({
+      header : 'Failed !',
+      message : 'Please fill in all forms!',
       buttons : [
         {
           text : 'Continue'

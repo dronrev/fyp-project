@@ -3,10 +3,10 @@
     <ion-row>
       <ion-col>
         <div class="image-preview">
-          <img [src]="imageURL || defaultImg" alt="">
+          <img [src]=" imageURL || defaultImg" alt="" id="profilepicture">
         </div>
         <input type="file" (change)="showPreview($event)" accept="image/*">
-        <button (click)="submit()">ok</button>
+        <button (click)="submit()">Submit Picture</button>
         <ion-item>
           <ion-input>
               <span>Name : </span> {{ name }}

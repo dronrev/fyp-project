@@ -11,6 +11,11 @@
       </div>
     </li>
     <li class="nav-item" routerLinkActive="active">
+      <div class="ion-padding" style="background-color: grey;">
+        <a href="#" routerLink="/announcement" class="nav-link" style="color: white;">Announcement</a>
+      </div>
+    </li>
+    <li class="nav-item" routerLinkActive="active">
       <ion-accordion value="second">
         <ion-item slot="header" color="light">
           <ion-label>Events</ion-label>
@@ -18,17 +23,13 @@
         <div class="ion-padding" slot="content">
           <a href="#" routerLink="/event" class="nav-link">Show Event</a>
         </div>
+        <div class="ion-padding" slot="content">
+          <a href="#" routerLink="/select-member" class="nav-link">Select Member</a>
+        </div>
+        <div class="ion-padding" slot="content">
+          <a href="#" routerLink="/event/vote-result" class="nav-link">Vote Result</a>
+        </div>
       </ion-accordion></li>
-      <li class="nav-item" routerLinkActive="active">
-        <div class="ion-padding" style="background-color: grey;">
-          <a href="#" routerLink="/select-member" class="nav-link" style="color: white;">Select Member</a>
-        </div>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <div class="ion-padding" style="background-color: grey;">
-          <a href="#" routerLink="/announcement" class="nav-link" style="color: white;">Announcement</a>
-        </div>
-      </li>
     <li class="nav-item" routerLinkActive="active">
         <ion-accordion value="first">
           <ion-item slot="header" color="light">
@@ -39,9 +40,6 @@
           </div>
           <div class="ion-padding" slot="content">
             <a routerLink="report/create-report" class="nav-link">Create New Report</a>
-          </div>
-          <div class="ion-padding" slot="content">
-            <a href="" routerLink="report/financial-report" class="nav-link">Financial Report</a>
           </div>
         </ion-accordion>
     </li>
@@ -56,9 +54,9 @@
       </div>
     </li>
 
-    <li class="nav-item" routerLinkActive="active">
+    <li class="nav-item" routerLinkActive="active" [hidden]="!check">
       <div class="ion-padding" style="background-color: grey;">
-        <a href="#" routerLink="/contact" class="nav-link" style="color: white;">Contact</a>
+        <a href="#" routerLink="/pending-user" class="nav-link" style="color: white;">Pending User</a>
       </div>
     </li>
   </ul>

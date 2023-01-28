@@ -1,6 +1,6 @@
 ion-card{
-  --color : white;
+  --color : rgb(0, 0, 0);
 }
 .nav-link{
-  color: white;
+  color: rgb(0, 0, 0);
 }

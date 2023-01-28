@@ -14,10 +14,17 @@ export class NavBarComponent implements OnInit {
   onSelect(feature: string){
     this.featureSelected.emit(feature);
   }
+  check = false;
 
   constructor(private title:TitleServiceService) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem('_elorfostudent_') == "PMFKIKK"){
+      this.check = true;
+    }
+    else if(localStorage.getItem('_elorfostudent_') == "PMFKIKK"){
+      this.check = true;
+    }
   }
 
 }

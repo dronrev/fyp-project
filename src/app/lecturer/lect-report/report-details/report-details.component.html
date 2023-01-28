@@ -1,4 +1,18 @@
-<form action="" class="" [formGroup]="thereport">
+<ion-segment value="default" color="light">
+  <ion-segment-button value="actRep" (click)="actReport()">
+    <ion-label>Activity Reports</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="finRep" (click)="finReport()">
+    <ion-label>Financial Reports</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="attacRep" (click)="attachmentReport()">
+    <ion-label>Attachments</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="partRep" (click)="partReport()">
+    <ion-label>Participants</ion-label>
+  </ion-segment-button>
+</ion-segment>
+<form action="" class="" [formGroup]="thereport" [hidden]="!actRep">
   <!--Objective-->
   <div class="objective">
     <label for="" class="form-label">Objective : </label>
@@ -109,45 +123,17 @@
     </ion-item>
   </div>
   <div class="attachment-part"></div>
-  <div class="submit-button mt-2 column">
-    <ion-button name="" color="secondary" slot="end" id="comment-report"
-    (click) = "commentData()">
-      Comment
-    </ion-button>
-
-    <!-- reject button for lecturer-->
-    <ion-button name="" color="tertiary" (click)="approve(thereport.value)" [hidden]="!hideSendTDA">
-      Approve
-    </ion-button>
-
-    <!-- reject button for lecturer-->
-    <ion-button name="" color="tertiary" (click)="approveTDA(thereport.value)" [hidden]="hideSendTDA">
-      Approve
-    </ion-button>
-
-    <!-- reject button for lecturer-->
-    <ion-button name="" color="danger" (click)="reject(thereport.value)" [hidden]="!hideSendTDA">
-      Reject
-    </ion-button>
-
-    <!-- reject button for TDA-->
-    <ion-button name="" color="danger" (click)="rejectTDA(thereport.value)" [hidden]="hideSendTDA">
-      Reject
-    </ion-button>
-    <ion-button (click)="sendToTDA(thereport.value)" [hidden]="!hideSendTDA">Send to TDA</ion-button>
-  </div>
   <div>
     <ion-modal trigger="comment-report">
       <ng-template>
         <ion-header>
-          <ion-button (click)="sendComment(thereport.value['comment'])">Save</ion-button>
+          <ion-button (click)="sendComment()">Save</ion-button>
           <ion-button  (click)="cancel()">Cancel</ion-button>
         </ion-header>
         <ion-content class="comment-content">
           <ion-label color="light">Comment</ion-label>
           <ion-textarea class="comment-section"
            placeholder="Type comment here"
-           value="weh asu"
            formControlName="comment"
            ></ion-textarea>
         </ion-content>
@@ -155,4 +141,35 @@
     </ion-modal>
   </div>
 </form>
+<app-lect-financial-report *ngIf="finRep;hidden"></app-lect-financial-report>
+<app-lect-financial-kewangan-report *ngIf="finRep;hidden"></app-lect-financial-kewangan-report>
+<app-lect-report-attachment *ngIf="attacRep;hidden"></app-lect-report-attachment>
+<app-part-list-lecturer *ngIf="partRep;hidden"></app-part-list-lecturer>
 
+<div class="submit-button mt-2 column">
+  <ion-button name="" color="secondary" slot="end" id="comment-report"
+  (click) = "commentData()">
+    Comment
+  </ion-button>
+
+  <!-- reject button for lecturer-->
+  <ion-button name="" color="tertiary" (click)="approve(thereport.value)" [hidden]="!hideSendTDA">
+    Approve
+  </ion-button>
+
+  <!-- reject button for lecturer-->
+  <ion-button name="" color="tertiary" (click)="approveTDA(thereport.value)" [hidden]="hideSendTDA">
+    Approve
+  </ion-button>
+
+  <!-- reject button for lecturer-->
+  <ion-button name="" color="danger" (click)="reject(thereport.value)" [hidden]="!hideSendTDA">
+    Reject
+  </ion-button>
+
+  <!-- reject button for TDA-->
+  <ion-button name="" color="danger" (click)="rejectTDA(thereport.value)" [hidden]="hideSendTDA">
+    Reject
+  </ion-button>
+  <ion-button (click)="sendToTDA(thereport.value)" [hidden]="!hideSendTDA">Send to TDA</ion-button>
+</div>

@@ -9,7 +9,7 @@ import { ReportsService } from '../reports.service';
 export class FullReportComponent implements OnInit {
   list: any;
 
-  TabHeaders = ["#","Name","Location","Status"];
+  TabHeaders = ["#","Name","Status"];
 
   constructor(private service : ReportsService) { }
 

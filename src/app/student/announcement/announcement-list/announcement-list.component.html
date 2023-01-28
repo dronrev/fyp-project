@@ -1,0 +1,23 @@
+<ion-breadcrumbs color="primary">
+  <ion-breadcrumb routerLink="/announcement">Announcement</ion-breadcrumb>
+  <ion-breadcrumb>List Of Announcement</ion-breadcrumb>
+</ion-breadcrumbs>
+<div class="container">
+  <h1>Announcement List</h1>
+  <input type="text" placeholder="Search...">
+  <div class="content-container mt-2">
+    <div class="card container-fluid" *ngFor="let item of list;let key = index">
+      <a href="" [routerLink]="['info',item.announcement_id]" style="text-decoration: none;color: black;" (click)="getAnnouncement(key)">
+        <div class="title">
+          <h2>{{ item.title | uppercase }}</h2>
+           <div class="content">
+             <h4>{{ item.subject }}</h4>
+             <div class="message">
+               <p>{{ item.message }}</p>
+             </div>
+           </div>
+         </div>
+      </a>
+    </div>
+  </div>
+</div>

@@ -19,6 +19,7 @@ export class Report{
   lecturer_id?: string;
   status?: string;
   comment?: string;
+  name_activity?: string;
   constructor(report_id?:string,title?:string, organizer?:string,  location?: string,
     objective?: string,
     introduction?: string,
@@ -34,9 +35,10 @@ export class Report{
     user_id?: string,
     lecturer_id?: string,
     status?: string,
-    comment?: string){
+    comment?: string,
+    name_activity?:string){
     this.report_id = report_id;
-    this.title = title;
+    this.name_activity = name_activity;
     this.location = location;
     this.objective = objective;
     this.organizer = organizer;

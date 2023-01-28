@@ -22,29 +22,41 @@ import { AddEventComponent } from './event/add-event/add-event.component';
 import { FinancialChartComponent } from './dashboard/financial-chart/financial-chart.component';
 import { ChooseMemberComponent } from './select-member/member/choose-member/choose-member.component';
 import { FinancialReportComponent } from './report/financial-report/financial-report.component';
+import { AnnouncementListComponent } from './announcement/announcement-list/announcement-list.component';
+import { AnnouncementFormComponent } from './announcement/announcement-form/announcement-form.component';
+import { AnnouncementDetailsComponent } from './announcement/announcement-list/announcement-details/announcement-details.component';
+import { VoteResultComponent } from './event/vote-result/vote-result.component';
+import { ResultsComponent } from './event/vote-result/results/results.component';
+import { PendingUserComponent } from './pending-user/pending-user.component';
 
 const routes: Routes = [
-  { path : '',component : StudentComponent,
+  { path : '',component : StudentComponent,data:{title:'Home'},
   children:[
-    {path : 'home', component : HomeComponent},
+    {path : 'home', component : HomeComponent,data:{title : 'Home'}},
     {path : 'report', component : ReportComponent, data:{title: 'Report'}},
     {path : 'report/create-report', component : CreateReportComponent , data:{title: 'Report'}},
     {path : 'report/editreport/:report_id', component : EditreportComponent , data:{title: 'Report'}},
-    {path : 'report/financial-report',component : FinancialReportComponent},
+    {path : 'report/editreport/:report_id/financial-report',component : FinancialReportComponent},
     {path : 'event', component : EventComponent , data:{title: 'Event'}},
     {path : 'event/add-event', component : AddEventComponent , data:{title: 'Event'}},
+    {path : 'event/vote-result',component : VoteResultComponent,data:{title : 'Vote Result'}},
+    {path : 'event/vote-result/:activity_id/result', component : ResultsComponent, data:{title: 'Vote Result'}},
     {path : 'contact', component : ContactComponent , data:{title: 'Contact'}},
     {path : 'announcement', component : AnnouncementComponent, data:{title: 'Announcement'}},
+    {path : 'announcement/list-of-announcement', component : AnnouncementListComponent},
+    {path : 'announcement/create-new-announcement', component : AnnouncementFormComponent},
+    {path : 'announcement/list-of-announcement/info/:announcement_id', component : AnnouncementDetailsComponent},
     {path : 'full-report', component : FullReportComponent},
     {path : 'e-cert', component : CertificateComponent},
     {path : 'select-member', component : SelectMemberComponent},
     {path : 'select-member/selecting/:activity_id',component : ChooseMemberComponent},
-    {path : 'dashboard', component : StudentDashboardComponent},
+    {path : 'dashboard', component : StudentDashboardComponent, data:{title : 'Dashboard'}},
 
-    {path : 'addParticipant', component : AddParticipantComponent},
-    {path : 'profile', component : ProfileComponent},],canActivate:[AuthenticationGuard]},
+    {path : 'report/editreport/:report_id/addParticipant', component : AddParticipantComponent},
+    {path : 'profile', component : ProfileComponent},
+    {path : 'pending-user',component : PendingUserComponent},
+    {path : 'report/editreport/:report_id/image', component : UploadImageComponent}],canActivate:[AuthenticationGuard]},
 
-    {path : 'image', component : UploadImageComponent},
     {path : 'graph',component : FinancialChartComponent},
     {path : 'header',component : HeaderComponent}
 

@@ -7,10 +7,10 @@ import { Injectable } from '@angular/core';
 export class LectReportService {
 
   constructor(private http : HttpClient) { }
-  baseUrl = "";
+  baseUrl = "http://localhost/fyp-project/report/";
 
   sendComment(data:any){
-    return this.http.post(this.baseUrl,data)
+    return this.http.post(this.baseUrl+'comment-report.php',data,{responseType : 'text'})
   }
 
 }

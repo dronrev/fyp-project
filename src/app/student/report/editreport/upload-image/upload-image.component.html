@@ -1,26 +1,21 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Inline Modal</ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content class="ion-padding">
-  <ion-button expand="block" (click)="setOpen(true)">Open</ion-button>
-  <ion-modal [isOpen]="isModalOpen">
-    <ng-template>
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Modal</ion-title>
-          <ion-buttons slot="end">
-            <ion-button (click)="setOpen(false)">Close</ion-button>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-        <input type="file" multiple>
-        <img src="https://cdn.vox-cdn.com/thumbor/GnDCOufdlnqyK2iCsE1nnxmca70=/0x0:2024x1038/1400x1050/filters:focal(989x320:1311x642):no_upscale()/cdn.vox-cdn.com/uploads/chorus_image/image/71278865/Screen_Shot_2022_08_23_at_4.22.21_PM.0.png" alt="">
-        <ion-button color="success">Upload</ion-button>
-        <ion-button color="danger">Cancel</ion-button>
-      </ion-content>
-    </ng-template>
-  </ion-modal>
-</ion-content>
+<!--ion-breadcrumbs color="secondary">
+  <ion-breadcrumb routerLink="/report">Report</ion-breadcrumb>
+  <ion-breadcrumb routerLink="/report">My Report</ion-breadcrumb>
+  <ion-breadcrumb [routerLink]="['/report/editreport',report_id]">Current Report</ion-breadcrumb>
+  <ion-breadcrumb [routerLink]="['/report/editreport',report_id,'image']">Upload Image</ion-breadcrumb>
+</!--ion-breadcrumbs-->
+
+<div class="container" [hidden]="!check">
+  <div class="upload-border">
+    <input type="file" class="btn btn-primary" (change)="uploadImage($event)" multiple>
+  </div>
+</div>
+
+<div class="show-image" [hidden]="check">
+    <div class="image-list" *ngFor="let item of listOfImage">
+      <img [src]="item" alt="" width="300" height="300">
+      <ion-checkbox (ionChange)="deleteImg($event,item)"></ion-checkbox>
+    </div>
+</div>
+<button class="btn btn-primary" (click)="uploadImg()" style="margin-right: 10px;">Save Image</button>
+<input class="btn btn-warning"(change)="uploadImage($event)" multiple type="file">

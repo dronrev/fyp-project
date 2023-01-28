@@ -10,6 +10,7 @@ export class ReportsService {
 
   constructor(private http:HttpClient) { }
   theUrl = "http://localhost/fyp-project/report/";
+  financialUrl = "http://localhost/fyp-project/budget/";
 
   displayAll(){
     return this.http.get(this.theUrl+'displayAll.php')
@@ -40,5 +41,27 @@ export class ReportsService {
   }
   deleteReport(data:any){
     return this.http.post(this.theUrl+'delete-report.php',data,{responseType : 'text'})
+  }
+
+  createReport(data:any){
+    return this.http.post(this.theUrl+'new-add-report.php',data,{responseType: 'text'})
+  }
+
+  sendLaporanKewangan(data:any){
+    return this.http.post(this.financialUrl+'send-laporan-kewangan.php',data,{responseType : 'text'})
+  }
+
+  totalCount(data:any){
+    return this.http.post(this.financialUrl+'budget-count.php',data,{responseType : 'text'})
+  }
+
+  sendPendahuluan(data:any){
+    return this.http.post(this.financialUrl+'send-pendahuluan.php',data,{responseType : 'text'})
+  }
+  specificLaporanKewangan(data:any){
+    return this.http.post(this.financialUrl+'get-budget.php',data,{responseType : 'text'})
+  }
+  getPendahuluan(data:any){
+    return this.http.post(this.financialUrl+'get-pendahuluan.php',data,{responseType :'text'})
   }
 }

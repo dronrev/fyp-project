@@ -13,6 +13,7 @@ import { TopNavAdminComponent } from '../admin-navbar/top-nav-admin/top-nav-admi
 import { AssignComponent } from '../assign/assign.component';
 import { AdminComponent } from '../admin.component';
 import { AssignPmfkikkComponent } from '../assign/assign-pmfkikk/assign-pmfkikk.component';
+import { AdminContactComponent } from '../admin-contact/admin-contact.component';
 
 
 
@@ -26,7 +27,8 @@ import { AssignPmfkikkComponent } from '../assign/assign-pmfkikk/assign-pmfkikk.
     LecturerFormComponent,
     TopNavAdminComponent,
     AssignComponent,
-    AssignPmfkikkComponent
+    AssignPmfkikkComponent,
+    AdminContactComponent,
   ],
   imports: [
     CommonModule,
