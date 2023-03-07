@@ -1,0 +1,50 @@
+<div class="shadow p-3 mb-5 bg-white rounded">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Vote</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of list;let key = index">
+        <td>
+          {{key+1}}
+        </td>
+        <td>
+          {{ item.name_activity | uppercase}}
+        </td>
+        <td>
+          {{ item.date }}
+        </td>
+        <td>
+          <div><ion-button color="secondary" id="open-modal" hidden>Vote Member</ion-button></div>
+          <button class="btn btn-warning" (click)="selectActivity(item.activity_id)" [routerLink]="['selecting',item.activity_id]">Vote Member</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="cancel()">Cancel</ion-button>
+        </ion-buttons>
+        <ion-title>Welcome</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-item>
+        <ion-label position="stacked">Enter your name</ion-label>
+      </ion-item>
+    </ion-content>
+  </ng-template>
+</ion-modal>

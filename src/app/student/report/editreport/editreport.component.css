@@ -1,0 +1,28 @@
+.form textarea,label{
+  font-family: Tahoma;
+  color: black;
+}
+
+ion-content{
+  --ion-background-color:#99CCED;
+  --color:black;
+}
+ion-modal{
+  --border-color:pink;
+}
+
+.comment-content{
+  --background: #373737;
+}
+
+
+
+ion-textarea.comment-section{
+  --background: #373737;
+  --color: #fff;
+
+}
+ion-segment{
+  --background: grey;
+}
+

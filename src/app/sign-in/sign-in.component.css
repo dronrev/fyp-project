@@ -1,0 +1,31 @@
+.heading{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main-body{
+  min-height: 75vh;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: blanchedalmond;
+}
+.body-login{
+  height: 50vh;
+  width: 30%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 5px 7px rgb(172, 166, 167);
+}
+.form-body{
+  display: grid;
+  place-items: center;
+}
+.form-control{
+  border: solid;
+}

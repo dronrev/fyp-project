@@ -1,0 +1,33 @@
+<h2 style="text-align: center;">Add Event</h2>
+<div class="container">
+  <form [formGroup]="eventForm" (ngSubmit)="sendEvent()">
+    <div>
+      <label for="" class="form-label">Name</label>
+      <input type="text" class="form-control" formControlName="name_activity">
+    </div>
+    <div>
+      <label for="" class="form-label">Location</label>
+      <input type="text" class="form-control" formControlName="location">
+    </div>
+    <div>
+      <label for="" class="form-label">Tema</label>
+      <input type="text" class="form-control" formControlName="tema">
+    </div>
+    <div>
+      <label for="" class="form-label">Organizer</label>
+      <input type="text" class="form-control"  formControlName="organizer">
+    </div>
+    <div>
+      <label for="" class="form-label">Date</label>
+      <input type="datetime-local" class="form-control"  formControlName="date">
+    </div>
+    <div class="select-option">
+      <ion-select placeholder="Select Lecturer"  formControlName="value">
+        <ion-select-option [value]="item.lecturer_id" *ngFor="let item of lecturer; let key = index">{{ item.name }}</ion-select-option>
+      </ion-select>
+    </div>
+    <div class="pt-2">
+      <button class="btn btn-success" type="submit">Add</button>
+    </div>
+  </form>
+</div>

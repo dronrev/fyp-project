@@ -1,0 +1,8 @@
+.container{
+  background-image: linear-gradient(rgb(105, 182, 241),rgb(44, 130, 173));
+  border-radius: 25px 25px;
+  box-shadow: 5px 10px 8px grey;
+}
+.lect-form{
+  max-width: 30%;
+}

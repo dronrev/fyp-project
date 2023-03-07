@@ -1,0 +1,7 @@
+ion-content{
+  --ion-background-color: rgba(67, 151, 151, 0.553);
+}
+ion-card{
+  width: 50%;
+  height: auto;
+}

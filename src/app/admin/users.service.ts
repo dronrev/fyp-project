@@ -17,7 +17,24 @@ export class UsersService {
     return this.http.get(this.baseUrl+'user/get-students.php')
   }
 
+  deleteService(data:any){
+    return this.http.post(this.baseUrl+'user/delete-user.php',data,{responseType: 'text'})
+  }
+
   sendLecturer(data:any){
     return this.http.post(this.baseUrl+'lecturer/sendData.php',data,{responseType : 'text'})
+  }
+
+  assignPresident(data:any){
+    return this.http.post(this.baseUrl+'user/assignPresident.php',data,{responseType : 'text'})
+  }
+
+  assignPresidentLabuan(data:any){
+    return this.http.post(this.baseUrl+'user/assignPresidentLabuan.php',data,{responseType : 'text'})
+  }
+
+
+  updateRole(data:any){
+    return this.http.post(this.baseUrl+'user/update-role.php',data,{responseType : 'text'})
   }
 }

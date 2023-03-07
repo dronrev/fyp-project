@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{title.title}}</ion-title>
+    <button slot="end" routerLink="/profile" class="profile"><img [src]="imageURL || defaultImg" alt="" class="profile-picture"><ion-label slot="end">{{ test }}</ion-label></button>
+
+    <!--button slot="end"  class="btn btn-primary dropdown-toggle"
+    id="dropdownMenuButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">noti
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a href="" class="dropdown-item">Noti 1</a>
+      </div>
+    </!--button-->
+    <button slot="end" style="background: none;"><ion-icon name="chatbubbles-sharp" slot="end" size="large"></ion-icon></button>
+    <ion-button slot="end" size="small"><a href="" class="nav-link" routerLink="/sign-in" style="color: white;">
+      Sign out
+    </a></ion-button>
+  </ion-toolbar>
+</ion-header>

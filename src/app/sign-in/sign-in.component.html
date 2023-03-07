@@ -1,26 +1,39 @@
-<p>sign-in Page</p>
-<div class="row" >
-  <form [formGroup] = "enterPage" (ngSubmit)="Login()">
-    <div class="col-lg-6 offset-lg-3">
-      <div class="form-group">
-        <label for="">Username</label>
-        <input #name type="text" class="form-control" formControlName="email_address">
-      </div>
-      <div class="form-group">
-        <label for="">Password</label>
-        <input type="password" class="form-control" #role formControlName="password">
-      </div>
-      <div class="form-group">
-        <select name="" id="">
-          <option value="Student">Student</option>
-          <option value="Lecturer">Lecturer</option>
-          <option value="Admin">Admin</option>
+<div class="heading">
+  <div><img src="assets/images/logo.png" alt=""></div>
+  <div><h2>PMFKI activity management system</h2></div>
+</div>
+<div class="container-fluid main-body">
+  <div class="body-login">
+    <div class="login-head">
+      <h1>LOGIN</h1>
+    </div>
+    <form action="" class="form-body" [formGroup]= "LoginForm" (ngSubmit)="onLogin()">
+      <div>
+        <select name="" id="" formControlName="user_role">
+          <option value="" *ngFor="let roles of role" [ngValue]="roles.id">{{ roles.name }}</option>
         </select>
       </div>
-      <div class="form-group">
-        <br>
-       <button class="btn btn-primary" type="submit">Sign In</button>
+      <div>
+        <label for="" class="form-label">Username</label>
+        <input type="text" class="form-control" formControlName="email_address" required>
       </div>
-    </div>
-</form>
+      <div>
+        <label for="" class="form-label">Password</label>
+        <input type="password" class="form-control" formControlName="password" required>
+      </div>
+      <div class="pt-2">
+        <ion-checkbox slot="start" (click)="showPassword()"></ion-checkbox>
+        <ion-label>Show Password</ion-label>
+      </div>
+      <div>
+        <button class="btn btn-primary" type="submit">Login</button>
+      </div>
+      <div>
+        <a href="">Forgot your password ?</a>
+      </div>
+      <div>
+        <a href="" routerLink="/new-register">Register as a new member</a>
+      </div>
+    </form>
+  </div>
 </div>

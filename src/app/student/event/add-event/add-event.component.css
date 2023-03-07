@@ -1,0 +1,13 @@
+.container{
+  background-image: linear-gradient(rgb(105, 182, 241),rgb(44, 130, 173));
+  background-color: white;
+  border-radius: 25px;
+  height: 58vh;
+  width: 50%;
+}
+
+.btn.btn-success{
+  box-shadow: 2px 5px green;
+  border-radius: 25px 25px;
+  width: 100px;
+}

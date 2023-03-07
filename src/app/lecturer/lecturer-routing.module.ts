@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthenticationGuard } from '../guard/authentication.guard';
 import { RoleGuard } from '../guard/role.guard';
+import { LectAnnouncementComponent } from './lect-announcement/lect-announcement.component';
+import { LectEventComponent } from './lect-event/lect-event.component';
 import { LectReportComponent } from './lect-report/lect-report.component';
 import { ReportDetailsComponent } from './lect-report/report-details/report-details.component';
 import { LectdashComponent } from './lectdash/lectdash.component';
@@ -10,11 +12,17 @@ import { LecturerComponent } from './lecturer.component';
 
 const routes: Routes = [
   //{path : '', redirectTo: 'home-admin', pathMatch: 'full'},
-  { path : 'Lecturer', component : LecturerComponent,canActivate:[RoleGuard]},
-  { path : 'HomeLecturer ', component : LecturerHomeComponent,canActivate:[RoleGuard] },
-  { path : 'ReportLecturer', component : LectReportComponent,canActivate:[RoleGuard]},
-  { path : 'Detail-Report', component : ReportDetailsComponent,canActivate:[RoleGuard]},
-  { path : 'LectDashboard', component : LectdashComponent,canActivate:[RoleGuard]}
+  { path : '', component : LecturerComponent,children:[
+    { path : 'HomeLecturer', component : LecturerHomeComponent},
+    { path : 'ReportLecturer', component : LectReportComponent},
+    { path : 'Detail-Report', component : ReportDetailsComponent},
+    { path : 'LectDashboard', component : LectdashComponent},
+    { path : 'lectEditReport', component : ReportDetailsComponent},
+    { path : 'lect-event',component : LectEventComponent},
+    { path : 'lect-announcement',component : LectAnnouncementComponent}
+    ],canActivate:[RoleGuard]
+  },
+
 ];
 
 @NgModule({

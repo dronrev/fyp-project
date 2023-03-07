@@ -1,0 +1,188 @@
+<!--ion-breadcrumbs color="secondary">
+  <ion-breadcrumb routerLink="/report">Report</ion-breadcrumb>
+  <ion-breadcrumb routerLink="/report">My Report</ion-breadcrumb>
+  <ion-breadcrumb [routerLink]="['/report/editreport',report_id]">Current Report</ion-breadcrumb>
+</!--ion-breadcrumbs-->
+<ion-segment value="default" color="light">
+  <ion-segment-button value="actRep" (click)="actReport()">
+    <ion-label>Activity Reports</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="commentRep" (click)="commentReport()">
+    <ion-label>Comment</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="finRep" (click)="finReport()">
+    <ion-label>Financial Reports</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="attacRep" (click)="attachmentReport()">
+    <ion-label>Attachments</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="partRep" (click)="partReport()">
+    <ion-label>Participants</ion-label>
+  </ion-segment-button>
+</ion-segment>
+<div class="container" [hidden]="!actRep">
+  <h1>Laporan Aktiviti</h1>
+  <div class="pb-2">
+    <button class="btn btn-primary" (click)="editButton()" [hidden]="edit">EDIT</button>
+    <button class="btn btn-success" (click)="editButton()" [hidden]="!edit" >STOP EDITING</button>
+  </div>
+
+  <div class="form">
+    <form action="" class="" [formGroup]="thereport">
+      <!--Title-->
+      <div class="title">
+        <label for="" class="form-label">Tajuk : </label>
+        <ion-item>
+          <ion-textarea placeholder="Type something here"
+          [autoGrow]="true"
+          formControlName="title"
+          [value]="this.title"
+          [readonly]="!edit">
+          </ion-textarea>
+
+        </ion-item>
+      </div>
+      <!--Objective-->
+      <div class="objective">
+        <label for="" class="form-label">Objektif : </label>
+        <ion-item>
+          <ion-textarea placeholder="Type something here"
+          [autoGrow]="true"
+          formControlName="objective"
+          [readonly]="!edit"
+          [value]="this.objective">
+          </ion-textarea>
+
+        </ion-item>
+      </div>
+      <!--Introduction-->
+      <div class="introduction">
+        <label for="" class="form-label">Pendahuluan :</label>
+        <ion-item>
+          <ion-textarea placeholder="Type something here"
+          [autoGrow]="true"
+          [value]="this.introduction"
+          [readonly]="!edit"
+          formControlName="introduction">
+          </ion-textarea>
+
+        </ion-item>
+      </div>
+      <!--Involvement-->
+      <div class="involvement">
+        <label for="" class="form-label">Penglibatan :</label>
+        <ion-item>
+          <ion-textarea placeholder="Type something here"
+          [autoGrow]="true"
+          [value]="this.involvement"
+          [readonly]="!edit"
+          formControlName="involvement">
+          </ion-textarea>
+
+        </ion-item>
+      </div>
+      <!--Perkara hendak maklum-->
+      <div class="perkara-hendak">
+        <label for="" class="form-label">Perkara hendak dimaklumkan  :</label>
+        <ion-item>
+          <ion-textarea placeholder="Type something here"
+          [autoGrow]="true"
+          [value]="this.perkara_hendak_maklum"
+          [readonly]="!edit"
+          formControlName="perkara">
+          </ion-textarea>
+
+        </ion-item>
+      </div>
+      <!--VIP-->
+      <div class="VIP">
+        <label for="" class="form-label">Jemputan VIP :</label>
+        <ion-item>
+          <ion-textarea placeholder="Type something here"
+          [autoGrow]="true"
+          [value]="this.jemputan_vip"
+          [readonly]="!edit"
+          formControlName="vip">
+          </ion-textarea>
+
+        </ion-item>
+      </div>
+      <!--Impak-->
+      <div class="impak">
+        <label for="" class="form-label">Impak Program :</label>
+        <ion-item>
+          <ion-textarea placeholder="Type something here"
+          [autoGrow]="true"
+          [value]="this.impak_program"
+          [readonly]="!edit"
+          formControlName="impak">
+          </ion-textarea>
+
+        </ion-item>
+      </div>
+      <!--Pencapaian-->
+      <div class="pencapaian">
+        <label for="" class="form-label">Pencapaian :</label>
+        <ion-item>
+          <ion-textarea placeholder="Type something here"
+          [autoGrow]="true"
+          [value]="this.pencapaian"
+          [readonly]="!edit"
+          formControlName="pencapaian">
+          </ion-textarea>
+
+        </ion-item>
+      </div>
+      <!--Rumusan-->
+      <div class="rumusan">
+        <label for="" class="form-label">Rumusan :</label>
+        <ion-item>
+          <ion-textarea placeholder="Type something here"
+          [autoGrow]="true"
+          [value]="this.rumusan"
+          [readonly]="!edit"
+          formControlName="rumusan">
+          </ion-textarea>
+
+        </ion-item>
+      </div>
+      <!--Cadangan-->
+      <div class="cadangan">
+        <label for="" class="form-label">Cadangan :</label>
+        <ion-item>
+          <ion-textarea placeholder="Type something here"
+          [autoGrow]="true"
+          [value]="this.cadangan"
+          [readonly]="!edit"
+          formControlName="cadangan">
+          </ion-textarea>
+
+        </ion-item>
+      </div>
+      <!--Attachment Preview-->
+      <div class="attachment-part"></div>
+      <!--Button-->
+      <div class="submit-button mt-2 column">
+        <button class="btn btn-success" (click)="saveReport()">SAVE REPORT</button>
+        <button class="btn btn-danger" (click)="clearForm()">CLEAR ALL TEXT</button>
+      </div>
+    </form>
+  </div>
+</div>
+<app-financial-report *ngIf="finRep;hidden"></app-financial-report>
+<app-upload-image *ngIf="attacRep;hidden"></app-upload-image>
+<h1 *ngIf="partRep;hidden">Add Participants For : {{title}}</h1>
+<app-add-participant *ngIf="partRep;hidden"></app-add-participant>
+<div *ngIf="partRep;hidden">
+  <button class="btn btn-primary"(click)="sendToPresident(thereport.value)" [hidden]="toLecturer">SEND TO PRESIDENT</button>
+  <button class="btn btn-primary" (click)="sendToLecturer(thereport.value)" [hidden]="!toLecturer">SEND TO LECTURER</button>
+</div>
+<div class="comment-section" *ngIf="comRep;hidden">
+  <label for="" class="form-label">Comment :</label>
+  <ion-textarea placeholder="No Comment"
+  [autoGrow]="true"
+  [value]="this.comment"
+  [readonly]="!edit">
+
+  </ion-textarea>
+</div>

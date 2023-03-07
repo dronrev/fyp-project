@@ -1,0 +1,51 @@
+.container{
+  /*background-image: linear-gradient(rgb(105, 182, 241),rgb(44, 130, 173));
+  background-color: blue;
+  border-radius: 25px;
+  height: 48vh;
+  width: 50%;*/
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  column-gap: 20px;
+  row-gap: 10px;
+}
+.create-report{
+  box-shadow: 2px 5px green;
+  border-radius: 25px 25px;
+  width: 100px;
+}
+.select-option{
+  background-color: white;
+  border-radius: 5px 5px;
+}
+
+.card-report{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lecturer-in-charge{
+  display: grid;
+  place-items: center;
+}
+
+.report-card{
+  display: grid;
+  place-items: center;
+  background-image: linear-gradient(rgb(105, 182, 241),rgb(44, 130, 173));
+  border-radius: 25px;
+  min-width: 50%;
+}
+
+.button-create>button{
+  box-shadow: 2px 2px;
+  background-color: rgb(5, 187, 220);
+  border-radius: 25px;
+  min-width: 50px;
+  min-height: 2vh;
+}
+.button-create>button:hover{
+  background-color: rgb(1, 255, 47);
+}
+

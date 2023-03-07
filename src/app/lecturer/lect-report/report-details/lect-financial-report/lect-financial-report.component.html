@@ -1,0 +1,57 @@
+
+  <ion-label>Report ID</ion-label>
+  <div class="container financial-form">
+    <h2>PENGENALAN / PENDAHULUAN</h2>
+    <ion-list [inset]="true">
+      <form action="" [formGroup]="myData">
+        <ion-item>
+          <ion-label position="floating">NAMA AKTIVITI :</ion-label>
+          <ion-input
+            formControlName="nama_aktiviti"
+            [value]="name_activity"
+            readonly
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">PENGANJUR :</ion-label>
+          <ion-input
+            formControlName="penganjur"
+            [value]="penganjur"
+            readonly
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">PENGARAH :</ion-label>
+          <ion-input formControlName="pengarah" [value]="pengarah" readonly></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">PEGAWAI BERTANGGUNGJAWAB :</ion-label>
+          <ion-input formControlName="pegawai_bertanggungjawab"
+          [value]="pegawai_bertanggungjawab"
+           readonly></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">BAJET DILULUSKAN :</ion-label>
+          <ion-input formControlName="bajet_diluluskan" [value]="bajet_diluluskan" readonly></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">PENAMA KELULUSAN :</ion-label>
+          <ion-input formControlName="penama_kelulusan" [value]="penama_kelulusan" readonly></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">KELULUSAN OLEH :</ion-label>
+          <ion-input formControlName="kelulusan_oleh" [value]="kelulusan_oleh" readonly></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">JUMLAH CEK :</ion-label>
+          <ion-input formControlName="jumlah_cek" [value]="jumlah_cek" readonly></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">PENERIMA CEK / WANG TUNAI :</ion-label>
+          <ion-input formControlName="penerima_cek_tunai" [value]="penerima_cek_tunai" readonly></ion-input>
+        </ion-item>
+      </form>
+    </ion-list>
+  </div>
+
+

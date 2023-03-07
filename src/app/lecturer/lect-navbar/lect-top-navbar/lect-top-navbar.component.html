@@ -5,12 +5,11 @@
     </ion-buttons>
     <ion-title>Home</ion-title>
     <ion-icon name="person-circle-sharp" slot="end" size="large"></ion-icon>
-    <ion-label slot="end">Lecturer</ion-label>
+    <ion-label slot="end">{{ username }}</ion-label>
     <button slot="end" style="background: none;"><ion-icon name="notifications-sharp" slot="end" size="large"></ion-icon></button>
     <button slot="end" style="background: none;"><ion-icon name="chatbubbles-sharp" slot="end" size="large"></ion-icon></button>
-    <ion-button slot="end" size="small"><a href="" class="nav-link" routerLink="/login" style="color: white;">
+    <ion-button slot="end" size="small"><a href="" class="nav-link" routerLink="/sign-in" style="color: white;">
       Sign out
-      <ion-icon name="log-out-sharp"></ion-icon>
     </a></ion-button>
   </ion-toolbar>
 </ion-header>

@@ -4,6 +4,7 @@ import { UsersService } from '../users.service';
 import { NgForm } from '@angular/forms';
 import { User } from '../user.model';
 import { Observable } from 'rxjs';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-student-form',
   templateUrl: './student-form.component.html',
@@ -14,7 +15,9 @@ export class StudentFormComponent implements OnInit {
   //regStu!: User;
   //data: any;
 
-  constructor(private http : HttpClient, private userservice : UsersService) { }
+  constructor(private http : HttpClient,
+     private userservice : UsersService,
+     private alertcontrol : AlertController) { }
 
   baseurl = "http://localhost/fyp-project/send-data.php";
 
@@ -22,20 +25,28 @@ export class StudentFormComponent implements OnInit {
   error = '';
   success = '';
 
+  programmes_list = ["","UH6481001 / HC00","UH6481002 / HC05",
+   "UH6481003 / HC12", "UH6481004 / HC13","HC14"]
+
   ngOnInit(): void {
-    //this.userservice.getStudents().subscribe(
-     // (result:any)=>{
-      //  this.students = result.data;
-   // }
-   // )
   }
 
 
-  sendUser(student:{name:string , mat_number:string, passwd:string, email:string}){
+  sendUser(student:{name:string , mat_number:string, passwd:string, email:string,role:string}){
     //let body = JSON.stringify(student);
     this.http.post(this.baseurl, student, {responseType: 'text'}).subscribe(
       res=>{
       console.log(res);
+      this.notify(res);
     })
+  }
+
+  async notify(serviceMessage:any){
+    const messages = await this.alertcontrol.create({
+      header : 'Message',
+      message : serviceMessage,
+      buttons : ['Continue']
+    });
+    await messages.present();
   }
 }

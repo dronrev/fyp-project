@@ -1,3 +1,14 @@
+input.ng-invalid{
+  border-color: red;
+}
 .btn-submit{
-  background-color: #caf0f8;
+  background-color: #708eea;
+}
+.container{
+  background-image: linear-gradient(rgb(105, 182, 241),rgb(44, 130, 173));
+  border-radius: 25px 25px;
+  box-shadow: 5px 10px 8px grey;
+}
+.stu-form{
+  max-width: 30%;
 }

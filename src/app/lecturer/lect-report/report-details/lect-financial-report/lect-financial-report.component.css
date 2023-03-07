@@ -1,0 +1,7 @@
+ion-item{
+  --background:white;
+}
+.financial-form{
+  border-radius: 15px;
+  box-shadow: 2px 2px 5px 5px #888888;
+}

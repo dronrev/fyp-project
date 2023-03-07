@@ -9,6 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
 
   url = "http://localhost/fyp-project/app/login.php";
+  cekRole = "http://localhost/fyp-project/app/isTDA.php";
   constructor(private http:HttpClient,private router:Router) { }
 
   public userName: any = [];
@@ -31,11 +32,15 @@ export class AuthService {
     return localStorage.getItem('token')!=null&& localStorage.getItem('auth')=='2';
   }
 
+  isTDA(data:any){
+    return this.http.post(this.cekRole,data,{responseType : 'text'})
+  }
+
   getToken(){
     return localStorage.getItem('token') || '';
   }
 
   logOut(){
-    return this.router.navigate(['login'])
+    return this.router.navigate(['sign-in'])
   }
 }

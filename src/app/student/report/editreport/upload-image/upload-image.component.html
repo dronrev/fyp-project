@@ -1,0 +1,21 @@
+<!--ion-breadcrumbs color="secondary">
+  <ion-breadcrumb routerLink="/report">Report</ion-breadcrumb>
+  <ion-breadcrumb routerLink="/report">My Report</ion-breadcrumb>
+  <ion-breadcrumb [routerLink]="['/report/editreport',report_id]">Current Report</ion-breadcrumb>
+  <ion-breadcrumb [routerLink]="['/report/editreport',report_id,'image']">Upload Image</ion-breadcrumb>
+</!--ion-breadcrumbs-->
+
+<div class="container" [hidden]="!check">
+  <div class="upload-border">
+    <input type="file" class="btn btn-primary" (change)="uploadImage($event)" multiple>
+  </div>
+</div>
+
+<div class="show-image" [hidden]="check">
+    <div class="image-list" *ngFor="let item of listOfImage">
+      <img [src]="item" alt="" width="300" height="300">
+      <ion-checkbox (ionChange)="deleteImg($event,item)"></ion-checkbox>
+    </div>
+</div>
+<button class="btn btn-primary" (click)="uploadImg()" style="margin-right: 10px;">Save Image</button>
+<input class="btn btn-warning"(change)="uploadImage($event)" multiple type="file">

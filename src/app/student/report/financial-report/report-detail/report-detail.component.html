@@ -1,0 +1,49 @@
+<form action="" [formGroup]="myData">
+  <div class="container financial-form">
+    <h2>LAPORAN KEWANGAN</h2>
+    <div class="row">
+      <div class="col">
+        <h3>Pendapatan</h3>
+        <ion-list [inset]="true">
+          <ion-item>
+            <ion-label position="floating">PERUNTUKAN HEP</ion-label>
+            <ion-input formControlName="peruntukan_hep"[value]="peruntukan_hep"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">YURAN PENDAPATAN</ion-label>
+            <ion-input formControlName="yuran_pendapatan" [value]="yuran_pendapatan"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">PENAJA</ion-label>
+            <ion-input formControlName="penaja" [value]="penaja"></ion-input>
+          </ion-item>
+        </ion-list>
+        <p></p>
+      </div>
+      <div class="col">
+        <h3>Perbelanjaan</h3>
+        <ion-list [inset]="true">
+          <ion-item>
+            <ion-label position="floating">SPEAKER</ion-label>
+            <ion-input formControlName="speaker" [value]="speaker"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">TEMPAT PERTAMA</ion-label>
+            <ion-input formControlName="tempat_pertama" [value]="tempat_pertama"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">TEMPAT KEDUA</ion-label>
+            <ion-input formControlName="tempat_kedua" [value]="tempat_kedua"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">TEMPAT KETIGA</ion-label>
+            <ion-input formControlName="tempat_ketiga" [value]="tempat_ketiga"></ion-input>
+          </ion-item>
+        </ion-list>
+      </div>
+      <div class="send-button">
+        <button class="btn btn-primary" (click)="financialData(myData.value)">Save</button>
+      </div>
+    </div>
+  </div>
+</form>

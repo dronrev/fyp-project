@@ -9,3 +9,9 @@ img{
 .ion-padding{
   --ion-background-color: rgba(67, 151, 151, 0.553);
 }
+
+ion-modal{
+  --width : 100%;
+  --height : 90vh;
+}
+

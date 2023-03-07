@@ -1,0 +1,21 @@
+<ion-breadcrumbs color="primary">
+  <ion-breadcrumb routerLink="/announcement">Announcement</ion-breadcrumb>
+  <ion-breadcrumb routerLink="/announcement/list-of-announcement">List Of Announcement</ion-breadcrumb>
+  <ion-breadcrumb>Message</ion-breadcrumb>
+</ion-breadcrumbs>
+<div class="container mt-5">
+  <div class="announcement-content">
+    <div class="sender">
+      <p>From : {{ myitem[0].username}}</p>
+    </div>
+    <div class="title">
+      <p>Title : {{ myitem[0].title }}</p>
+    </div>
+    <div class="content">
+      <p>Subject : {{myitem[0].subject}}</p>
+    </div>
+    <div class="message">
+      <p>Message : {{ myitem[0].message }}</p>
+    </div>
+  </div>
+</div>

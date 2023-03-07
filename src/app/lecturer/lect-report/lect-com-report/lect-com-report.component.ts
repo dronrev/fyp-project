@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Report } from 'src/app/report/report.model';
-import { ReportsService } from 'src/app/report/reports.service';
+import { filter, map } from 'rxjs';
+import { EditreportService } from 'src/app/student/report/editreport/editreport.service';
+import { Report } from 'src/app/student/report/report.model';
+import { ReportsService } from 'src/app/student/report/reports.service';
+
+
 
 @Component({
   selector: 'app-lect-com-report',
@@ -10,33 +14,62 @@ import { ReportsService } from 'src/app/report/reports.service';
 })
 export class LectComReportComponent implements OnInit {
   reports!: Report[];
-  constructor(private reportService : ReportsService) { }
+  allReport! :Report[];
+  constructor(private reportService : ReportsService,private idService : EditreportService) { }
   fetchReport = new FormGroup({
     id : new FormControl(localStorage.getItem('id')),
     auth : new FormControl(localStorage.getItem('auth'))
   })
   ngOnInit(): void {
-    console.log(this.fetchReport.value);
-    const data = "";
-    this.reportService.displayReport(this.fetchReport.value).subscribe(
-      (results:any)=>{
-        console.log(results);
-        this.reports = JSON.parse(results);
-        localStorage.removeItem('reportID');
-      }
-    );
+    if(localStorage.getItem('_sepesial_elor_rof_') == 'TDA'){
+      console.log("test");
+      this.reportService.displayAll().pipe(map((data:any)=>data.filter((ok:any) => ok.status == "3"))).subscribe(
+        (res:any)=>{
+          //console.log(res);
+          this.allReport = res;
+          console.log(this.allReport);
+        }
+      )
+    }
+    if(localStorage.getItem('_sepesial_elor_rof_') == 'lecturer'){
+      console.log(this.fetchReport.value);
+      //
+      this.reportService.displayReport(this.fetchReport.value)
+      .subscribe(
+        (results:any)=>{
+          console.log(results);
+          this.reports = JSON.parse(results);
+          localStorage.removeItem('reportID');
+        }
+      );
+    }
+    //const data = ""
   }
   getReport(key:any){
-    var report_data = JSON.stringify(this.reports[key].report_id);
-    if(this.reports[key].report_id == undefined){
-      console.log("notFound");
+    if(localStorage.getItem('_sepesial_elor_rof_') == 'TDA')
+    {
+      console.log('yello');
+      var report_data = JSON.stringify(this.allReport[key].report_id);
+      this.idService.setCurrentReport(this.allReport[key].report_id);
+      localStorage.setItem("reportID",report_data);
+      localStorage.setItem("ReportID",this.idService.getCurrentReport());
     }
     else{
-      console.log("Found");
-      console.log(this.reports[key].report_id);
-      localStorage.setItem("reportID",report_data);
+      var report_data = JSON.stringify(this.reports[key].report_id);
+      if(this.reports[key].report_id == undefined){
+        console.log("notFound");
+      }
+      else{
+        console.log("Found");
+        this.idService.setCurrentReport(this.reports[key].report_id);
+        console.log(this.reports[key].report_id);
+        localStorage.setItem("reportID",report_data);
+        localStorage.setItem("ReportID",this.idService.getCurrentReport());
+        //localStorage.setItem('GetreportID')
+      }
     }
-
   }
+
+
 
 }

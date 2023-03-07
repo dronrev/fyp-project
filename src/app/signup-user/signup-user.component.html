@@ -1,43 +1,56 @@
-
-<body>
-  <h1 style="text-align: center;">Sign Up New User</h1>
-
+<a href="" routerLink="../sign-in">Back</a>
 <div class="container">
-  <form (ngSubmit)="onPostData(registerUser.value)" formControlName="registerUser">
-    <div>
-      <label for="" class="form-label">Fullname</label>
-      <input type="text" class="form-control" name="fullname" required formControlName="fn">
-    </div>
-    <div class="mt-5">
-      <label for="" class="form-label">Matric Number</label>
-      <input type="text" class="form-control" name="matric-no" required formControlName="ma">
-    </div>
-    <div class="mt-5">
-      <label for="" class="form-label">E-mail Address</label>
-      <input type="text"
-       class="form-control"
-         name="email"
-         email
-         >
-      <!--<span class="help-block" style="color: red;">Enter valid email.</span>-->
-    </div>
-    <div class="mt-5">
-      <label for="" class="form-label">Password</label>
-      <input type="password"
-      class="form-control"
-      name="password"
-      >
-    </div>
-    <!--div class="mt-5">
-      <label for="" class="form-label">Gender</label>
-      <select name="" id="" class="form-select">
-        <option value="" *ngFor="let gender of genders">{{ gender }}</option>
-      </select>
-    </div>-->
-    <div class="mt-5">
-      <button class="btn btn-success" type="submit" >Sign Up</button>
-    </div>
-  </form>
-
+  <div class="user-form">
+    <h1 style="text-align: center;">Sign Up New User</h1>
+    <form [formGroup]="registerUser">
+      <div>
+        <label for="" class="form-label">Fullname</label>
+        <input type="text" class="form-control" name="fullname" formControlName="name">
+      </div>
+      <div class="">
+        <label for="" class="form-label">Matric Number</label>
+        <input type="text" class="form-control" name="matric-no" formControlName="mat_number">
+      </div>
+      <div class="">
+        <label for="" class="form-label">E-mail Address</label>
+        <input type="text"
+         class="form-control"
+           name="email"
+           email
+           formControlName="email"
+           >
+        <!--<span class="help-block" style="color: red;">Enter valid email.</span>-->
+      </div>
+      <div class="">
+        <label for="" class="form-label">Password</label>
+        <input type="password"
+        class="form-control"
+        name="password"
+        formControlName="passwd"
+        >
+      </div>
+      <div class="">
+        <label for="" class="form-label">Confirm Password</label>
+        <input type="password"
+        class="form-control"
+        name="password"
+        formControlName="confirmpass"
+        >
+      </div>
+      <div class="">
+        <label for="" class="form-label">Course Code</label>
+        <select name="course_code" id="" class="form-select" formControlName="course_code">
+          <option  *ngFor="let item of programmes_list;let key = index" [value]="item">{{item}}</option>
+        </select>
+      </div>
+      <div class="submit-button">
+        <button class="btn btn-success" (click)="sendData()">Sign Up</button>
+      </div>
+    </form>
+  </div>
 </div>
-</body>
+<footer class="sign-up-footer">
+  Contact us if you have any problem. <br>
+  <div>Phone Number : <a href="">0176073050</a></div>
+  <div>Email :   <a href="">vernordmusran27@gmail.com</a></div>
+</footer>

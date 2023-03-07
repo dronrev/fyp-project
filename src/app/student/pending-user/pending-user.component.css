@@ -1,0 +1,21 @@
+table{
+  border-collapse: collapse;
+  width: 100%;
+}
+th{
+  background-color: aquamarine;
+
+}
+th,td{
+  border-bottom: 1px solid white;
+  padding: 15px;
+}
+tr:nth-child(odd){
+
+}
+tr:nth-child(even){
+  background-color: rgb(180, 174, 174);
+}
+.delete-button{
+  --border-radius: 20px;
+}
