@@ -1,0 +1,22 @@
+<h1>List Of Event</h1>
+<div class="shadow p-3 mb-5 bg-white rounded">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col" *ngFor="let header of TabHeaders">
+          {{ header | uppercase }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of list;let key = index" scope="row">
+        <td>
+          {{ key+1 }}
+        </td>
+        <td>{{ item.name_activity }}</td>
+        <td>{{item.activity_id}}</td>
+        <td><button class="btn btn-danger" (click)="deleteItem(item.activity_id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

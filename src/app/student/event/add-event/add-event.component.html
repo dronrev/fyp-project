@@ -21,7 +21,7 @@
       <label for="" class="form-label">Date</label>
       <input type="datetime-local" class="form-control"  formControlName="date">
     </div>
-    <div class="select-option">
+    <div class="select-option" style="background-color: white; margin: 10px;">
       <ion-select placeholder="Select Lecturer"  formControlName="value">
         <ion-select-option [value]="item.lecturer_id" *ngFor="let item of lecturer; let key = index">{{ item.name }}</ion-select-option>
       </ion-select>

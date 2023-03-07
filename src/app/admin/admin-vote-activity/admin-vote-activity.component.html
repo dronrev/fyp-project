@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="create-new-vote">
+    <button class="btn btn-primary" routerLink="/new-vote-act">Create New Vote Event</button>
+  </div>
+  <div class="vote-list">
+    <div class="box">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Title</th>
+            <th>Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="table-body">
+          <tr *ngFor="let item of list;let key = index">
+            <td>{{ key + 1}}</td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.date }}</td>
+            <td><button class="btn btn-primary" [routerLink]="['vote-acti/',item.vote_id]" (click)="edit(item.vote_id)">Edit</button>
+                <button class="btn btn-danger" style="margin-left: 10px;" (click)="deleteVote(item.vote_id)">Delete</button>
+                <button class="btn btn-success" style="margin-left: 10px;"[routerLink]="['vote-detail/',item.vote_id]" (click)="detail(item.vote_id,item.cawangan)">Result</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

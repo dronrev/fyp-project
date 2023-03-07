@@ -37,8 +37,9 @@ export class LectComReportComponent implements OnInit {
       this.reportService.displayReport(this.fetchReport.value)
       .subscribe(
         (results:any)=>{
-          console.log(results);
-          this.reports = JSON.parse(results);
+          console.log(JSON.parse(results).filter((ok:any)=>ok.status == 2));
+
+          this.reports = JSON.parse(results).filter((ok:any)=>ok.status == 2);
           localStorage.removeItem('reportID');
         }
       );

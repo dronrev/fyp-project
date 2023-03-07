@@ -41,6 +41,12 @@ import { VoteResultComponent } from './event/vote-result/vote-result.component';
 import { ResultsComponent } from './event/vote-result/results/results.component';
 import { ProfImage } from './profile/prof-img.component';
 import { PendingUserComponent } from './pending-user/pending-user.component';
+import { FooterComponent } from '../footer/footer.component';
+import { MyAnnouncementComponent } from './announcement/my-announcement/my-announcement.component';
+import { DetailsComponent } from './announcement/my-announcement/details/details.component';
+import { VotingComponent } from './voting/voting.component';
+import { VotingDetailsComponent } from './voting/voting-details/voting-details.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -82,7 +88,12 @@ import { PendingUserComponent } from './pending-user/pending-user.component';
     VoteResultComponent,
     ResultsComponent,
     ProfImage,
-    PendingUserComponent
+    PendingUserComponent,
+    FooterComponent,
+    MyAnnouncementComponent,
+    DetailsComponent,
+    VotingComponent,
+    VotingDetailsComponent,
 
   ],
   imports: [
@@ -90,7 +101,8 @@ import { PendingUserComponent } from './pending-user/pending-user.component';
     BrowserModule,
     StudentRoutingModule,
     IonicModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class StudentModule { }

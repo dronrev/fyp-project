@@ -18,8 +18,6 @@ export class UpcomingActivityComponent implements OnInit {
 
   today = new Date();
 
-  currentEvent:any;
-
   ngOnInit(): void {
     this.comingEvent();
     //this.currentEvent = this.comingEvent().pipe(filter(res => res.activity_id == 1));

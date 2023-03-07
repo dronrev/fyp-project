@@ -86,7 +86,6 @@ export class AddParticipantComponent implements OnInit {
   }
 
 createAll(){
-
   let key = this.list.length;
 
   for(var i = 0 ; i < key ; i++){
@@ -95,9 +94,23 @@ createAll(){
   }
 }
 
+fileName = this.genCert.value['title']
+
+download(){
+  this.http.post('http://localhost/fyp-project/e-cert/new-download.php',this.genCert.value, { responseType: 'blob' })
+  .subscribe(data => {
+    const blob = new Blob([data], { type: 'application/zip' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = this.genCert.value['title']+'.zip';
+    link.click();
+    });
+}
+
 async createFile(){
   const alert = await this.alertcontroller.create({
-    header : "Make Directory",
+    header : "File Name",
     inputs : [
       {
         name : 'Filename',

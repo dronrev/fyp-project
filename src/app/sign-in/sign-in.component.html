@@ -19,10 +19,10 @@
       </div>
       <div>
         <label for="" class="form-label">Password</label>
-        <input type="password" class="form-control" formControlName="password" required>
+        <input class="passwordcheck" type="password" [type]="showPass" class="form-control" formControlName="password" required>
       </div>
       <div class="pt-2">
-        <ion-checkbox slot="start" (click)="showPassword()"></ion-checkbox>
+        <ion-checkbox slot="start" (ionChange)="showPassword($event)"></ion-checkbox>
         <ion-label>Show Password</ion-label>
       </div>
       <div>

@@ -9,22 +9,34 @@ import { Announcement } from '../announcement.model';
 })
 export class AnnouncementListComponent implements OnInit {
 
+  a !: number;
   list:any;
   myitem !: Announcement [];
   noItem = "You have no announcement";
-
+  composer: any;
+  searchText : any;
   constructor(private service : AnnouncementService) { }
 
   ngOnInit(): void {
-    this.service.getAllAnnouncement().subscribe(
+    this.service.getAllAdminAnnouncement().subscribe(
       (res:any)=>{
         //this.myitem = JSON.parse(res);
         this.list = res;
         this.myitem = res;
-        console.log(this.list)
-        console.log(new Date())
+        this.service.getAllAnnouncement().subscribe(
+          (res:any)=>{
+            //this.myitem = JSON.parse(res);
+            for(let item of res){
+              this.list.push(item)
+              //this.myitem.push(item)
+            }
+            //this.list.push(res);
+            console.log(this.list)
+          }
+        )
       }
     )
+
   }
 
   getAnnouncement(data : any){

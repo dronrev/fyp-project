@@ -20,6 +20,11 @@ import { LectFinancialKewanganReportComponent } from './lect-report/report-detai
 import { LectEventComponent } from './lect-event/lect-event.component';
 import { LectAnnouncementComponent } from './lect-announcement/lect-announcement.component';
 import { PartListLecturerComponent } from './lect-report/report-details/part-list-lecturer/part-list-lecturer.component';
+import { LectFooterComponent } from './lect-footer/lect-footer.component';
+import { LectDashFinancialComponent } from './lectdash/lect-dash-financial/lect-dash-financial.component';
+import { LectListOfStudentComponent } from './lect-list-of-student/lect-list-of-student.component';
+import { ActivitySummaryDashboardComponent } from './lectdash/activity-summary-dashboard/activity-summary-dashboard.component';
+import { CompleteEventComponent } from './lectdash/complete-event/complete-event.component';
 
 
 @NgModule({
@@ -38,6 +43,11 @@ import { PartListLecturerComponent } from './lect-report/report-details/part-lis
     LectEventComponent,
     LectAnnouncementComponent,
     PartListLecturerComponent,
+    LectFooterComponent,
+    LectDashFinancialComponent,
+    LectListOfStudentComponent,
+    ActivitySummaryDashboardComponent,
+    CompleteEventComponent,
   ],
   imports: [
     CommonModule,

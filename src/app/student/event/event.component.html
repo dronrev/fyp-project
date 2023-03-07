@@ -14,9 +14,9 @@
       <tbody class="table-body">
         <tr *ngFor="let activity of activities;let key = index">
           <td>{{ key+1 }}</td>
-          <td><a href="#" class="nav-link">{{ activity.name_activity | titlecase }}</a></td>
-          <td><a href="#" class="nav-link">{{ activity.location | uppercase }}</a></td>
-          <td><a href="#" class="nav-link">{{ activity.tema | titlecase}}</a></td>
+          <td>{{ activity.name_activity | titlecase }}</td>
+          <td>{{ activity.location | uppercase }}</td>
+          <td>{{ activity.tema | titlecase}}</td>
           <td>{{ activity.date | date }}</td>
           <td>{{ activity.organizer}}</td>
         </tr>

@@ -31,7 +31,7 @@ export class ReportDetailsComponent implements OnInit {
   lecturer_id?: string;
   edit = false;
   comment?: string;
-  actRep = false;
+  actRep = true;
   finRep = false;
   attacRep = false;
   partRep = false;

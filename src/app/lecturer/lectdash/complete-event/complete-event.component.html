@@ -1,0 +1,27 @@
+<div class="container"  [hidden]="check">
+  <div class="head">
+    <h2>Summary overall achievement</h2>
+  </div>
+  <div class="content">
+    <div class="table">
+      <table>
+        <thead>
+          <th>#</th>
+          <th>Programme Director</th>
+          <th>Name of Event Completed</th>
+          <th>Location of the Event</th>
+          <th>Event Start</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of list">
+            <td></td>
+            <td>{{item.username}}</td>
+            <td>{{item.name_activity}}</td>
+            <td>{{item.location}}</td>
+            <td>{{item.date | date}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

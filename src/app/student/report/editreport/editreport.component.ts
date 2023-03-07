@@ -38,7 +38,7 @@ export class EditreportComponent implements OnInit {
   comment ?: string;
   edit = false;
 
-  actRep = false;
+  actRep = true;
   finRep = false;
   attacRep = false;
   partRep = false;
@@ -69,7 +69,7 @@ export class EditreportComponent implements OnInit {
     console.log(this.thereport.value)
     this.service.getDetail(this.thereport.value['report_id']).subscribe(
       response=>{
-        console.log(response);
+        //console.log(response);
         this.reports = JSON.parse(response);
         this.report_id=this.reports[0].report_id;
         this.title=this.reports[0].title;
@@ -202,9 +202,9 @@ export class EditreportComponent implements OnInit {
   sendToLecturer(data: { reportId?: any, myStatus?: any }){
     this.thereport.value['report_id'] = localStorage.getItem('ReportID');
     this.thereport.value['status'] = 2;
-    data.reportId = "woi";
-    console.log(data);
-    console.log(this.thereport.value['status']);
+    //data.reportId = "woi";
+   // console.log(data);
+    //console.log(this.thereport.value['status']);
     this.service.approveReport(this.thereport.value).subscribe(
       res=>{
         console.log(res);
@@ -216,14 +216,16 @@ export class EditreportComponent implements OnInit {
   sendToPresident(data: { reportId?: any, myStatus?: any }){
     this.thereport.value['report_id'] = localStorage.getItem('ReportID');
     this.thereport.value['status'] = 1;
-    data.reportId = "woi";
-    console.log(data);
-    console.log(this.thereport.value['status']);
+    //data.reportId = "woi";
+    //console.log(data);
+    //console.log(this.thereport.value['status']);
     this.service.approveReport(this.thereport.value).subscribe(
       res=>{
         console.log(res);
+
       }
     )
+    this.alertSendPresident();
   }
 
   clearForm(){
@@ -271,6 +273,14 @@ export class EditreportComponent implements OnInit {
     const alert = await this.alertController.create({
       header : 'Success',
       message : 'Report has been sent to lecturer!',
+      buttons : ['Continue']
+    })
+    await alert.present();
+  }
+  async alertSendPresident(){
+    const alert = await this.alertController.create({
+      header : 'Success',
+      message : 'Report has been sent to President!',
       buttons : ['Continue']
     })
     await alert.present();

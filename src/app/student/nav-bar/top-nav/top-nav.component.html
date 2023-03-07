@@ -1,20 +1,60 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <nav class="navbar navbar-expand-lg bg-secondary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">PMFKIAMS</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item" routerLinkActive="active">
+                <a routerLink="/home" class="nav-link" style="color: white;">Home</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+              <a href="" routerLink="/dashboard" class="nav-link" style="color: white;">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link" style="color: white;" routerLink="/event">Event</a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link" style="color: white;" routerLink="/report">Report</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a href="#" routerLink="/voting-activity" class="nav-link" style="color: white;">Voting</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+              <a href="#" routerLink="/announcement" class="nav-link" style="color: white;">Announcement</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active" hidden>
+              <a href="#" routerLink="/full-report" class="nav-link" style="color: white;">List Of Report</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active" hidden>
+              <a href="#" routerLink="/e-cert" class="nav-link" style="color: white;">Get Certificate</a>
+          </li>
+
+          <li class="nav-item" routerLinkActive="active" [hidden]="!check">
+              <a href="#" routerLink="/pending-user" class="nav-link" style="color: white;">Pending User</a>
+          </li>
+          </ul>
+          <button routerLink="/profile" class="profile"><img [src]="imageURL || defaultImg" alt="" class="profile-picture">{{ test }}</button>
+
+          <div style="display: flex;justify-content: right;">
+            <button class="btn-primary"><a href="" class="nav-link" routerLink="/sign-in" style="color: white;">
+              Sign out
+            </a></button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!--ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-    </ion-buttons>
+    </!--ion-buttons>
     <ion-title>{{title.title}}</ion-title>
     <button slot="end" routerLink="/profile" class="profile"><img [src]="imageURL || defaultImg" alt="" class="profile-picture"><ion-label slot="end">{{ test }}</ion-label></button>
-
-    <!--button slot="end"  class="btn btn-primary dropdown-toggle"
-    id="dropdownMenuButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">noti
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a href="" class="dropdown-item">Noti 1</a>
-      </div>
-    </!--button-->
     <button slot="end" style="background: none;"><ion-icon name="chatbubbles-sharp" slot="end" size="large"></ion-icon></button>
-    <ion-button slot="end" size="small"><a href="" class="nav-link" routerLink="/sign-in" style="color: white;">
+    <ion-button-- slot="end" size="small"><a href="" class="nav-link" routerLink="/sign-in" style="color: white;">
       Sign out
-    </a></ion-button>
+    </a></ion-button-->
   </ion-toolbar>
 </ion-header>

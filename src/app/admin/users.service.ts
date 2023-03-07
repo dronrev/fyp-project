@@ -37,4 +37,8 @@ export class UsersService {
   updateRole(data:any){
     return this.http.post(this.baseUrl+'user/update-role.php',data,{responseType : 'text'})
   }
+
+  getCawangan(data:any){
+    return this.http.post(this.baseUrl+'user/get-personal-information.php',data)
+  }
 }

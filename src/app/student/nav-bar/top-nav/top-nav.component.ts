@@ -32,7 +32,14 @@ export class TopNavComponent implements OnInit {
   data = new FormGroup({
     'id' : new FormControl(localStorage.getItem('id'))
   })
+  check = false;
   ngOnInit(): void {
+    if(localStorage.getItem('_elorfostudent_') == "PMFKIKK"){
+      this.check = true;
+    }
+    else if(localStorage.getItem('_elorfostudent_') == "PMFKIKK"){
+      this.check = true;
+    }
 
     this.img.getProfile(this.data.value).subscribe(
       res=>{

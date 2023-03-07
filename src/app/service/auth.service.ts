@@ -10,6 +10,7 @@ export class AuthService {
 
   url = "http://localhost/fyp-project/app/login.php";
   cekRole = "http://localhost/fyp-project/app/isTDA.php";
+  adminUrl = "http://localhost/fyp-project/admin-login.php";
   constructor(private http:HttpClient,private router:Router) { }
 
   public userName: any = [];
@@ -24,12 +25,20 @@ export class AuthService {
     return this.http.post(this.url,usercred,{responseType: 'text'})
   }
 
+  adminLogin(data:any){
+    return this.http.post(this.adminUrl,data,{responseType : 'text'})
+  }
+
   isLoggedStudent(){
     return localStorage.getItem('token')!=null && localStorage.getItem('auth')=='1';
   }
 
   isLoggedLecturer(){
     return localStorage.getItem('token')!=null&& localStorage.getItem('auth')=='2';
+  }
+
+  isLoggedAdmin(){
+    return localStorage.getItem('token')!=null && localStorage.getItem('auth')=='3';
   }
 
   isTDA(data:any){

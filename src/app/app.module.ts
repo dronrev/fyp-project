@@ -23,41 +23,45 @@ import { ReportsService } from './student/report/reports.service';
 import { StudentModule } from './student/student.module';
 import { StudentRoutingModule } from './student/student-routing.module';
 import { ManageUserComponent } from './admin/manage-user/manage-user.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    SignupUserComponent,
-    ErrorPageComponent,
-    SignInComponent,
-    ManageUserComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    FormsModule,
-    CommonModule,
-    IonicModule.forRoot(),
-    AdminModule,
-    AdminRoutingModule,
-    LecturerModule,
-    LecturerRoutingModule,
-    StudentRoutingModule,
-    StudentModule
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        SignupUserComponent,
+        ErrorPageComponent,
+        SignInComponent,
+        ManageUserComponent,
+        DashboardComponent,
 
-  ],
-  providers: [LoggingService,EventsService,UsersService,ReportsService,
-    {
-      provide : HTTP_INTERCEPTORS,
-     useClass : TokenInterceptorService,
-      multi : true
-    }
-],
-  bootstrap: [AppComponent]
+    ],
+    providers: [LoggingService, EventsService, UsersService, ReportsService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptorService,
+            multi: true
+        }
+    ],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        FormsModule,
+        CommonModule,
+        IonicModule.forRoot(),
+        AdminModule,
+        AdminRoutingModule,
+        LecturerModule,
+        LecturerRoutingModule,
+        StudentRoutingModule,
+        StudentModule,
+        NgxPaginationModule
+    ]
 })
 export class AppModule { }

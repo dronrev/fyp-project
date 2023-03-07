@@ -11,6 +11,7 @@ export class ReportsService {
   constructor(private http:HttpClient) { }
   theUrl = "http://localhost/fyp-project/report/";
   financialUrl = "http://localhost/fyp-project/budget/";
+  e_cert = "http://localhost/fyp-project/e-cert/";
 
   displayAll(){
     return this.http.get(this.theUrl+'displayAll.php')
@@ -63,5 +64,13 @@ export class ReportsService {
   }
   getPendahuluan(data:any){
     return this.http.post(this.financialUrl+'get-pendahuluan.php',data,{responseType :'text'})
+  }
+
+  countParticipants(data:any){
+    return this.http.post(this.e_cert+'count-participants.php',data,{responseType : 'text'})
+  }
+
+  getFinancial(){
+    return this.http.get(this.financialUrl+'get-by-date.php')
   }
 }

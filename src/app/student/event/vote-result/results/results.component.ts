@@ -36,7 +36,7 @@ export class ResultsComponent implements OnInit {
               if(this.count.hasOwnProperty(this.candidate[i].user_id)){
                 //console.log("lulus bro")
                 //console.log(this.count[this.candidate[i].user_id])
-                this.candidate[i].count = this.count[this.candidate[i].user_id];
+                //this.candidate[i].count = this.count[this.candidate[i].user_id];
                 console.log(this.candidate[i].count)
               }
             }

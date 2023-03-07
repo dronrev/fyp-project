@@ -1,0 +1,27 @@
+.cert-template{
+  display: flex;
+  flex-wrap: wrap;
+}
+.head-title{
+  border-bottom: solid;
+}
+.cert-template>div{
+  margin: 20px;
+}
+.cert-item{
+  display: flex;
+  flex-direction: column;
+}
+.cert-delete-button{
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+.add-cert{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 300px;
+  height: 200px;
+}

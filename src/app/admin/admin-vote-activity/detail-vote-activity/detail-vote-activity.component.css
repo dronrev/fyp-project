@@ -1,0 +1,62 @@
+.top{
+  display: flex;
+}
+.top>div{
+  margin: 10px;
+}
+.no-candidates{
+  border-radius: 25px;
+  height: 150px;
+  width: 30%;
+  background-color: rgb(61, 211, 61);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.total-voters{
+  border-radius: 25px;
+  height: 150px;
+  width: 30%;
+  background-color: rgb(229, 143, 62);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.voters-voted{
+  border-radius: 25px;
+  height: 150px;
+  width: 30%;
+  background-color: rgb(213, 79, 79);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.position-candidate{
+  display: flex;
+  justify-content: center;
+}
+.list-of-candidate{
+  display: flex;
+  border-top: solid;
+
+}
+.list-of-candidate>div{
+  margin: 20px;
+}
+
+.position-title{
+  border: solid;
+  margin: 10px;
+  min-width: 50%;
+}
+.candidate{
+  border: solid;
+  width: 200px;
+}
+.candidate-detail{
+  border-bottom: solid;
+}

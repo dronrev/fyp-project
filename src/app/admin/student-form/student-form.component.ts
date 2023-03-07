@@ -36,8 +36,9 @@ export class StudentFormComponent implements OnInit {
     //let body = JSON.stringify(student);
     this.http.post(this.baseurl, student, {responseType: 'text'}).subscribe(
       res=>{
-      console.log(res);
-      this.notify(res);
+      //console.log(res);
+
+      this.notify(JSON.parse(res).message);
     })
   }
 

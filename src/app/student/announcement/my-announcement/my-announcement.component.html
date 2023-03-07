@@ -1,0 +1,22 @@
+
+  <div class="box">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Subject</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        <tr *ngFor="let item of list;let key = index">
+          <td>{{ key + 1}}</td>
+          <td>{{ item.title }}</td>
+          <td>{{ item.subject }}</td>
+          <td><button class="btn" style="margin-right: 10px;" [routerLink]="[item.announcement_id]" (click)="editAnnouncement(item.announcement_id)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteAnnouncement(item.announcement_id)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

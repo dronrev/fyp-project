@@ -4,6 +4,7 @@ import { AuthenticationGuard } from '../guard/authentication.guard';
 import { RoleGuard } from '../guard/role.guard';
 import { LectAnnouncementComponent } from './lect-announcement/lect-announcement.component';
 import { LectEventComponent } from './lect-event/lect-event.component';
+import { LectListOfStudentComponent } from './lect-list-of-student/lect-list-of-student.component';
 import { LectReportComponent } from './lect-report/lect-report.component';
 import { ReportDetailsComponent } from './lect-report/report-details/report-details.component';
 import { LectdashComponent } from './lectdash/lectdash.component';
@@ -19,7 +20,8 @@ const routes: Routes = [
     { path : 'LectDashboard', component : LectdashComponent},
     { path : 'lectEditReport', component : ReportDetailsComponent},
     { path : 'lect-event',component : LectEventComponent},
-    { path : 'lect-announcement',component : LectAnnouncementComponent}
+    { path : 'lect-announcement',component : LectAnnouncementComponent},
+    { path : 'list-of-student',component : LectListOfStudentComponent}
     ],canActivate:[RoleGuard]
   },
 

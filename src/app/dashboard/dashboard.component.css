@@ -1,0 +1,68 @@
+.heading{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main-body{
+  min-height: 75vh;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: blanchedalmond;
+}
+.body-login{
+  max-height: 60vh;
+  width: 30%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 5px 7px rgb(172, 166, 167);
+  margin-bottom: 3rem;
+}
+.form-body{
+  display: grid;
+  place-items: center;
+}
+.form-control{
+  border: solid;
+}
+.upcoming-container{
+  background-color: white;
+  border-radius: 25px 25px;
+  align-items: center;
+  text-align: center;
+  width: 50%;
+}
+
+.upcoming-header{
+  border-bottom: solid;
+}
+.upcoming-body{
+  color: rgb(0, 63, 171);
+  background-color: bisque;
+  border-radius: 50px 50px;
+  width: 100%;
+}
+ion-list-header>ion-label{
+  text-align: center;
+  font-size: 30px;
+}
+ion-label{
+  text-align: center;
+}
+
+.date{
+  color: white;
+}
+.myCard{
+  border: 1px solid;
+  background-color: black;
+}
+.content{
+  background-color: white;
+
+}

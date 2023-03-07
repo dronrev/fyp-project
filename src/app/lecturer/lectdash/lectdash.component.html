@@ -1,21 +1,36 @@
 <p>Dashboard</p>
-<div class="upcoming-container shadow p-3 mb-5">
-  <div class="upcoming-header">
-    <ion-list-header>
-      <ion-label>Upcoming activities</ion-label>
-    </ion-list-header>
+
+<div class="container main-content">
+  <div class="dash-item">
+    <app-lect-dash-financial></app-lect-dash-financial>
   </div>
-  <div class="content">
-    <ion-grid>
-      <ion-row *ngFor="let item of myEvent" class="myCard mb-2 shadow">
-        <ion-col size="3" class="date">
-          {{ item.date | date}}
-        </ion-col>
-        <ion-col class="content">
-          {{ item.name_activity | titlecase }}
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <div class="dash-item">
+    <app-activity-summary-dashboard></app-activity-summary-dashboard>
+  </div>
+  <div class="dash-item">
+    <div class="upcoming-container shadow p-3 mb-5">
+      <div class="upcoming-header">
+        <ion-list-header>
+          <ion-label>Upcoming activities</ion-label>
+        </ion-list-header>
+      </div>
+      <div class="content">
+        <ion-grid>
+          <ion-row *ngFor="let item of myEvent" class="myCard mb-2 shadow">
+            <ion-col size="3" class="date">
+              {{ item.date | date}}
+            </ion-col>
+            <ion-col class="content">
+              {{ item.name_activity | titlecase }}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+  </div>
+  <div class="dash-item">
+    <app-complete-event></app-complete-event>
   </div>
 </div>
+
 

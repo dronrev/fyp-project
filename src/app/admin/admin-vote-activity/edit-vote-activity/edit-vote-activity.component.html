@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="header">
+    <h2>Edit Vote Activity</h2>
+  </div>
+  <div class="body">
+    <form action="" [formGroup]="votingForm" (ngSubmit)="onSubmit()">
+      <div class="title">
+        <label for="" class="form-label"><b>Title</b></label>
+        <input type="text" class="form-control" [(ngModel)]="voteTitle" formControlName="title" oninput="this.value = this.value.toUpperCase()">
+        <label for="" class="form-label"><b>Branch</b></label>
+        <select class="form-select" formControlName="cawangan"  (change)="getCawangan($event)">
+          <option *ngFor="let item of branch" [value]="item" [selected]="item == cawangan">{{item | uppercase}}</option>
+        </select>
+        <label for="" class="form-label"><b>Date</b></label>
+        <input type="date" class="form-control" [(ngModel)]="dateVote" formControlName="date">
+      </div>
+
+      <div class="add-section-form" formArrayName="detail" style="margin-top: 10px;">
+        <div class="add-body-form" *ngFor="let candidate of detail().controls; let i=index" [formGroupName]="i">
+          <div class="section1">
+            <label for="" class="form-label"><b>Candidate Name</b></label>
+            <select class="form-select" formControlName="matric_no" (change)="testAdd($event.target)">
+              <option [value]="item.user_id" *ngFor="let item of stuCand">{{ item.username }}</option>
+            </select>
+          </div>
+
+          <div class="section2">
+            <label for="" class="form-label"><b>Matric No</b></label>
+            <input type="text" class="form-control" [value]="votingForm.value.detail[i].matric_no" readonly>
+          </div>
+
+          <div class="section3">
+            <label for="" class="form-label"><b>Candidates</b></label>
+            <input type="text" class="form-control" formControlName="candidate" oninput="this.value = this.value.toUpperCase()">
+          </div>
+          <div class="section4" style="margin-top: 35px;">
+            <ion-button color="danger" (click)="removeCandidate(i,votingForm.value.detail[i].matric_no)">-</ion-button>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary mt-3" type="button" (click)="addCandidate()">+</button>
+      <button class="btn btn-success mt-3" style="margin-left: 10px;" type="submit">Add Vote Activity</button>
+    </form>
+  </div>
+</div>
+<div class="container">
+
+</div>

@@ -21,12 +21,7 @@ export class CreateReportComponent implements OnInit {
   constructor(private service:ReportsService,private serviceE : EventsService, private alertcontrol : AlertController) { }
   exform!: FormGroup;
   ngOnInit(): void {
-    this.toCheckReportExist()
-    //console.log(this.existReport)
     this.exform = new FormGroup({
-      //'title' : new FormControl(null, Validators.required),
-      //'organizer' : new FormControl(null, Validators.required),
-      //'location' : new FormControl(null, Validators.required),
       'activity_id' : new FormControl(),
       'matric_id': new FormControl(localStorage.getItem('id')),
       'value' : new FormControl(null)
@@ -43,47 +38,27 @@ export class CreateReportComponent implements OnInit {
     this.serviceE.displayEvent()
     .subscribe(
       (res:any)=>{
-        //console.log(res)
         this.list = res;
         this.mylist = res;
-
-        //check if the event has report already
-        for(let i = 0 ; i < this.mylist.length ; i++){
-          let check;
-          for(let item in this.existReport){
-            check = this.mylist[i].activity_id.includes(item)
-            if(check){
-              console.log(check)
-              this.mylist.splice(i,1)
-              break;
-            }
-          }
-        }
-
         console.log(this.mylist)
+      }
+    )
+    this.service.displayAll().subscribe(
+      (res:any)=>{
+        this.existReport = res;
+        for(let item of res){
+          this.mylist = this.mylist.filter((data:any)=>data.activity_id != item.activity_id)
+        }
       }
     )
   }
   checking():void{
     console.log(this.exform.value);
-    //console.log(localStorage.getItem('id'));
   }
 
   alertMessage : any;
 
-  async createReport(){
-    //console.log(this.exform.value);
-    this.service.newReport(this.exform.value).subscribe(async res=>{
-      this.alertMessage = JSON.parse(res);
-      const alert = await this.alertcontrol.create({
-        header: 'Report Update',
-        message : this.alertMessage.message,
-        buttons : ['OK']
-      });
 
-      await alert.present();
-    })
-  }
 
 
   addReport(data:any){
@@ -92,28 +67,22 @@ export class CreateReportComponent implements OnInit {
     this.service.createReport(this.exform.value).subscribe(
       res=>{
         console.log(res);
+        this.notify(JSON.parse(res).message);
       }
     )
+  }
+  async notify(data:any){
+    const messages = await this.alertcontrol.create({
+      header : 'Message',
+      message : data,
+      buttons : [{text:'Continue',handler:()=>{location.reload()}}]
+    });
+    await messages.present();
   }
 
   async addLecturer(){
     const alert = await this.alertcontrol.create({
 
     })
-  }
-
-  toCheckReportExist(){
-    this.service.displayAll().subscribe(
-      (res:any)=>{
-        //this.existReport = res;
-        //console.log(this.existReport)
-        for(let item of res){
-          //console.log(item.activity_id)
-          //item.activity_id = this.existReport;
-          this.existReport.push(item.activity_id)
-        }
-      }
-    )
-    //console.log(this.existReport)
   }
 }

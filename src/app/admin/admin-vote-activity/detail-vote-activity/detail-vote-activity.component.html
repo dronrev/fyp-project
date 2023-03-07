@@ -1,0 +1,48 @@
+<div class="container">
+  <h2>RESULT : AJK VOTING BARU</h2>
+  <div class="top">
+    <div class="no-candidates">
+      <p style="font-size: 2em;">{{ totalCandidates.length }}</p>
+      <p>No. of Candidates</p>
+    </div>
+    <div class="total-voters">
+      <p style="font-size: 2em;">{{ totalVoters.length }}</p>
+      <p>Total voters</p>
+    </div>
+    <div class="voters-voted">
+      <p style="font-size: 2em;">{{ totalVotersVoted.length }}</p>
+      <p>Voters Voted</p>
+    </div>
+  </div>
+  <div class="bottom">
+    <h3>Total Count of Votes</h3>
+    <div class="">
+      <div class="container">
+        <div class="body" *ngFor="let myitem of listOfRole">
+          <div class="position-candidate">
+            <div class="position-title">
+              <div>
+                <h3 style="text-align: center;">{{ myitem }}</h3>
+              </div>
+             <div class="list-of-candidate">
+              <ng-container *ngFor="let item of totalCandidates">
+                <div *ngIf="item.candidate == myitem;" >
+                  <div class="candidate" style="display: flex;justify-content: center;flex-direction: column;">
+                    <div class="candidate-detail">
+                      <p style="text-align: center;">{{name[item.user_id]}}</p>
+                      <p style="text-align: center;">{{item.user_id}}</p>
+                    </div>
+                    <div class="candidate-count">
+                      <p style="text-align: center;">Total Votes : {{count[item.user_id] || '0'}}</p>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+             </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

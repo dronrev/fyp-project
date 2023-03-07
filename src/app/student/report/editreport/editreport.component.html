@@ -36,7 +36,7 @@
           <ion-textarea placeholder="Type something here"
           [autoGrow]="true"
           formControlName="title"
-          [value]="this.title"
+          [(ngModel)]="this.title"
           [readonly]="!edit">
           </ion-textarea>
 
@@ -50,7 +50,7 @@
           [autoGrow]="true"
           formControlName="objective"
           [readonly]="!edit"
-          [value]="this.objective">
+          [(ngModel)]="this.objective">
           </ion-textarea>
 
         </ion-item>
@@ -61,7 +61,7 @@
         <ion-item>
           <ion-textarea placeholder="Type something here"
           [autoGrow]="true"
-          [value]="this.introduction"
+          [(ngModel)]="this.introduction"
           [readonly]="!edit"
           formControlName="introduction">
           </ion-textarea>
@@ -74,7 +74,7 @@
         <ion-item>
           <ion-textarea placeholder="Type something here"
           [autoGrow]="true"
-          [value]="this.involvement"
+          [(ngModel)]="this.involvement"
           [readonly]="!edit"
           formControlName="involvement">
           </ion-textarea>
@@ -87,7 +87,7 @@
         <ion-item>
           <ion-textarea placeholder="Type something here"
           [autoGrow]="true"
-          [value]="this.perkara_hendak_maklum"
+          [(ngModel)]="this.perkara_hendak_maklum"
           [readonly]="!edit"
           formControlName="perkara">
           </ion-textarea>
@@ -100,7 +100,7 @@
         <ion-item>
           <ion-textarea placeholder="Type something here"
           [autoGrow]="true"
-          [value]="this.jemputan_vip"
+          [(ngModel)]="this.jemputan_vip"
           [readonly]="!edit"
           formControlName="vip">
           </ion-textarea>
@@ -113,7 +113,7 @@
         <ion-item>
           <ion-textarea placeholder="Type something here"
           [autoGrow]="true"
-          [value]="this.impak_program"
+          [(ngModel)]="this.impak_program"
           [readonly]="!edit"
           formControlName="impak">
           </ion-textarea>
@@ -126,7 +126,7 @@
         <ion-item>
           <ion-textarea placeholder="Type something here"
           [autoGrow]="true"
-          [value]="this.pencapaian"
+          [(ngModel)]="this.pencapaian"
           [readonly]="!edit"
           formControlName="pencapaian">
           </ion-textarea>
@@ -139,7 +139,7 @@
         <ion-item>
           <ion-textarea placeholder="Type something here"
           [autoGrow]="true"
-          [value]="this.rumusan"
+          [(ngModel)]="this.rumusan"
           [readonly]="!edit"
           formControlName="rumusan">
           </ion-textarea>
@@ -152,7 +152,7 @@
         <ion-item>
           <ion-textarea placeholder="Type something here"
           [autoGrow]="true"
-          [value]="this.cadangan"
+          [(ngModel)]="this.cadangan"
           [readonly]="!edit"
           formControlName="cadangan">
           </ion-textarea>
@@ -174,8 +174,8 @@
 <h1 *ngIf="partRep;hidden">Add Participants For : {{title}}</h1>
 <app-add-participant *ngIf="partRep;hidden"></app-add-participant>
 <div *ngIf="partRep;hidden">
-  <button class="btn btn-primary"(click)="sendToPresident(thereport.value)" [hidden]="toLecturer">SEND TO PRESIDENT</button>
-  <button class="btn btn-primary" (click)="sendToLecturer(thereport.value)" [hidden]="!toLecturer">SEND TO LECTURER</button>
+  <button class="btn btn-success"(click)="sendToPresident(thereport.value)" [hidden]="toLecturer">SEND TO PRESIDENT</button>
+  <button class="btn btn-success" (click)="sendToLecturer(thereport.value)" [hidden]="!toLecturer">SEND TO LECTURER</button>
 </div>
 <div class="comment-section" *ngIf="comRep;hidden">
   <label for="" class="form-label">Comment :</label>

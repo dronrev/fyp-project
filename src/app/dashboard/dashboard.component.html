@@ -1,0 +1,26 @@
+<div class="dash-login-button" style="display: flex;justify-content: end;padding: 10px;"><button class="btn btn-primary" routerLink="/sign-in">Login</button></div>
+<div class="heading">
+  <div><img src="assets/images/logo.png" alt=""></div>
+  <div><h2>PMFKI activity management system</h2></div>
+</div>
+
+<div class="container-fluid main-body">
+  <div class="body-login">
+    <div class="login-head">
+     <h2>Student Dashboard</h2>
+     <h3>Upcoming activities</h3>
+      <div class="content">
+        <ion-grid>
+          <ion-row *ngFor="let item of myEvent" class="myCard mb-2 shadow">
+            <ion-col size="3" class="date">
+              {{ item.date | date}}
+            </ion-col>
+            <ion-col class="content">
+              {{ item.name_activity | titlecase }}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+  </div>
+</div>

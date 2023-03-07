@@ -1,0 +1,10 @@
+.position-candidate{
+  display: flex;
+}
+.list-of-candidate{
+  display: flex;
+
+}
+.list-of-candidate>div{
+  margin: 20px;
+}

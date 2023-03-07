@@ -64,7 +64,8 @@ export class AddEventComponent implements OnInit {
       message : 'Event added successfully!',
       buttons : [
         {
-          text : 'Continue'
+          text : 'Continue',
+          handler:()=>{location.reload()}
         }
       ]
     });

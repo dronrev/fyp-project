@@ -1,15 +1,45 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <nav class="navbar navbar-expand-lg bg-secondary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">PMFKIAMS</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item" routerLinkActive="active">
+              <a routerLink="/HomeLecturer" class="nav-link" style="color: white;">Home</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a href="#" routerLink="/LectDashboard" class="nav-link" style="color: white;">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" routerLink="/ReportLecturer" class="nav-link" style="color: white;">Report</a>
+          </li>
+          <li class="nav-item" [hidden]="check">
+            <a href="#" routerLink="/list-of-student" class="nav-link" style="color: white;">List of Student</a>
+          </li>
+          </ul>
+          <label for="" style="color: white;padding-right: 20px;">{{ username }}</label>
+          <div style="display: flex;justify-content: right;">
+            <button class="btn-primary"><a href="" class="nav-link" routerLink="/sign-in" style="color: white;">
+              Sign out
+            </a></button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!--ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-    </ion-buttons>
+    </!--ion-buttons>
     <ion-title>Home</ion-title>
     <ion-icon name="person-circle-sharp" slot="end" size="large"></ion-icon>
     <ion-label slot="end">{{ username }}</ion-label>
     <button slot="end" style="background: none;"><ion-icon name="notifications-sharp" slot="end" size="large"></ion-icon></button>
     <button slot="end" style="background: none;"><ion-icon name="chatbubbles-sharp" slot="end" size="large"></ion-icon></button>
-    <ion-button slot="end" size="small"><a href="" class="nav-link" routerLink="/sign-in" style="color: white;">
+    <ion-button-- slot="end" size="small"><a href="" class="nav-link" routerLink="/sign-in" style="color: white;">
       Sign out
-    </a></ion-button>
+    </a></ion-button-->
   </ion-toolbar>
 </ion-header>

@@ -1,9 +1,16 @@
+.main-content{
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.dash-item{
+  padding: 10px;
+}
 .upcoming-container{
   background-color: white;
   border-radius: 25px 25px;
   align-items: center;
   text-align: center;
-  width: 50%;
+  width: 100%;
 }
 
 .upcoming-header{
