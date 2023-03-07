@@ -1,0 +1,26 @@
+<div class="container">
+  <h2>Announcement</h2>
+  <button class="btn btn-primary" routerLink="create-new">Create New Announcement</button>
+  <div class="announcement">
+    <table class="shadow p-3 mb-5 bg-white rounded">
+      <thead>
+        <th>#</th>
+        <th>Title</th>
+        <th>Date</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of announcements| paginate:{itemsPerPage : 5,currentPage : td};let key = index;">
+          <td>{{key + 1}}</td>
+          <td>{{item.title}}</td>
+          <td>{{item.date_created}}</td>
+          <td>
+            <button class="btn btn-primary" [routerLink]="['edit/',item.announcement_id]" (click)="setAnnouncementId(item.announcement_id)">Check</button>
+            <button class="btn btn-danger" style="margin: 10px;" (click)="deleteItem(item.announcement_id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <pagination-controls (pageChange)="td=$event" class="float-right"></pagination-controls>
+</div>

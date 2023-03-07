@@ -1,0 +1,23 @@
+<div class="container">
+  <form action="" [formGroup]="send_data" (ngSubmit)="sendAnnouncement()">
+    <div>
+      <label for="" class="form-label">Title</label>
+      <input type="text" class="form-control" formControlName="title" [(ngModel)]="list[0].title">
+    </div>
+    <div>
+      <label for="" class="form-label">Subject</label>
+      <input type="text" class="form-control" formControlName="subject" [(ngModel)]="list[0].subject">
+    </div>
+    <div>
+      <label for="" class="form-label">Message</label>
+      <textarea name="" id="" cols="30" rows="10" class="form-control" formControlName="message" [(ngModel)]="list[0].message"></textarea>
+    </div>
+    <div class="mt-4" hidden>
+      <img  width="300" height="300" alt="">
+      <input type="file" >
+    </div>
+    <div class="mt-2">
+      <button class="btn btn-success" type="submit">Send</button>
+    </div>
+  </form>
+</div>

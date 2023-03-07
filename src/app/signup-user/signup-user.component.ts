@@ -43,6 +43,7 @@ export class SignupUserComponent implements OnInit {
     this.http.post("http://localhost/fyp-project/user/pending-user.php",this.registerUser.value,{responseType : 'text'}).subscribe(
       res=>{
         console.log(res);
+        this.userRegistered(JSON.parse(res).message);
       }
     )
   }
@@ -58,6 +59,14 @@ export class SignupUserComponent implements OnInit {
     const messages = await this.alertcontrol.create({
       header : 'Message',
       message : 'Password did not match',
+      buttons : ['Continue']
+    });
+    await messages.present();
+  }
+  async userRegistered(data:any){
+    const messages = await this.alertcontrol.create({
+      header : 'Message',
+      message : data,
       buttons : ['Continue']
     });
     await messages.present();

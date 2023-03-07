@@ -1,0 +1,49 @@
+.container-fluid{
+  background-color: rgb(62, 57, 57);
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 20px;
+  color: white;
+  min-height: 60vh;
+}
+.head1{
+  border-bottom: 5px solid;
+  border-color: yellow;
+  width: 180px;
+}
+.head2{
+  border-bottom: 5px solid;
+  border-color: yellow;
+  width: 180px;
+}
+.head3{
+  border-bottom: 5px solid;
+  border-color: yellow;
+  width: 180px;
+}
+.content1{
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.content-link>a{
+  text-decoration: none;
+  color: white;
+}
+.content-link>a:hover{
+  color: rgb(84, 98, 247);
+}
+.content2{
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.content3{
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}

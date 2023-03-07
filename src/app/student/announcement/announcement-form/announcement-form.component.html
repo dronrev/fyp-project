@@ -1,5 +1,5 @@
 <ion-breadcrumbs color="primary">
-  <ion-breadcrumb href="#home" routerLink="/announcement">Announcement</ion-breadcrumb>
+  <ion-breadcrumb routerLink="/announcement">Announcement</ion-breadcrumb>
   <ion-breadcrumb>Create New Announcement</ion-breadcrumb>
 </ion-breadcrumbs>
 <div class="container">
@@ -9,13 +9,18 @@
       <input type="text" class="form-control" formControlName="title">
     </div>
     <div>
-      <label for="" class="form-label">Content</label>
-      <input type="text" class="form-control" formControlName="content">
+      <label for="" class="form-label">Subject</label>
+      <input type="text" class="form-control" formControlName="subject">
     </div>
     <div>
       <label for="" class="form-label">Message</label>
       <textarea name="" id="" cols="30" rows="10" class="form-control" formControlName="message"></textarea>
     </div>
+    <div class="mt-4">
+      <img [src]="imageURL" width="300" height="300" alt="">
+      <input type="file" (change)="sendImage($event)">
+    </div>
+    <button (click)="saveImage()" type="button">Test</button>
     <div class="mt-2">
       <button class="btn btn-success" type="submit">Send</button>
     </div>

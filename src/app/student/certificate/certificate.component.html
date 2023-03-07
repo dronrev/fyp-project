@@ -11,14 +11,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of list;let count of myData;let key = index">
+    <tr *ngFor="let item of list;let key = index">
       <td>
-        {{ key+1}}
+        <a>download</a>
       </td>
-      <td>{{ item.title }}</td>
+      <td>{{ item.name_activity }}</td>
       <td>{{ item.location }}</td>
-      <td>{{ count[1] }}</td>
-      <td><a href="../assets/images/certificate/yeahh.zip" class="nav-link" download>Some Link</a></td>
+      <td>{{ myData[key] }}</td>
+      <td><!--a href="../assets/images/certificate/yeahh.rar" class="nav-link" download>Download E-certificate</!--a-->
+        <ion-button (click)="downloadFolder()">Download</ion-button>
+      </td>
     </tr>
   </tbody>
 </table>

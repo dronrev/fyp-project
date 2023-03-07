@@ -3,21 +3,22 @@
   <ion-breadcrumb>List Of Announcement</ion-breadcrumb>
 </ion-breadcrumbs>
 <div class="container">
-  <h1>Announcement List</h1>
-  <input type="text" placeholder="Search...">
+  <h1>Announcement</h1>
+  <div class="" style="padding-bottom: 10px;">
+    <a href="" routerLink="create-new-announcement" class="btn btn-primary" style="margin-right: 10px;" hidden>Create New Announcement</a>
+    <a href="" routerLink="my-announcement" class="btn btn-secondary" hidden>My Announcement</a>
+  </div>
+  <input type="text" name="search" class="form-control" hidden>
   <div class="content-container mt-2">
-    <div class="card container-fluid" *ngFor="let item of list;let key = index">
-      <a href="" [routerLink]="['info',item.announcement_id]" style="text-decoration: none;color: black;" (click)="getAnnouncement(key)">
+    <div class="card container-fluid" *ngFor="let item of list| paginate:{itemsPerPage : 5,currentPage : a};let key = index">
+      <a href="" [routerLink]="[item.announcement_id]" style="text-decoration: none;color: black;" (click)="getAnnouncement(key)">
         <div class="title">
-          <h2>{{ item.title | uppercase }}</h2>
-           <div class="content">
-             <h4>{{ item.subject }}</h4>
-             <div class="message">
-               <p>{{ item.message }}</p>
-             </div>
-           </div>
+          <h2 style="color: rgb(57, 57, 218);">{{ item.title | uppercase }}</h2>
+          <h3>{{ item.subject }}</h3>
+          <h6>{{item.date_created || "Unknown Date"}}</h6>
          </div>
       </a>
     </div>
   </div>
 </div>
+<pagination-controls (pageChange)="a=$event" style="display: flex;justify-content: center;padding-top: 10px;"></pagination-controls>

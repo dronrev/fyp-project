@@ -1,0 +1,29 @@
+<div class="container"  [hidden]="check">
+  <div class="head">
+    <h2>Status of Actvitiy Report</h2>
+  </div>
+  <div class="content">
+    <div class="table">
+      <table>
+        <thead>
+          <th>#</th>
+          <th>Name of Event</th>
+          <th>Location of the Event</th>
+          <th>Status of Activity Report</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of list">
+            <td>{{item.username}}</td>
+            <td>{{item.name_activity}}</td>
+            <td>{{item.location}}</td>
+            <td *ngIf="item.status == 0">Member is editing</td>
+            <td *ngIf="item.status == 1">President is checking the report</td>
+            <td *ngIf="item.status == 2">Lecturer checks the report</td>
+            <td *ngIf="item.status == 3">TDA checks the report</td>
+            <td *ngIf="item.status == 4">The report has been approved</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

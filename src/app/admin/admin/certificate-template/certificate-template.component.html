@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="head-title">
+    <h2>Certificate Template</h2>
+  </div>
+  <div class="cert-template">
+    <div class="cert-item" *ngFor="let item of imageURL">
+      <img [src]="['../assets/images/announcement/'+item]" alt="" height="200" width="200">
+      <div class="cert-delete-button">
+        <button class="btn btn-danger">-</button>
+      </div>
+    </div>
+    <div class="add-cert">
+      <input type="file" class="form-control" (change)="showImage($event)" accept="image/*">
+      <button class="btn btn-success mt-3">Add Image</button>
+    </div>
+  </div>
+</div>

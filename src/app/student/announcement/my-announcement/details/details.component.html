@@ -1,0 +1,20 @@
+<div class="container">
+  <form action="" [formGroup]="send_data" (ngSubmit)="saveEdit()" *ngFor="let item of myitem">
+    <div class="title">
+      <label for="" class="form-label">Title</label>
+      <input type="text" class="form-control" [(ngModel)]="myitem[0].title" formControlName="title">
+    </div>
+    <div class="subject">
+      <label for="" class="form-label">Subject</label>
+      <input type="text" class="form-control" [(ngModel)]="myitem[0].subject" formControlName="subject">
+    </div>
+
+    <div class="message">
+      <label for="" class="form-label">Message</label>
+      <textarea name="" [(ngModel)]="myitem[0].message" id="" cols="30" rows="10" class="form-control" formControlName="message"></textarea>
+    </div>
+    <div class="save-button mt-2">
+      <button class="btn btn-success" type="submit">Save</button>
+    </div>
+  </form>
+</div>

@@ -7,8 +7,8 @@
     <th></th>
   </thead>
   <tbody>
-    <tr *ngFor="let student of students;let key = index;">
-      <td>{{key+1}}</td>
+    <tr *ngFor="let student of students| paginate:{itemsPerPage : 5,currentPage : td};let key = index;">
+      <td>{{key + 1}}</td>
       <td>{{ student.username }}</td>
       <td>{{ student.course_id }}</td>
       <td>{{ student.cawangan }}</td>
@@ -16,3 +16,4 @@
     </tr>
   </tbody>
 </table>
+<pagination-controls (pageChange)="td=$event" class="float-right"></pagination-controls>

@@ -1,0 +1,11 @@
+table{
+  border: 1px solid;
+}
+thead{
+  background-color: aquamarine;
+  border-bottom: 1px solid;
+}
+th,td{
+  text-align: center;
+  padding: 5px;
+}

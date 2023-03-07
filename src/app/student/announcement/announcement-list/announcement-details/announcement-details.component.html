@@ -1,21 +1,21 @@
 <ion-breadcrumbs color="primary">
   <ion-breadcrumb routerLink="/announcement">Announcement</ion-breadcrumb>
-  <ion-breadcrumb routerLink="/announcement/list-of-announcement">List Of Announcement</ion-breadcrumb>
+  <ion-breadcrumb routerLink="/announcement">List Of Announcement</ion-breadcrumb>
   <ion-breadcrumb>Message</ion-breadcrumb>
 </ion-breadcrumbs>
-<div class="container mt-5">
-  <div class="announcement-content">
-    <div class="sender">
-      <p>From : {{ myitem[0].username}}</p>
+<div class="container">
+  <h2>Announcement Center</h2>
+  <button class="btn btn-primary" routerLink="create-new" hidden>Create New Announcement</button>
+  <div class="announcement" *ngFor="let item of myitem">
+    <div class="announcement-head">
+      <h3 style="color: white;margin: 10px;">Title : {{item.title | uppercase}}</h3>
+      <h4 style="color: white;margin: 10px;">Subject : {{ item.subject }}</h4>
     </div>
-    <div class="title">
-      <p>Title : {{ myitem[0].title }}</p>
+    <div class="announcement-body">
+      <h5 style="color: white;margin: 10px;">Message : {{ item.message }}</h5>
     </div>
-    <div class="content">
-      <p>Subject : {{myitem[0].subject}}</p>
-    </div>
-    <div class="message">
-      <p>Message : {{ myitem[0].message }}</p>
+    <div class="attachment" hidden>
+      <img [src]="imageURL" alt="" width="800" height="800">
     </div>
   </div>
 </div>

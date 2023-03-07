@@ -8,6 +8,8 @@ export class EventsService {
 
   constructor(private http:HttpClient) { }
   url = "http://localhost/fyp-project/add-event.php";
+  eventUrl = "http://localhost/fyp-project/event/";
+  deleteUrl = "http://localhost/fyp-project/event/delete-event.php";
   baseUrl = "http://localhost/fyp-project/event/get-event.php";
   voteUrl = "http://localhost/fyp-project/voting/send-vote.php";
   voteBaseUrl = "http://localhost/fyp-project/voting/";
@@ -17,6 +19,14 @@ export class EventsService {
 
   addEvent(data:any){
     return this.http.post(this.url,data,{responseType:'text'})
+  }
+
+  deleteEvent(data:any){
+    return this.http.post(this.deleteUrl,data,{responseType : 'text'})
+  }
+
+  completeEvent(){
+    return this.http.get(this.eventUrl+'get-complete-event.php')
   }
 
   sendvote(data:any){
@@ -32,9 +42,13 @@ export class EventsService {
   }
 
   verifyUserVoting(data:any){
-    return this.http.post(this.voteBaseUrl+'check-if-user-already-voting.php',data,{responseType : 'text'})
+    return this.http.post(this.voteBaseUrl+'check-if-user-already-voting.php',data)
   }
   getCandidate(data:any){
     return this.http.post(this.voteBaseUrl+'get-candidates.php',data,{responseType : 'text'})
   }
+  enterVote(data:any){
+    return this.http.post(this.voteBaseUrl+'enter-vote.php',data)
+  }
+
 }

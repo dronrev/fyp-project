@@ -1,5 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AlertController, IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { map } from 'rxjs/operators';
@@ -14,7 +15,7 @@ import { EventsService } from 'src/app/student/event/events.service';
 export class ChooseMemberComponent implements OnInit {
 
   constructor(private studentservice : UsersService,private service : EventsService,private fb : FormBuilder,
-    private alertcontrol : AlertController) { }
+    private alertcontrol : AlertController,private router : Router) { }
 
   data_sent = this.fb.group({
       vote : this.fb.array([]),
@@ -122,7 +123,7 @@ export class ChooseMemberComponent implements OnInit {
     const alert = await this.alertcontrol.create({
       header : 'Success',
       message: 'Your vote has been submitted!',
-      buttons : ['Continue']
+      buttons : [{text :'Continue',handler:()=>this.router.navigate(['/select-member'])}]
     })
     await alert.present();
   }

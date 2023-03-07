@@ -28,6 +28,7 @@ export class SignInComponent implements OnInit {
     user_role : new FormControl("")
   });
 
+
   messageClass = "";
   message = "";
   studentId : any;
@@ -69,6 +70,7 @@ export class SignInComponent implements OnInit {
               localStorage.setItem('token',this.responseData.token);
               localStorage.setItem('id',this.responseData.id);
               localStorage.setItem('name',this.responseData.name);
+              localStorage.setItem('email_address',this.responseData.email_address);
               localStorage.setItem('auth',this.LoginForm.value['user_role']);
               localStorage.setItem('_elorfostudent_',this.responseData.role);
               this.router.navigate(['/student/home']);
@@ -104,21 +106,38 @@ export class SignInComponent implements OnInit {
                 }
               )
               localStorage.setItem('auth',this.LoginForm.value['user_role']);
-              this.router.navigate(['/lecturer']);
+              this.router.navigate(['/HomeLecturer']);
 
               //this.http.changeName(this.responseData.name);
             }
           }
         })
       }
+      if(this.LoginForm.value['user_role'] == '3'){
+        this.http.adminLogin(this.LoginForm.value).subscribe(
+          res=>{
+            //console.log(res);
+            this.responseData = JSON.parse(res);
+            localStorage.setItem('auth',this.LoginForm.value['user_role']);
+            localStorage.setItem('token',this.responseData.token);
+            this.router.navigate(['/home-admin']);
+          }
+        )
+      }
     }
   }
 
-  show = false;
 
-  showingP = "password";
 
-  showPassword(){
-    this.showingP = "text";
+  showPass ="password"
+
+  showPassword(event:any){
+    //this.showingP = "text";
+    if(event.detail.checked){
+      this.showPass ="text"
+    }
+    else{
+      this.showPass ="password"
+    }
   }
 }

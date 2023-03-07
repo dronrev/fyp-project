@@ -1,0 +1,23 @@
+.create-new-vote{
+  margin-bottom: 30px;
+}
+.box{
+  box-shadow: 2px 2px 5px 5px #888888
+}
+
+ion-content{
+  --ion-background-color: rgba(67, 151, 151, 0.553);
+}
+div{
+  background-color: white;
+}
+
+thead{
+  background-color: rgb(98, 98, 241);
+  border-radius: 20px 20px;
+}
+
+tbody>tr:nth-child(even){
+  background-color: rgb(197, 197, 197);
+}
+

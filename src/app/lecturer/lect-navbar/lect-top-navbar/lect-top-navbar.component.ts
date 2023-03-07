@@ -9,7 +9,11 @@ export class LectTopNavbarComponent implements OnInit {
 
   constructor() { }
   username = localStorage.getItem('name');
+  check : boolean = false
   ngOnInit(): void {
+    if(localStorage.getItem('_sepesial_elor_rof_') != "TDA"){
+      this.check = true;
+    }
   }
 
 }

@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="title"><h2>ELECTION TITLE : {{ title }}</h2><hr></div>
+  <div class="body" *ngFor="let myitem of listOfRole">
+    <div class="position-candidate">
+      <div class="position-title">
+        <h3>{{ myitem }}</h3>
+       <div class="list-of-candidate">
+        <ng-container *ngFor="let item of list">
+          <div *ngIf="item.candidate == myitem; else noData" >
+            <div style="display: flex;justify-content: center;flex-direction: column;">
+              <img [src]="[imageURL + item.user_id+'prof_pic.png']" alt="" width="100" height="100">
+              <p style="text-align: center;">{{name[item.user_id]}}</p>
+              <p style="text-align: center;">{{item.user_id}}</p>
+              <input type="radio" [name]="myitem" (change)="getCandidate($event,item)" [value]="item.user_id">
+            </div>
+          </div>
+        </ng-container>
+        <!--div *ngFor="let item of list">
+          <div *ngIf="item.candidate == myitem; else noData">
+            <img src="" alt="" width="100" height="100">
+            <p>{{item.user_id}}</p>
+            <input type="radio" name="candidate">
+          </div>
+        </!--div-->
+       </div>
+      </div>
+    </div>
+  </div>
+  <div class="send-button">
+    <ion-button color="success" (click)="submit()">Send vote</ion-button>
+  </div>
+</div>
+<ng-template #noData>
+  <div style="display: none;" hidden></div>
+</ng-template>

@@ -1,0 +1,18 @@
+<div class="sum-class">
+  <div class="" style="display:flex;justify-content: center;padding-bottom: 10px;" [hidden]="check">
+    <select name="" id="" (change)="getYear($event.target)">
+      <option value="">Select Year</option>
+      <option [value]="listOfYear" *ngFor="let listOfYear of year">{{ listOfYear }}</option>
+    </select>
+  </div>
+  <div class="summary" [hidden]="check">
+    <div id="divChart">
+      <div class="first-chart">
+        <canvas id="myChart" #myChart></canvas>
+      </div>
+      <!--div class="second-chart">
+        <canvas id="chart2"></canvas>
+      </!--div-->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+.add-body-form{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.add-body-form>div{
+  margin: 10px;
+}

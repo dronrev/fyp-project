@@ -4,6 +4,7 @@ import { AlertController } from '@ionic/angular';
 import { map } from 'rxjs/operators';
 import { UsersService } from '../users.service';
 
+
 @Component({
   selector: 'app-manage-user',
   templateUrl: './manage-user.component.html',
@@ -14,7 +15,7 @@ export class ManageUserComponent implements OnInit {
   constructor(private service : UsersService, private alertcontrol : AlertController) { }
 
   students:any;
-
+  td  !: number;
   input = new FormGroup({
     'user_id': new FormControl(null)
   })

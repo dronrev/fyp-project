@@ -15,10 +15,10 @@
 </div>-->
 
 
-<ion-card *ngFor="let report of reports; let key = index;">
+<ion-card *ngFor="let report of reports | paginate:{itemsPerPage : 5,currentPage : a}; let key = index;">
   <ion-card-header>
     <ion-item>
-      <ion-label><h1><a href="#" class="nav-link">{{ report.name_activity }}</a></h1></ion-label>
+      <ion-label><h1><a href="#" [routerLink]="['/report/editreport',report.report_id]" (click)="getReport(key)" class="nav-link">{{ report.name_activity }}</a></h1></ion-label>
       <ion-button fill="solid" slot="end" [routerLink]="['/report/editreport',report.report_id]" (click)="getReport(key)" color="primary">Edit</ion-button>
       <ion-button fill="solid" slot="end" (click)="deleteRep(report.report_id)"  color="danger">Delete</ion-button>
     </ion-item>
@@ -34,3 +34,4 @@
     </div>
   </ion-card-content>
 </ion-card>
+<pagination-controls (pageChange)="a=$event" style="display: flex;justify-content: center;padding-top: 10px;"></pagination-controls>
