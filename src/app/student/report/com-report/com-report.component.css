@@ -8,3 +8,8 @@ ion-card-header{
 .nav-link{
   color: black;
 }
+.report-container-list{
+  display: grid;
+  grid-template-columns:  repeat(auto-fit,minmax(260px,1fr));
+}
+

@@ -1,4 +1,6 @@
-
+<div>
+  <h2>Pending User</h2>
+</div>
 <table class="shadow p-3 mb-5 bg-white rounded">
   <thead>
     <th>#</th>
@@ -10,13 +12,17 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of list;let key = index">
-      <td>{{key + 1}}</td>
-      <td>{{item.username}}</td>
-      <td>{{item.course_id}}</td>
-      <td>{{item.user_id}}</td>
-      <td>{{item.email_id}}</td>
-      <td><ion-button color="secondary" class="delete-button" (click)="approveMember(item)">approve</ion-button>
-        <ion-button color="danger" class="delete-button" (click)="deleteMember(item)">delete</ion-button></td>
+      <td data-cell="#">{{key + 1}}</td>
+      <td data-cell="Name">{{item.username}}</td>
+      <td data-cell="Course Code">{{item.course_id}}</td>
+      <td data-cell="Matric No">{{item.user_id}}</td>
+      <td data-cell="Email">{{item.email_id}}</td>
+      <td data-cell="Action">
+        <div>
+          <ion-button color="secondary" class="delete-button" (click)="approveMember(item)">approve</ion-button>
+          <ion-button color="danger" class="delete-button" (click)="deleteMember(item)">delete</ion-button>
+        </div>
+      </td>
     </tr>
   </tbody>
 </table>

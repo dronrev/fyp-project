@@ -3,3 +3,57 @@
   box-shadow: 3px 3px 3px 3px black;
   border-radius: 25px 25px;
 }
+
+.box{
+  width: min(900px,100%-3rem);
+  margin-inline: auto;
+  display: grid;
+}
+
+table{
+  border-collapse: collapse;
+  padding: 1rem;
+}
+
+th,td,caption{
+  padding: 1rem;
+}
+
+thead{
+  background-color: rgb(98, 98, 241);
+  border-radius: 20px 20px;
+}
+
+tbody>tr:nth-child(odd){
+  background-color: rgb(197, 197, 197);
+}
+
+tbody>tr:nth-child(even){
+  background-color: rgb(117, 114, 114);
+}
+
+@media (max-width:650px){
+  th{
+    display: none;
+  }
+  td{
+    display: grid;
+    gap: 0.6125rem;
+    grid-template-columns: 15ch auto;
+    padding: 0.5rem 1rem;
+  }
+
+  td:first-child{
+    padding-top: 2ren;
+  }
+  td:last-child{
+    padding-top: 2ren;
+  }
+
+  td::before{
+    content: attr(data-cell) ": ";
+    font-weight: 700;
+    text-transform: capitalize;
+  }
+}
+

@@ -1,27 +1,31 @@
-
-  <div class="box">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Name</th>
-          <th>Location</th>
-          <th>Tema</th>
-          <th>Tarikh</th>
-          <th>Penganjur</th>
-        </tr>
-      </thead>
-      <tbody class="table-body">
-        <tr *ngFor="let activity of activities;let key = index">
-          <td>{{ key+1 }}</td>
-          <td>{{ activity.name_activity | titlecase }}</td>
-          <td>{{ activity.location | uppercase }}</td>
-          <td>{{ activity.tema | titlecase}}</td>
-          <td>{{ activity.date | date }}</td>
-          <td>{{ activity.organizer}}</td>
-        </tr>
-      </tbody>
-    </table>
+<div class="box">
+  <div class="table-caption">
+    <h2 style="font-weight: 700;">List Of Event</h2>
   </div>
+  <table class="">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Tema</th>
+        <th>Tarikh</th>
+        <th>Penganjur</th>
+      </tr>
+    </thead>
+    <tbody class="table-body">
+      <tr *ngFor="let activity of activities; let key = index">
+        <td data-cell="no">{{ key + 1 }}</td>
+        <td data-cell="name">{{ activity.name_activity | titlecase }}</td>
+        <td data-cell="location">{{ activity.location | uppercase }}</td>
+        <td data-cell="tema">{{ activity.tema | titlecase }}</td>
+        <td data-cell="tarikh">{{ activity.date | date }}</td>
+        <td data-cell="penganjur">{{ activity.organizer }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="p-5">
+    <a href="" routerLink="./add-event" class="btn btn-warning">Set New Activity</a>
+  </div>
+</div>
 
-<a href="" routerLink="./add-event" class="btn btn-warning">Set New Activity</a>

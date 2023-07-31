@@ -12,13 +12,13 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of list;let key = index">
-      <td>
-        <a>download</a>
+      <td data-cell="#">
+        <span>{{key + 1}}</span>
       </td>
-      <td>{{ item.name_activity }}</td>
-      <td>{{ item.location }}</td>
-      <td>{{ myData[key] }}</td>
-      <td><!--a href="../assets/images/certificate/yeahh.rar" class="nav-link" download>Download E-certificate</!--a-->
+      <td data-cell="name">{{ item.name_activity }}</td>
+      <td data-cell="location">{{ item.location }}</td>
+      <td data-cell="total participants">{{ myData[key] }}</td>
+      <td data-cell="E-Certificate"><!--a href="../assets/images/certificate/yeahh.rar" class="nav-link" download>Download E-certificate</!--a-->
         <ion-button (click)="downloadFolder()">Download</ion-button>
       </td>
     </tr>

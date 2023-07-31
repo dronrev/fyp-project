@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
   course = "HC00";
   email = localStorage.getItem('email_address');
   imageUrl : any;
+  password = '';
   imageURL: any | undefined;
   myimg : any;
   uploadForm: FormGroup;

@@ -32,7 +32,9 @@ export class VotingComponent implements OnInit {
       }
     )
 
-    this.service.getAllVote().pipe(map((data:any)=>data.filter((vote:any)=>new Date(vote.date) != new Date()))).subscribe(
+    // .pipe(map((data:any)=>data.filter((vote:any)=>new Date(vote.date) == new Date())))
+
+    this.service.getAllVote().subscribe(
       res=>{
         this.list = res;
         console.log(this.list)

@@ -1,4 +1,4 @@
-<div class="upcoming-container shadow p-3 mb-5">
+<!-- <div class="upcoming-container shadow p-3 mb-5">
   <div class="upcoming-header">
     <ion-list-header>
       <ion-label>Upcoming activities</ion-label>
@@ -6,14 +6,41 @@
   </div>
   <div class="content">
     <ion-grid>
-      <ion-row *ngFor="let item of myEvent" class="myCard mb-2 shadow">
-        <ion-col size="3" class="date">
-          {{ item.date | date}}
-        </ion-col>
-        <ion-col class="content">
-          {{ item.name_activity | titlecase }}
-        </ion-col>
-      </ion-row>
+      <table>
+        <ion-row>
+
+        </ion-row>
+        <ion-row *ngFor="let item of myEvent" class="myCard mb-2 shadow">
+          <ion-col size="3" class="date">
+            {{ item.date | date}}
+          </ion-col>
+          <ion-col class="content">
+            {{ item.name_activity | titlecase }}
+          </ion-col>
+        </ion-row>
+      </table>
     </ion-grid>
   </div>
+</div> -->
+
+<div class="box">
+  <div class="table-caption">
+    <h3 style="font-weight: 700;">Upcoming activity</h3>
+  </div>
+  <table class="">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Activity</th>
+      </tr>
+    </thead>
+    <tbody class="table-body">
+      <tr *ngFor="let item of myEvent">
+        <td data-cell="date">{{ item.date | date}}</td>
+        <td data-cell="activity">{{ item.name_activity | titlecase }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
+
+

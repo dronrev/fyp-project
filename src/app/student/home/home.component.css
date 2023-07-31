@@ -3,8 +3,11 @@
 }
 
 .home-content{
-  display: flex;
-
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 2em;
+  padding: 0.8125em;
 }
 
 ion-content{
@@ -13,10 +16,10 @@ ion-content{
 ion-card{
   color: white;
   --ion-background-color: rgb(65, 62, 62);
+  min-width: 260px;
 }
 ion-card-header{
   background-color: white;
-  min-width: 350px;
   transition: width 5s;
 }
 

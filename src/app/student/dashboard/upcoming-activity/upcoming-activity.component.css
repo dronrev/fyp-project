@@ -1,35 +1,52 @@
-.upcoming-container{
-  background-color: white;
-  border-radius: 25px 25px;
-  align-items: center;
-  text-align: center;
-  width: 50%;
+.box{
+  width: min(900px,100%-3rem);
+  margin-inline: auto;
+  display: grid;
 }
 
-.upcoming-header{
-  border-bottom: solid;
-}
-.upcoming-body{
-  color: rgb(0, 63, 171);
-  background-color: bisque;
-  border-radius: 50px 50px;
-  width: 100%;
-}
-ion-list-header>ion-label{
-  text-align: center;
-  font-size: 30px;
-}
-ion-label{
-  text-align: center;
+table{
+  border-collapse: collapse;
+  padding: 1rem;
 }
 
-.date{
-  color: white;
+th,td,caption{
+  padding: 1rem;
 }
-.myCard{
-  border: 1px solid;
-  background-color: black;
+
+thead{
+  background-color: rgb(98, 98, 241);
+  border-radius: 20px 20px;
 }
-.content{
-  background-color: white;
+
+tbody>tr:nth-child(odd){
+  background-color: rgb(197, 197, 197);
+}
+
+tbody>tr:nth-child(even){
+  background-color: rgb(117, 114, 114);
+}
+
+@media (max-width:650px){
+  th{
+    display: none;
+  }
+  td{
+    display: grid;
+    gap: 0.6125rem;
+    grid-template-columns: 15ch auto;
+    padding: 0.5rem 1rem;
+  }
+
+  td:first-child{
+    padding-top: 2ren;
+  }
+  td:last-child{
+    padding-top: 2ren;
+  }
+
+  td::before{
+    content: attr(data-cell) ": ";
+    font-weight: 700;
+    text-transform: capitalize;
+  }
 }

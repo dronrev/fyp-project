@@ -8,5 +8,6 @@ ion-header{
 
 .profile-picture{
   height: 50px;
-  border-radius: 50px 50px;
+  width: 50px;
+  border-radius: 50%;
 }

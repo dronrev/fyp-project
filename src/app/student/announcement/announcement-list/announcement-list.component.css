@@ -1,16 +1,15 @@
 
 
 .content-container{
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  background-color: lightgray;
-  box-shadow: 2px 2px 10px 2px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(270px,1fr));
+  gap: 1rem;
+  place-items: center;
 }
 .card{
   margin: 20px;
-  box-shadow: 2px 2px 10px 2px;
+  box-shadow: 2px 2px 2px;
+  background-color: hsl(86, 8%, 82%);
 }
 
 /*.card>p{

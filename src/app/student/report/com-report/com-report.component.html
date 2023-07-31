@@ -15,23 +15,27 @@
 </div>-->
 
 
-<ion-card *ngFor="let report of reports | paginate:{itemsPerPage : 5,currentPage : a}; let key = index;">
-  <ion-card-header>
-    <ion-item>
-      <ion-label><h1><a href="#" [routerLink]="['/report/editreport',report.report_id]" (click)="getReport(key)" class="nav-link">{{ report.name_activity }}</a></h1></ion-label>
-      <ion-button fill="solid" slot="end" [routerLink]="['/report/editreport',report.report_id]" (click)="getReport(key)" color="primary">Edit</ion-button>
-      <ion-button fill="solid" slot="end" (click)="deleteRep(report.report_id)"  color="danger">Delete</ion-button>
-    </ion-item>
-  </ion-card-header>
+<div class="report-container-list">
+  <ion-card *ngFor="let report of reports | paginate:{itemsPerPage : 5,currentPage : a}; let key = index;">
+    <ion-card-header>
+      <ion-item>
+        <div class="report-card-header">
+          <ion-label><h3><a [routerLink]="['/report/editreport',report.report_id]" (click)="getReport(key)" class="nav-link report-title-header">{{ report.name_activity }}</a></h3></ion-label>
+          <ion-button fill="solid" slot="end" [routerLink]="['/report/editreport',report.report_id]" (click)="getReport(key)" color="primary">Edit</ion-button>
+          <ion-button fill="solid" slot="end" (click)="deleteRep(report.report_id)"  color="danger">Delete</ion-button>
+        </div>
+      </ion-item>
+    </ion-card-header>
 
 
-  <ion-card-content>
-    <div>
-      Location : {{ report.location}}
-    </div>
-    <div>
-      Report Status : {{ report.status }}
-    </div>
-  </ion-card-content>
-</ion-card>
+    <ion-card-content>
+      <div>
+        Location : {{ report.location}}
+      </div>
+      <div>
+        Report Status : {{ report.status }}
+      </div>
+    </ion-card-content>
+  </ion-card>
+</div>
 <pagination-controls (pageChange)="a=$event" style="display: flex;justify-content: center;padding-top: 10px;"></pagination-controls>

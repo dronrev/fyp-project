@@ -1,27 +1,31 @@
 <div class="shadow p-3 mb-5 bg-white rounded">
+  <div>
+    <h2>List Of Election</h2>
+  </div>
   <table class="table">
     <thead>
       <tr>
         <th>#</th>
         <th>Name</th>
         <th>Date</th>
-        <th>Vote</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of list;let key = index">
-        <td>
+        <td data-cell="#">
           {{key + 1}}
         </td>
-        <td>
+        <td data-cell="Name">
           {{item.title}}
         </td>
-        <td>
+        <td data-cell="Date">
           {{item.date}}
         </td>
-        <td>
-          <div><ion-button color="secondary" id="open-modal" hidden>Vote Member</ion-button></div>
-          <button class="btn btn-warning" [routerLink]="['voting-process/',item.vote_id]" (click)="selectVoting(item.vote_id)">Vote Now</button>
+        <td data-cell="action">
+          <div>
+            <button class="btn btn-warning" [routerLink]="['voting-process/',item.vote_id]" (click)="selectVoting(item.vote_id)">Vote Now</button>
+          </div>
         </td>
       </tr>
     </tbody>
