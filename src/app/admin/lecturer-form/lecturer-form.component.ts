@@ -33,7 +33,7 @@ export class LecturerFormComponent implements OnInit {
       alert("WOI ISI SEMUA FORM");
       return}
 
-    this.http.post(`${environment.apiUrl}/lecturer/sendData.php`,this.myForm.value,{responseType: 'text'}).subscribe(
+    this.http.post(`${environment.apiUrl}/lecturer/sendData`,this.myForm.value,{responseType: 'text'}).subscribe(
       res=>{
         this.message = res;
         this.notify(this.message);

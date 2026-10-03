@@ -106,7 +106,7 @@ export class UploadImageComponent implements OnInit {
   previewImage(){
     //const bro = "assets/images/report-attachment/" + localStorage.getItem('ReportID');
     //console.log(bro);
-    this.http.post(`${environment.apiUrl}/report/get-attachment.php`,localStorage.getItem('ReportID'),{responseType : 'text'}).subscribe(
+    this.http.post(`${environment.apiUrl}/report/get-attachment`,localStorage.getItem('ReportID'),{responseType : 'text'}).subscribe(
       res=>{
         for(var item of JSON.parse(res)){
             this.listOfImage.push("../assets/images/report-attachment/"+localStorage.getItem('ReportID')+'/'+item)

@@ -11,7 +11,7 @@ export class LectReportService {
   baseUrl = `${environment.apiUrl}/report/`;
 
   sendComment(data:any){
-    return this.http.post(this.baseUrl+'comment-report.php',data,{responseType : 'text'})
+    return this.http.post(this.baseUrl+'comment-report',data,{responseType : 'text'})
   }
 
 }

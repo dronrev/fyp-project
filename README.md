@@ -1,11 +1,11 @@
 # PMFKIAMS (fyp-project)
 
-PMFKI activity management system: an Angular front end for students, lecturers and admins, backed by a PHP API.
+PMFKI activity management system: an Angular front end for students, lecturers and admins, backed by an HTTP API.
 
 ## Requirements
 
 - Node.js 22.22+, 24.15+ or 26+
-- The PHP backend served at `http://localhost/fyp-project` (see "Backend URL" below)
+- The backend API (see "Backend URL" below)
 
 ## Stack
 
@@ -23,7 +23,7 @@ Then open `http://localhost:4200/`. The app reloads when source files change.
 
 ## Backend URL
 
-The base URL of the PHP API is set once, as `apiUrl`, in:
+The base URL of the backend API is set once, as `apiUrl`, in:
 
 - `src/environments/environment.ts` (development)
 - `src/environments/environment.prod.ts` (production builds)

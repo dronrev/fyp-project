@@ -77,9 +77,9 @@ export class AddParticipantComponent implements OnInit {
   getCerti(name:any,matric:any){
     this.genCert.value['name'] = name;
     this.genCert.value['matric_no'] = matric;
-    this.http.post(`${environment.apiUrl}/e-cert/e-certificate.php`,this.genCert.value,{responseType : 'text'}).subscribe(
+    this.http.post(`${environment.apiUrl}/e-cert/e-certificate`,this.genCert.value,{responseType : 'text'}).subscribe(
       res=>{
-        //this.link = `${environment.apiUrl}/e-cert/e-certificate.php`;
+        //this.link = `${environment.apiUrl}/e-cert/e-certificate`;
       }
     )
   }
@@ -95,7 +95,7 @@ createAll(){
 fileName = this.genCert.value['title']
 
 download(){
-  this.http.post(`${environment.apiUrl}/e-cert/new-download.php`,this.genCert.value, { responseType: 'blob' })
+  this.http.post(`${environment.apiUrl}/e-cert/new-download`,this.genCert.value, { responseType: 'blob' })
   .subscribe(data => {
     const blob = new Blob([data], { type: 'application/zip' });
     const url = window.URL.createObjectURL(blob);

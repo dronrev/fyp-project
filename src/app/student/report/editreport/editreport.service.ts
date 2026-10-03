@@ -12,24 +12,24 @@ export class EditreportService {
   //const idReport : any;
 
   constructor(private http:HttpClient) { }
-  url = `${environment.apiUrl}/report`;
+  url = `${environment.apiUrl}/report/`;
   getDetail(id:any){
-    return this.http.post(this.url+'get-report-details.php',id,{responseType:'text'})
+    return this.http.post(this.url+'get-report-details',id,{responseType:'text'})
   }
 
   getAllParticipants(){
-    return this.http.get(`${environment.apiUrl}/e-cert/get-all-participants.php`)
+    return this.http.get(`${environment.apiUrl}/e-cert/get-all-participants`)
   }
 
   getParticipants(id:any){
-    return this.http.post(`${environment.apiUrl}/e-cert/get-participant.php`,id,{responseType : 'text'})
+    return this.http.post(`${environment.apiUrl}/e-cert/get-participant`,id,{responseType : 'text'})
   }
 
   addParticipant(id:any){
-    return this.http.post(`${environment.apiUrl}/e-cert/send-participant.php`,id,{responseType : 'text'})
+    return this.http.post(`${environment.apiUrl}/e-cert/send-participant`,id,{responseType : 'text'})
   }
   deleteParticipant(id:any){
-    return this.http.post(`${environment.apiUrl}/e-cert/delete-participants.php`,id,{responseType : 'text'})
+    return this.http.post(`${environment.apiUrl}/e-cert/delete-participants`,id,{responseType : 'text'})
   }
 
   getCurrentReport(){

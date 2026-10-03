@@ -14,7 +14,7 @@ import { ImageService } from '../image.service';
 })
 export class ProfileComponent implements OnInit {
 
-  baseUrl = `${environment.apiUrl}/user/update-profile.php`;
+  baseUrl = `${environment.apiUrl}/user/update-profile`;
   name = localStorage.getItem('name');
   course = "HC00";
   email = localStorage.getItem('email_address');

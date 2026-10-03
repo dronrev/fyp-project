@@ -9,9 +9,9 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
 
-  url = `${environment.apiUrl}/app/login.php`;
-  cekRole = `${environment.apiUrl}/app/isTDA.php`;
-  adminUrl = `${environment.apiUrl}/admin-login.php`;
+  url = `${environment.apiUrl}/app/login`;
+  cekRole = `${environment.apiUrl}/app/isTDA`;
+  adminUrl = `${environment.apiUrl}/admin-login`;
   constructor(private http:HttpClient,private router:Router) { }
 
   public userName: any = [];

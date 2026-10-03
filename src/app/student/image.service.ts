@@ -12,10 +12,10 @@ export class ImageService {
   attachmentUrl = `${environment.apiUrl}/report/`;
 
   getProfile(data:any){
-    return this.http.post(this.baseUrl+'get-profile.php',data,{responseType : 'text'})
+    return this.http.post(this.baseUrl+'get-profile',data,{responseType : 'text'})
   }
 
   uploadAttachment(data:any){
-    return this.http.post(this.attachmentUrl+'upload-attachment.php',data,{responseType : 'text'})
+    return this.http.post(this.attachmentUrl+'upload-attachment',data,{responseType : 'text'})
   }
 }

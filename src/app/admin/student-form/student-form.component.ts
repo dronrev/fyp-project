@@ -22,7 +22,7 @@ export class StudentFormComponent implements OnInit {
      private userservice : UsersService,
      private alertcontrol : AlertController) { }
 
-  baseurl = `${environment.apiUrl}/send-data.php`;
+  baseurl = `${environment.apiUrl}/send-data`;
 
   orang : User [] = []
   error = '';

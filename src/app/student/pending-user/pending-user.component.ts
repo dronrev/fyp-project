@@ -19,7 +19,7 @@ export class PendingUserComponent implements OnInit {
   student_data : any;
 
   ngOnInit(): void {
-    this.http.get(`${environment.apiUrl}/pending/get-pending.php`,{responseType : 'text'}).subscribe(
+    this.http.get(`${environment.apiUrl}/pending/get-pending`,{responseType : 'text'}).subscribe(
       res=>{
         //console.log(res)
         this.list = JSON.parse(res)
@@ -39,9 +39,9 @@ export class PendingUserComponent implements OnInit {
       'role' : new UntypedFormControl(data.user_role)
 
     })
-    this.http.post(`${environment.apiUrl}/send-data.php`,myForm.value,{responseType : 'text'}).subscribe(
+    this.http.post(`${environment.apiUrl}/send-data`,myForm.value,{responseType : 'text'}).subscribe(
       res=>{
-        this.http.post(`${environment.apiUrl}/pending/approve-pending.php`,myForm.value['mat_number'],{responseType : 'text'}).subscribe(
+        this.http.post(`${environment.apiUrl}/pending/approve-pending`,myForm.value['mat_number'],{responseType : 'text'}).subscribe(
           res1=>{
             this.notify(JSON.parse(res1).message);
           }
@@ -51,7 +51,7 @@ export class PendingUserComponent implements OnInit {
   }
 
   deleteMember(data:any){
-    this.http.post(`${environment.apiUrl}/pending/delete-pending.php`,data.user_id,{responseType : 'text'}).subscribe(
+    this.http.post(`${environment.apiUrl}/pending/delete-pending`,data.user_id,{responseType : 'text'}).subscribe(
       res=>{
         this.notify(JSON.parse(res).message)
       }

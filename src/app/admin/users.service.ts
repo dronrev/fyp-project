@@ -11,35 +11,35 @@ export class UsersService {
 
   constructor( private http : HttpClient) { }
   baseUrl = `${environment.apiUrl}/`;
-  url = `${environment.apiUrl}/send-data.php`;
+  url = `${environment.apiUrl}/send-data`;
   regStu: any;
 
   fetchStudent(){
-    return this.http.get(this.baseUrl+'user/get-students.php')
+    return this.http.get(this.baseUrl+'user/get-students')
   }
 
   deleteService(data:any){
-    return this.http.post(this.baseUrl+'user/delete-user.php',data,{responseType: 'text'})
+    return this.http.post(this.baseUrl+'user/delete-user',data,{responseType: 'text'})
   }
 
   sendLecturer(data:any){
-    return this.http.post(this.baseUrl+'lecturer/sendData.php',data,{responseType : 'text'})
+    return this.http.post(this.baseUrl+'lecturer/sendData',data,{responseType : 'text'})
   }
 
   assignPresident(data:any){
-    return this.http.post(this.baseUrl+'user/assignPresident.php',data,{responseType : 'text'})
+    return this.http.post(this.baseUrl+'user/assignPresident',data,{responseType : 'text'})
   }
 
   assignPresidentLabuan(data:any){
-    return this.http.post(this.baseUrl+'user/assignPresidentLabuan.php',data,{responseType : 'text'})
+    return this.http.post(this.baseUrl+'user/assignPresidentLabuan',data,{responseType : 'text'})
   }
 
 
   updateRole(data:any){
-    return this.http.post(this.baseUrl+'user/update-role.php',data,{responseType : 'text'})
+    return this.http.post(this.baseUrl+'user/update-role',data,{responseType : 'text'})
   }
 
   getCawangan(data:any){
-    return this.http.post(this.baseUrl+'user/get-personal-information.php',data)
+    return this.http.post(this.baseUrl+'user/get-personal-information',data)
   }
 }

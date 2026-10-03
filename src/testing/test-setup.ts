@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 // Shared TestBed configuration for the generated component and service specs.
-// HTTP calls are captured by the testing backend, so no spec reaches the PHP API.
+// HTTP calls are captured by the testing backend, so no spec reaches the backend API.
 export const TEST_IMPORTS = [
   FormsModule,
   ReactiveFormsModule,

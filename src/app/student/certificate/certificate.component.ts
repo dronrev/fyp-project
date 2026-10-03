@@ -57,7 +57,7 @@ export class CertificateComponent implements OnInit {
   }
 
   downloadCert(){
-    this.http.get(`${environment.apiUrl}/e-cert/download-certificate.php`).subscribe(
+    this.http.get(`${environment.apiUrl}/e-cert/download-certificate`).subscribe(
       res=>{
       }
     )
@@ -66,7 +66,7 @@ export class CertificateComponent implements OnInit {
 
 
   downloadFolder() {
-    this.http.get(`${environment.apiUrl}/e-cert/new-download.php`, { responseType: 'blob' })
+    this.http.get(`${environment.apiUrl}/e-cert/new-download`, { responseType: 'blob' })
     .subscribe(data => {
       const blob = new Blob([data], { type: 'application/zip' });
       const url = window.URL.createObjectURL(blob);

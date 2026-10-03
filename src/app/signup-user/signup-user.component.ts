@@ -43,7 +43,7 @@ export class SignupUserComponent implements OnInit {
       this.wrongPass();
       return;
     }
-    this.http.post(`${environment.apiUrl}/user/pending-user.php`,this.registerUser.value,{responseType : 'text'}).subscribe(
+    this.http.post(`${environment.apiUrl}/user/pending-user`,this.registerUser.value,{responseType : 'text'}).subscribe(
       res=>{
         this.userRegistered(JSON.parse(res).message);
       }

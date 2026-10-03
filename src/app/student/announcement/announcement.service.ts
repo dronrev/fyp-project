@@ -10,18 +10,18 @@ export class AnnouncementService {
   constructor(private http : HttpClient) { }
   private announcementID = "";
   createNewAnnouncement(data:any){
-    return this.http.post(this.url+'create-new-announcement.php',data,{responseType : 'text'})
+    return this.http.post(this.url+'create-new-announcement',data,{responseType : 'text'})
   }
 
   getFullAnnouncement(){
-    return this.http.get(this.url+'get-full-announcement.php')
+    return this.http.get(this.url+'get-full-announcement')
   }
 
   getAllAnnouncement(){
-    return this.http.get(this.url+'get-all-announcement.php')
+    return this.http.get(this.url+'get-all-announcement')
   }
   getAllAdminAnnouncement(){
-    return this.http.get(this.url+'get-admin-announcement.php')
+    return this.http.get(this.url+'get-admin-announcement')
   }
   setCurrentAnnouncement(id:any){
     this.announcementID = id;
@@ -30,21 +30,21 @@ export class AnnouncementService {
     return this.announcementID
   }
   infoStudentAnnounce(){
-    return this.http.get(`${environment.apiUrl}/announcement/get-info-student.php`)
+    return this.http.get(`${environment.apiUrl}/announcement/get-info-student`)
   }
   emailAnnouncement(data:any){
-    return this.http.post(`${environment.apiUrl}/announcement/email-announcement.php`,data,{responseType : 'text'})
+    return this.http.post(`${environment.apiUrl}/announcement/email-announcement`,data,{responseType : 'text'})
   }
   editAnnouncement(data:any){
-    return this.http.post(this.url+'edit-announcement.php',data,{responseType : 'text'})
+    return this.http.post(this.url+'edit-announcement',data,{responseType : 'text'})
   }
   deleteAnnounce(data:any){
-    return this.http.post(`${environment.apiUrl}/announcement/delete-announcement.php`,data,{responseType :'text'})
+    return this.http.post(`${environment.apiUrl}/announcement/delete-announcement`,data,{responseType :'text'})
   }
   saveAnnouncementImage(data:any){
-    return this.http.post(this.url+'save-image.php',data,{responseType : 'text'})
+    return this.http.post(this.url+'save-image',data,{responseType : 'text'})
   }
   getAnnouncementImage(data:any){
-    return this.http.post(this.url+'get-attachment.php',data,{responseType : 'text'})
+    return this.http.post(this.url+'get-attachment',data,{responseType : 'text'})
   }
 }

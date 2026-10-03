@@ -11,33 +11,33 @@ export class VoteService {
   baseUrl = `${environment.apiUrl}/voting/`;
 
   createVote(data:any){
-    return this.http.post(this.baseUrl+'create-new-voting-event.php',data,{ responseType : 'text'})
+    return this.http.post(this.baseUrl+'create-new-voting-event',data,{ responseType : 'text'})
   }
   editVote(data:any){
-    return this.http.post(this.baseUrl+'edit-vote.php',data,{responseType : 'text'})
+    return this.http.post(this.baseUrl+'edit-vote',data,{responseType : 'text'})
   }
   getAllVote(){
-    return this.http.get(this.baseUrl+'get-all-vote-acti.php')
+    return this.http.get(this.baseUrl+'get-all-vote-acti')
   }
   getSpecVote(data:any){
-    return this.http.post(this.baseUrl+'select-vote-event.php',data,{responseType : 'text'})
+    return this.http.post(this.baseUrl+'select-vote-event',data,{responseType : 'text'})
   }
   deleteCandidate(data:any){
-    return this.http.post(this.baseUrl+'delete-candidate.php',data,{responseType : 'text'})
+    return this.http.post(this.baseUrl+'delete-candidate',data,{responseType : 'text'})
   }
   deleteThisVote(data:any){
-    return this.http.post(this.baseUrl+'delete-vote.php',data,{responseType : 'text'})
+    return this.http.post(this.baseUrl+'delete-vote',data,{responseType : 'text'})
   }
   getVoteEvent(data:any){
-    return this.http.post(this.baseUrl+'get-spec-vote.php',data)
+    return this.http.post(this.baseUrl+'get-spec-vote',data)
   }
   getTotalCandidateEvent(data:any){
-    return this.http.post(this.baseUrl+'total-candidate-event.php',data)
+    return this.http.post(this.baseUrl+'total-candidate-event',data)
   }
   getTotalVotersVoted(data:any){
-    return this.http.post(this.baseUrl+'voters-voted.php',data)
+    return this.http.post(this.baseUrl+'voters-voted',data)
   }
   getCandidate(data:any){
-    return this.http.post(this.baseUrl+'get-candidates.php',data,{responseType : 'text'})
+    return this.http.post(this.baseUrl+'get-candidates',data,{responseType : 'text'})
   }
 }

@@ -18,7 +18,7 @@ export class LoggingService{
   }
 
   login(username: string, password : string){
-    return this.http.post<TheUser>(`${environment.apiUrl}/login-system.php`,
+    return this.http.post<TheUser>(`${environment.apiUrl}/login-system`,
     {
       username : username,
       password : password
@@ -28,6 +28,6 @@ export class LoggingService{
   }
 
   onSendData(form:FormData):Observable<any>{
-    return this.http.post<any>(`${environment.apiUrl}/login-system.php`,form)
+    return this.http.post<any>(`${environment.apiUrl}/login-system`,form)
   }
 }
