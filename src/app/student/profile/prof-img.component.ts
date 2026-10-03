@@ -1,9 +1,11 @@
 import { HttpClient } from "@angular/common/http";
-import { Component,OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { ImageService } from "../image.service";
 
 @Component({
+  standalone: false,
   selector : 'prof-img',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template : `<img [src]="imgUrl">`
 })
 
@@ -16,7 +18,6 @@ export class ProfImage{
   ngOnInit():void{
     this.service.getProfile('ok').subscribe(
       (res:any)=>{
-        console.log(res)
         const reader = new FileReader();
         reader.readAsDataURL(res);
         reader.onloadend = () =>{

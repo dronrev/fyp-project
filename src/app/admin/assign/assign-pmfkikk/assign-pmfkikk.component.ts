@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import {  ViewChild } from '@angular/core';
 import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 @Component({
+  standalone: false,
   selector: 'app-assign-pmfkikk',
   templateUrl: './assign-pmfkikk.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./assign-pmfkikk.component.css']
 })
 export class AssignPmfkikkComponent implements OnInit {

@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AnnouncementService } from '../announcement.service';
 import { Announcement } from '../announcement.model';
 
 @Component({
+  standalone: false,
   selector: 'app-announcement-list',
   templateUrl: './announcement-list.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./announcement-list.component.css']
 })
 export class AnnouncementListComponent implements OnInit {
@@ -31,7 +33,6 @@ export class AnnouncementListComponent implements OnInit {
               //this.myitem.push(item)
             }
             //this.list.push(res);
-            console.log(this.list)
           }
         )
       }
@@ -43,11 +44,8 @@ export class AnnouncementListComponent implements OnInit {
     var announcement_id = JSON.stringify(this.myitem[data].announcement_id)
     //console.log(announcement_id);
     if(this.myitem[data].announcement_id == undefined){
-      console.log("notFound");
     }
     else{
-      console.log("Found");
-      console.log(this.myitem[data].announcement_id);
       this.service.setCurrentAnnouncement(this.myitem[data].announcement_id);
       localStorage.setItem("announcementID",announcement_id);
       localStorage.setItem("AnnouncementID",this.service.getCurrentAnnouncement());

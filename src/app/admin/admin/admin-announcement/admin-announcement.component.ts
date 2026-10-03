@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { AnnouncementService } from 'src/app/student/announcement/announcement.service';
 
 @Component({
+  standalone: false,
   selector: 'app-admin-announcement',
   templateUrl: './admin-announcement.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./admin-announcement.component.css']
 })
 export class AdminAnnouncementComponent implements OnInit {
@@ -16,7 +18,6 @@ export class AdminAnnouncementComponent implements OnInit {
   ngOnInit(): void {
     this.service.getFullAnnouncement().subscribe(
       res=>{
-        console.log(res)
         this.announcements = res;
       }
     )
@@ -28,7 +29,6 @@ export class AdminAnnouncementComponent implements OnInit {
   deleteItem(data:any){
     this.service.deleteAnnounce(data).subscribe(
       res=>{
-        console.log(res)
         this.myMessage = JSON.parse(res)
         this.notify(this.myMessage.message)
       }

@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Report } from './report.model';
@@ -9,9 +10,9 @@ import { map } from 'rxjs';
 export class ReportsService {
 
   constructor(private http:HttpClient) { }
-  theUrl = "http://localhost/fyp-project/report/";
-  financialUrl = "http://localhost/fyp-project/budget/";
-  e_cert = "http://localhost/fyp-project/e-cert/";
+  theUrl = `${environment.apiUrl}/report/`;
+  financialUrl = `${environment.apiUrl}/budget/`;
+  e_cert = `${environment.apiUrl}/e-cert/`;
 
   displayAll(){
     return this.http.get(this.theUrl+'displayAll.php')

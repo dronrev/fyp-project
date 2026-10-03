@@ -6,11 +6,13 @@
     <th>KK/Labuan</th>
   </thead>
   <tbody>
-    <tr *ngFor="let student of students;let key = index;">
-      <td>{{key+1}}</td>
-      <td>{{ student.username }}</td>
-      <td>{{ student.course_id }}</td>
-      <td>{{ student.cawangan }}</td>
-    </tr>
+    @for (student of students; track student; let key = $index) {
+      <tr>
+        <td>{{key+1}}</td>
+        <td>{{ student.username }}</td>
+        <td>{{ student.course_id }}</td>
+        <td>{{ student.cawangan }}</td>
+      </tr>
+    }
   </tbody>
 </table>

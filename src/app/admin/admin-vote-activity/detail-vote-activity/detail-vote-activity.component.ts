@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { UsersService } from '../../users.service';
 import { VoteService } from '../vote.service';
-import { Chart,registerables } from 'node_modules/chart.js';
+import { Chart,registerables } from 'chart.js';
 import { Candidate } from 'src/app/student/event/vote-result/candidate.model';
-import { FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 Chart.register(...registerables);
 
 @Component({
+  standalone: false,
   selector: 'app-detail-vote-activity',
   templateUrl: './detail-vote-activity.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./detail-vote-activity.component.css']
 })
 export class DetailVoteActivityComponent implements OnInit {
@@ -25,8 +27,8 @@ export class DetailVoteActivityComponent implements OnInit {
   candidate!: Candidate[];
   name:any = {};
 
-  mydata = new FormGroup({
-    'value' : new FormControl(localStorage.getItem('_vote_id_'))
+  mydata = new UntypedFormGroup({
+    'value' : new UntypedFormControl(localStorage.getItem('_vote_id_'))
   })
 
   ngOnInit(): void {
@@ -36,7 +38,6 @@ export class DetailVoteActivityComponent implements OnInit {
     .filter((student:any)=>student.cawangan == localStorage.getItem('_cawangan_'))))
     .subscribe(
       res=>{
-        console.log(res)
         this.totalVoters = res;
         for(var item of this.totalVoters){
           this.name[item.user_id] = item.username;
@@ -47,7 +48,6 @@ export class DetailVoteActivityComponent implements OnInit {
     //get total candidate
     this.service.getTotalCandidateEvent(localStorage.getItem('_vote_id_')).subscribe(
       res=>{
-        console.log(res)
         this.totalCandidates = res;
         for(let role of this.totalCandidates){
           //console.log(role.candidate)
@@ -56,26 +56,22 @@ export class DetailVoteActivityComponent implements OnInit {
           })){this.listOfRole.push(role.candidate)}
           //console.log(found)
         }
-        console.log(this.listOfRole)
       }
     )
 
     //get voted candidate
     this.service.getVoteEvent(localStorage.getItem('_vote_id_')).subscribe(
       res=>{
-        console.log(res)
         this.list = res
         for(var item of this.list){
           this.count[item.user_id] = (this.count[item.user_id] || 0)+1;
         }
-        console.log(this.count)
       }
     )
 
     //get total voters voted
     this.service.getTotalVotersVoted(localStorage.getItem('_vote_id_')).subscribe(
       res=>{
-        console.log(res)
         this.totalVotersVoted = res
       }
     )

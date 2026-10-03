@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { Report } from '../report.model';
 import { ReportsService } from '../reports.service';
@@ -11,8 +11,10 @@ export interface Detail{
 }
 
 @Component({
+  standalone: false,
   selector: 'app-editreport',
   templateUrl: './editreport.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./editreport.component.css']
 })
 export class EditreportComponent implements OnInit {
@@ -50,23 +52,21 @@ export class EditreportComponent implements OnInit {
      private idService : EditreportService) { }
   reports!: Report[];
   //id = JSON.parse();
-  thereport = new FormGroup({
-    'report_id': new FormControl(localStorage.getItem('GetreportID')),
-    'title': new FormControl("",Validators.required),
-    'objective': new FormControl("",Validators.required),
-    'introduction': new FormControl("",Validators.required),
-    'involvement': new FormControl("",Validators.required),
-    'perkara': new FormControl("",Validators.required),
-    'vip': new FormControl("",Validators.required),
-    'impak': new FormControl("",Validators.required),
-    'pencapaian': new FormControl("",Validators.required),
-    'rumusan': new FormControl("",Validators.required),
-    'cadangan': new FormControl("",Validators.required)
+  thereport = new UntypedFormGroup({
+    'report_id': new UntypedFormControl(localStorage.getItem('GetreportID')),
+    'title': new UntypedFormControl("",Validators.required),
+    'objective': new UntypedFormControl("",Validators.required),
+    'introduction': new UntypedFormControl("",Validators.required),
+    'involvement': new UntypedFormControl("",Validators.required),
+    'perkara': new UntypedFormControl("",Validators.required),
+    'vip': new UntypedFormControl("",Validators.required),
+    'impak': new UntypedFormControl("",Validators.required),
+    'pencapaian': new UntypedFormControl("",Validators.required),
+    'rumusan': new UntypedFormControl("",Validators.required),
+    'cadangan': new UntypedFormControl("",Validators.required)
   });
 
   ngOnInit(): void {
-    console.log(localStorage.getItem('ReportID'));
-    console.log(this.thereport.value)
     this.service.getDetail(this.thereport.value['report_id']).subscribe(
       response=>{
         //console.log(response);
@@ -110,7 +110,6 @@ export class EditreportComponent implements OnInit {
     }
   }
   checking():void{
-    console.log(this.thereport.value)
   }
 
 
@@ -166,12 +165,10 @@ export class EditreportComponent implements OnInit {
 
   //send report changes
   saveReport(){
-    console.log(this.thereport.value);
     if(this.thereport.valid){
       this.thereport.value['report_id'] = localStorage.getItem('ReportID');
       this.service.sendReport(this.thereport.value).subscribe(
         res=>{
-          console.log(res);
           this.saving(JSON.parse(res).message)
         }
       )
@@ -207,7 +204,6 @@ export class EditreportComponent implements OnInit {
     //console.log(this.thereport.value['status']);
     this.service.approveReport(this.thereport.value).subscribe(
       res=>{
-        console.log(res);
       }
     )
     this.alertSendLecturer();
@@ -221,7 +217,6 @@ export class EditreportComponent implements OnInit {
     //console.log(this.thereport.value['status']);
     this.service.approveReport(this.thereport.value).subscribe(
       res=>{
-        console.log(res);
 
       }
     )

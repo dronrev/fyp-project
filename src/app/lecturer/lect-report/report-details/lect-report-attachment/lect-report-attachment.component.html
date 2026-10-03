@@ -1,5 +1,7 @@
 <div class="show-image">
   <div class="image-list">
-    <img *ngFor="let item of listOfImage" [src]="item" alt="" width="300" height="300">
+    @for (item of listOfImage; track item) {
+      <img [src]="item" alt="" width="300" height="300">
+    }
   </div>
 </div>

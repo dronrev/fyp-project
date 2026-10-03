@@ -1,14 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormControl } from "@angular/forms";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import { UntypedFormBuilder, UntypedFormControl } from "@angular/forms";
 
 @Component({
+  standalone: false,
   selector: 'app-header',
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './header.component.html',
 })
 
 export class HeaderComponent implements OnInit{
 
-  constructor(private fb : FormBuilder){}
+  constructor(private fb : UntypedFormBuilder){}
 
   count = 0;
 
@@ -18,20 +20,16 @@ export class HeaderComponent implements OnInit{
   })
 
   ngOnInit():void{
-    console.log(this.list.value['name'])
   }
 
   add(){
     let info = {name : this.list.value['yourname'] , status : true}
     this.list.value['vote'].push(info)
-    console.log(JSON.stringify(this.list.value['vote']))
     this.count++;
-    console.log(this.list)
   }
 
   remove(){
     let data = this.list.value['vote'][5]
-    console.log(data)
   }
 
 }

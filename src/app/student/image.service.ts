@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -7,8 +8,8 @@ import { Injectable } from '@angular/core';
 export class ImageService {
 
   constructor(private http : HttpClient) { }
-  baseUrl = "http://localhost/fyp-project/user/";
-  attachmentUrl = "http://localhost/fyp-project/report/";
+  baseUrl = `${environment.apiUrl}/user/`;
+  attachmentUrl = `${environment.apiUrl}/report/`;
 
   getProfile(data:any){
     return this.http.post(this.baseUrl+'get-profile.php',data,{responseType : 'text'})

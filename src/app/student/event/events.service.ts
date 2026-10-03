@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Event } from './event.model';
@@ -7,12 +8,12 @@ import { Event } from './event.model';
 export class EventsService {
 
   constructor(private http:HttpClient) { }
-  url = "http://localhost/fyp-project/add-event.php";
-  eventUrl = "http://localhost/fyp-project/event/";
-  deleteUrl = "http://localhost/fyp-project/event/delete-event.php";
-  baseUrl = "http://localhost/fyp-project/event/get-event.php";
-  voteUrl = "http://localhost/fyp-project/voting/send-vote.php";
-  voteBaseUrl = "http://localhost/fyp-project/voting/";
+  url = `${environment.apiUrl}/add-event.php`;
+  eventUrl = `${environment.apiUrl}/event/`;
+  deleteUrl = `${environment.apiUrl}/event/delete-event.php`;
+  baseUrl = `${environment.apiUrl}/event/get-event.php`;
+  voteUrl = `${environment.apiUrl}/voting/send-vote.php`;
+  voteBaseUrl = `${environment.apiUrl}/voting/`;
   displayEvent(){
     return this.http.get(this.baseUrl)
   }

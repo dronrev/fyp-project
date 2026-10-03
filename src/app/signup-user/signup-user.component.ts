@@ -1,31 +1,34 @@
-import { Attribute, Component, OnInit, ViewChild } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { Attribute, Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 
 
 @Component({
+  standalone: false,
   selector: 'app-signup-user',
   templateUrl: './signup-user.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./signup-user.component.css']
 })
 export class SignupUserComponent implements OnInit {
   @ViewChild('myForm')
   signUpForm!: NgForm;
-  registerUser! : FormGroup;
+  registerUser! : UntypedFormGroup;
   constructor(private http:HttpClient,private alertcontrol : AlertController) { }
   programmes_list = ["","UH6481001 / HC00","UH6481002 / HC05",
    "UH6481003 / HC12", "UH6481004 / HC13","HC14"]
 
   ngOnInit(): void {
-    this.registerUser = new FormGroup({
-      'name' : new FormControl(null, Validators.required),
-      'mat_number' : new FormControl(null,Validators.required),
-      'email' : new FormControl(null,[(Validators.required),(Validators.email)]),
-      'passwd' : new FormControl(null,Validators.required),
-      'confirmpass' : new FormControl(null,Validators.required),
-      'course_code' : new FormControl(null,Validators.required),
-      'role' : new FormControl("student")
+    this.registerUser = new UntypedFormGroup({
+      'name' : new UntypedFormControl(null, Validators.required),
+      'mat_number' : new UntypedFormControl(null,Validators.required),
+      'email' : new UntypedFormControl(null,[(Validators.required),(Validators.email)]),
+      'passwd' : new UntypedFormControl(null,Validators.required),
+      'confirmpass' : new UntypedFormControl(null,Validators.required),
+      'course_code' : new UntypedFormControl(null,Validators.required),
+      'role' : new UntypedFormControl("student")
     });
     //console.log(this.registerUser.valid)
   }
@@ -40,9 +43,8 @@ export class SignupUserComponent implements OnInit {
       this.wrongPass();
       return;
     }
-    this.http.post("http://localhost/fyp-project/user/pending-user.php",this.registerUser.value,{responseType : 'text'}).subscribe(
+    this.http.post(`${environment.apiUrl}/user/pending-user.php`,this.registerUser.value,{responseType : 'text'}).subscribe(
       res=>{
-        console.log(res);
         this.userRegistered(JSON.parse(res).message);
       }
     )

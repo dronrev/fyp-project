@@ -18,10 +18,10 @@
     <label for="" class="form-label">Objective : </label>
     <ion-item>
       <ion-textarea placeholder="Type something here"
-      formControlName="objective"
-      [value]="this.objective"
-      [autoGrow]="true"
-      readonly>
+        formControlName="objective"
+        [value]="this.objective"
+        [autoGrow]="true"
+        readonly>
       </ion-textarea>
     </ion-item>
   </div>
@@ -30,10 +30,10 @@
     <label for="" class="form-label">Introduction :</label>
     <ion-item>
       <ion-textarea placeholder="Type something here"
-      [autoGrow]="true"
-      readonly
-      formControlName="introduction"
-      [value]="this.introduction">
+        [autoGrow]="true"
+        readonly
+        formControlName="introduction"
+        [value]="this.introduction">
       </ion-textarea>
     </ion-item>
   </div>
@@ -42,10 +42,10 @@
     <label for="" class="form-label">Involvement :</label>
     <ion-item>
       <ion-textarea placeholder="Type something here"
-      [autoGrow]="true"
-      readonly
-      formControlName="involvement"
-      [value]="this.involvement">
+        [autoGrow]="true"
+        readonly
+        formControlName="involvement"
+        [value]="this.involvement">
       </ion-textarea>
     </ion-item>
   </div>
@@ -54,11 +54,11 @@
     <label for="" class="form-label">Perkara hendak dimaklumkan  :</label>
     <ion-item>
       <ion-textarea
-      placeholder="Type something here"
-      [autoGrow]="true"
-      readonly
-      formControlName="perkara"
-      [value]="this.perkara_hendak_maklum">
+        placeholder="Type something here"
+        [autoGrow]="true"
+        readonly
+        formControlName="perkara"
+        [value]="this.perkara_hendak_maklum">
       </ion-textarea>
     </ion-item>
   </div>
@@ -67,10 +67,10 @@
     <label for="" class="form-label">Jemputan VIP :</label>
     <ion-item>
       <ion-textarea placeholder="Type something here"
-      [autoGrow]="true"
-      readonly
-      formControlName="vip"
-      [value]="this.jemputan_vip">
+        [autoGrow]="true"
+        readonly
+        formControlName="vip"
+        [value]="this.jemputan_vip">
       </ion-textarea>
     </ion-item>
   </div>
@@ -79,10 +79,10 @@
     <label for="" class="form-label">Impak Program :</label>
     <ion-item>
       <ion-textarea placeholder="Type something here"
-      [autoGrow]="true"
-      readonly
-      formControlName="impak"
-      [value]="this.impak_program">
+        [autoGrow]="true"
+        readonly
+        formControlName="impak"
+        [value]="this.impak_program">
       </ion-textarea>
     </ion-item>
   </div>
@@ -91,10 +91,10 @@
     <label for="" class="form-label">Pencapaian :</label>
     <ion-item>
       <ion-textarea placeholder="Type something here"
-      [autoGrow]="true"
-      readonly
-      formControlName="pencapaian"
-      [value]="this.pencapaian">
+        [autoGrow]="true"
+        readonly
+        formControlName="pencapaian"
+        [value]="this.pencapaian">
       </ion-textarea>
     </ion-item>
   </div>
@@ -103,10 +103,10 @@
     <label for="" class="form-label">Rumusan :</label>
     <ion-item>
       <ion-textarea placeholder="Type something here"
-      [autoGrow]="true"
-      readonly
-      formControlName="rumusan"
-      [value]="this.rumusan">
+        [autoGrow]="true"
+        readonly
+        formControlName="rumusan"
+        [value]="this.rumusan">
       </ion-textarea>
     </ion-item>
   </div>
@@ -115,10 +115,10 @@
     <label for="" class="form-label">Cadangan :</label>
     <ion-item>
       <ion-textarea placeholder="Type something here"
-      [autoGrow]="true"
-      readonly
-      formControlName="cadangan"
-      [value]="this.cadangan">
+        [autoGrow]="true"
+        readonly
+        formControlName="cadangan"
+        [value]="this.cadangan">
       </ion-textarea>
     </ion-item>
   </div>
@@ -133,22 +133,30 @@
         <ion-content class="comment-content">
           <ion-label color="light">Comment</ion-label>
           <ion-textarea class="comment-section"
-           placeholder="Type comment here"
-           formControlName="comment"
-           ></ion-textarea>
+            placeholder="Type comment here"
+            formControlName="comment"
+          ></ion-textarea>
         </ion-content>
       </ng-template>
     </ion-modal>
   </div>
 </form>
-<app-lect-financial-report *ngIf="finRep;hidden"></app-lect-financial-report>
-<app-lect-financial-kewangan-report *ngIf="finRep;hidden"></app-lect-financial-kewangan-report>
-<app-lect-report-attachment *ngIf="attacRep;hidden"></app-lect-report-attachment>
-<app-part-list-lecturer *ngIf="partRep;hidden"></app-part-list-lecturer>
+@if (finRep) {
+  <app-lect-financial-report></app-lect-financial-report>
+}
+@if (finRep) {
+  <app-lect-financial-kewangan-report></app-lect-financial-kewangan-report>
+}
+@if (attacRep) {
+  <app-lect-report-attachment></app-lect-report-attachment>
+}
+@if (partRep) {
+  <app-part-list-lecturer></app-part-list-lecturer>
+}
 
 <div class="submit-button mt-2 column">
   <ion-button name="" color="secondary" slot="end" id="comment-report"
-  (click) = "commentData()">
+    (click) = "commentData()">
     Comment
   </ion-button>
 

@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { AlertController, mdTransitionAnimation } from '@ionic/angular';
 import { map } from 'rxjs/operators';
 import { EventsService } from '../../event/events.service';
 import { ReportsService } from '../reports.service';
 
 @Component({
+  standalone: false,
   selector: 'app-create-report',
   templateUrl: './create-report.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./create-report.component.css']
 })
 export class CreateReportComponent implements OnInit {
@@ -19,12 +21,12 @@ export class CreateReportComponent implements OnInit {
   mylist:any = [];
 
   constructor(private service:ReportsService,private serviceE : EventsService, private alertcontrol : AlertController) { }
-  exform!: FormGroup;
+  exform!: UntypedFormGroup;
   ngOnInit(): void {
-    this.exform = new FormGroup({
-      'activity_id' : new FormControl(),
-      'matric_id': new FormControl(localStorage.getItem('id')),
-      'value' : new FormControl(null)
+    this.exform = new UntypedFormGroup({
+      'activity_id' : new UntypedFormControl(),
+      'matric_id': new UntypedFormControl(localStorage.getItem('id')),
+      'value' : new UntypedFormControl(null)
     });
 
     this.service.getLecturer().pipe
@@ -40,7 +42,6 @@ export class CreateReportComponent implements OnInit {
       (res:any)=>{
         this.list = res;
         this.mylist = res;
-        console.log(this.mylist)
       }
     )
     this.service.displayAll().subscribe(
@@ -53,7 +54,6 @@ export class CreateReportComponent implements OnInit {
     )
   }
   checking():void{
-    console.log(this.exform.value);
   }
 
   alertMessage : any;
@@ -63,10 +63,8 @@ export class CreateReportComponent implements OnInit {
 
   addReport(data:any){
     this.exform.value['activity_id'] = data;
-    console.log(this.exform.value);
     this.service.createReport(this.exform.value).subscribe(
       res=>{
-        console.log(res);
         this.notify(JSON.parse(res).message);
       }
     )

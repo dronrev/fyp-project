@@ -6,16 +6,18 @@
 <div class="container">
   <h2>Announcement Center</h2>
   <button class="btn btn-primary" routerLink="create-new" hidden>Create New Announcement</button>
-  <div class="announcement" *ngFor="let item of myitem">
-    <div class="announcement-head">
-      <h3 style="color: white;margin: 10px;">Title : {{item.title | uppercase}}</h3>
-      <h4 style="color: white;margin: 10px;">Subject : {{ item.subject }}</h4>
+  @for (item of myitem; track item) {
+    <div class="announcement">
+      <div class="announcement-head">
+        <h3 style="color: white;margin: 10px;">Title : {{item.title | uppercase}}</h3>
+        <h4 style="color: white;margin: 10px;">Subject : {{ item.subject }}</h4>
+      </div>
+      <div class="announcement-body">
+        <h5 style="color: white;margin: 10px;">Message : {{ item.message }}</h5>
+      </div>
+      <div class="attachment" hidden>
+        <img [src]="imageURL" alt="" width="800" height="800">
+      </div>
     </div>
-    <div class="announcement-body">
-      <h5 style="color: white;margin: 10px;">Message : {{ item.message }}</h5>
-    </div>
-    <div class="attachment" hidden>
-      <img [src]="imageURL" alt="" width="800" height="800">
-    </div>
-  </div>
+  }
 </div>

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { UntypedFormGroup, UntypedFormControl, UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { VoteService } from 'src/app/admin/admin-vote-activity/vote.service';
@@ -8,16 +8,18 @@ import { EventsService } from '../../event/events.service';
 import { ImageService } from '../../image.service';
 
 @Component({
+  standalone: false,
   selector: 'app-voting-details',
   templateUrl: './voting-details.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./voting-details.component.css']
 })
 export class VotingDetailsComponent implements OnInit {
   title : any;
-  constructor(private router : Router,private service : VoteService,private service2:UsersService,private service1 : EventsService,private fb : FormBuilder,private alertcontrol : AlertController) { }
+  constructor(private router : Router,private service : VoteService,private service2:UsersService,private service1 : EventsService,private fb : UntypedFormBuilder,private alertcontrol : AlertController) { }
   imageUrl : any;
-  data = new FormGroup({
-    'id' : new FormControl(localStorage.getItem('id'))
+  data = new UntypedFormGroup({
+    'id' : new UntypedFormControl(localStorage.getItem('id'))
   })
 
   data_sent = this.fb.group({
@@ -25,9 +27,9 @@ export class VotingDetailsComponent implements OnInit {
     vote_id : this.fb.control({value : localStorage.getItem('_vote_id_')})
       }
     )
-  validateVote = new FormGroup({
-    'vote_id' : new FormControl(localStorage.getItem('_vote_id_')),
-    'user_id' : new FormControl(localStorage.getItem('id'))
+  validateVote = new UntypedFormGroup({
+    'vote_id' : new UntypedFormControl(localStorage.getItem('_vote_id_')),
+    'user_id' : new UntypedFormControl(localStorage.getItem('id'))
   })
 
   list : any
@@ -40,7 +42,6 @@ export class VotingDetailsComponent implements OnInit {
     this.service2.fetchStudent()
     .subscribe(
       res=>{
-        console.log(res)
         this.totalVoters = res;
         for(var item of this.totalVoters){
           this.name[item.user_id] = item.username;
@@ -53,7 +54,6 @@ export class VotingDetailsComponent implements OnInit {
       res=>{
         this.list = JSON.parse(res);
         this.title=this.list[0].title;
-        console.log(this.list);
         for(let role of this.list){
           //console.log(role.candidate)
           if(!this.listOfRole.find((element:any)=>{
@@ -63,8 +63,6 @@ export class VotingDetailsComponent implements OnInit {
         }
       }
     )
-    console.log(this.listOfRole)
-    console.log(this.data_sent.value)
   }
 
 
@@ -73,7 +71,6 @@ export class VotingDetailsComponent implements OnInit {
   check : boolean = false;
 
   getCandidate(event:any,item:any){
-    console.log(event.target.name)
     //console.log(item)
     for(const [i, v] of this.checkList.entries()){
       //console.log("bro")
@@ -93,7 +90,6 @@ export class VotingDetailsComponent implements OnInit {
     if(this.check == false){
       this.checkList.push(item)
     }
-    console.log(this.checkList)
   }
 
   async notify(){
@@ -121,16 +117,13 @@ export class VotingDetailsComponent implements OnInit {
       for(let item of this.checkList){
         let info ={vote_id : localStorage.getItem('_vote_id_'),title : item.title, date : item.date,
          user_id : item.user_id, candidate : item.candidate}
-         console.log(info)
         this.service1.enterVote(info).subscribe(
           res=>{
-            console.log(res)
           }
         )
       }
       this.service1.AlreadyVote(this.validateVote.value).subscribe(
         res=>{
-          console.log(res)
           this.notify1();
         }
       )

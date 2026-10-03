@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EventsService } from '../events.service';
 import { Event } from '../event.model';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { ReportsService } from '../../report/reports.service';
 import { map } from 'rxjs/operators';
 
 @Component({
+  standalone: false,
   selector: 'app-add-event',
   templateUrl: './add-event.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./add-event.component.css']
 })
 export class AddEventComponent implements OnInit {
@@ -26,19 +28,19 @@ export class AddEventComponent implements OnInit {
     (map((data:any)=>data.filter
     ((myData:any)=>myData.role != "TDA" && myData.role != "DEKAN"))).subscribe(
       res=>{
-        console.log(res);
         this.lecturer = res;
       }
     )
   }
 
-  eventForm = new FormGroup({
-    name_activity : new FormControl("",Validators.required),
-    location : new FormControl("",Validators.required),
-    tema : new FormControl("",Validators.required),
-    organizer : new FormControl("",Validators.required),
-    date : new FormControl("",Validators.required),
-    pengarah : new FormControl(localStorage.getItem('id'))
+  eventForm = new UntypedFormGroup({
+    name_activity : new UntypedFormControl("",Validators.required),
+    location : new UntypedFormControl("",Validators.required),
+    tema : new UntypedFormControl("",Validators.required),
+    organizer : new UntypedFormControl("",Validators.required),
+    date : new UntypedFormControl("",Validators.required),
+    pengarah : new UntypedFormControl(localStorage.getItem('id')),
+    value : new UntypedFormControl("")
   })
 
 
@@ -46,11 +48,9 @@ export class AddEventComponent implements OnInit {
     //this.eventForm.value['date'] = new Date();
     if(this.eventForm.valid){
       this.eventService.addEvent(this.eventForm.value).subscribe(res=>{
-        console.log(res);
         this.successMessage();
         this.eventForm.reset();
       });
-      console.log(this.eventForm.value);
     }
     else{
       this.notSuccessMessage()

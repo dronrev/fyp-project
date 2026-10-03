@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { UsersService } from '../users.service';
 import { ViewChild } from '@angular/core';
@@ -7,8 +7,10 @@ import { OverlayEventDetail } from '@ionic/core/components';
 import { map } from 'rxjs/operators';
 
 @Component({
+  standalone: false,
   selector: 'app-assign',
   templateUrl: './assign.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./assign.component.css']
 })
 export class AssignComponent implements OnInit {
@@ -57,7 +59,6 @@ export class AssignComponent implements OnInit {
     (map((data:any)=>data.filter
     ((myData:any)=>myData.user_role != "PMFKIKAL" && "PMFKIKK"))).subscribe(
       (res:any)=>{
-        console.log(res);
         this.listUser = res.filter((myData:any)=>myData.cawangan == "KK");
         this.listUserLabuan = res.filter((myData:any)=>myData.cawangan == "Labuan");
       }
@@ -77,7 +78,6 @@ export class AssignComponent implements OnInit {
     //console.log(this.radioValue);
     this.service.assignPresidentLabuan(value).subscribe(
       res=>{
-        console.log(res)
       }
     )
   }
@@ -89,7 +89,6 @@ export class AssignComponent implements OnInit {
     ((myData:any)=>myData.user_role == "PMFKIKAL")))
     .subscribe(
       res=>{
-        console.log(res);
         this.click1 = true;
         this.presidentKAL = res;
         if(this.presidentKAL[0] == undefined){this.click1 = false}
@@ -116,7 +115,6 @@ export class AssignComponent implements OnInit {
             this.click1 =  false;
             this.service.updateRole(this.presidentKAL[0].user_id).subscribe(
               res=>{
-                console.log(res);
               }
             )
           },
@@ -135,7 +133,6 @@ export class AssignComponent implements OnInit {
     //console.log(this.radioValue);
     this.service.assignPresident(value).subscribe(
       res=>{
-        console.log(res)
       }
     )
   }
@@ -150,7 +147,6 @@ export class AssignComponent implements OnInit {
     ((myData:any)=>myData.user_role == "PMFKIKK")))
     .subscribe(
       res=>{
-        console.log(res);
         this.click2 = true;
         this.presidentKK = res;
         if(this.presidentKK[0] == undefined){this.click2 = false}
@@ -176,10 +172,8 @@ export class AssignComponent implements OnInit {
           role: 'confirm',
           handler: () => {
             this.click2 =  false;
-            console.log(this.presidentKK[0].user_id)
             this.service.updateRole(this.presidentKK[0].user_id).subscribe(
               res=>{
-                console.log(res);
               }
             )
           },

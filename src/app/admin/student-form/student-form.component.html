@@ -19,7 +19,9 @@
     <div>
       <label for="" class="form-label">Course Code</label>
       <select name="course_code" id="" class="form-select" ngModel required>
-        <option  *ngFor="let item of programmes_list;let key = index" [value]="item">{{item}}</option>
+        @for (item of programmes_list; track item; let key = $index) {
+          <option  [value]="item">{{item}}</option>
+        }
       </select>
     </div>
     <div>

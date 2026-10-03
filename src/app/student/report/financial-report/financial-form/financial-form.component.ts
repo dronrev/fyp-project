@@ -1,13 +1,15 @@
-import { Component, EventEmitter, OnInit,Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { ReportsService } from '../../reports.service';
 import { FinancialForm } from './financial-form.mode';
 import { AlertController } from '@ionic/angular';
 
 @Component({
+  standalone: false,
   selector: 'app-financial-form',
   templateUrl: './financial-form.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./financial-form.component.css']
 })
 export class FinancialFormComponent implements OnInit {
@@ -27,24 +29,24 @@ export class FinancialFormComponent implements OnInit {
 
   name = ["test4","test5","test6"]
 
-  myData = new FormGroup(
+  myData = new UntypedFormGroup(
     {
-      'report_id' : new FormControl(localStorage.getItem('ReportID')),
-      'nama_aktiviti' : new FormControl(""),
-      'penganjur' : new FormControl(""),
-      'pengarah' : new FormControl(""),
-      'pegawai_bertanggungjawab' : new FormControl(""),
-      'bajet_diluluskan' : new FormControl(""),
-      'penama_kelulusan' : new FormControl(""),
-      'kelulusan_oleh' : new FormControl(""),
-      'jumlah_cek' : new FormControl(""),
-      'penerima_cek_tunai' : new FormControl("")
+      'report_id' : new UntypedFormControl(localStorage.getItem('ReportID')),
+      'nama_aktiviti' : new UntypedFormControl(""),
+      'penganjur' : new UntypedFormControl(""),
+      'pengarah' : new UntypedFormControl(""),
+      'pegawai_bertanggungjawab' : new UntypedFormControl(""),
+      'bajet_diluluskan' : new UntypedFormControl(""),
+      'penama_kelulusan' : new UntypedFormControl(""),
+      'kelulusan_oleh' : new UntypedFormControl(""),
+      'jumlah_cek' : new UntypedFormControl(""),
+      'penerima_cek_tunai' : new UntypedFormControl("")
     }
   )
 
-  get_data_form = new FormGroup({
-    'id' : new FormControl(localStorage.getItem('id')),
-    'auth' : new FormControl(localStorage.getItem('auth'))
+  get_data_form = new UntypedFormGroup({
+    'id' : new UntypedFormControl(localStorage.getItem('id')),
+    'auth' : new UntypedFormControl(localStorage.getItem('auth'))
   })
 
   form1_data !: FinancialForm[]
@@ -52,7 +54,6 @@ export class FinancialFormComponent implements OnInit {
   ngOnInit(): void {
     /*this.service.displayReport(this.get_data_form.value).subscribe(
       res=>{
-        console.log(res)
         //console.log("woi")
       }
     )*/

@@ -2,7 +2,9 @@
   <div class="" style="display:flex;justify-content: center;padding-bottom: 10px;" [hidden]="check">
     <select name="" id="" (change)="getYear($event.target)">
       <option value="">Select Year</option>
-      <option [value]="listOfYear" *ngFor="let listOfYear of year">{{ listOfYear }}</option>
+      @for (listOfYear of year; track listOfYear) {
+        <option [value]="listOfYear">{{ listOfYear }}</option>
+      }
     </select>
   </div>
   <div class="summary" [hidden]="check">
@@ -11,7 +13,7 @@
         <canvas id="myChart" #myChart></canvas>
       </div>
       <!--div class="second-chart">
-        <canvas id="chart2"></canvas>
+      <canvas id="chart2"></canvas>
       </!--div-->
     </div>
   </div>

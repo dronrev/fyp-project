@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  // Base URL of the PHP backend, without a trailing slash.
+  // Change this to the deployed backend before building for production.
+  apiUrl: 'http://localhost/fyp-project'
 };

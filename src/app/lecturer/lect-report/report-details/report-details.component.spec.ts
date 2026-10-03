@@ -1,3 +1,4 @@
+import { TEST_IMPORTS, TEST_PROVIDERS, TEST_SCHEMAS } from 'src/testing/test-setup';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ReportDetailsComponent } from './report-details.component';
@@ -8,7 +9,10 @@ describe('ReportDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ReportDetailsComponent ]
+      declarations: [ ReportDetailsComponent ],
+      imports: TEST_IMPORTS,
+      providers: TEST_PROVIDERS,
+      schemas: TEST_SCHEMAS
     })
     .compileComponents();
   });

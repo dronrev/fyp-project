@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormControlName, FormGroup } from '@angular/forms';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { UntypedFormControl, FormControlName, UntypedFormGroup } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { Announcement } from '../../announcement.model';
 import { AnnouncementService } from '../../announcement.service';
 
 @Component({
+  standalone: false,
   selector: 'app-details',
   templateUrl: './details.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
@@ -15,11 +17,11 @@ export class DetailsComponent implements OnInit {
 
   myitem !: Announcement [];
 
-  send_data = new FormGroup({
-    'announcement_id' : new FormControl(localStorage.getItem('_announcement_id_')),
-    'title' : new FormControl(""),
-    'subject' : new FormControl(""),
-    'message' : new FormControl("")
+  send_data = new UntypedFormGroup({
+    'announcement_id' : new UntypedFormControl(localStorage.getItem('_announcement_id_')),
+    'title' : new UntypedFormControl(""),
+    'subject' : new UntypedFormControl(""),
+    'message' : new UntypedFormControl("")
   })
 
   ngOnInit(): void {
@@ -27,17 +29,14 @@ export class DetailsComponent implements OnInit {
       (myData:any)=>myData.announcement_id == localStorage.getItem('_announcement_id_'))))
     .subscribe(
       res=>{
-        console.log(res)
         this.myitem = res;
       }
     )
   }
 
   saveEdit(){
-    console.log(this.send_data.value)
     this.service.editAnnouncement(this.send_data.value).subscribe(
       res=>{
-        console.log(res);
       }
     )
   }

@@ -1,11 +1,13 @@
-import { Component, EventEmitter, OnInit, Output, } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ReportsService } from '../../reports.service';
 
 
 @Component({
+  standalone: false,
   selector: 'app-report-detail',
   templateUrl: './report-detail.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./report-detail.component.css']
 })
 export class ReportDetailComponent implements OnInit {
@@ -21,24 +23,22 @@ export class ReportDetailComponent implements OnInit {
   speaker : any;
   yuran_pendapatan : any;
   penaja : any;
-  myData = new FormGroup(
+  myData = new UntypedFormGroup(
     {
-      'report_id' : new FormControl(localStorage.getItem('ReportID')),
-      'peruntukan_hep' : new FormControl("",Validators.required),
-      'yuran_pendapatan' : new FormControl("",Validators.required),
-      'penaja' : new FormControl("",Validators.required),
-      'speaker' : new FormControl("",Validators.required),
-      'tempat_pertama' : new FormControl("",Validators.required),
-      'tempat_kedua' : new FormControl("",Validators.required),
-      'tempat_ketiga' : new FormControl("",Validators.required),
+      'report_id' : new UntypedFormControl(localStorage.getItem('ReportID')),
+      'peruntukan_hep' : new UntypedFormControl("",Validators.required),
+      'yuran_pendapatan' : new UntypedFormControl("",Validators.required),
+      'penaja' : new UntypedFormControl("",Validators.required),
+      'speaker' : new UntypedFormControl("",Validators.required),
+      'tempat_pertama' : new UntypedFormControl("",Validators.required),
+      'tempat_kedua' : new UntypedFormControl("",Validators.required),
+      'tempat_ketiga' : new UntypedFormControl("",Validators.required),
     }
   )
   ngOnInit(): void {
     this.service.specificLaporanKewangan(localStorage.getItem('ReportID')).subscribe(
       res=>{
-        console.log(res)
         this.list = JSON.parse(res)
-        console.log(this.list)
 
         //show data form database
         this.peruntukan_hep = this.list[0].peruntukan_hep
@@ -68,7 +68,6 @@ export class ReportDetailComponent implements OnInit {
   getCount(){
     this.service.totalCount(this.myData.value).subscribe(
       res=>{
-        console.log(res);
       }
     )
   }

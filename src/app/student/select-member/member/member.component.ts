@@ -1,14 +1,16 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { EventsService } from '../../event/events.service';
 import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { UsersService } from 'src/app/admin/users.service';
-import { FormControl, FormControlName, FormGroup } from '@angular/forms';
+import { UntypedFormControl, FormControlName, UntypedFormGroup } from '@angular/forms';
 
 @Component({
+  standalone: false,
   selector: 'app-member',
   templateUrl: './member.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./member.component.css']
 })
 export class MemberComponent implements OnInit {
@@ -25,9 +27,9 @@ export class MemberComponent implements OnInit {
 
    _this_is_not_ok : any;
 
-  toCheck = new FormGroup({
-    'activity_id' : new FormControl("a1063b974c30fe7d"),
-    'matric_id' : new FormControl(localStorage.getItem('id'))
+  toCheck = new UntypedFormGroup({
+    'activity_id' : new UntypedFormControl("a1063b974c30fe7d"),
+    'matric_id' : new UntypedFormControl(localStorage.getItem('id'))
   })
 
   ngOnInit(): void {
@@ -35,7 +37,6 @@ export class MemberComponent implements OnInit {
     (map((data:any)=>data.filter
     ((myData:any)=>myData.user_id == localStorage.getItem('id')))).subscribe(
       (res:any)=>{
-        console.log(res);
         localStorage.setItem('_caw_angan_',res[0].cawangan);
       }
     )
@@ -86,7 +87,6 @@ export class MemberComponent implements OnInit {
 
 
   selectActivity(data:any){
-    console.log(data);
     localStorage.setItem('_deidofact_current',data)
   }
 }

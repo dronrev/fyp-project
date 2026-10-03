@@ -1,16 +1,19 @@
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EditreportService } from '../report/editreport/editreport.service';
 import { Report } from '../report/report.model';
 import { ReportsService } from '../report/reports.service';
 import * as JSZip from 'jszip';
 import { saveAs } from 'file-saver';
-import { FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { ImageService } from '../image.service';
 
 @Component({
+  standalone: false,
   selector: 'app-certificate',
   templateUrl: './certificate.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./certificate.component.css']
 })
 export class CertificateComponent implements OnInit {
@@ -29,14 +32,11 @@ export class CertificateComponent implements OnInit {
 
     this.service.displayAll().subscribe(
       res=>{
-        console.log(res);
         this.list = res;
         for(let item of this.list){
           this.service.countParticipants(item.report_id).subscribe(
             res1=>{
-              console.log(res1)
               this.myData.push(res1)
-              console.log(this.myData)
             }
           )
         }
@@ -49,8 +49,6 @@ export class CertificateComponent implements OnInit {
         this.count = res;
         for(let item of this.count){
           for(let item2 of this.list){
-            if(item.report_id.substr(1,item.report_id.length-2) == item2.report_id)
-            console.log("bro")
           }
         }
 
@@ -59,9 +57,8 @@ export class CertificateComponent implements OnInit {
   }
 
   downloadCert(){
-    this.http.get('http://localhost/fyp-project/e-cert/download-certificate.php').subscribe(
+    this.http.get(`${environment.apiUrl}/e-cert/download-certificate.php`).subscribe(
       res=>{
-        console.log(res)
       }
     )
     //this.download
@@ -69,7 +66,7 @@ export class CertificateComponent implements OnInit {
 
 
   downloadFolder() {
-    this.http.get('http://localhost/fyp-project/e-cert/new-download.php', { responseType: 'blob' })
+    this.http.get(`${environment.apiUrl}/e-cert/new-download.php`, { responseType: 'blob' })
     .subscribe(data => {
       const blob = new Blob([data], { type: 'application/zip' });
       const url = window.URL.createObjectURL(blob);

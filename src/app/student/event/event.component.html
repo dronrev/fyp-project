@@ -1,18 +1,19 @@
 
-  <div class="box">
-    <table class="table">
-      <thead>
+<div class="box">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Tema</th>
+        <th>Tarikh</th>
+        <th>Penganjur</th>
+      </tr>
+    </thead>
+    <tbody class="table-body">
+      @for (activity of activities; track activity; let key = $index) {
         <tr>
-          <th>No</th>
-          <th>Name</th>
-          <th>Location</th>
-          <th>Tema</th>
-          <th>Tarikh</th>
-          <th>Penganjur</th>
-        </tr>
-      </thead>
-      <tbody class="table-body">
-        <tr *ngFor="let activity of activities;let key = index">
           <td>{{ key+1 }}</td>
           <td>{{ activity.name_activity | titlecase }}</td>
           <td>{{ activity.location | uppercase }}</td>
@@ -20,8 +21,9 @@
           <td>{{ activity.date | date }}</td>
           <td>{{ activity.organizer}}</td>
         </tr>
-      </tbody>
-    </table>
-  </div>
+      }
+    </tbody>
+  </table>
+</div>
 
 <a href="" routerLink="./add-event" class="btn btn-warning">Set New Activity</a>

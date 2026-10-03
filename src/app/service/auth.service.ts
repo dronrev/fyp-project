@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -8,9 +9,9 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
 
-  url = "http://localhost/fyp-project/app/login.php";
-  cekRole = "http://localhost/fyp-project/app/isTDA.php";
-  adminUrl = "http://localhost/fyp-project/admin-login.php";
+  url = `${environment.apiUrl}/app/login.php`;
+  cekRole = `${environment.apiUrl}/app/isTDA.php`;
+  adminUrl = `${environment.apiUrl}/admin-login.php`;
   constructor(private http:HttpClient,private router:Router) { }
 
   public userName: any = [];
@@ -50,6 +51,7 @@ export class AuthService {
   }
 
   logOut(){
+    localStorage.clear();
     return this.router.navigate(['sign-in'])
   }
 }

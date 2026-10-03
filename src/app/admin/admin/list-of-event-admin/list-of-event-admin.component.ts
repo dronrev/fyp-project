@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { EventsService } from 'src/app/student/event/events.service';
 
 @Component({
+  standalone: false,
   selector: 'app-list-of-event-admin',
   templateUrl: './list-of-event-admin.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./list-of-event-admin.component.css']
 })
 export class ListOfEventAdminComponent implements OnInit {

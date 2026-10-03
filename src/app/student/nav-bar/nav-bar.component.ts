@@ -1,11 +1,13 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { TitleServiceService } from './title-service.service';
 import { ActivatedRoute, NavigationEnd,Router } from '@angular/router';
 import { filter,map } from 'rxjs/operators';
 
 @Component({
+  standalone: false,
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {

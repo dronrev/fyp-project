@@ -1,6 +1,7 @@
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { EditreportService } from '../editreport.service';
@@ -12,8 +13,10 @@ export interface DeleteReport{
 }
 
 @Component({
+  standalone: false,
   selector: 'app-add-participant',
   templateUrl: './add-participant.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./add-participant.component.css']
 })
 export class AddParticipantComponent implements OnInit {
@@ -22,31 +25,31 @@ export class AddParticipantComponent implements OnInit {
 
   importParticipants!: any;
 
-  data = new FormGroup(
+  data = new UntypedFormGroup(
     {
-      'report_id' : new FormControl(localStorage.getItem('GetreportID'))
+      'report_id' : new UntypedFormControl(localStorage.getItem('GetreportID'))
     }
   )
 
-  addStudent = new FormGroup(
+  addStudent = new UntypedFormGroup(
     {
-      report_id : new FormControl(localStorage.getItem('GetreportID')),
-      name : new FormControl("",Validators.required),
-      matric_no: new FormControl("",Validators.required)
+      report_id : new UntypedFormControl(localStorage.getItem('GetreportID')),
+      name : new UntypedFormControl("",Validators.required),
+      matric_no: new UntypedFormControl("",Validators.required)
     }
   )
 
-  addFromImport = new FormGroup({
-    report_id : new FormControl(localStorage.getItem('GetreportID')),
-    name : new FormControl("",Validators.required),
-    matric_no: new FormControl("",Validators.required)
+  addFromImport = new UntypedFormGroup({
+    report_id : new UntypedFormControl(localStorage.getItem('GetreportID')),
+    name : new UntypedFormControl("",Validators.required),
+    matric_no: new UntypedFormControl("",Validators.required)
   })
 
-  genCert = new FormGroup({
-    report_id : new FormControl(localStorage.getItem('ReportID')),
-    name : new FormControl("",Validators.required),
-    matric_no : new FormControl("",Validators.required),
-    title : new FormControl(null)
+  genCert = new UntypedFormGroup({
+    report_id : new UntypedFormControl(localStorage.getItem('ReportID')),
+    name : new UntypedFormControl("",Validators.required),
+    matric_no : new UntypedFormControl("",Validators.required),
+    title : new UntypedFormControl(null)
   })
 
   list:any;
@@ -54,8 +57,6 @@ export class AddParticipantComponent implements OnInit {
   ngOnInit(): void {
     this.service.getParticipants(this.data.value).
     subscribe(res=>{
-      console.log(res);
-      console.log(this.data.value['report_id'])
       this.list = JSON.parse(res);
 
     })
@@ -64,7 +65,6 @@ export class AddParticipantComponent implements OnInit {
   add(){
       this.service.addParticipant(this.addStudent.value).subscribe(
         res=>{
-          console.log(res);
           this.genCert.reset();
           location.reload();
         }
@@ -77,10 +77,9 @@ export class AddParticipantComponent implements OnInit {
   getCerti(name:any,matric:any){
     this.genCert.value['name'] = name;
     this.genCert.value['matric_no'] = matric;
-    this.http.post("http://localhost/fyp-project/e-cert/e-certificate.php",this.genCert.value,{responseType : 'text'}).subscribe(
+    this.http.post(`${environment.apiUrl}/e-cert/e-certificate.php`,this.genCert.value,{responseType : 'text'}).subscribe(
       res=>{
-        console.log(res);
-        //this.link = "http://localhost/fyp-project/e-cert/e-certificate.php";
+        //this.link = `${environment.apiUrl}/e-cert/e-certificate.php`;
       }
     )
   }
@@ -89,7 +88,6 @@ createAll(){
   let key = this.list.length;
 
   for(var i = 0 ; i < key ; i++){
-    console.log(this.list[i].name);
     this.getCerti(this.list[i].name,this.list[i].matric_no);
   }
 }
@@ -97,7 +95,7 @@ createAll(){
 fileName = this.genCert.value['title']
 
 download(){
-  this.http.post('http://localhost/fyp-project/e-cert/new-download.php',this.genCert.value, { responseType: 'blob' })
+  this.http.post(`${environment.apiUrl}/e-cert/new-download.php`,this.genCert.value, { responseType: 'blob' })
   .subscribe(data => {
     const blob = new Blob([data], { type: 'application/zip' });
     const url = window.URL.createObjectURL(blob);
@@ -124,7 +122,6 @@ async createFile(){
         handler :myData=>{
           this.genCert.value['title'] = myData.Filename;
           this.createAll();
-          console.log(myData.Filename);
           //location.reload();
         }
       },
@@ -141,23 +138,19 @@ async createFile(){
 deleting(data:any){
   //this.service.deleteParticipant()
   let value1 : DeleteReport = {matric_no : data, report_id : this.addStudent.value['report_id']};
-  console.log(value1);
   this.service.deleteParticipant(value1).subscribe(
     res=>{
-      console.log(res);
       location.reload();
     }
   )
 }
 
 importCSV(event:any){
-  console.log(event.target.files);
   const myFile = event.target.files[0];
   const fileReader = new FileReader();
 
   fileReader.readAsBinaryString(myFile);
   fileReader.onload = (event) =>{
-    console.log(event);
     let binaryData = event.target?.result;
     let workbook = XLSX.read(binaryData,{type : 'binary'});
     workbook.SheetNames.forEach(sheet =>{
@@ -167,13 +160,11 @@ importCSV(event:any){
       //console.log(this.importParticipants[0].Fullname);
       let i = 0;
       do{
-        console.log(this.importParticipants[i]);
         i++;
         this.addFromImport.value['name'] = this.importParticipants[i]['Fullname'];
         this.addFromImport.value['matric_no']=this.importParticipants[i]['Matric Number'];
         this.service.addParticipant(this.addFromImport.value).subscribe(
           res=>{
-            console.log(res);
             //this.genCert.reset();
             //location.reload();
           }

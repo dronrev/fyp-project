@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { FinancialForm } from 'src/app/student/report/financial-report/financial-form/financial-form.mode';
 import { ReportsService } from 'src/app/student/report/reports.service';
 
 @Component({
+  standalone: false,
   selector: 'app-lect-financial-report',
   templateUrl: './lect-financial-report.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./lect-financial-report.component.css']
 })
 export class LectFinancialReportComponent implements OnInit {
@@ -20,18 +22,18 @@ export class LectFinancialReportComponent implements OnInit {
   kelulusan_oleh ?: string;
   jumlah_cek ?: string;
   penerima_cek_tunai ?:string;
-  myData = new FormGroup(
+  myData = new UntypedFormGroup(
     {
-      'report_id' : new FormControl(localStorage.getItem('ReportID')),
-      'nama_aktiviti' : new FormControl(""),
-      'penganjur' : new FormControl(""),
-      'pengarah' : new FormControl(""),
-      'pegawai_bertanggungjawab' : new FormControl(""),
-      'bajet_diluluskan' : new FormControl(""),
-      'penama_kelulusan' : new FormControl(""),
-      'kelulusan_oleh' : new FormControl(""),
-      'jumlah_cek' : new FormControl(""),
-      'penerima_cek_tunai' : new FormControl("")
+      'report_id' : new UntypedFormControl(localStorage.getItem('ReportID')),
+      'nama_aktiviti' : new UntypedFormControl(""),
+      'penganjur' : new UntypedFormControl(""),
+      'pengarah' : new UntypedFormControl(""),
+      'pegawai_bertanggungjawab' : new UntypedFormControl(""),
+      'bajet_diluluskan' : new UntypedFormControl(""),
+      'penama_kelulusan' : new UntypedFormControl(""),
+      'kelulusan_oleh' : new UntypedFormControl(""),
+      'jumlah_cek' : new UntypedFormControl(""),
+      'penerima_cek_tunai' : new UntypedFormControl("")
     }
   )
   form1_data !: FinancialForm[]

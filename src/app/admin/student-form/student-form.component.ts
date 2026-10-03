@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UsersService } from '../users.service';
 import { NgForm } from '@angular/forms';
@@ -6,8 +7,10 @@ import { User } from '../user.model';
 import { Observable } from 'rxjs';
 import { AlertController } from '@ionic/angular';
 @Component({
+  standalone: false,
   selector: 'app-student-form',
   templateUrl: './student-form.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./student-form.component.css']
 })
 export class StudentFormComponent implements OnInit {
@@ -19,7 +22,7 @@ export class StudentFormComponent implements OnInit {
      private userservice : UsersService,
      private alertcontrol : AlertController) { }
 
-  baseurl = "http://localhost/fyp-project/send-data.php";
+  baseurl = `${environment.apiUrl}/send-data.php`;
 
   orang : User [] = []
   error = '';

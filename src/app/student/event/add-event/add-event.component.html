@@ -23,7 +23,9 @@
     </div>
     <div class="select-option" style="background-color: white; margin: 10px;">
       <ion-select placeholder="Select Lecturer"  formControlName="value">
-        <ion-select-option [value]="item.lecturer_id" *ngFor="let item of lecturer; let key = index">{{ item.name }}</ion-select-option>
+        @for (item of lecturer; track item; let key = $index) {
+          <ion-select-option [value]="item.lecturer_id">{{ item.name }}</ion-select-option>
+        }
       </ion-select>
     </div>
     <div class="pt-2">

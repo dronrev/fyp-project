@@ -8,17 +8,18 @@
         </div>
         <div [hidden]="!click2">
           <div class="item">
-            <ion-card color="dark" *ngFor="let item of presidentKK">
-              <img class="pt-2" [src]="imageURL+item.profilepic || defaultImg" />
-              <ion-card-header>
-                <ion-card-title>{{ item.username | uppercase}}</ion-card-title>
-                <ion-card-subtitle>{{ item.user_id }}</ion-card-subtitle>
-              </ion-card-header>
-
-              <ion-card-content>
-                {{ item.email_id }}
-              </ion-card-content>
-            </ion-card>
+            @for (item of presidentKK; track item) {
+              <ion-card color="dark">
+                <img class="pt-2" [src]="imageURL+item.profilepic || defaultImg" />
+                <ion-card-header>
+                  <ion-card-title>{{ item.username | uppercase}}</ion-card-title>
+                  <ion-card-subtitle>{{ item.user_id }}</ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content>
+                  {{ item.email_id }}
+                </ion-card-content>
+              </ion-card>
+            }
             <div>
               <ion-button color="danger" (click) = "onClick3()">Delete</ion-button>
             </div>
@@ -38,17 +39,18 @@
         </div>
         <div [hidden]="!click1">
           <div class="item">
-            <ion-card color="dark" *ngFor="let item of presidentKAL">
-              <img class="pt-2" [src]="imageURL+item.profilepic || defaultImg" />
-              <ion-card-header>
-                <ion-card-title>{{ item.username | uppercase}}</ion-card-title>
-                <ion-card-subtitle>{{ item.user_id }}</ion-card-subtitle>
-              </ion-card-header>
-
-              <ion-card-content>
-                {{ item.email_id }}
-              </ion-card-content>
-            </ion-card>
+            @for (item of presidentKAL; track item) {
+              <ion-card color="dark">
+                <img class="pt-2" [src]="imageURL+item.profilepic || defaultImg" />
+                <ion-card-header>
+                  <ion-card-title>{{ item.username | uppercase}}</ion-card-title>
+                  <ion-card-subtitle>{{ item.user_id }}</ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content>
+                  {{ item.email_id }}
+                </ion-card-content>
+              </ion-card>
+            }
           </div>
           <div>
             <ion-button color="danger" (click) = "onClick2()">Delete</ion-button>
@@ -80,24 +82,25 @@
       <ion-searchbar></ion-searchbar>
       <ion-item>
         <ion-label>
-      </ion-label>
+        </ion-label>
         <ion-radio-group slot="start" [(ngModel)]="radioValue">
-          <ion-item *ngFor="let item of listUser">
-            <ion-label class="listStudent">
-              <ion-card>
-                <img [src]="imageURL+item.profilepic" alt="">
-                <ion-card-header>
-                  <ion-card-title>{{ item.username }}</ion-card-title>
-                  <ion-card-subtitle color="dark">{{ item.course_id}}</ion-card-subtitle>
-                </ion-card-header>
-
-                <ion-card-content>
-                {{ item.user_id }}
-                </ion-card-content>
-            </ion-card>
-            </ion-label>
-            <ion-radio [value]="item.user_id"></ion-radio>
-          </ion-item>
+          @for (item of listUser; track item) {
+            <ion-item>
+              <ion-label class="listStudent">
+                <ion-card>
+                  <img [src]="imageURL+item.profilepic" alt="">
+                  <ion-card-header>
+                    <ion-card-title>{{ item.username }}</ion-card-title>
+                    <ion-card-subtitle color="dark">{{ item.course_id}}</ion-card-subtitle>
+                  </ion-card-header>
+                  <ion-card-content>
+                    {{ item.user_id }}
+                  </ion-card-content>
+                </ion-card>
+              </ion-label>
+              <ion-radio [value]="item.user_id"></ion-radio>
+            </ion-item>
+          }
         </ion-radio-group>
       </ion-item>
     </ion-content>
@@ -123,24 +126,25 @@
       <ion-searchbar></ion-searchbar>
       <ion-item>
         <ion-label>
-      </ion-label>
+        </ion-label>
         <ion-radio-group slot="start" [(ngModel)]="radioValueLabuan">
-          <ion-item *ngFor="let item of listUserLabuan">
-            <ion-label class="listStudent">
-              <ion-card>
-                <img [src]="imageURL+item.profilepic" alt="">
-                <ion-card-header>
-                  <ion-card-title>{{ item.username }}</ion-card-title>
-                  <ion-card-subtitle color="dark">{{ item.course_id}}</ion-card-subtitle>
-                </ion-card-header>
-
-                <ion-card-content>
-                {{ item.user_id }}
-                </ion-card-content>
-            </ion-card>
-            </ion-label>
-            <ion-radio [value]="item.user_id"></ion-radio>
-          </ion-item>
+          @for (item of listUserLabuan; track item) {
+            <ion-item>
+              <ion-label class="listStudent">
+                <ion-card>
+                  <img [src]="imageURL+item.profilepic" alt="">
+                  <ion-card-header>
+                    <ion-card-title>{{ item.username }}</ion-card-title>
+                    <ion-card-subtitle color="dark">{{ item.course_id}}</ion-card-subtitle>
+                  </ion-card-header>
+                  <ion-card-content>
+                    {{ item.user_id }}
+                  </ion-card-content>
+                </ion-card>
+              </ion-label>
+              <ion-radio [value]="item.user_id"></ion-radio>
+            </ion-item>
+          }
         </ion-radio-group>
       </ion-item>
     </ion-content>

@@ -20,14 +20,16 @@
         <form [formGroup]= "LoginForm" (ngSubmit)="onLogin()">
           <div>
             <select name="" id="" formControlName="user_role">
-              <option *ngFor="let roles of role" [ngValue]="roles.id">{{ roles.name }}</option>
+              @for (roles of role; track roles) {
+                <option [ngValue]="roles.id">{{ roles.name }}</option>
+              }
             </select>
           </div>
           <div class="first-layer-login">
             <h1>Log in</h1>
             <div class="uname mb-3 d-flex">
               <div class="icon-user">
-               <ion-icon name="people-outline"></ion-icon>
+                <ion-icon name="people-outline"></ion-icon>
               </div>
               <div class="input-user">
                 <input type="text" class="" placeholder="bi19xxxxxx@student.ums.edu.my"  style="text-align: center;" formControlName="email_address" required>

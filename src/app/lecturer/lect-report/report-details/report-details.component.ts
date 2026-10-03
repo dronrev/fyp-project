@@ -1,13 +1,15 @@
-import { Component, Inject, Injector, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, Injector, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { LectReportService } from '../lect-report.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Detail } from 'src/app/student/report/editreport/editreport.component';
 import { Report } from 'src/app/student/report/report.model';
 import { ReportsService } from 'src/app/student/report/reports.service';
 import { AlertController, IonModal } from '@ionic/angular';
 @Component({
+  standalone: false,
   selector: 'app-report-details',
   templateUrl: './report-details.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./report-details.component.css']
 })
 export class ReportDetailsComponent implements OnInit {
@@ -43,20 +45,20 @@ export class ReportDetailsComponent implements OnInit {
 
   value!: string;
   reports!: Report[];
-  thereport = new FormGroup({
-    'report_id': new FormControl(localStorage.getItem('reportID')),
-    'title': new FormControl(""),
-    'objective': new FormControl(""),
-    'introduction': new FormControl(""),
-    'involvement': new FormControl(""),
-    'perkara': new FormControl(""),
-    'vip': new FormControl(""),
-    'impak': new FormControl(""),
-    'pencapaian': new FormControl(""),
-    'rumusan': new FormControl(""),
-    'cadangan': new FormControl(""),
-    'status' : new FormControl(""),
-    'comment' : new FormControl("")
+  thereport = new UntypedFormGroup({
+    'report_id': new UntypedFormControl(localStorage.getItem('reportID')),
+    'title': new UntypedFormControl(""),
+    'objective': new UntypedFormControl(""),
+    'introduction': new UntypedFormControl(""),
+    'involvement': new UntypedFormControl(""),
+    'perkara': new UntypedFormControl(""),
+    'vip': new UntypedFormControl(""),
+    'impak': new UntypedFormControl(""),
+    'pencapaian': new UntypedFormControl(""),
+    'rumusan': new UntypedFormControl(""),
+    'cadangan': new UntypedFormControl(""),
+    'status' : new UntypedFormControl(""),
+    'comment' : new UntypedFormControl("")
   });
 
   ngOnInit(): void {
@@ -64,10 +66,8 @@ export class ReportDetailsComponent implements OnInit {
     this.hideSendTDA = false;
 
 
-    console.log(this.thereport.value)
     this.service.getDetail(this.thereport.value['report_id']).subscribe(
       response=>{
-        console.log(response);
         this.reports = JSON.parse(response);
         //this.report_id=this.reports[0].report_id;
         this.title=this.reports[0].title;
@@ -83,7 +83,6 @@ export class ReportDetailsComponent implements OnInit {
         this.pencapaian=this.reports[0].pencapaian;
         this.rumusan=this.reports[0].rumusan;
         this.cadangan=this.reports[0].cadangan;
-        console.log(this.reports)
 
   });
   }
@@ -97,11 +96,8 @@ export class ReportDetailsComponent implements OnInit {
     this.thereport.value['report_id'] = localStorage.getItem('ReportID');
     this.thereport.value['status'] = 3;
     data.reportId = "woi";
-    console.log(data);
-    console.log(this.thereport.value['status']);
     this.service.approveReport(this.thereport.value).subscribe(
       res=>{
-        console.log(res);
       }
     )
     this.alertMessage();
@@ -111,11 +107,8 @@ export class ReportDetailsComponent implements OnInit {
     this.thereport.value['report_id'] = localStorage.getItem('ReportID');
     this.thereport.value['status'] = 4;
     data.reportId = "woi";
-    console.log(data);
-    console.log(this.thereport.value['status']);
     this.service.approveReport(this.thereport.value).subscribe(
       res=>{
-        console.log(res);
       }
     )
     this.alertMessage();
@@ -134,11 +127,8 @@ export class ReportDetailsComponent implements OnInit {
     this.thereport.value['report_id'] = localStorage.getItem('ReportID');
     this.thereport.value['status'] = 0;
     data.reportId = "woi";
-    console.log(data?.reportId);
-    console.log(this.thereport.value['status']);
     this.service.approveReport(data).subscribe(
       res=>{
-        console.log(res);
       }
     )
     this.alertRejectMessage();
@@ -147,11 +137,8 @@ export class ReportDetailsComponent implements OnInit {
     this.thereport.value['report_id'] = localStorage.getItem('ReportID');
     this.thereport.value['status'] = 0;
     data.reportId = "woi";
-    console.log(data?.reportId);
-    console.log(this.thereport.value['status']);
     this.service.approveReport(data).subscribe(
       res=>{
-        console.log(res);
       }
     )
     this.alertRejectMessage();
@@ -174,7 +161,6 @@ export class ReportDetailsComponent implements OnInit {
   }
 
   sendComment(){
-    console.log(this.thereport.value)
     this.thereport.value.report_id = localStorage.getItem('ReportID')
     //console.log(data)
     //console.log(this.reports[0].report_id);
@@ -196,15 +182,11 @@ export class ReportDetailsComponent implements OnInit {
 
   //send report to TDA
   sendToTDA(data: { reportId?: any, myStatus?: any }){
-    console.log('gimme your fking money!');
     this.thereport.value['report_id'] = localStorage.getItem('ReportID');
     this.thereport.value['status'] = 3;
     data.reportId = "woi";
-    console.log(data);
-    console.log(this.thereport.value['status']);
     this.service.approveReport(this.thereport.value).subscribe(
       res=>{
-        console.log(res);
       }
     )
     this.alertMessage();

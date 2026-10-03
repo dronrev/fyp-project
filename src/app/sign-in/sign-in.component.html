@@ -10,7 +10,9 @@
     <form action="" class="form-body" [formGroup]= "LoginForm" (ngSubmit)="onLogin()">
       <div>
         <select name="" id="" formControlName="user_role">
-          <option value="" *ngFor="let roles of role" [ngValue]="roles.id">{{ roles.name }}</option>
+          @for (roles of role; track roles) {
+            <option value="" [ngValue]="roles.id">{{ roles.name }}</option>
+          }
         </select>
       </div>
       <div>
@@ -22,8 +24,7 @@
         <input class="passwordcheck" type="password" [type]="showPass" class="form-control" formControlName="password" required>
       </div>
       <div class="pt-2">
-        <ion-checkbox slot="start" (ionChange)="showPassword($event)"></ion-checkbox>
-        <ion-label>Show Password</ion-label>
+        <ion-checkbox labelPlacement="end" (ionChange)="showPassword($event)">Show Password</ion-checkbox>
       </div>
       <div>
         <button class="btn btn-primary" type="submit">Login</button>

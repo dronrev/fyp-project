@@ -1,10 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Event } from './event.model';
 import { ReportsService } from '../report/reports.service';
 import { EventsService } from './events.service';
 @Component({
+  standalone: false,
   selector: 'app-event',
   templateUrl: './event.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./event.component.css']
 })
 export class EventComponent implements OnInit {
@@ -19,7 +21,6 @@ export class EventComponent implements OnInit {
   ngOnInit(): void {
     this.service.displayEvent().subscribe(
       (data:any)=>{
-        console.log(data)
         this.activities = data;
         //this.mydate = new Date(this.activities['date']);
       }

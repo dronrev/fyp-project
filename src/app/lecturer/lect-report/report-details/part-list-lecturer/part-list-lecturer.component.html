@@ -11,11 +11,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr scope="row" *ngFor="let item of list;let key = index">
-        <td>{{key+1}}</td>
-        <td>{{ item.name}}</td>
-        <td>{{item.matric_no}}</td>
-      </tr>
+      @for (item of list; track item; let key = $index) {
+        <tr scope="row">
+          <td>{{key+1}}</td>
+          <td>{{ item.name}}</td>
+          <td>{{item.matric_no}}</td>
+        </tr>
+      }
     </tbody>
   </table>
 </div>

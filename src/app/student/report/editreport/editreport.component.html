@@ -1,7 +1,7 @@
 <!--ion-breadcrumbs color="secondary">
-  <ion-breadcrumb routerLink="/report">Report</ion-breadcrumb>
-  <ion-breadcrumb routerLink="/report">My Report</ion-breadcrumb>
-  <ion-breadcrumb [routerLink]="['/report/editreport',report_id]">Current Report</ion-breadcrumb>
+<ion-breadcrumb routerLink="/report">Report</ion-breadcrumb>
+<ion-breadcrumb routerLink="/report">My Report</ion-breadcrumb>
+<ion-breadcrumb [routerLink]="['/report/editreport',report_id]">Current Report</ion-breadcrumb>
 </!--ion-breadcrumbs-->
 <ion-segment value="default" color="light">
   <ion-segment-button value="actRep" (click)="actReport()">
@@ -34,10 +34,10 @@
         <label for="" class="form-label">Tajuk : </label>
         <ion-item>
           <ion-textarea placeholder="Type something here"
-          [autoGrow]="true"
-          formControlName="title"
-          [(ngModel)]="this.title"
-          [readonly]="!edit">
+            [autoGrow]="true"
+            formControlName="title"
+            [(ngModel)]="this.title"
+            [readonly]="!edit">
           </ion-textarea>
 
         </ion-item>
@@ -47,10 +47,10 @@
         <label for="" class="form-label">Objektif : </label>
         <ion-item>
           <ion-textarea placeholder="Type something here"
-          [autoGrow]="true"
-          formControlName="objective"
-          [readonly]="!edit"
-          [(ngModel)]="this.objective">
+            [autoGrow]="true"
+            formControlName="objective"
+            [readonly]="!edit"
+            [(ngModel)]="this.objective">
           </ion-textarea>
 
         </ion-item>
@@ -60,10 +60,10 @@
         <label for="" class="form-label">Pendahuluan :</label>
         <ion-item>
           <ion-textarea placeholder="Type something here"
-          [autoGrow]="true"
-          [(ngModel)]="this.introduction"
-          [readonly]="!edit"
-          formControlName="introduction">
+            [autoGrow]="true"
+            [(ngModel)]="this.introduction"
+            [readonly]="!edit"
+            formControlName="introduction">
           </ion-textarea>
 
         </ion-item>
@@ -73,10 +73,10 @@
         <label for="" class="form-label">Penglibatan :</label>
         <ion-item>
           <ion-textarea placeholder="Type something here"
-          [autoGrow]="true"
-          [(ngModel)]="this.involvement"
-          [readonly]="!edit"
-          formControlName="involvement">
+            [autoGrow]="true"
+            [(ngModel)]="this.involvement"
+            [readonly]="!edit"
+            formControlName="involvement">
           </ion-textarea>
 
         </ion-item>
@@ -86,10 +86,10 @@
         <label for="" class="form-label">Perkara hendak dimaklumkan  :</label>
         <ion-item>
           <ion-textarea placeholder="Type something here"
-          [autoGrow]="true"
-          [(ngModel)]="this.perkara_hendak_maklum"
-          [readonly]="!edit"
-          formControlName="perkara">
+            [autoGrow]="true"
+            [(ngModel)]="this.perkara_hendak_maklum"
+            [readonly]="!edit"
+            formControlName="perkara">
           </ion-textarea>
 
         </ion-item>
@@ -99,10 +99,10 @@
         <label for="" class="form-label">Jemputan VIP :</label>
         <ion-item>
           <ion-textarea placeholder="Type something here"
-          [autoGrow]="true"
-          [(ngModel)]="this.jemputan_vip"
-          [readonly]="!edit"
-          formControlName="vip">
+            [autoGrow]="true"
+            [(ngModel)]="this.jemputan_vip"
+            [readonly]="!edit"
+            formControlName="vip">
           </ion-textarea>
 
         </ion-item>
@@ -112,10 +112,10 @@
         <label for="" class="form-label">Impak Program :</label>
         <ion-item>
           <ion-textarea placeholder="Type something here"
-          [autoGrow]="true"
-          [(ngModel)]="this.impak_program"
-          [readonly]="!edit"
-          formControlName="impak">
+            [autoGrow]="true"
+            [(ngModel)]="this.impak_program"
+            [readonly]="!edit"
+            formControlName="impak">
           </ion-textarea>
 
         </ion-item>
@@ -125,10 +125,10 @@
         <label for="" class="form-label">Pencapaian :</label>
         <ion-item>
           <ion-textarea placeholder="Type something here"
-          [autoGrow]="true"
-          [(ngModel)]="this.pencapaian"
-          [readonly]="!edit"
-          formControlName="pencapaian">
+            [autoGrow]="true"
+            [(ngModel)]="this.pencapaian"
+            [readonly]="!edit"
+            formControlName="pencapaian">
           </ion-textarea>
 
         </ion-item>
@@ -138,10 +138,10 @@
         <label for="" class="form-label">Rumusan :</label>
         <ion-item>
           <ion-textarea placeholder="Type something here"
-          [autoGrow]="true"
-          [(ngModel)]="this.rumusan"
-          [readonly]="!edit"
-          formControlName="rumusan">
+            [autoGrow]="true"
+            [(ngModel)]="this.rumusan"
+            [readonly]="!edit"
+            formControlName="rumusan">
           </ion-textarea>
 
         </ion-item>
@@ -151,10 +151,10 @@
         <label for="" class="form-label">Cadangan :</label>
         <ion-item>
           <ion-textarea placeholder="Type something here"
-          [autoGrow]="true"
-          [(ngModel)]="this.cadangan"
-          [readonly]="!edit"
-          formControlName="cadangan">
+            [autoGrow]="true"
+            [(ngModel)]="this.cadangan"
+            [readonly]="!edit"
+            formControlName="cadangan">
           </ion-textarea>
 
         </ion-item>
@@ -169,20 +169,31 @@
     </form>
   </div>
 </div>
-<app-financial-report *ngIf="finRep;hidden"></app-financial-report>
-<app-upload-image *ngIf="attacRep;hidden"></app-upload-image>
-<h1 *ngIf="partRep;hidden">Add Participants For : {{title}}</h1>
-<app-add-participant *ngIf="partRep;hidden"></app-add-participant>
-<div *ngIf="partRep;hidden">
-  <button class="btn btn-success"(click)="sendToPresident(thereport.value)" [hidden]="toLecturer">SEND TO PRESIDENT</button>
-  <button class="btn btn-success" (click)="sendToLecturer(thereport.value)" [hidden]="!toLecturer">SEND TO LECTURER</button>
-</div>
-<div class="comment-section" *ngIf="comRep;hidden">
-  <label for="" class="form-label">Comment :</label>
-  <ion-textarea placeholder="No Comment"
-  [autoGrow]="true"
-  [value]="this.comment"
-  [readonly]="!edit">
-
-  </ion-textarea>
-</div>
+@if (finRep) {
+  <app-financial-report></app-financial-report>
+}
+@if (attacRep) {
+  <app-upload-image></app-upload-image>
+}
+@if (partRep) {
+  <h1>Add Participants For : {{title}}</h1>
+}
+@if (partRep) {
+  <app-add-participant></app-add-participant>
+}
+@if (partRep) {
+  <div>
+    <button class="btn btn-success"(click)="sendToPresident(thereport.value)" [hidden]="toLecturer">SEND TO PRESIDENT</button>
+    <button class="btn btn-success" (click)="sendToLecturer(thereport.value)" [hidden]="!toLecturer">SEND TO LECTURER</button>
+  </div>
+}
+@if (comRep) {
+  <div class="comment-section">
+    <label for="" class="form-label">Comment :</label>
+    <ion-textarea placeholder="No Comment"
+      [autoGrow]="true"
+      [value]="this.comment"
+      [readonly]="!edit">
+    </ion-textarea>
+  </div>
+}

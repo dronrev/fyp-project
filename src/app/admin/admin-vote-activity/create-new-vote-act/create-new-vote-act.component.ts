@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { UntypedFormGroup, UntypedFormBuilder, UntypedFormArray } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { UsersService } from '../../users.service';
 import { Voting } from '../vote-activity.model';
 import { VoteService } from '../vote.service';
 
 @Component({
+  standalone: false,
   selector: 'app-create-new-vote-act',
   templateUrl: './create-new-vote-act.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./create-new-vote-act.component.css']
 })
 export class CreateNewVoteActComponent implements OnInit {
 
-  votingForm: FormGroup;
+  votingForm: UntypedFormGroup;
 
-  constructor(private fb:FormBuilder, private service : UsersService,private service2:VoteService,private alertcontrol : AlertController) {
+  constructor(private fb:UntypedFormBuilder, private service : UsersService,private service2:VoteService,private alertcontrol : AlertController) {
 
     this.votingForm = this.fb.group({
       title: '',
@@ -24,11 +26,11 @@ export class CreateNewVoteActComponent implements OnInit {
     });
   }
 
-  detail() : FormArray {
-    return this.votingForm.get("detail") as FormArray
+  detail() : UntypedFormArray {
+    return this.votingForm.get("detail") as UntypedFormArray
   }
 
-  newCandidate(): FormGroup {
+  newCandidate(): UntypedFormGroup {
     return this.fb.group({
       matric_no: '',
       candidate:''
@@ -44,10 +46,8 @@ export class CreateNewVoteActComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.votingForm.value);
     this.service2.createVote(this.votingForm.value).subscribe(
       res=>{
-        console.log(res)
         this.notify(JSON.parse(res).message)
       }
     )
@@ -78,7 +78,6 @@ export class CreateNewVoteActComponent implements OnInit {
 
 
   testAdd(event : any){
-    console.log(event.value);
     this.testingg = event.value;
     //this.student = this.student.filter((myData:any)=>myData.user_id != event.value)
   }

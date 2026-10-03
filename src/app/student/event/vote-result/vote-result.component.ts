@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { map } from 'rxjs';
 import { EventsService } from '../events.service';
 
 @Component({
+  standalone: false,
   selector: 'app-vote-result',
   templateUrl: './vote-result.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./vote-result.component.css']
 })
 export class VoteResultComponent implements OnInit {
@@ -17,7 +19,6 @@ export class VoteResultComponent implements OnInit {
     this.service.displayEvent().pipe(map((data:any)=>data.filter((myData:any)=>myData.user_id == localStorage.getItem('id'))))
     .subscribe(
       res=>{
-        console.log(res)
         this.list = res;
       }
     )

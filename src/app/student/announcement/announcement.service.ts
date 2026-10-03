@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -5,7 +6,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AnnouncementService {
-  url = "http://localhost/fyp-project/announcement/";
+  url = `${environment.apiUrl}/announcement/`;
   constructor(private http : HttpClient) { }
   private announcementID = "";
   createNewAnnouncement(data:any){
@@ -29,16 +30,16 @@ export class AnnouncementService {
     return this.announcementID
   }
   infoStudentAnnounce(){
-    return this.http.get("http://localhost/fyp-project/announcement/get-info-student.php")
+    return this.http.get(`${environment.apiUrl}/announcement/get-info-student.php`)
   }
   emailAnnouncement(data:any){
-    return this.http.post("http://localhost/fyp-project/announcement/email-announcement.php",data,{responseType : 'text'})
+    return this.http.post(`${environment.apiUrl}/announcement/email-announcement.php`,data,{responseType : 'text'})
   }
   editAnnouncement(data:any){
     return this.http.post(this.url+'edit-announcement.php',data,{responseType : 'text'})
   }
   deleteAnnounce(data:any){
-    return this.http.post("http://localhost/fyp-project/announcement/delete-announcement.php",data,{responseType :'text'})
+    return this.http.post(`${environment.apiUrl}/announcement/delete-announcement.php`,data,{responseType :'text'})
   }
   saveAnnouncementImage(data:any){
     return this.http.post(this.url+'save-image.php',data,{responseType : 'text'})

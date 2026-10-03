@@ -1,3 +1,4 @@
+import { TEST_IMPORTS, TEST_PROVIDERS, TEST_SCHEMAS } from 'src/testing/test-setup';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateAnnouncementComponent } from './create-announcement.component';
@@ -8,7 +9,10 @@ describe('CreateAnnouncementComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CreateAnnouncementComponent ]
+      declarations: [ CreateAnnouncementComponent ],
+      imports: TEST_IMPORTS,
+      providers: TEST_PROVIDERS,
+      schemas: TEST_SCHEMAS
     })
     .compileComponents();
   });

@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { ImageService } from '../../image.service';
 
 
 @Component({
+  standalone: false,
   selector: 'app-top-nav',
   templateUrl: './top-nav.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./top-nav.component.css']
 })
 export class TopNavComponent implements OnInit {
@@ -16,7 +18,6 @@ export class TopNavComponent implements OnInit {
      if(this.activatedroute.firstChild){
       this.activatedroute.firstChild.data.subscribe(
         data=>{
-          console.log(data)
           this.title = data;
         }
       )
@@ -29,8 +30,8 @@ export class TopNavComponent implements OnInit {
   name:any;
   test = localStorage.getItem('name');
   title? : any;
-  data = new FormGroup({
-    'id' : new FormControl(localStorage.getItem('id'))
+  data = new UntypedFormGroup({
+    'id' : new UntypedFormControl(localStorage.getItem('id'))
   })
   check = false;
   ngOnInit(): void {
@@ -54,9 +55,7 @@ export class TopNavComponent implements OnInit {
 
     this.activatedroute.data.subscribe(
       info=>{
-        console.log('oi');
         //this.title = info;
-        console.log(info)
       }
     )
 

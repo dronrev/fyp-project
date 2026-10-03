@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { ReportsService } from 'src/app/student/report/reports.service';
 
 @Component({
+  standalone: false,
   selector: 'app-list-of-report-admin',
   templateUrl: './list-of-report-admin.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./list-of-report-admin.component.css']
 })
 export class ListOfReportAdminComponent implements OnInit {
@@ -17,7 +19,6 @@ export class ListOfReportAdminComponent implements OnInit {
   ngOnInit(): void {
     this.service.displayAll().subscribe(
       res=>{
-        console.log(res);
         this.list = res;
       }
     );

@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpParams } from '@angular/common/http';
 import { User } from './user.model';
@@ -9,8 +10,8 @@ import { map } from 'rxjs';
 export class UsersService {
 
   constructor( private http : HttpClient) { }
-  baseUrl = "http://localhost/fyp-project/";
-  url = "http://localhost/fyp-project/send-data.php";
+  baseUrl = `${environment.apiUrl}/`;
+  url = `${environment.apiUrl}/send-data.php`;
   regStu: any;
 
   fetchStudent(){

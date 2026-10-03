@@ -13,13 +13,15 @@
           <th>Event Start</th>
         </thead>
         <tbody>
-          <tr *ngFor="let item of list">
-            <td></td>
-            <td>{{item.username}}</td>
-            <td>{{item.name_activity}}</td>
-            <td>{{item.location}}</td>
-            <td>{{item.date | date}}</td>
-          </tr>
+          @for (item of list; track item) {
+            <tr>
+              <td></td>
+              <td>{{item.username}}</td>
+              <td>{{item.name_activity}}</td>
+              <td>{{item.location}}</td>
+              <td>{{item.date | date}}</td>
+            </tr>
+          }
         </tbody>
       </table>
     </div>

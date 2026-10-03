@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { VoteService } from './vote.service';
 
 @Component({
+  standalone: false,
   selector: 'app-admin-vote-activity',
   templateUrl: './admin-vote-activity.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./admin-vote-activity.component.css']
 })
 export class AdminVoteActivityComponent implements OnInit {
@@ -16,7 +18,6 @@ export class AdminVoteActivityComponent implements OnInit {
   ngOnInit(): void {
     this.service.getAllVote().subscribe(
       res=>{
-        console.log(res)
         this.list = res;
       }
     )
@@ -31,7 +32,6 @@ export class AdminVoteActivityComponent implements OnInit {
     localStorage.setItem('_vote_id_',data);
   }
   deleteVote(data:any){
-    console.log(data)
     this.service.deleteThisVote(data).subscribe(
       res=>{
         this.notify(JSON.parse(res).message)

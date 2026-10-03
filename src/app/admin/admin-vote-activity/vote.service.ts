@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -7,7 +8,7 @@ import { Injectable } from '@angular/core';
 export class VoteService {
 
   constructor(private http : HttpClient) { }
-  baseUrl = "http://localhost/fyp-project/voting/";
+  baseUrl = `${environment.apiUrl}/voting/`;
 
   createVote(data:any){
     return this.http.post(this.baseUrl+'create-new-voting-event.php',data,{ responseType : 'text'})

@@ -1,5 +1,5 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, ViewChild, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
@@ -8,13 +8,15 @@ import { UsersService } from 'src/app/admin/users.service';
 import { EventsService } from 'src/app/student/event/events.service';
 
 @Component({
+  standalone: false,
   selector: 'app-choose-member',
   templateUrl: './choose-member.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./choose-member.component.css']
 })
 export class ChooseMemberComponent implements OnInit {
 
-  constructor(private studentservice : UsersService,private service : EventsService,private fb : FormBuilder,
+  constructor(private studentservice : UsersService,private service : EventsService,private fb : UntypedFormBuilder,
     private alertcontrol : AlertController,private router : Router) { }
 
   data_sent = this.fb.group({
@@ -33,7 +35,6 @@ export class ChooseMemberComponent implements OnInit {
       (myData:any)=>myData.activity_id == localStorage.getItem('_deidofact_current')))).subscribe(
       res=>{
         this.list = res;
-        console.log(res);
         //console.log(this.list[0].cawangan)
       }
     );
@@ -45,7 +46,6 @@ export class ChooseMemberComponent implements OnInit {
       (myData:any)=>myData.cawangan == this.list[0].cawangan && myData.user_id != this.list[0].pengarah
     ))).subscribe(
       res=>{
-        console.log(res);
         this.list_student = res;
       }
     );
@@ -83,17 +83,14 @@ export class ChooseMemberComponent implements OnInit {
       for (let index = 0; index < this.data_sent.value['vote'].length; index++) {
         this.service.sendvote(this.data_sent.value['vote'][index]).subscribe(
           (res:any)=>{
-            console.log(res)
 
           }
         )
       }
 
       let pass = {activity_id : localStorage.getItem('_deidofact_current'), matric_id : localStorage.getItem('id')};
-      console.log(pass)
       this.service.AlreadyVote(pass).subscribe(
         (res:any)=>{
-          console.log(res)
           this.passVote()
         }
       )
@@ -106,7 +103,6 @@ export class ChooseMemberComponent implements OnInit {
     //console.log(this.data_sent.value['activity_id'])
     this.service.voteCount(this.data_sent.value['activity_id']).subscribe(
       res=>{
-        console.log(res)
       }
     )
   }

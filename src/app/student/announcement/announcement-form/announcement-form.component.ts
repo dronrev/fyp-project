@@ -1,37 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { AnnouncementService } from '../announcement.service';
 
 @Component({
+  standalone: false,
   selector: 'app-announcement-form',
   templateUrl: './announcement-form.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./announcement-form.component.css']
 })
 export class AnnouncementFormComponent implements OnInit {
 
-  uploadForm: FormGroup;
+  uploadForm: UntypedFormGroup;
 
-  constructor(public fb: FormBuilder,private service : AnnouncementService,private alertcontrol : AlertController) {
+  constructor(public fb: UntypedFormBuilder,private service : AnnouncementService,private alertcontrol : AlertController) {
     this.uploadForm = this.fb.group({
       id : ['']
     })
   }
 
-  data = new FormGroup({
-    'id' : new FormControl(localStorage.getItem('id')),
-    'auth' : new FormControl(localStorage.getItem('auth')),
-    'title' : new FormControl(""),
-    'subject' : new FormControl(""),
-    'message' : new FormControl(""),
-    'date_created' : new FormControl(new Date().toISOString().split('T')[0])
+  data = new UntypedFormGroup({
+    'id' : new UntypedFormControl(localStorage.getItem('id')),
+    'auth' : new UntypedFormControl(localStorage.getItem('auth')),
+    'title' : new UntypedFormControl(""),
+    'subject' : new UntypedFormControl(""),
+    'message' : new UntypedFormControl(""),
+    'date_created' : new UntypedFormControl(new Date().toISOString().split('T')[0])
   })
   test = new Date();
 
   ngOnInit(): void {
     var nextDate = new Date()
     nextDate.setDate(nextDate.getDate()+90)
-    console.log(nextDate.toISOString().split('T')[0])
     }
 
   async sendData(){
@@ -44,7 +45,6 @@ export class AnnouncementFormComponent implements OnInit {
           handler: () =>{
             this.service.createNewAnnouncement(this.data.value).subscribe(
               (res:any)=>{
-                 console.log(res);
                  this.uploadForm.patchValue({
                   id : JSON.parse(res).id
                 });
@@ -79,10 +79,8 @@ export class AnnouncementFormComponent implements OnInit {
     const formData = new FormData();
     formData.append('file',this.file_data)
     formData.append('myid',this.uploadForm.value['id']);
-    console.log(this.file_data)
     this.service.saveAnnouncementImage(formData).subscribe(
       res=>{
-        console.log(res)
       }
     )
   }

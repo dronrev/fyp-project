@@ -1,12 +1,14 @@
-import { Component, OnInit,ElementRef } from '@angular/core';
-import { Chart,registerables } from 'node_modules/chart.js';
+import { Component, OnInit, ElementRef, ChangeDetectionStrategy } from '@angular/core';
+import { Chart,registerables } from 'chart.js';
 import { map } from 'rxjs/operators';
 import { ReportsService } from 'src/app/student/report/reports.service';
 Chart.register(...registerables);
 
 @Component({
+  standalone: false,
   selector: 'app-lect-dash-financial',
   templateUrl: './lect-dash-financial.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./lect-dash-financial.component.css']
 })
 export class LectDashFinancialComponent implements OnInit {
@@ -50,14 +52,12 @@ export class LectDashFinancialComponent implements OnInit {
   //getYear
   getYear(event:any){
 
-    console.log(event.value)
     this.currentYear = event.value;
     this.service.getFinancial().pipe(map((data:any)=>data.filter((myItem:any)=>new Date(myItem.date).getFullYear() == this.currentYear)))
     .subscribe(
       res=>{
         let prev = this.currentYear;
         //count every month cash flow out
-        console.log(res)
         this.listOfCashOutMonth = res;
         //console.log(this.listOfCashOutMonth)
         for(let i = 1 ; i <=12 ; i++){

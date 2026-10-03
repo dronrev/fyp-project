@@ -1,12 +1,15 @@
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { UsersService } from '../users.service';
 
 @Component({
+  standalone: false,
   selector: 'app-lecturer-form',
   templateUrl: './lecturer-form.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./lecturer-form.component.css']
 })
 export class LecturerFormComponent implements OnInit {
@@ -16,11 +19,11 @@ export class LecturerFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  myForm = new FormGroup({
-    'name' : new FormControl(),
-    'passwd' : new FormControl(),
-    'email' : new FormControl("",Validators.email),
-    'role' : new FormControl()
+  myForm = new UntypedFormGroup({
+    'name' : new UntypedFormControl(),
+    'passwd' : new UntypedFormControl(),
+    'email' : new UntypedFormControl("",Validators.email),
+    'role' : new UntypedFormControl()
   })
 
   message :any;
@@ -30,10 +33,8 @@ export class LecturerFormComponent implements OnInit {
       alert("WOI ISI SEMUA FORM");
       return}
 
-    console.log(this.myForm);
-    this.http.post("http://localhost/fyp-project/lecturer/sendData.php",this.myForm.value,{responseType: 'text'}).subscribe(
+    this.http.post(`${environment.apiUrl}/lecturer/sendData.php`,this.myForm.value,{responseType: 'text'}).subscribe(
       res=>{
-        console.log(res);
         this.message = res;
         this.notify(this.message);
       }

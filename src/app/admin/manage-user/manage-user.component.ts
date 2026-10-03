@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { map } from 'rxjs/operators';
 import { UsersService } from '../users.service';
 
 
 @Component({
+  standalone: false,
   selector: 'app-manage-user',
   templateUrl: './manage-user.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./manage-user.component.css']
 })
 export class ManageUserComponent implements OnInit {
@@ -16,14 +18,13 @@ export class ManageUserComponent implements OnInit {
 
   students:any;
   td  !: number;
-  input = new FormGroup({
-    'user_id': new FormControl(null)
+  input = new UntypedFormGroup({
+    'user_id': new UntypedFormControl(null)
   })
 
   ngOnInit(): void {
     this.service.fetchStudent().subscribe(
       res=>{
-        console.log(res);
         this.students = res;
       }
     );
@@ -41,7 +42,6 @@ export class ManageUserComponent implements OnInit {
             this.input.value['user_id'] = data;
             this.service.deleteService(this.input.value).subscribe(
               res=>{
-                console.log(res);
                 //window.alert()
                 location.reload();
               }

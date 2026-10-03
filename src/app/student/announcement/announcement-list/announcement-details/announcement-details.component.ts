@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Announcement } from '../../announcement.model';
 import { AnnouncementService } from '../../announcement.service';
 
 @Component({
+  standalone: false,
   selector: 'app-announcement-details',
   templateUrl: './announcement-details.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./announcement-details.component.css']
 })
 export class AnnouncementDetailsComponent implements OnInit {
@@ -18,7 +20,6 @@ export class AnnouncementDetailsComponent implements OnInit {
       (myData:any)=>myData.announcement_id == localStorage.getItem('AnnouncementID'))))
     .subscribe(
       res=>{
-        console.log(res)
         this.myitem = res;
         if(this.myitem.length == 0){
           this.service.getAllAdminAnnouncement().pipe(map((data:any)=>data.filter(
@@ -26,7 +27,6 @@ export class AnnouncementDetailsComponent implements OnInit {
             (res:any)=>{
               //this.myitem = JSON.parse(res);
               this.myitem = res;
-              console.log(res)
             }
           )
         }

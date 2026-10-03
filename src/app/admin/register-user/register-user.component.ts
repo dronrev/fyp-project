@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-register-user',
   templateUrl: './register-user.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./register-user.component.css']
 })
 export class RegisterUserComponent implements OnInit {

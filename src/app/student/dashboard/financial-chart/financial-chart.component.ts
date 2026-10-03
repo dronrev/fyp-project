@@ -1,11 +1,13 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Chart,registerables } from 'node_modules/chart.js';
+import { Component, ElementRef, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { Chart,registerables } from 'chart.js';
 import { ReportsService } from '../../report/reports.service';
 Chart.register(...registerables);
 @Component({
+  standalone: false,
   selector: 'app-financial-chart',
   templateUrl: './financial-chart.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./financial-chart.component.css']
 })
 export class FinancialChartComponent implements OnInit {
@@ -16,15 +18,15 @@ export class FinancialChartComponent implements OnInit {
 
   budgData : any;
 
-  graphInput = new FormGroup({
-    'inputA' : new FormControl(130),
-    'inputB' : new FormControl(30)
+  graphInput = new UntypedFormGroup({
+    'inputA' : new UntypedFormControl(130),
+    'inputB' : new UntypedFormControl(30)
   });
 
-  myData = new FormGroup(
+  myData = new UntypedFormGroup(
     {
-      'report_id' : new FormControl(""),
-      'test' : new FormControl("")
+      'report_id' : new UntypedFormControl(""),
+      'test' : new UntypedFormControl("")
     }
   )
 
@@ -44,7 +46,6 @@ export class FinancialChartComponent implements OnInit {
         }
         //console.log(this.feb)
         this.febInput = this.feb
-        console.log(this.febInput)
         //return this.feb
       }
     )
@@ -55,7 +56,6 @@ export class FinancialChartComponent implements OnInit {
   sum(){
     //this.janInput = this.inputA + this.inputB
     this.janInput = this.graphInput.value['inputA'] + this.graphInput.value['inputB']
-    console.log(this.janInput)
   }
 
   ngOnInit(): void {

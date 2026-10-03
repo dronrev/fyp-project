@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { EditreportService } from 'src/app/student/report/editreport/editreport.service';
 
 @Component({
+  standalone: false,
   selector: 'app-part-list-lecturer',
   templateUrl: './part-list-lecturer.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./part-list-lecturer.component.css']
 })
 export class PartListLecturerComponent implements OnInit {
-  data = new FormGroup(
+  data = new UntypedFormGroup(
     {
-      'report_id' : new FormControl(localStorage.getItem('reportID'))
+      'report_id' : new UntypedFormControl(localStorage.getItem('reportID'))
     }
   )
   constructor(private service:EditreportService) { }
@@ -18,8 +20,6 @@ export class PartListLecturerComponent implements OnInit {
   ngOnInit(): void {
     this.service.getParticipants(this.data.value).
     subscribe(res=>{
-      console.log(res);
-      console.log(this.data.value['report_id'])
       this.list = JSON.parse(res);
 
     })

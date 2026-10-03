@@ -15,9 +15,9 @@
   </form>
   <input class="" type="file" (change)="importCSV($event)"
     accept=".xls,.xlsx,.csv">
-    <label for="" class="">To import participants, make sure the row of the excel file named following
-      ["Fullname"],["Matric Number"],["Email"]
-    </label>
+  <label for="" class="">To import participants, make sure the row of the excel file named following
+    ["Fullname"],["Matric Number"],["Email"]
+  </label>
 
 </div>
 <div>
@@ -31,14 +31,16 @@
         <ion-col><ion-item>Matric Number</ion-item></ion-col>
         <ion-col><ion-item>Edit/Delete</ion-item></ion-col>
       </ion-row>
-      <ion-row  *ngFor="let student of list;let key = index;let import of importParticipants">
-        <ion-col><ion-input [value]="" [readonly]="true">{{ key+1 }}</ion-input></ion-col>
-        <ion-col><ion-input [value]="student.name | uppercase" [readonly]="true"></ion-input></ion-col>
-        <ion-col><ion-input [value]="student.matric_no" [readonly]="true"></ion-input></ion-col>
-        <ion-col>
-          <button class="buang-peserta" (click) = "deleting(student.matric_no)">Delete</button>
-        </ion-col>
-      </ion-row>
+      @for (student of list; track student; let key = $index) {
+        <ion-row >
+          <ion-col><ion-input [value]="" [readonly]="true">{{ key+1 }}</ion-input></ion-col>
+          <ion-col><ion-input [value]="student.name | uppercase" [readonly]="true"></ion-input></ion-col>
+          <ion-col><ion-input [value]="student.matric_no" [readonly]="true"></ion-input></ion-col>
+          <ion-col>
+            <button class="buang-peserta" (click) = "deleting(student.matric_no)">Delete</button>
+          </ion-col>
+        </ion-row>
+      }
     </ion-grid>
   </div>
 </div>

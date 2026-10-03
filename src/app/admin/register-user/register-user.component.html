@@ -11,16 +11,20 @@
         <ion-label>Lecturer</ion-label>
       </ion-segment-button>
     </ion-segment>
-    <div *ngIf="student;hidden">
-      <app-student-form></app-student-form>
-    </div>
-    <div *ngIf="lecturer;hidden">
-      <app-lecturer-form></app-lecturer-form>
-    </div>
+    @if (student) {
+      <div>
+        <app-student-form></app-student-form>
+      </div>
+    }
+    @if (lecturer) {
+      <div>
+        <app-lecturer-form></app-lecturer-form>
+      </div>
+    }
   </div>
 </div>
 <!--div *ngIf="student;hidden">
-  <app-student-form></app-student-form>
+<app-student-form></app-student-form>
 </!--div>
 <div-- *ngIf="lecturer;hidden">
   <app-lecturer-form></app-lecturer-form>

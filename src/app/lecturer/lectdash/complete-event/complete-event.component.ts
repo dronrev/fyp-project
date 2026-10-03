@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EventsService } from 'src/app/student/event/events.service';
 
 @Component({
+  standalone: false,
   selector: 'app-complete-event',
   templateUrl: './complete-event.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./complete-event.component.css']
 })
 export class CompleteEventComponent implements OnInit {
@@ -17,7 +19,6 @@ export class CompleteEventComponent implements OnInit {
     }
     this.service.completeEvent().subscribe(
       res=>{
-        console.log(res)
         this.list = res;
       }
     )

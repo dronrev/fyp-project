@@ -14,33 +14,35 @@
       <div class="">
         <label for="" class="form-label">E-mail Address</label>
         <input type="text"
-         class="form-control"
-           name="email"
-           email
-           formControlName="email"
-           >
+          class="form-control"
+          name="email"
+          email
+          formControlName="email"
+          >
         <!--<span class="help-block" style="color: red;">Enter valid email.</span>-->
       </div>
       <div class="">
         <label for="" class="form-label">Password</label>
         <input type="password"
-        class="form-control"
-        name="password"
-        formControlName="passwd"
-        >
+          class="form-control"
+          name="password"
+          formControlName="passwd"
+          >
       </div>
       <div class="">
         <label for="" class="form-label">Confirm Password</label>
         <input type="password"
-        class="form-control"
-        name="password"
-        formControlName="confirmpass"
-        >
+          class="form-control"
+          name="password"
+          formControlName="confirmpass"
+          >
       </div>
       <div class="">
         <label for="" class="form-label">Course Code</label>
         <select name="course_code" id="" class="form-select" formControlName="course_code">
-          <option  *ngFor="let item of programmes_list;let key = index" [value]="item">{{item}}</option>
+          @for (item of programmes_list; track item; let key = $index) {
+            <option  [value]="item">{{item}}</option>
+          }
         </select>
       </div>
       <div class="submit-button">

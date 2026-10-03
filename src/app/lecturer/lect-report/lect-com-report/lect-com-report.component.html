@@ -1,16 +1,17 @@
-<ion-card *ngFor="let report of reports; let key = index;let allReportss of allReport">
-  <ion-item>
-    <ion-label><h1><a href="" class="nav-link">{{ report.title || allReportss.name_activity }}</a></h1></ion-label>
-    <ion-button fill="outline" slot="end" routerLink="/lectEditReport" (click)="getReport(key)" color="dark">Review Report</ion-button>
-  </ion-item>
-
-  <ion-card-content>
-    <div>
-      Location : {{ report.location || allReportss.location}}
-    </div>
-    <div>
-      Report Status : {{ report.status || allReportss.status }}
-    </div>
-  </ion-card-content>
-</ion-card>
+@for (report of reports || allReport; track report; let key = $index) {
+  <ion-card>
+    <ion-item>
+      <ion-label><h1><a href="" class="nav-link">{{ report.title || report.name_activity }}</a></h1></ion-label>
+      <ion-button fill="outline" slot="end" routerLink="/lectEditReport" (click)="getReport(key)" color="dark">Review Report</ion-button>
+    </ion-item>
+    <ion-card-content>
+      <div>
+        Location : {{ report.location || report.location}}
+      </div>
+      <div>
+        Report Status : {{ report.status || report.status }}
+      </div>
+    </ion-card-content>
+  </ion-card>
+}
 

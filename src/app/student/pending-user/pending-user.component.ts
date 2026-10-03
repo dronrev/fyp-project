@@ -1,11 +1,14 @@
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 
 @Component({
+  standalone: false,
   selector: 'app-pending-user',
   templateUrl: './pending-user.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./pending-user.component.css']
 })
 export class PendingUserComponent implements OnInit {
@@ -16,7 +19,7 @@ export class PendingUserComponent implements OnInit {
   student_data : any;
 
   ngOnInit(): void {
-    this.http.get("http://localhost/fyp-project/pending/get-pending.php",{responseType : 'text'}).subscribe(
+    this.http.get(`${environment.apiUrl}/pending/get-pending.php`,{responseType : 'text'}).subscribe(
       res=>{
         //console.log(res)
         this.list = JSON.parse(res)
@@ -27,22 +30,19 @@ export class PendingUserComponent implements OnInit {
 
   approveMember(data : any){
     //console.log(data)
-    let myForm = new FormGroup({
-      'name' : new FormControl(data.username),
-      'passwd' : new FormControl(data.password),
-      'email' : new FormControl(data.email_id),
-      'mat_number' : new FormControl(data.user_id),
-      'course_code' : new FormControl(data.course_id),
-      'role' : new FormControl(data.user_role)
+    let myForm = new UntypedFormGroup({
+      'name' : new UntypedFormControl(data.username),
+      'passwd' : new UntypedFormControl(data.password),
+      'email' : new UntypedFormControl(data.email_id),
+      'mat_number' : new UntypedFormControl(data.user_id),
+      'course_code' : new UntypedFormControl(data.course_id),
+      'role' : new UntypedFormControl(data.user_role)
 
     })
-    console.log(myForm.value)
-    this.http.post("http://localhost/fyp-project/send-data.php",myForm.value,{responseType : 'text'}).subscribe(
+    this.http.post(`${environment.apiUrl}/send-data.php`,myForm.value,{responseType : 'text'}).subscribe(
       res=>{
-        console.log(res)
-        this.http.post("http://localhost/fyp-project/pending/approve-pending.php",myForm.value['mat_number'],{responseType : 'text'}).subscribe(
+        this.http.post(`${environment.apiUrl}/pending/approve-pending.php`,myForm.value['mat_number'],{responseType : 'text'}).subscribe(
           res1=>{
-            console.log(res1);
             this.notify(JSON.parse(res1).message);
           }
         )
@@ -51,9 +51,8 @@ export class PendingUserComponent implements OnInit {
   }
 
   deleteMember(data:any){
-    this.http.post("http://localhost/fyp-project/pending/delete-pending.php",data.user_id,{responseType : 'text'}).subscribe(
+    this.http.post(`${environment.apiUrl}/pending/delete-pending.php`,data.user_id,{responseType : 'text'}).subscribe(
       res=>{
-        console.log(res)
         this.notify(JSON.parse(res).message)
       }
     )

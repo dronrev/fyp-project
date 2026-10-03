@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-lecturer',
   templateUrl: './lecturer.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./lecturer.component.css']
 })
 export class LecturerComponent implements OnInit {
@@ -12,17 +14,17 @@ export class LecturerComponent implements OnInit {
  // token = localStorage.getItem('token')
 
   private tokenExpired(token:any){
+    if(!token){
+      return false;
+    }
     const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
-    console.log(expiry * 1000 > Date.now())
     return expiry * 1000 > Date.now()
   }
 
   ngOnInit(): void {
     if(this.tokenExpired(localStorage.getItem('token'))){
-      console.log("woi");
     }
     else{
-      console.log("Woi");
     }
   }
 

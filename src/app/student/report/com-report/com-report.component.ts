@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { filter, map } from 'rxjs';
@@ -8,8 +8,10 @@ import { Report } from '../report.model';
 import { ReportsService } from '../reports.service';
 
 @Component({
+  standalone: false,
   selector: 'report',
   templateUrl: './com-report.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./com-report.component.css']
 })
 export class ComReportComponent implements OnInit {
@@ -18,16 +20,15 @@ export class ComReportComponent implements OnInit {
   a!:number;
 
   parentMessage = "test";
-  fetchReport = new FormGroup({
-    id : new FormControl(localStorage.getItem('id')),
-    auth : new FormControl(localStorage.getItem('auth'))
+  fetchReport = new UntypedFormGroup({
+    id : new UntypedFormControl(localStorage.getItem('id')),
+    auth : new UntypedFormControl(localStorage.getItem('auth'))
   })
 
   constructor(private reportService : ReportsService,private router:Router, private idService : EditreportService,private alertcontrol : AlertController) { }
 
   ngOnInit(): void {
 
-    console.log(this.fetchReport.value);
     //const data = "";
     if(localStorage.getItem('_elorfostudent_') == 'student'){
       this.reportService.displayReport(this.fetchReport.value)
@@ -66,10 +67,8 @@ export class ComReportComponent implements OnInit {
   getReport(key:any){
     var report_data = JSON.stringify(this.reports[key].report_id);
     if(this.reports[key].report_id == undefined){
-      console.log("notFound");
     }
     else{
-      console.log("Found");
       //console.log(this.reports[key].report_id);
       this.idService.setCurrentReport(this.reports[key].report_id);
       localStorage.setItem("GetreportID",report_data);
@@ -77,7 +76,6 @@ export class ComReportComponent implements OnInit {
     }
   }
   deleteRep(key:any){
-    console.log(key);
     this.reportService.deleteReport(key).subscribe(
       res=>{
         //console.log(res);

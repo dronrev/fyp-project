@@ -1,27 +1,45 @@
-# FypProject
+# PMFKIAMS (fyp-project)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
+PMFKI activity management system: an Angular front end for students, lecturers and admins, backed by a PHP API.
+
+## Requirements
+
+- Node.js 22.22+, 24.15+ or 26+
+- The PHP backend served at `http://localhost/fyp-project` (see "Backend URL" below)
+
+## Stack
+
+- Angular 22 (NgModule-based, esbuild `@angular/build` builder), TypeScript 6
+- Ionic 8 (`@ionic/angular`), Bootstrap 5, Chart.js 4
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```
+npm install
+npm start
+```
 
-## Code scaffolding
+Then open `http://localhost:4200/`. The app reloads when source files change.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Backend URL
+
+The base URL of the PHP API is set once, as `apiUrl`, in:
+
+- `src/environments/environment.ts` (development)
+- `src/environments/environment.prod.ts` (production builds)
+
+Set the production value to the deployed backend before running `npm run build`.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+`npm run build` writes the production build to `dist/fyp-project/browser`.
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+`npm test` runs the unit tests with Karma in Chrome. For a single headless run:
 
-## Running end-to-end tests
+```
+npx ng test --watch=false --browsers=ChromeHeadless
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Shared TestBed setup for the specs lives in `src/testing/test-setup.ts`.

@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ReportsService } from 'src/app/student/report/reports.service';
 
 @Component({
+  standalone: false,
   selector: 'app-activity-summary-dashboard',
   templateUrl: './activity-summary-dashboard.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./activity-summary-dashboard.component.css']
 })
 export class ActivitySummaryDashboardComponent implements OnInit {
@@ -17,7 +19,6 @@ export class ActivitySummaryDashboardComponent implements OnInit {
     }
     this.service.displayAll().subscribe(
       res=>{
-        console.log(res)
         this.list = res;
       }
     )
