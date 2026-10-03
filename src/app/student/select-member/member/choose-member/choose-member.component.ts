@@ -1,8 +1,7 @@
 import { Component, ViewChild, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, IonModal } from '@ionic/angular';
-import { OverlayEventDetail } from '@ionic/core/components';
+import { AlertService } from 'src/app/shared/alert.service';
 import { map } from 'rxjs/operators';
 import { UsersService } from 'src/app/admin/users.service';
 import { EventsService } from 'src/app/student/event/events.service';
@@ -17,7 +16,7 @@ import { EventsService } from 'src/app/student/event/events.service';
 export class ChooseMemberComponent implements OnInit {
 
   constructor(private studentservice : UsersService,private service : EventsService,private fb : UntypedFormBuilder,
-    private alertcontrol : AlertController,private router : Router) { }
+    private alertcontrol : AlertService,private router : Router) { }
 
   data_sent = this.fb.group({
       vote : this.fb.array([]),
@@ -35,15 +34,15 @@ export class ChooseMemberComponent implements OnInit {
       (myData:any)=>myData.activity_id == localStorage.getItem('_deidofact_current')))).subscribe(
       res=>{
         this.list = res;
-        //console.log(this.list[0].cawangan)
+        //console.log(this.list[0].group_id)
       }
     );
 
-    //.list_student.filter((data:any)=>data.cawangan == this.list.cawangan);
+    //.list_student.filter((data:any)=>data.group_id == this.list.group_id);
 
 
-    this.studentservice.fetchStudent().pipe(map((data:any)=>data.filter(
-      (myData:any)=>myData.cawangan == this.list[0].cawangan && myData.user_id != this.list[0].pengarah
+    this.studentservice.fetchMembers().pipe(map((data:any)=>data.filter(
+      (myData:any)=>myData.group_id == this.list[0].group_id && myData.user_id != this.list[0].pengarah
     ))).subscribe(
       res=>{
         this.list_student = res;
@@ -60,8 +59,8 @@ export class ChooseMemberComponent implements OnInit {
   sendData(event:any,data:any){
     this.check = true;
     let info = {name : data.username,user_id : data.user_id, activity_id : localStorage.getItem('_deidofact_current')};
-    //console.log(event.detail.checked);
-    if(event.detail.checked){
+    //console.log(event.checked);
+    if(event.checked){
       this.data_sent.value['vote'].push(info);
     }
     else{

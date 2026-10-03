@@ -34,8 +34,8 @@ export class DetailVoteActivityComponent implements OnInit {
   ngOnInit(): void {
 
     //get total voters
-    this.service1.fetchStudent().pipe(map((data:any)=>data
-    .filter((student:any)=>student.cawangan == localStorage.getItem('_cawangan_'))))
+    this.service1.fetchMembers().pipe(map((data:any)=>data
+    .filter((student:any)=>student.group_id == localStorage.getItem('_vote_group_id_'))))
     .subscribe(
       res=>{
         this.totalVoters = res;

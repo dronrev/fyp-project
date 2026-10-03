@@ -1,12 +1,18 @@
-<div class="container">
-  <h2>Vote Result</h2>
-  <div class="list-event">
-    @for (item of list; track item) {
-      <div class="vote-card">
-        <p>{{ item.name_activity }}</p>
-        <p>{{item.location}}</p>
-        <button class="vote-button" [routerLink]="[item.activity_id,'result']" (click)="setCurrentVoteId(item.activity_id)">Check</button>
-      </div>
-    }
-  </div>
+<div class="page-header">
+  <h1 class="page-title">Vote result</h1>
+</div>
+<div class="card-grid">
+  @for (item of list; track item) {
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>{{ item.name_activity }}</mat-card-title>
+        <mat-card-subtitle>{{ item.location }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions>
+        <button matButton="tonal" [routerLink]="[item.activity_id,'result']" (click)="setCurrentVoteId(item.activity_id)">Check</button>
+      </mat-card-actions>
+    </mat-card>
+  } @empty {
+    <mat-card appearance="outlined"><p class="empty-state">No vote results yet.</p></mat-card>
+  }
 </div>

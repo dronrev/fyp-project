@@ -1,7 +1,8 @@
+import { REPORT_STATUS, ROLE } from 'src/app/shared/app-config';
 import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 import { filter, map } from 'rxjs';
 import { EditreportService } from '../editreport/editreport.service';
 import { Report } from '../report.model';
@@ -22,15 +23,15 @@ export class ComReportComponent implements OnInit {
   parentMessage = "test";
   fetchReport = new UntypedFormGroup({
     id : new UntypedFormControl(localStorage.getItem('id')),
-    auth : new UntypedFormControl(localStorage.getItem('auth'))
+    auth : new UntypedFormControl(localStorage.getItem('portal'))
   })
 
-  constructor(private reportService : ReportsService,private router:Router, private idService : EditreportService,private alertcontrol : AlertController) { }
+  constructor(private reportService : ReportsService,private router:Router, private idService : EditreportService,private alertcontrol : AlertService) { }
 
   ngOnInit(): void {
 
     //const data = "";
-    if(localStorage.getItem('_elorfostudent_') == 'student'){
+    if(localStorage.getItem('role') == ROLE.member){
       this.reportService.displayReport(this.fetchReport.value)
       .subscribe(
         (results:any)=>{
@@ -41,8 +42,8 @@ export class ComReportComponent implements OnInit {
         }
       );
     }
-    if(localStorage.getItem('_elorfostudent_') == 'PMFKIKK' && 'PMFKIKAL'){
-      this.reportService.displayAll().pipe(map((res:any)=>res.filter((res1:any)=>res1.status == 0 || 1))).subscribe(
+    if(localStorage.getItem('role') == ROLE.leader){
+      this.reportService.displayAll().pipe(map((res:any)=>res.filter((res1:any)=>res1.status == REPORT_STATUS.draft || res1.status == REPORT_STATUS.leaderReview))).subscribe(
         (results:any)=>{
           //console.log(results)
           this.reports = results.sort();

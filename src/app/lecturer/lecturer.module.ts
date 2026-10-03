@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LectReportComponent } from './lect-report/lect-report.component';
 import { LecturerComponent } from './lecturer.component';
-import { LectNavbarComponent } from './lect-navbar/lect-navbar.component';
-import { LectTopNavbarComponent } from './lect-navbar/lect-top-navbar/lect-top-navbar.component';
 import { LecturerHomeComponent } from './lecturer-home/lecturer-home.component';
 import { ReportDetailsComponent } from './lect-report/report-details/report-details.component';
 import { RouterModule } from '@angular/router';
@@ -20,7 +18,6 @@ import { LectFinancialKewanganReportComponent } from './lect-report/report-detai
 import { LectEventComponent } from './lect-event/lect-event.component';
 import { LectAnnouncementComponent } from './lect-announcement/lect-announcement.component';
 import { PartListLecturerComponent } from './lect-report/report-details/part-list-lecturer/part-list-lecturer.component';
-import { LectFooterComponent } from './lect-footer/lect-footer.component';
 import { LectDashFinancialComponent } from './lectdash/lect-dash-financial/lect-dash-financial.component';
 import { LectListOfStudentComponent } from './lect-list-of-student/lect-list-of-student.component';
 import { ActivitySummaryDashboardComponent } from './lectdash/activity-summary-dashboard/activity-summary-dashboard.component';
@@ -31,8 +28,6 @@ import { CompleteEventComponent } from './lectdash/complete-event/complete-event
   declarations: [
     LectReportComponent,
     LecturerComponent,
-    LectNavbarComponent,
-    LectTopNavbarComponent,
     LecturerHomeComponent,
     ReportDetailsComponent,
     LectdashComponent,
@@ -43,7 +38,6 @@ import { CompleteEventComponent } from './lectdash/complete-event/complete-event
     LectEventComponent,
     LectAnnouncementComponent,
     PartListLecturerComponent,
-    LectFooterComponent,
     LectDashFinancialComponent,
     LectListOfStudentComponent,
     ActivitySummaryDashboardComponent,
@@ -52,7 +46,7 @@ import { CompleteEventComponent } from './lectdash/complete-event/complete-event
   imports: [
     CommonModule,
     BrowserModule,
-    IonicModule,
+    SharedModule,
     HttpClientModule,
     FormsModule,
     RouterModule,

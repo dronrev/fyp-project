@@ -9,16 +9,16 @@ import { SignupUserComponent } from './signup-user/signup-user.component';
 import { StudentRoutingModule } from './student//student-routing.module';
 
 const routes: Routes = [
-  {path : '', redirectTo: 'stu-dashboard', pathMatch: 'full'},
-  {path : 'stu-dashboard', component : DashboardComponent},
+  {path : '', redirectTo: 'upcoming', pathMatch: 'full'},
+  {path : 'upcoming', component : DashboardComponent},
   {path : 'sign-in',component : SignInComponent},
   {path : 'new-register', component : SignupUserComponent},
   {
-    path : 'student',loadChildren:() =>
+    path : 'member',loadChildren:() =>
     import(`./student/student-routing.module`).then((m) => m.StudentRoutingModule)
   },
   {
-    path : 'lecturer',loadChildren:() =>
+    path : 'reviewer',loadChildren:() =>
     import(`./lecturer/lecturer-routing.module`).then((m)=> m.LecturerRoutingModule)
   },
   {

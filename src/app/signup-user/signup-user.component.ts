@@ -1,8 +1,11 @@
+import { Group, GroupService } from 'src/app/shared/group.service';
+import { inject } from '@angular/core';
+import { APP_NAME, ROLE } from 'src/app/shared/app-config';
 import { environment } from 'src/environments/environment';
 import { Attribute, Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UntypedFormControl, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 
 
 @Component({
@@ -13,14 +16,20 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./signup-user.component.css']
 })
 export class SignupUserComponent implements OnInit {
+  private groupService = inject(GroupService);
+  groups: Group[] = [];
+  appName = APP_NAME;
   @ViewChild('myForm')
   signUpForm!: NgForm;
   registerUser! : UntypedFormGroup;
-  constructor(private http:HttpClient,private alertcontrol : AlertController) { }
-  programmes_list = ["","UH6481001 / HC00","UH6481002 / HC05",
-   "UH6481003 / HC12", "UH6481004 / HC13","HC14"]
+  constructor(private http:HttpClient,private alertcontrol : AlertService) { }
 
   ngOnInit(): void {
+    this.groupService.getGroups().subscribe(
+      groups=>{
+        this.groups = groups;
+      }
+    )
     this.registerUser = new UntypedFormGroup({
       'name' : new UntypedFormControl(null, Validators.required),
       'mat_number' : new UntypedFormControl(null,Validators.required),
@@ -28,7 +37,8 @@ export class SignupUserComponent implements OnInit {
       'passwd' : new UntypedFormControl(null,Validators.required),
       'confirmpass' : new UntypedFormControl(null,Validators.required),
       'course_code' : new UntypedFormControl(null,Validators.required),
-      'role' : new UntypedFormControl("student")
+      'group_id' : new UntypedFormControl(null,Validators.required),
+      'role' : new UntypedFormControl(ROLE.member)
     });
     //console.log(this.registerUser.valid)
   }

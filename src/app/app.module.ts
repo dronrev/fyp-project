@@ -1,16 +1,14 @@
-import { NgModule } from '@angular/core';
+import { NgModule, provideZoneChangeDetection } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoggingService } from './logging.service';
 import { SignupUserComponent } from './signup-user/signup-user.component';
 import { EventsService } from './student/event/events.service';
-import { IonicModule } from '@ionic/angular';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { AdminModule } from './admin/admin/admin.module';
 import { AdminRoutingModule } from './admin/admin/admin-routing.module';
 import { UsersService } from './admin/users.service';
@@ -24,14 +22,12 @@ import { StudentModule } from './student/student.module';
 import { StudentRoutingModule } from './student/student-routing.module';
 import { ManageUserComponent } from './admin/manage-user/manage-user.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        LoginComponent,
         SignupUserComponent,
         ErrorPageComponent,
         SignInComponent,
@@ -39,7 +35,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
         DashboardComponent,
 
     ],
-    providers: [LoggingService, EventsService, UsersService, ReportsService,
+    providers: [provideZoneChangeDetection(), EventsService, UsersService, ReportsService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptorService,
@@ -54,14 +50,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
         HttpClientModule,
         FormsModule,
         CommonModule,
-        IonicModule.forRoot(),
+        SharedModule,
         AdminModule,
         AdminRoutingModule,
         LecturerModule,
         LecturerRoutingModule,
         StudentRoutingModule,
-        StudentModule,
-        NgxPaginationModule
+        StudentModule
     ]
 })
 export class AppModule { }

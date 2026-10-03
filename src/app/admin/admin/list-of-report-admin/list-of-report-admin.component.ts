@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 import { ReportsService } from 'src/app/student/report/reports.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class ListOfReportAdminComponent implements OnInit {
 
   TabHeaders = ["#","Title","Activity ID",""];
 
-  constructor(private service : ReportsService,private alertcontrol : AlertController) { }
+  constructor(private service : ReportsService,private alertcontrol : AlertService) { }
 
   ngOnInit(): void {
     this.service.displayAll().subscribe(

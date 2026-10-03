@@ -1,19 +1,25 @@
-<div class="container">
-  <div class="head-title">
-    <h2>Certificate Template</h2>
-  </div>
-  <div class="cert-template">
-    @for (item of imageURL; track item) {
-      <div class="cert-item">
-        <img [src]="['../assets/images/announcement/'+item]" alt="" height="200" width="200">
-        <div class="cert-delete-button">
-          <button class="btn btn-danger">-</button>
-        </div>
-      </div>
-    }
-    <div class="add-cert">
-      <input type="file" class="form-control" (change)="showImage($event)" accept="image/*">
-      <button class="btn btn-success mt-3">Add Image</button>
-    </div>
+<div class="page-header">
+  <h1 class="page-title">Certificate template</h1>
+  <div class="actions">
+    <input #templateInput class="file-input" type="file" (change)="showImage($event)" accept="image/*">
+    <button matButton="outlined" type="button" (click)="templateInput.click()">
+      <mat-icon>image</mat-icon>
+      Choose image
+    </button>
+    <button matButton="filled" type="button">Add image</button>
   </div>
 </div>
+<mat-card class="surface-card" appearance="outlined">
+  @if (imageURL?.length) {
+    <div class="image-grid">
+      @for (item of imageURL; track item) {
+        <div class="cert-item">
+          <img [src]="'assets/images/announcement/'+item" alt="Certificate template">
+          <button matButton class="danger" type="button">Remove</button>
+        </div>
+      }
+    </div>
+  } @else {
+    <p class="empty-state">No certificate templates yet.</p>
+  }
+</mat-card>

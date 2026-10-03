@@ -11,7 +11,7 @@ export class AdminGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(this.service.isLoggedAdmin()){
+      if(this.service.isAdmin()){
         return true;
       }
       else{

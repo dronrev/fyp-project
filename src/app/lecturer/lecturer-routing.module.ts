@@ -14,14 +14,13 @@ import { LecturerComponent } from './lecturer.component';
 const routes: Routes = [
   //{path : '', redirectTo: 'home-admin', pathMatch: 'full'},
   { path : '', component : LecturerComponent,children:[
-    { path : 'HomeLecturer', component : LecturerHomeComponent},
-    { path : 'ReportLecturer', component : LectReportComponent},
-    { path : 'Detail-Report', component : ReportDetailsComponent},
-    { path : 'LectDashboard', component : LectdashComponent},
-    { path : 'lectEditReport', component : ReportDetailsComponent},
-    { path : 'lect-event',component : LectEventComponent},
-    { path : 'lect-announcement',component : LectAnnouncementComponent},
-    { path : 'list-of-student',component : LectListOfStudentComponent}
+    { path : 'reviewer-home', component : LecturerHomeComponent},
+    { path : 'reviewer-reports', component : LectReportComponent},
+    { path : 'reviewer-dashboard', component : LectdashComponent},
+    { path : 'reviewer-reports/review', component : ReportDetailsComponent},
+    { path : 'reviewer-events',component : LectEventComponent},
+    { path : 'reviewer-announcements',component : LectAnnouncementComponent},
+    { path : 'members',component : LectListOfStudentComponent}
     ],canActivate:[RoleGuard]
   },
 

@@ -5,5 +5,5 @@
 export const environment = {
   production: false,
   // Base URL of the backend API, without a trailing slash.
-  apiUrl: 'http://localhost:4200'
+  apiUrl: 'http://localhost:8080'
 };

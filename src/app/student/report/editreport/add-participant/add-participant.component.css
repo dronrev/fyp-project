@@ -1,10 +1,7 @@
-.buang-peserta{
-  background-color: red;
-  box-shadow: 2px 2px 2px 2px black;
-  padding: 10px 10px 10px 10px;
-  border-radius: 25px 25px;
-  color: white;
+.participants-header {
+  margin: 24px 0 12px;
 }
-.buang-peserta:hover{
-  background-color: rgb(255, 118, 118);
+
+.participants-header .section-title {
+  margin: 0;
 }

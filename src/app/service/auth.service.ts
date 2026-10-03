@@ -1,3 +1,4 @@
+import { PORTAL } from 'src/app/shared/app-config';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -9,9 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
 
-  url = `${environment.apiUrl}/app/login`;
-  cekRole = `${environment.apiUrl}/app/isTDA`;
-  adminUrl = `${environment.apiUrl}/admin-login`;
+  loginUrl = `${environment.apiUrl}/auth/login`;
   constructor(private http:HttpClient,private router:Router) { }
 
   public userName: any = [];
@@ -22,28 +21,25 @@ export class AuthService {
     this.name.next(message);
   }
 
-  proceedLogin(usercred:any){
-    return this.http.post(this.url,usercred,{responseType: 'text'})
+  // Returns { token, id, name, email_address, role, group_id } as JSON text.
+  login(credentials:any){
+    return this.http.post(this.loginUrl,credentials,{responseType: 'text'})
   }
 
-  adminLogin(data:any){
-    return this.http.post(this.adminUrl,data,{responseType : 'text'})
+  private isSignedInTo(portal:string){
+    return localStorage.getItem('token')!=null && localStorage.getItem('portal')==portal;
   }
 
-  isLoggedStudent(){
-    return localStorage.getItem('token')!=null && localStorage.getItem('auth')=='1';
+  isMember(){
+    return this.isSignedInTo(PORTAL.member);
   }
 
-  isLoggedLecturer(){
-    return localStorage.getItem('token')!=null&& localStorage.getItem('auth')=='2';
+  isReviewer(){
+    return this.isSignedInTo(PORTAL.reviewer);
   }
 
-  isLoggedAdmin(){
-    return localStorage.getItem('token')!=null && localStorage.getItem('auth')=='3';
-  }
-
-  isTDA(data:any){
-    return this.http.post(this.cekRole,data,{responseType : 'text'})
+  isAdmin(){
+    return this.isSignedInTo(PORTAL.admin);
   }
 
   getToken(){

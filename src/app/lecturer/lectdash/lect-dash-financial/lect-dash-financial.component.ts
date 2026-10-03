@@ -1,3 +1,4 @@
+import { ROLE } from 'src/app/shared/app-config';
 import { Component, OnInit, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 import { Chart,registerables } from 'chart.js';
 import { map } from 'rxjs/operators';
@@ -29,7 +30,7 @@ export class LectDashFinancialComponent implements OnInit {
   theChart : any;
   check : boolean = false
   ngOnInit(): void {
-    if(localStorage.getItem('_sepesial_elor_rof_') != "TDA"){
+    if(localStorage.getItem('role') != ROLE.approver){
       this.check = true;
     }
     this.service.getFinancial().subscribe(

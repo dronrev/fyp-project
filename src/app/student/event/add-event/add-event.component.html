@@ -1,35 +1,43 @@
-<h2 style="text-align: center;">Add Event</h2>
-<div class="container">
-  <form [formGroup]="eventForm" (ngSubmit)="sendEvent()">
-    <div>
-      <label for="" class="form-label">Name</label>
-      <input type="text" class="form-control" formControlName="name_activity">
-    </div>
-    <div>
-      <label for="" class="form-label">Location</label>
-      <input type="text" class="form-control" formControlName="location">
-    </div>
-    <div>
-      <label for="" class="form-label">Tema</label>
-      <input type="text" class="form-control" formControlName="tema">
-    </div>
-    <div>
-      <label for="" class="form-label">Organizer</label>
-      <input type="text" class="form-control"  formControlName="organizer">
-    </div>
-    <div>
-      <label for="" class="form-label">Date</label>
-      <input type="datetime-local" class="form-control"  formControlName="date">
-    </div>
-    <div class="select-option" style="background-color: white; margin: 10px;">
-      <ion-select placeholder="Select Lecturer"  formControlName="value">
-        @for (item of lecturer; track item; let key = $index) {
-          <ion-select-option [value]="item.lecturer_id">{{ item.name }}</ion-select-option>
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a routerLink="/event">Event</a>
+  <mat-icon>chevron_right</mat-icon>
+  <span>Add Event</span>
+</nav>
+<div class="page-header">
+  <h1 class="page-title">Add event</h1>
+</div>
+<mat-card class="surface-card narrow" appearance="outlined">
+  <form class="form-stack" [formGroup]="eventForm" (ngSubmit)="sendEvent()">
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" formControlName="name_activity">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Location</mat-label>
+      <input matInput type="text" formControlName="location">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Tema</mat-label>
+      <input matInput type="text" formControlName="tema">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Organizer</mat-label>
+      <input matInput type="text" formControlName="organizer">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Date</mat-label>
+      <input matInput type="datetime-local" formControlName="date">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Reviewer</mat-label>
+      <mat-select formControlName="value">
+        @for (item of lecturer; track item) {
+          <mat-option [value]="item.reviewer_id">{{ item.name }}</mat-option>
         }
-      </ion-select>
-    </div>
-    <div class="pt-2">
-      <button class="btn btn-success" type="submit">Add</button>
+      </mat-select>
+    </mat-form-field>
+    <div class="form-actions">
+      <button matButton="filled" type="submit">Add</button>
     </div>
   </form>
-</div>
+</mat-card>

@@ -1,58 +1,50 @@
-<a href="" routerLink="../sign-in">Back</a>
-<div class="container">
-  <div class="user-form">
-    <h1 style="text-align: center;">Sign Up New User</h1>
-    <form [formGroup]="registerUser">
-      <div>
-        <label for="" class="form-label">Fullname</label>
-        <input type="text" class="form-control" name="fullname" formControlName="name">
-      </div>
-      <div class="">
-        <label for="" class="form-label">Matric Number</label>
-        <input type="text" class="form-control" name="matric-no" formControlName="mat_number">
-      </div>
-      <div class="">
-        <label for="" class="form-label">E-mail Address</label>
-        <input type="text"
-          class="form-control"
-          name="email"
-          email
-          formControlName="email"
-          >
-        <!--<span class="help-block" style="color: red;">Enter valid email.</span>-->
-      </div>
-      <div class="">
-        <label for="" class="form-label">Password</label>
-        <input type="password"
-          class="form-control"
-          name="password"
-          formControlName="passwd"
-          >
-      </div>
-      <div class="">
-        <label for="" class="form-label">Confirm Password</label>
-        <input type="password"
-          class="form-control"
-          name="password"
-          formControlName="confirmpass"
-          >
-      </div>
-      <div class="">
-        <label for="" class="form-label">Course Code</label>
-        <select name="course_code" id="" class="form-select" formControlName="course_code">
-          @for (item of programmes_list; track item; let key = $index) {
-            <option  [value]="item">{{item}}</option>
+<div class="auth-page">
+  <mat-card class="auth-card">
+    <div class="auth-brand">
+      <span class="auth-mark"><mat-icon>event_available</mat-icon></span>
+      <h1>Sign up</h1>
+      <p>Register as a new member of {{ appName }}</p>
+    </div>
+    <form class="form-stack" [formGroup]="registerUser">
+      <mat-form-field appearance="outline">
+        <mat-label>Full name</mat-label>
+        <input matInput type="text" name="fullname" formControlName="name" autocomplete="name">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Member ID</mat-label>
+        <input matInput type="text" name="matric-no" formControlName="mat_number">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>E-mail address</mat-label>
+        <input matInput type="email" name="email" email formControlName="email" autocomplete="email">
+        @if (registerUser.get('email')?.hasError('email')) {
+          <mat-error>Enter a valid e-mail address</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" name="password" formControlName="passwd" autocomplete="new-password">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Confirm password</mat-label>
+        <input matInput type="password" name="confirm-password" formControlName="confirmpass" autocomplete="new-password">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Course code</mat-label>
+        <input matInput type="text" formControlName="course_code">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Group</mat-label>
+        <mat-select formControlName="group_id">
+          @for (item of groups; track item.group_id) {
+            <mat-option [value]="item.group_id">{{ item.name }}</mat-option>
           }
-        </select>
-      </div>
-      <div class="submit-button">
-        <button class="btn btn-success" (click)="sendData()">Sign Up</button>
-      </div>
+        </mat-select>
+      </mat-form-field>
+      <button matButton="filled" type="button" (click)="sendData()">Sign up</button>
     </form>
-  </div>
+    <div class="auth-links">
+      <a routerLink="/sign-in">Back to sign in</a>
+    </div>
+  </mat-card>
 </div>
-<footer class="sign-up-footer">
-  Contact us if you have any problem. <br>
-  <div>Phone Number : <a href="">0176073050</a></div>
-  <div>Email :   <a href="">vernordmusran27@gmail.com</a></div>
-</footer>

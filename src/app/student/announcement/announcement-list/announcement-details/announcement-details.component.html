@@ -1,23 +1,15 @@
-<ion-breadcrumbs color="primary">
-  <ion-breadcrumb routerLink="/announcement">Announcement</ion-breadcrumb>
-  <ion-breadcrumb routerLink="/announcement">List Of Announcement</ion-breadcrumb>
-  <ion-breadcrumb>Message</ion-breadcrumb>
-</ion-breadcrumbs>
-<div class="container">
-  <h2>Announcement Center</h2>
-  <button class="btn btn-primary" routerLink="create-new" hidden>Create New Announcement</button>
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a routerLink="/announcement">Announcement</a>
+  <mat-icon>chevron_right</mat-icon>
+  <span>Message</span>
+</nav>
+<div class="stack narrow">
   @for (item of myitem; track item) {
-    <div class="announcement">
-      <div class="announcement-head">
-        <h3 style="color: white;margin: 10px;">Title : {{item.title | uppercase}}</h3>
-        <h4 style="color: white;margin: 10px;">Subject : {{ item.subject }}</h4>
-      </div>
-      <div class="announcement-body">
-        <h5 style="color: white;margin: 10px;">Message : {{ item.message }}</h5>
-      </div>
-      <div class="attachment" hidden>
-        <img [src]="imageURL" alt="" width="800" height="800">
-      </div>
-    </div>
+    <mat-card class="surface-card" appearance="outlined">
+      <h1 class="page-title">{{ item.title | uppercase }}</h1>
+      <p class="page-subtitle">{{ item.subject }}</p>
+      <mat-divider class="announcement-divider"></mat-divider>
+      <p class="announcement-message">{{ item.message }}</p>
+    </mat-card>
   }
 </div>

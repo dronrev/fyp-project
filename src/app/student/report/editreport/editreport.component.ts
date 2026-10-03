@@ -1,6 +1,7 @@
+import { REPORT_STATUS, ROLE } from 'src/app/shared/app-config';
 import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 import { Report } from '../report.model';
 import { ReportsService } from '../reports.service';
 import { EditreportService } from './editreport.service';
@@ -36,7 +37,7 @@ export class EditreportComponent implements OnInit {
   budget_id?:string;
   activity_id?:string;
   user_id?: string;
-  lecturer_id?: string;
+  reviewer_id?: string;
   comment ?: string;
   edit = false;
 
@@ -46,9 +47,9 @@ export class EditreportComponent implements OnInit {
   partRep = false;
   comRep = false;
 
-  toLecturer?: boolean;
+  isLeader?: boolean;
 
-  constructor(private service:ReportsService, private alertController : AlertController,
+  constructor(private service:ReportsService, private alertController : AlertService,
      private idService : EditreportService) { }
   reports!: Report[];
   //id = JSON.parse();
@@ -99,15 +100,7 @@ export class EditreportComponent implements OnInit {
         this.thereport.value['cadangan'] = this.reports[0].cadangan;      }
     );
 
-    if(localStorage.getItem('_elorfostudent_') == "PMFKIKK"){
-      this.toLecturer = true;
-    }
-    else if(localStorage.getItem('_elorfostudent_') == "PMFKIKAL"){
-      this.toLecturer = true;
-    }
-    else{
-      this.toLecturer = false;
-    }
+    this.isLeader = localStorage.getItem('role') == ROLE.leader;
   }
   checking():void{
   }
@@ -196,9 +189,9 @@ export class EditreportComponent implements OnInit {
     await alert.present();
   }
 
-  sendToLecturer(data: { reportId?: any, myStatus?: any }){
+  sendToReviewer(data: { reportId?: any, myStatus?: any }){
     this.thereport.value['report_id'] = localStorage.getItem('ReportID');
-    this.thereport.value['status'] = 2;
+    this.thereport.value['status'] = REPORT_STATUS.reviewerReview;
     //data.reportId = "woi";
    // console.log(data);
     //console.log(this.thereport.value['status']);
@@ -206,12 +199,12 @@ export class EditreportComponent implements OnInit {
       res=>{
       }
     )
-    this.alertSendLecturer();
+    this.alertSendReviewer();
   }
 
-  sendToPresident(data: { reportId?: any, myStatus?: any }){
+  sendToLeader(data: { reportId?: any, myStatus?: any }){
     this.thereport.value['report_id'] = localStorage.getItem('ReportID');
-    this.thereport.value['status'] = 1;
+    this.thereport.value['status'] = REPORT_STATUS.leaderReview;
     //data.reportId = "woi";
     //console.log(data);
     //console.log(this.thereport.value['status']);
@@ -220,7 +213,7 @@ export class EditreportComponent implements OnInit {
 
       }
     )
-    this.alertSendPresident();
+    this.alertSendLeader();
   }
 
   clearForm(){
@@ -264,18 +257,18 @@ export class EditreportComponent implements OnInit {
     this.comRep = true;
   }
 
-  async alertSendLecturer(){
+  async alertSendReviewer(){
     const alert = await this.alertController.create({
       header : 'Success',
-      message : 'Report has been sent to lecturer!',
+      message : 'Report has been sent to the reviewer!',
       buttons : ['Continue']
     })
     await alert.present();
   }
-  async alertSendPresident(){
+  async alertSendLeader(){
     const alert = await this.alertController.create({
       header : 'Success',
-      message : 'Report has been sent to President!',
+      message : 'Report has been sent to the leader!',
       buttons : ['Continue']
     })
     await alert.present();

@@ -12,7 +12,7 @@ export class AuthenticationGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(this.service.isLoggedStudent()){
+      if(this.service.isMember()){
         return true;
       }
       else{

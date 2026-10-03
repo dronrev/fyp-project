@@ -1,2 +1,43 @@
-<div class="dropdown">
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Admin</h1>
+    <p class="page-subtitle">{{ appName }}</p>
+  </div>
+</div>
+<div class="card-grid">
+  <a class="link-card" routerLink="/manage-user">
+    <mat-card class="surface-card" appearance="outlined">
+      <div class="link-card-icon"><mat-icon>manage_accounts</mat-icon></div>
+      <div class="link-card-title">Manage user</div>
+      <div class="link-card-text">See and remove registered members</div>
+    </mat-card>
+  </a>
+  <a class="link-card" routerLink="/register-user">
+    <mat-card class="surface-card" appearance="outlined">
+      <div class="link-card-icon"><mat-icon>person_add</mat-icon></div>
+      <div class="link-card-title">Register user</div>
+      <div class="link-card-text">Add a member or reviewer</div>
+    </mat-card>
+  </a>
+  <a class="link-card" routerLink="/assign">
+    <mat-card class="surface-card" appearance="outlined">
+      <div class="link-card-icon"><mat-icon>badge</mat-icon></div>
+      <div class="link-card-title">Role assigning</div>
+      <div class="link-card-text">Choose the leader of each group</div>
+    </mat-card>
+  </a>
+  <a class="link-card" routerLink="/admin-announcement">
+    <mat-card class="surface-card" appearance="outlined">
+      <div class="link-card-icon"><mat-icon>campaign</mat-icon></div>
+      <div class="link-card-title">Announcement</div>
+      <div class="link-card-text">Create and manage announcements</div>
+    </mat-card>
+  </a>
+  <a class="link-card" routerLink="/voting">
+    <mat-card class="surface-card" appearance="outlined">
+      <div class="link-card-icon"><mat-icon>how_to_vote</mat-icon></div>
+      <div class="link-card-title">Voting activity</div>
+      <div class="link-card-text">Set up votes and see results</div>
+    </mat-card>
+  </a>
 </div>

@@ -1,6 +1,6 @@
-# PMFKIAMS (fyp-project)
+# Activity Management System (fyp-project)
 
-PMFKI activity management system: an Angular front end for students, lecturers and admins, backed by an HTTP API.
+An activity management system for any organisation: plan activities, collect a report after each one and route it through an approval chain. This is the Angular front end for members, reviewers and admins, backed by an HTTP API.
 
 ## Requirements
 
@@ -10,7 +10,16 @@ PMFKI activity management system: an Angular front end for students, lecturers a
 ## Stack
 
 - Angular 22 (NgModule-based, esbuild `@angular/build` builder), TypeScript 6
-- Ionic 8 (`@ionic/angular`), Bootstrap 5, Chart.js 4
+- Angular Material 22 (Material 3 theme in `src/styles.scss`), Chart.js 4
+- Shared UI lives in `src/app/shared`: the page shell, the dialog service and the Material module
+
+## Branding
+
+The app name, roles and report statuses are set in `src/app/shared/app-config.ts`.
+
+## Backend
+
+`docs/API.md` lists every endpoint, role and report status the backend must provide.
 
 ## Development server
 

@@ -1,14 +1,11 @@
-<div class="container">
-  <div class="result">
-    <div class="head">
-      <h2>Current Results</h2>
-    </div>
-    <div class="body">
-      @for (item of candidate; track item) {
-        <div class="card">
-          <p>({{ item.count}} votes)</p>
-        </div>
-      }
-    </div>
-  </div>
+<div class="page-header">
+  <h1 class="page-title">Current results</h1>
+</div>
+<div class="stat-grid">
+  @for (item of candidate; track item) {
+    <mat-card class="surface-card" appearance="outlined">
+      <div class="stat-value">{{ item.count }}</div>
+      <div class="stat-label">votes</div>
+    </mat-card>
+  }
 </div>

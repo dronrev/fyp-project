@@ -1,178 +1,101 @@
-<ion-segment value="default" color="light">
-  <ion-segment-button value="actRep" (click)="actReport()">
-    <ion-label>Activity Reports</ion-label>
-  </ion-segment-button>
-  <ion-segment-button value="finRep" (click)="finReport()">
-    <ion-label>Financial Reports</ion-label>
-  </ion-segment-button>
-  <ion-segment-button value="attacRep" (click)="attachmentReport()">
-    <ion-label>Attachments</ion-label>
-  </ion-segment-button>
-  <ion-segment-button value="partRep" (click)="partReport()">
-    <ion-label>Participants</ion-label>
-  </ion-segment-button>
-</ion-segment>
-<form action="" class="" [formGroup]="thereport" [hidden]="!actRep">
-  <!--Objective-->
-  <div class="objective">
-    <label for="" class="form-label">Objective : </label>
-    <ion-item>
-      <ion-textarea placeholder="Type something here"
-        formControlName="objective"
-        [value]="this.objective"
-        [autoGrow]="true"
-        readonly>
-      </ion-textarea>
-    </ion-item>
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a routerLink="/reviewer-reports">Report</a>
+  <mat-icon>chevron_right</mat-icon>
+  <span>{{ title || 'Review Report' }}</span>
+</nav>
+<div class="page-header">
+  <h1 class="page-title">{{ title || 'Review report' }}</h1>
+  <div class="actions">
+    <button matButton="outlined" (click)="openComment(commentDialog)">
+      <mat-icon>comment</mat-icon>
+      Comment
+    </button>
+    <!-- reject button for the reviewer-->
+    <button matButton class="danger" (click)="reject(thereport.value)" [hidden]="!isReviewerStep">Reject</button>
+    <!-- reject button for the approver-->
+    <button matButton class="danger" (click)="rejectFinal(thereport.value)" [hidden]="isReviewerStep">Reject</button>
+    <button matButton="filled" (click)="approveFinal(thereport.value)" [hidden]="isReviewerStep">Approve</button>
+    <button matButton="filled" (click)="sendToApprover(thereport.value)" [hidden]="!isReviewerStep">Send to approver</button>
   </div>
-  <!--Introduction-->
-  <div class="introduction">
-    <label for="" class="form-label">Introduction :</label>
-    <ion-item>
-      <ion-textarea placeholder="Type something here"
-        [autoGrow]="true"
-        readonly
-        formControlName="introduction"
-        [value]="this.introduction">
-      </ion-textarea>
-    </ion-item>
-  </div>
-  <!--Involvement-->
-  <div class="involvement">
-    <label for="" class="form-label">Involvement :</label>
-    <ion-item>
-      <ion-textarea placeholder="Type something here"
-        [autoGrow]="true"
-        readonly
-        formControlName="involvement"
-        [value]="this.involvement">
-      </ion-textarea>
-    </ion-item>
-  </div>
-  <!--Perkara-->
-  <div class="perkara-hendak">
-    <label for="" class="form-label">Perkara hendak dimaklumkan  :</label>
-    <ion-item>
-      <ion-textarea
-        placeholder="Type something here"
-        [autoGrow]="true"
-        readonly
-        formControlName="perkara"
-        [value]="this.perkara_hendak_maklum">
-      </ion-textarea>
-    </ion-item>
-  </div>
-  <!--VIP-->
-  <div class="VIP">
-    <label for="" class="form-label">Jemputan VIP :</label>
-    <ion-item>
-      <ion-textarea placeholder="Type something here"
-        [autoGrow]="true"
-        readonly
-        formControlName="vip"
-        [value]="this.jemputan_vip">
-      </ion-textarea>
-    </ion-item>
-  </div>
-  <!--impak-->
-  <div class="impak">
-    <label for="" class="form-label">Impak Program :</label>
-    <ion-item>
-      <ion-textarea placeholder="Type something here"
-        [autoGrow]="true"
-        readonly
-        formControlName="impak"
-        [value]="this.impak_program">
-      </ion-textarea>
-    </ion-item>
-  </div>
-  <!--pencapaian-->
-  <div class="pencapaian">
-    <label for="" class="form-label">Pencapaian :</label>
-    <ion-item>
-      <ion-textarea placeholder="Type something here"
-        [autoGrow]="true"
-        readonly
-        formControlName="pencapaian"
-        [value]="this.pencapaian">
-      </ion-textarea>
-    </ion-item>
-  </div>
-  <!--Rumusan-->
-  <div class="rumusan">
-    <label for="" class="form-label">Rumusan :</label>
-    <ion-item>
-      <ion-textarea placeholder="Type something here"
-        [autoGrow]="true"
-        readonly
-        formControlName="rumusan"
-        [value]="this.rumusan">
-      </ion-textarea>
-    </ion-item>
-  </div>
-  <!--Cadangan-->
-  <div class="cadangan">
-    <label for="" class="form-label">Cadangan :</label>
-    <ion-item>
-      <ion-textarea placeholder="Type something here"
-        [autoGrow]="true"
-        readonly
-        formControlName="cadangan"
-        [value]="this.cadangan">
-      </ion-textarea>
-    </ion-item>
-  </div>
-  <div class="attachment-part"></div>
-  <div>
-    <ion-modal trigger="comment-report">
-      <ng-template>
-        <ion-header>
-          <ion-button (click)="sendComment()">Save</ion-button>
-          <ion-button  (click)="cancel()">Cancel</ion-button>
-        </ion-header>
-        <ion-content class="comment-content">
-          <ion-label color="light">Comment</ion-label>
-          <ion-textarea class="comment-section"
-            placeholder="Type comment here"
-            formControlName="comment"
-          ></ion-textarea>
-        </ion-content>
-      </ng-template>
-    </ion-modal>
-  </div>
-</form>
-@if (finRep) {
-  <app-lect-financial-report></app-lect-financial-report>
-}
-@if (finRep) {
-  <app-lect-financial-kewangan-report></app-lect-financial-kewangan-report>
-}
-@if (attacRep) {
-  <app-lect-report-attachment></app-lect-report-attachment>
-}
-@if (partRep) {
-  <app-part-list-lecturer></app-part-list-lecturer>
-}
-
-<div class="submit-button mt-2 column">
-  <ion-button name="" color="secondary" slot="end" id="comment-report"
-    (click) = "commentData()">
-    Comment
-  </ion-button>
-
-  <!-- reject button for lecturer-->
-  <ion-button name="" color="tertiary" (click)="approveTDA(thereport.value)" [hidden]="hideSendTDA">
-    Approve
-  </ion-button>
-
-  <!-- reject button for lecturer-->
-  <ion-button name="" color="danger" (click)="reject(thereport.value)" [hidden]="!hideSendTDA">
-    Reject
-  </ion-button>
-
-  <!-- reject button for TDA-->
-  <ion-button name="" color="danger" (click)="rejectTDA(thereport.value)" [hidden]="hideSendTDA">
-    Reject
-  </ion-button>
-  <ion-button (click)="sendToTDA(thereport.value)" [hidden]="!hideSendTDA">Send to TDA</ion-button>
 </div>
+<nav mat-tab-nav-bar [tabPanel]="reportPanel" class="report-tabs">
+  <a mat-tab-link [active]="actRep" (click)="actReport()">Activity report</a>
+  <a mat-tab-link [active]="finRep" (click)="finReport()">Financial report</a>
+  <a mat-tab-link [active]="attacRep" (click)="attachmentReport()">Attachments</a>
+  <a mat-tab-link [active]="partRep" (click)="partReport()">Participants</a>
+</nav>
+<mat-tab-nav-panel #reportPanel>
+  <mat-card class="surface-card" appearance="outlined" [hidden]="!actRep">
+    <form class="form-stack" [formGroup]="thereport">
+      <mat-form-field appearance="outline">
+        <mat-label>Objective</mat-label>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="2" readonly
+          formControlName="objective" [value]="this.objective || ''"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Introduction</mat-label>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="2" readonly
+          formControlName="introduction" [value]="this.introduction || ''"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Involvement</mat-label>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="2" readonly
+          formControlName="involvement" [value]="this.involvement || ''"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Perkara hendak dimaklumkan</mat-label>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="2" readonly
+          formControlName="perkara" [value]="this.perkara_hendak_maklum || ''"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Jemputan VIP</mat-label>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="2" readonly
+          formControlName="vip" [value]="this.jemputan_vip || ''"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Impak Program</mat-label>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="2" readonly
+          formControlName="impak" [value]="this.impak_program || ''"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Pencapaian</mat-label>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="2" readonly
+          formControlName="pencapaian" [value]="this.pencapaian || ''"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Rumusan</mat-label>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="2" readonly
+          formControlName="rumusan" [value]="this.rumusan || ''"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Cadangan</mat-label>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="2" readonly
+          formControlName="cadangan" [value]="this.cadangan || ''"></textarea>
+      </mat-form-field>
+    </form>
+  </mat-card>
+  @if (finRep) {
+    <app-lect-financial-report></app-lect-financial-report>
+    <app-lect-financial-kewangan-report></app-lect-financial-kewangan-report>
+  }
+  @if (attacRep) {
+    <app-lect-report-attachment></app-lect-report-attachment>
+  }
+  @if (partRep) {
+    <app-part-list-lecturer></app-part-list-lecturer>
+  }
+</mat-tab-nav-panel>
+
+<ng-template #commentDialog>
+  <h2 mat-dialog-title>Comment</h2>
+  <mat-dialog-content>
+    <mat-form-field class="full-width comment-field" appearance="outline">
+      <mat-label>Comment</mat-label>
+      <textarea matInput rows="6" placeholder="Type comment here" [formControl]="$any(thereport.get('comment'))"></textarea>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button matButton (click)="cancel()">Cancel</button>
+    <button matButton="filled" (click)="sendComment()">Save</button>
+  </mat-dialog-actions>
+</ng-template>

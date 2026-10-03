@@ -1,3 +1,4 @@
+import { REPORT_STATUS, ROLE } from 'src/app/shared/app-config';
 import { Component, OnInit, Pipe, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { filter, map } from 'rxjs';
@@ -20,24 +21,24 @@ export class LectComReportComponent implements OnInit {
   constructor(private reportService : ReportsService,private idService : EditreportService) { }
   fetchReport = new UntypedFormGroup({
     id : new UntypedFormControl(localStorage.getItem('id')),
-    auth : new UntypedFormControl(localStorage.getItem('auth'))
+    auth : new UntypedFormControl(localStorage.getItem('portal'))
   })
   ngOnInit(): void {
-    if(localStorage.getItem('_sepesial_elor_rof_') == 'TDA'){
-      this.reportService.displayAll().pipe(map((data:any)=>data.filter((ok:any) => ok.status == "3"))).subscribe(
+    if(localStorage.getItem('role') == ROLE.approver){
+      this.reportService.displayAll().pipe(map((data:any)=>data.filter((ok:any) => ok.status == REPORT_STATUS.finalApproval))).subscribe(
         (res:any)=>{
           //console.log(res);
           this.allReport = res;
         }
       )
     }
-    if(localStorage.getItem('_sepesial_elor_rof_') == 'lecturer'){
+    if(localStorage.getItem('role') == ROLE.reviewer){
       //
       this.reportService.displayReport(this.fetchReport.value)
       .subscribe(
         (results:any)=>{
 
-          this.reports = JSON.parse(results).filter((ok:any)=>ok.status == 2);
+          this.reports = JSON.parse(results).filter((ok:any)=>ok.status == REPORT_STATUS.reviewerReview);
           localStorage.removeItem('reportID');
         }
       );
@@ -45,7 +46,7 @@ export class LectComReportComponent implements OnInit {
     //const data = ""
   }
   getReport(key:any){
-    if(localStorage.getItem('_sepesial_elor_rof_') == 'TDA')
+    if(localStorage.getItem('role') == ROLE.approver)
     {
       var report_data = JSON.stringify(this.allReport[key].report_id);
       this.idService.setCurrentReport(this.allReport[key].report_id);

@@ -1,4 +1,7 @@
-.summary{
-  background-color: #66D7EB;
-  border-radius: 10px 10px;
+.chart-header {
+  margin-bottom: 16px;
+}
+
+.chart-header .section-title {
+  margin: 0;
 }

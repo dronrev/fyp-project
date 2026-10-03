@@ -1,23 +1,27 @@
-<div class="container">
-  <form action="" [formGroup]="send_data" (ngSubmit)="sendAnnouncement()">
-    <div>
-      <label for="" class="form-label">Title</label>
-      <input type="text" class="form-control" formControlName="title">
-    </div>
-    <div>
-      <label for="" class="form-label">Subject</label>
-      <input type="text" class="form-control" formControlName="subject">
-    </div>
-    <div>
-      <label for="" class="form-label">Message</label>
-      <textarea name="" id="" cols="30" rows="10" class="form-control" formControlName="message"></textarea>
-    </div>
-    <div class="mt-4" hidden>
-      <img  width="300" height="300" alt="">
-      <input type="file" >
-    </div>
-    <div class="mt-2">
-      <button class="btn btn-success" type="submit">Send</button>
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a routerLink="/admin-announcement">Announcement</a>
+  <mat-icon>chevron_right</mat-icon>
+  <span>Create New</span>
+</nav>
+<div class="page-header">
+  <h1 class="page-title">Create new announcement</h1>
+</div>
+<mat-card class="surface-card narrow" appearance="outlined">
+  <form class="form-stack" [formGroup]="send_data" (ngSubmit)="sendAnnouncement()">
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput type="text" formControlName="title">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Subject</mat-label>
+      <input matInput type="text" formControlName="subject">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Message</mat-label>
+      <textarea matInput rows="10" formControlName="message"></textarea>
+    </mat-form-field>
+    <div class="form-actions">
+      <button matButton="filled" type="submit">Send</button>
     </div>
   </form>
-</div>
+</mat-card>

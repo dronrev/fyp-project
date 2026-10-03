@@ -1,12 +1,20 @@
+import { APP_NAME, PORTAL, portalOf } from 'src/app/shared/app-config';
 import { Component, ElementRef, Input, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, NgForm } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 import { Role } from '../login/role.model';
 import { AuthService } from '../service/auth.service';
 
 
+
+// Where each portal lands after signing in.
+const HOME_ROUTE: { [portal: string]: string } = {
+  [PORTAL.member]: '/home',
+  [PORTAL.reviewer]: '/reviewer-home',
+  [PORTAL.admin]: '/home-admin'
+};
 
 @Component({
   standalone: false,
@@ -16,18 +24,19 @@ import { AuthService } from '../service/auth.service';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
+  appName = APP_NAME;
 
   roleSelected = "";
   role : Role [] = [
-    new Role("1","Student"),
-    new Role("2","Lecturer"),
-    new Role("3","Admin")
+    new Role(PORTAL.member,"Member"),
+    new Role(PORTAL.reviewer,"Reviewer"),
+    new Role(PORTAL.admin,"Admin")
   ];
 
   LoginForm = new UntypedFormGroup({
     email_address : new UntypedFormControl("", Validators.required),
     password : new UntypedFormControl("", Validators.required),
-    user_role : new UntypedFormControl("")
+    user_role : new UntypedFormControl(PORTAL.member)
   });
 
 
@@ -36,11 +45,10 @@ export class SignInComponent implements OnInit {
   studentId : any;
   editData : any;
   responseData : any;
-  lectRole : any;
 
   response = "";
 
-  constructor(private router: Router, private http:AuthService,private alertcontrol : AlertController) { }
+  constructor(private router: Router, private http:AuthService,private alertcontrol : AlertService) { }
 
   ngOnInit(): void {
     localStorage.clear();
@@ -49,93 +57,42 @@ export class SignInComponent implements OnInit {
   async notify(){
     const messages = await this.alertcontrol.create({
       header : 'Login Failed',
-      message : 'Unknown Username or Email !',
+      message : 'Wrong username or password.',
       buttons : ['Continue']
     });
     await messages.present();
   }
 
   onLogin(){
-    if(this.LoginForm.valid){
-      if(this.LoginForm.value['user_role'] == '1'){
-        this.http.proceedLogin(this.LoginForm.value).subscribe(res=>{
-          if(res != null){
-            //this.responseData = res;
-            this.responseData = JSON.parse(res);
-            if(this.responseData.token == undefined){
-              this.notify();
-              this.router.navigate(['sign-in']);
-            }
-            else{
-              localStorage.setItem('token',this.responseData.token);
-              localStorage.setItem('id',this.responseData.id);
-              localStorage.setItem('name',this.responseData.name);
-              localStorage.setItem('email_address',this.responseData.email_address);
-              localStorage.setItem('auth',this.LoginForm.value['user_role']);
-              localStorage.setItem('_elorfostudent_',this.responseData.role);
-              this.router.navigate(['/student/home']);
-              //this.http.changeName(this.responseData.name);
-            }
-          }
-        })
-      }
-      if(this.LoginForm.value['user_role'] == '2'){
-        this.http.proceedLogin(this.LoginForm.value).subscribe(res=>{
-          if(res != null){
-            //this.responseData = res;
-            this.responseData = JSON.parse(res);
-            if(this.responseData.token == undefined){
-              this.notify();
-              this.router.navigate(['sign-in']);
-            }
-            else{
-              localStorage.setItem('token',this.responseData.token);
-              localStorage.setItem('id',this.responseData.id);
-              localStorage.setItem('name',this.responseData.name);
-              this.http.isTDA(this.responseData.id).subscribe(
-                res=>{
-                  this.lectRole = JSON.parse(res);
-                  if(this.lectRole.role == "TDA"){
-                    localStorage.setItem('_sepesial_elor_rof_','TDA');
-                  }
-                  else{
-                    localStorage.setItem('_sepesial_elor_rof_','lecturer');
-                  }
-                }
-              )
-              localStorage.setItem('auth',this.LoginForm.value['user_role']);
-              this.router.navigate(['/HomeLecturer']);
-
-              //this.http.changeName(this.responseData.name);
-            }
-          }
-        })
-      }
-      if(this.LoginForm.value['user_role'] == '3'){
-        this.http.adminLogin(this.LoginForm.value).subscribe(
-          res=>{
-            //console.log(res);
-            this.responseData = JSON.parse(res);
-            localStorage.setItem('auth',this.LoginForm.value['user_role']);
-            localStorage.setItem('token',this.responseData.token);
-            this.router.navigate(['/home-admin']);
-          }
-        )
-      }
+    if(!this.LoginForm.valid){
+      return;
     }
+    this.http.login(this.LoginForm.value).subscribe({
+      next: res=>{
+        this.responseData = res ? JSON.parse(res) : null;
+        const portal = portalOf(this.responseData?.role);
+        if(!this.responseData?.token || !portal){
+          this.notify();
+          return;
+        }
+        localStorage.setItem('token',this.responseData.token);
+        localStorage.setItem('id',this.responseData.id);
+        localStorage.setItem('name',this.responseData.name);
+        localStorage.setItem('email_address',this.responseData.email_address || '');
+        localStorage.setItem('role',this.responseData.role);
+        localStorage.setItem('group_id',this.responseData.group_id || '');
+        localStorage.setItem('portal',portal);
+        this.router.navigate([HOME_ROUTE[portal]]);
+      },
+      error: ()=>{
+        this.notify();
+      }
+    })
   }
-
-
 
   showPass ="password"
 
-  showPassword(event:any){
-    //this.showingP = "text";
-    if(event.detail.checked){
-      this.showPass ="text"
-    }
-    else{
-      this.showPass ="password"
-    }
+  togglePassword(){
+    this.showPass = this.showPass == "password" ? "text" : "password";
   }
 }

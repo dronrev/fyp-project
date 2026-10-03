@@ -1,6 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Group, GroupService } from 'src/app/shared/group.service';
+import { inject, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, UntypedFormArray } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 import { UsersService } from '../../users.service';
 import { Voting } from '../vote-activity.model';
 import { VoteService } from '../vote.service';
@@ -13,15 +14,17 @@ import { VoteService } from '../vote.service';
   styleUrls: ['./create-new-vote-act.component.css']
 })
 export class CreateNewVoteActComponent implements OnInit {
+  private groupService = inject(GroupService);
+  groups: Group[] = [];
 
   votingForm: UntypedFormGroup;
 
-  constructor(private fb:UntypedFormBuilder, private service : UsersService,private service2:VoteService,private alertcontrol : AlertController) {
+  constructor(private fb:UntypedFormBuilder, private service : UsersService,private service2:VoteService,private alertcontrol : AlertService) {
 
     this.votingForm = this.fb.group({
       title: '',
       date:'',
-      cawangan:'',
+      group_id:'',
       detail: this.fb.array([])
     });
   }
@@ -55,13 +58,18 @@ export class CreateNewVoteActComponent implements OnInit {
 
   student : any;
   stuCand : any;
-  cawangan :any;
+  group_id :any;
   vote !: Voting;
   votearray = [];
   testingg : any;
   ngOnInit(): void {
+    this.groupService.getGroups().subscribe(
+      groups=>{
+        this.groups = groups;
+      }
+    )
     this.votearray.push();
-    this.service.fetchStudent().subscribe(
+    this.service.fetchMembers().subscribe(
       res=>{
         this.student = res;
 
@@ -70,12 +78,10 @@ export class CreateNewVoteActComponent implements OnInit {
 
   }
 
-  getCawangan(event:any){
-    event.target.value
-    this.cawangan=event.target.value;
-    this.stuCand = this.student.filter((data:any)=>data.cawangan == this.cawangan)
+  selectGroup(groupId:any){
+    this.group_id = groupId;
+    this.stuCand = this.student.filter((data:any)=>data.group_id == this.group_id)
   }
-
 
   testAdd(event : any){
     this.testingg = event.value;

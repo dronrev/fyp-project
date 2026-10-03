@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup, UntypedFormControl, UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 import { VoteService } from 'src/app/admin/admin-vote-activity/vote.service';
 import { UsersService } from 'src/app/admin/users.service';
 import { EventsService } from '../../event/events.service';
@@ -16,7 +16,7 @@ import { ImageService } from '../../image.service';
 })
 export class VotingDetailsComponent implements OnInit {
   title : any;
-  constructor(private router : Router,private service : VoteService,private service2:UsersService,private service1 : EventsService,private fb : UntypedFormBuilder,private alertcontrol : AlertController) { }
+  constructor(private router : Router,private service : VoteService,private service2:UsersService,private service1 : EventsService,private fb : UntypedFormBuilder,private alertcontrol : AlertService) { }
   imageUrl : any;
   data = new UntypedFormGroup({
     'id' : new UntypedFormControl(localStorage.getItem('id'))
@@ -39,7 +39,7 @@ export class VotingDetailsComponent implements OnInit {
   name:any = {};
   ngOnInit(): void {
 
-    this.service2.fetchStudent()
+    this.service2.fetchMembers()
     .subscribe(
       res=>{
         this.totalVoters = res;

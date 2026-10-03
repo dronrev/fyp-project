@@ -24,13 +24,13 @@ export class VotingComponent implements OnInit {
   filterList :any;
   newList : any;
   list:any;
-  myCawangan : any;
+  myGroup : any;
   ngOnInit(): void {
 
 
-    this.service2.getCawangan(localStorage.getItem('id')).subscribe(
+    this.service2.getGroup(localStorage.getItem('id')).subscribe(
       res=>{
-        this.myCawangan = res;
+        this.myGroup = res;
       }
     )
 
@@ -38,8 +38,8 @@ export class VotingComponent implements OnInit {
       res=>{
         this.list = res;
         for(let item of this.list){
-          if(item.cawangan == this.myCawangan[0].cawangan){
-            this.list = this.list.filter((data:any)=>data.cawangan == this.myCawangan[0].cawangan)
+          if(item.group_id == this.myGroup[0].group_id){
+            this.list = this.list.filter((data:any)=>data.group_id == this.myGroup[0].group_id)
           }
         }
         this.service1.verifyUserVoting(this.toCheck.value).subscribe(

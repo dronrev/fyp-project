@@ -1,152 +1,55 @@
-<ion-grid>
-  <ion-row>
-    <ion-col>
-      <!--PMFKIKK-->
-      <div style="border: 1px solid;align-items: center;text-align: center;height: 60vh;">
-        <div style="border-bottom: 1px solid;">
-          <h1>President of PMFKI UMS Induk</h1>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Role assigning</h1>
+    <p class="page-subtitle">Each group has one leader, who reviews its members' reports first.</p>
+  </div>
+</div>
+<div class="card-grid">
+  @for (group of groups; track group.group_id) {
+    <mat-card class="surface-card leader-card" appearance="outlined">
+      <h2 class="section-title">{{ group.name }}</h2>
+      @if (leaderOf(group); as leader) {
+        <div class="leader">
+          <img class="avatar" [src]="imageURL+leader.profilepic" alt="" width="120" height="120" (error)="$any($event.target).src = 'assets/images/default-image.jpg'">
+          <div class="leader-name">{{ leader.username | uppercase }}</div>
+          <div class="hint">{{ leader.user_id }}</div>
+          <div class="hint">{{ leader.email_id }}</div>
+          <button matButton class="danger" (click)="removeLeader(group)">Remove</button>
         </div>
-        <div [hidden]="!click2">
-          <div class="item">
-            @for (item of presidentKK; track item) {
-              <ion-card color="dark">
-                <img class="pt-2" [src]="imageURL+item.profilepic || defaultImg" />
-                <ion-card-header>
-                  <ion-card-title>{{ item.username | uppercase}}</ion-card-title>
-                  <ion-card-subtitle>{{ item.user_id }}</ion-card-subtitle>
-                </ion-card-header>
-                <ion-card-content>
-                  {{ item.email_id }}
-                </ion-card-content>
-              </ion-card>
-            }
-            <div>
-              <ion-button color="danger" (click) = "onClick3()">Delete</ion-button>
-            </div>
-          </div>
+      } @else {
+        <div class="leader">
+          <mat-icon class="leader-empty">person_off</mat-icon>
+          <p class="muted">No leader assigned.</p>
+          <button matButton="filled" (click)="openPicker(picker, group)">Select</button>
         </div>
-        <div style="margin-top: 18vh;">
-          <ion-button color="success" id="open-modal" [hidden]="click2">Select</ion-button>
-        </div>
-      </div>
-    </ion-col>
+      }
+    </mat-card>
+  } @empty {
+    <mat-card appearance="outlined"><p class="empty-state">No groups have been set up yet.</p></mat-card>
+  }
+</div>
 
-    <ion-col>
-      <!--PMFKI labuan-->
-      <div style="border: 1px solid;align-items: center;text-align: center;height: 60vh;">
-        <div style="border-bottom: 1px solid;">
-          <h1>President of PMFKI UMSKAL</h1>
-        </div>
-        <div [hidden]="!click1">
-          <div class="item">
-            @for (item of presidentKAL; track item) {
-              <ion-card color="dark">
-                <img class="pt-2" [src]="imageURL+item.profilepic || defaultImg" />
-                <ion-card-header>
-                  <ion-card-title>{{ item.username | uppercase}}</ion-card-title>
-                  <ion-card-subtitle>{{ item.user_id }}</ion-card-subtitle>
-                </ion-card-header>
-                <ion-card-content>
-                  {{ item.email_id }}
-                </ion-card-content>
-              </ion-card>
-            }
-          </div>
-          <div>
-            <ion-button color="danger" (click) = "onClick2()">Delete</ion-button>
-          </div>
-        </div>
-        <div style="margin-top: 18vh;" [hidden]="click1">
-          <ion-button color="success" id="open-modalKAL">Select</ion-button>
-        </div>
-      </div>
-    </ion-col>
-  </ion-row>
-</ion-grid>
-
-<!-- PMFKI Modal -->
-<ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
-  <ng-template>
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-button (click)="cancel()">Cancel</ion-button>
-        </ion-buttons>
-        <ion-title>Select President of PMFKIKK</ion-title>
-        <ion-buttons slot="end">
-          <ion-button (click)="confirm()" [strong]="true" (click)="checkValue(radioValue)">Confirm</ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-      <ion-searchbar></ion-searchbar>
-      <ion-item>
-        <ion-label>
-        </ion-label>
-        <ion-radio-group slot="start" [(ngModel)]="radioValue">
-          @for (item of listUser; track item) {
-            <ion-item>
-              <ion-label class="listStudent">
-                <ion-card>
-                  <img [src]="imageURL+item.profilepic" alt="">
-                  <ion-card-header>
-                    <ion-card-title>{{ item.username }}</ion-card-title>
-                    <ion-card-subtitle color="dark">{{ item.course_id}}</ion-card-subtitle>
-                  </ion-card-header>
-                  <ion-card-content>
-                    {{ item.user_id }}
-                  </ion-card-content>
-                </ion-card>
-              </ion-label>
-              <ion-radio [value]="item.user_id"></ion-radio>
-            </ion-item>
-          }
-        </ion-radio-group>
-      </ion-item>
-    </ion-content>
-  </ng-template>
-</ion-modal>
-
-<!-- PMFKI Labuan Modal -->
-
-<ion-modal trigger="open-modalKAL" (willDismiss)="onWillDismiss1($event)">
-  <ng-template>
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-button (click)="cancel()">Cancel</ion-button>
-        </ion-buttons>
-        <ion-title>Select President of PMFKILabuan</ion-title>
-        <ion-buttons slot="end">
-          <ion-button (click)="confirm()" [strong]="true" (click)="checkValue1(radioValueLabuan)">Confirm</ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-      <ion-searchbar></ion-searchbar>
-      <ion-item>
-        <ion-label>
-        </ion-label>
-        <ion-radio-group slot="start" [(ngModel)]="radioValueLabuan">
-          @for (item of listUserLabuan; track item) {
-            <ion-item>
-              <ion-label class="listStudent">
-                <ion-card>
-                  <img [src]="imageURL+item.profilepic" alt="">
-                  <ion-card-header>
-                    <ion-card-title>{{ item.username }}</ion-card-title>
-                    <ion-card-subtitle color="dark">{{ item.course_id}}</ion-card-subtitle>
-                  </ion-card-header>
-                  <ion-card-content>
-                    {{ item.user_id }}
-                  </ion-card-content>
-                </ion-card>
-              </ion-label>
-              <ion-radio [value]="item.user_id"></ion-radio>
-            </ion-item>
-          }
-        </ion-radio-group>
-      </ion-item>
-    </ion-content>
-  </ng-template>
-</ion-modal>
+<ng-template #picker>
+  <h2 mat-dialog-title>Select leader, {{ pickerGroup?.name }}</h2>
+  <mat-dialog-content>
+    <mat-radio-group class="picker-list" [(ngModel)]="pickedUserId" aria-label="Select leader">
+      @for (item of pickerGroup ? candidatesOf(pickerGroup) : []; track item.user_id) {
+        <mat-radio-button [value]="item.user_id">
+          <span class="picker-option">
+            <img class="avatar" [src]="imageURL+item.profilepic" alt="" width="40" height="40" (error)="$any($event.target).src = 'assets/images/default-image.jpg'">
+            <span>
+              <span class="picker-name">{{ item.username }}</span>
+              <span class="hint">{{ item.user_id }} &middot; {{ item.course_id }}</span>
+            </span>
+          </span>
+        </mat-radio-button>
+      } @empty {
+        <p class="empty-state">No members in this group.</p>
+      }
+    </mat-radio-group>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button matButton (click)="cancel()">Cancel</button>
+    <button matButton="filled" [disabled]="!pickedUserId" (click)="confirm()">Confirm</button>
+  </mat-dialog-actions>
+</ng-template>

@@ -1,48 +1,43 @@
-
-  <ion-label>Report ID</ion-label>
-  <div class="container financial-form">
-    <h2>PENGENALAN / PENDAHULUAN</h2>
-    <ion-list [inset]="true">
-      <form action="" [formGroup]="myData">
-        <ion-item>
-          <ion-input label="NAMA AKTIVITI" labelPlacement="floating"
-            formControlName="nama_aktiviti"
-            [value]="name_activity"
-            readonly
-          ></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input label="PENGANJUR" labelPlacement="floating"
-            formControlName="penganjur"
-            [value]="penganjur"
-            readonly
-          ></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input label="PENGARAH" labelPlacement="floating" formControlName="pengarah" [value]="pengarah" readonly></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input label="PEGAWAI BERTANGGUNGJAWAB" labelPlacement="floating" formControlName="pegawai_bertanggungjawab"
-          [value]="pegawai_bertanggungjawab"
-           readonly></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input label="BAJET DILULUSKAN" labelPlacement="floating" formControlName="bajet_diluluskan" [value]="bajet_diluluskan" readonly></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input label="PENAMA KELULUSAN" labelPlacement="floating" formControlName="penama_kelulusan" [value]="penama_kelulusan" readonly></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input label="KELULUSAN OLEH" labelPlacement="floating" formControlName="kelulusan_oleh" [value]="kelulusan_oleh" readonly></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input label="JUMLAH CEK" labelPlacement="floating" formControlName="jumlah_cek" [value]="jumlah_cek" readonly></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input label="PENERIMA CEK / WANG TUNAI" labelPlacement="floating" formControlName="penerima_cek_tunai" [value]="penerima_cek_tunai" readonly></ion-input>
-        </ion-item>
-      </form>
-    </ion-list>
-  </div>
-
-
+<mat-card class="surface-card" appearance="outlined">
+  <h2 class="section-title">Pengenalan / Pendahuluan</h2>
+  <form [formGroup]="myData">
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Nama aktiviti</mat-label>
+        <input matInput formControlName="nama_aktiviti" [value]="name_activity" readonly>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Penganjur</mat-label>
+        <input matInput formControlName="penganjur" [value]="penganjur" readonly>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Pengarah</mat-label>
+        <input matInput formControlName="pengarah" [value]="pengarah" readonly>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Pegawai bertanggungjawab</mat-label>
+        <input matInput formControlName="pegawai_bertanggungjawab" [value]="pegawai_bertanggungjawab" readonly>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Bajet diluluskan</mat-label>
+        <input matInput formControlName="bajet_diluluskan" [value]="bajet_diluluskan" readonly>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Penama kelulusan</mat-label>
+        <input matInput formControlName="penama_kelulusan" [value]="penama_kelulusan" readonly>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Kelulusan oleh</mat-label>
+        <input matInput formControlName="kelulusan_oleh" [value]="kelulusan_oleh" readonly>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Jumlah cek</mat-label>
+        <input matInput formControlName="jumlah_cek" [value]="jumlah_cek" readonly>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Penerima cek / wang tunai</mat-label>
+        <input matInput formControlName="penerima_cek_tunai" [value]="penerima_cek_tunai" readonly>
+      </mat-form-field>
+    </div>
+  </form>
+</mat-card>

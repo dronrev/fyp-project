@@ -1,37 +1,25 @@
-<!--<div class="row grid" style="--bs-gap: .25rem 1rem;" *ngFor="let report of reports">
-<div class="col-4">
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <a href="#" class="list-group-item">
-        <h5 class="card-title">{{ report.name_activity }}</h5>
-        <p class="card-text">{{ report.location}}</p>
-      </a>
-      <a href="#" class="btn btn-primary" routerLink="/editreport">Edit</a>
-      <button class="btn btn-danger" type="button">Delete</button>
-      <p>Status : Pending</p>
-    </div>
-  </div>
+<div class="stack">
+  @for (report of reports?.slice(((a || 1) - 1) * 5, (a || 1) * 5); track report; let key = $index) {
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>
+          <a class="report-link" [routerLink]="['/report/editreport',report.report_id]" (click)="getReport(((a || 1) - 1) * 5 + key)">{{ report.name_activity }}</a>
+        </mat-card-title>
+        <mat-card-subtitle>{{ report.location }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <span class="status-chip" [class]="'status-' + report.status">{{ report.status | reportStatus }}</span>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button matButton class="danger" (click)="deleteRep(report.report_id)">Delete</button>
+        <button matButton="tonal" [routerLink]="['/report/editreport',report.report_id]" (click)="getReport(((a || 1) - 1) * 5 + key)">Edit</button>
+      </mat-card-actions>
+    </mat-card>
+  } @empty {
+    <mat-card appearance="outlined"><p class="empty-state">You have no reports yet.</p></mat-card>
+  }
 </div>
-</div>-->
-
-
-@for (report of reports | paginate:{itemsPerPage : 5,currentPage : a}; track report; let key = $index) {
-  <ion-card>
-    <ion-card-header>
-      <ion-item>
-        <ion-label><h1><a href="#" [routerLink]="['/report/editreport',report.report_id]" (click)="getReport(key)" class="nav-link">{{ report.name_activity }}</a></h1></ion-label>
-        <ion-button fill="solid" slot="end" [routerLink]="['/report/editreport',report.report_id]" (click)="getReport(key)" color="primary">Edit</ion-button>
-        <ion-button fill="solid" slot="end" (click)="deleteRep(report.report_id)"  color="danger">Delete</ion-button>
-      </ion-item>
-    </ion-card-header>
-    <ion-card-content>
-      <div>
-        Location : {{ report.location}}
-      </div>
-      <div>
-        Report Status : {{ report.status }}
-      </div>
-    </ion-card-content>
-  </ion-card>
+@if ((reports?.length || 0) > 5) {
+  <mat-paginator [length]="reports?.length || 0" [pageSize]="5" [pageIndex]="(a || 1) - 1" hidePageSize
+    (page)="a = $event.pageIndex + 1" aria-label="Report pages"></mat-paginator>
 }
-<pagination-controls (pageChange)="a=$event" style="display: flex;justify-content: center;padding-top: 10px;"></pagination-controls>

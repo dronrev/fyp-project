@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 import { AnnouncementService } from '../announcement.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class AnnouncementFormComponent implements OnInit {
 
   uploadForm: UntypedFormGroup;
 
-  constructor(public fb: UntypedFormBuilder,private service : AnnouncementService,private alertcontrol : AlertController) {
+  constructor(public fb: UntypedFormBuilder,private service : AnnouncementService,private alertcontrol : AlertService) {
     this.uploadForm = this.fb.group({
       id : ['']
     })
@@ -22,7 +22,7 @@ export class AnnouncementFormComponent implements OnInit {
 
   data = new UntypedFormGroup({
     'id' : new UntypedFormControl(localStorage.getItem('id')),
-    'auth' : new UntypedFormControl(localStorage.getItem('auth')),
+    'auth' : new UntypedFormControl(localStorage.getItem('portal')),
     'title' : new UntypedFormControl(""),
     'subject' : new UntypedFormControl(""),
     'message' : new UntypedFormControl(""),

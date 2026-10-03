@@ -1,37 +1,46 @@
-<div class="container financial-form">
-  <h2>PENGENALAN / PENDAHULUAN</h2>
-  <ion-list [inset]="true">
-    <form action="" [formGroup]="myData">
-      <ion-item>
-        <ion-input label="NAMA AKTIVITI" labelPlacement="floating" formControlName="nama_aktiviti" [value]="name_activity"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input label="PENGANJUR" labelPlacement="floating" formControlName="penganjur" [value]="penganjur"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input label="PENGARAH" labelPlacement="floating" formControlName="pengarah" [value]="pengarah"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input label="PEGAWAI BERTANGGUNGJAWAB" labelPlacement="floating" formControlName="pegawai_bertanggungjawab" [value]="pegawai_bertanggungjawab"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input label="BAJET DILULUSKAN" labelPlacement="floating" formControlName="bajet_diluluskan" [value]="bajet_diluluskan"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input label="PENAMA KELULUSAN" labelPlacement="floating" formControlName="penama_kelulusan" [value]="penama_kelulusan"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input label="KELULUSAN OLEH" labelPlacement="floating" formControlName="kelulusan_oleh" [value]="kelulusan_oleh"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input label="JUMLAH CEK" labelPlacement="floating" formControlName="jumlah_cek" [value]="jumlah_cek"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input label="PENERIMA CEK / WANG TUNAI" labelPlacement="floating" formControlName="penerima_cek_tunai" [value]="penerima_cek_tunai"></ion-input>
-      </ion-item>
-    </form>
-  </ion-list>
-  <div class="send-button">
-    <button class="btn btn-primary" (click)="SendData(myData.value)">Save</button>
-  </div>
-</div>
+<mat-card class="surface-card" appearance="outlined">
+  <h2 class="section-title">Pengenalan / Pendahuluan</h2>
+  <form [formGroup]="myData">
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Nama aktiviti</mat-label>
+        <input matInput formControlName="nama_aktiviti" [value]="name_activity">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Penganjur</mat-label>
+        <input matInput formControlName="penganjur" [value]="penganjur">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Pengarah</mat-label>
+        <input matInput formControlName="pengarah" [value]="pengarah">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Pegawai bertanggungjawab</mat-label>
+        <input matInput formControlName="pegawai_bertanggungjawab" [value]="pegawai_bertanggungjawab">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Bajet diluluskan</mat-label>
+        <input matInput formControlName="bajet_diluluskan" [value]="bajet_diluluskan">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Penama kelulusan</mat-label>
+        <input matInput formControlName="penama_kelulusan" [value]="penama_kelulusan">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Kelulusan oleh</mat-label>
+        <input matInput formControlName="kelulusan_oleh" [value]="kelulusan_oleh">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Jumlah cek</mat-label>
+        <input matInput formControlName="jumlah_cek" [value]="jumlah_cek">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Penerima cek / wang tunai</mat-label>
+        <input matInput formControlName="penerima_cek_tunai" [value]="penerima_cek_tunai">
+      </mat-form-field>
+    </div>
+    <div class="form-actions">
+      <button matButton="filled" type="button" (click)="SendData(myData.value)">Save</button>
+    </div>
+  </form>
+</mat-card>

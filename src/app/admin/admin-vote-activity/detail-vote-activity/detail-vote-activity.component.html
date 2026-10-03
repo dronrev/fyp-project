@@ -1,52 +1,42 @@
-<div class="container">
-  <h2>RESULT : AJK VOTING BARU</h2>
-  <div class="top">
-    <div class="no-candidates">
-      <p style="font-size: 2em;">{{ totalCandidates?.length }}</p>
-      <p>No. of Candidates</p>
-    </div>
-    <div class="total-voters">
-      <p style="font-size: 2em;">{{ totalVoters?.length }}</p>
-      <p>Total voters</p>
-    </div>
-    <div class="voters-voted">
-      <p style="font-size: 2em;">{{ totalVotersVoted?.length }}</p>
-      <p>Voters Voted</p>
-    </div>
-  </div>
-  <div class="bottom">
-    <h3>Total Count of Votes</h3>
-    <div class="">
-      <div class="container">
-        @for (myitem of listOfRole; track myitem) {
-          <div class="body">
-            <div class="position-candidate">
-              <div class="position-title">
-                <div>
-                  <h3 style="text-align: center;">{{ myitem }}</h3>
-                </div>
-                <div class="list-of-candidate">
-                  @for (item of totalCandidates; track item) {
-                    @if (item.candidate == myitem) {
-                      <div >
-                        <div class="candidate" style="display: flex;justify-content: center;flex-direction: column;">
-                          <div class="candidate-detail">
-                            <p style="text-align: center;">{{name[item.user_id]}}</p>
-                            <p style="text-align: center;">{{item.user_id}}</p>
-                          </div>
-                          <div class="candidate-count">
-                            <p style="text-align: center;">Total Votes : {{count[item.user_id] || '0'}}</p>
-                          </div>
-                        </div>
-                      </div>
-                    }
-                  }
-                </div>
-              </div>
-            </div>
-          </div>
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a routerLink="/voting">Voting Activity</a>
+  <mat-icon>chevron_right</mat-icon>
+  <span>Result</span>
+</nav>
+<div class="page-header">
+  <h1 class="page-title">Voting result</h1>
+</div>
+<div class="stat-grid">
+  <mat-card class="surface-card" appearance="outlined">
+    <div class="stat-value">{{ totalCandidates?.length || 0 }}</div>
+    <div class="stat-label">Candidates</div>
+  </mat-card>
+  <mat-card class="surface-card" appearance="outlined">
+    <div class="stat-value">{{ totalVoters?.length || 0 }}</div>
+    <div class="stat-label">Total voters</div>
+  </mat-card>
+  <mat-card class="surface-card" appearance="outlined">
+    <div class="stat-value">{{ totalVotersVoted?.length || 0 }}</div>
+    <div class="stat-label">Voters voted</div>
+  </mat-card>
+</div>
+<h2 class="section-title votes-title">Total count of votes</h2>
+<div class="stack">
+  @for (myitem of listOfRole; track myitem) {
+    <mat-card class="surface-card" appearance="outlined">
+      <h3 class="section-title">{{ myitem }}</h3>
+      <mat-list>
+        @for (item of totalCandidates; track item) {
+          @if (item.candidate == myitem) {
+            <mat-list-item>
+              <mat-icon matListItemIcon>person</mat-icon>
+              <span matListItemTitle>{{ name[item.user_id] }}</span>
+              <span matListItemLine>{{ item.user_id }}</span>
+              <span matListItemMeta class="vote-count">{{ count[item.user_id] || '0' }} votes</span>
+            </mat-list-item>
+          }
         }
-      </div>
-    </div>
-  </div>
+      </mat-list>
+    </mat-card>
+  }
 </div>

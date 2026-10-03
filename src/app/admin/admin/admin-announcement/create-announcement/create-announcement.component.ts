@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 import { UsersService } from 'src/app/admin/users.service';
 import { AnnouncementService } from 'src/app/student/announcement/announcement.service';
 
@@ -13,10 +13,10 @@ import { AnnouncementService } from 'src/app/student/announcement/announcement.s
 })
 export class CreateAnnouncementComponent implements OnInit {
 
-  constructor(private service : AnnouncementService,private service1 : UsersService,private alertcontrol : AlertController) { }
+  constructor(private service : AnnouncementService,private service1 : UsersService,private alertcontrol : AlertService) { }
 
   send_data = new UntypedFormGroup({
-    'auth' : new UntypedFormControl(localStorage.getItem('auth')),
+    'auth' : new UntypedFormControl(localStorage.getItem('portal')),
     'id' : new UntypedFormControl('Admin'),
     'title' : new UntypedFormControl(""),
     'subject' : new UntypedFormControl(""),
@@ -31,7 +31,7 @@ export class CreateAnnouncementComponent implements OnInit {
   listStudent : any;
 
   ngOnInit(): void {
-    this.service1.fetchStudent().subscribe(
+    this.service1.fetchMembers().subscribe(
       res=>{
         this.listStudent = res
       }

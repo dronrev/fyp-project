@@ -1,39 +1,41 @@
-<form action="" [formGroup]="myData">
-  <div class="container financial-form">
-    <h2>LAPORAN KEWANGAN</h2>
-    <div class="row">
-      <div class="col">
-        <h3>Pendapatan</h3>
-        <ion-list [inset]="true">
-          <ion-item>
-            <ion-input label="PERUNTUKAN HEP" labelPlacement="floating" formControlName="peruntukan_hep"[value]="peruntukan_hep" readonly></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input label="YURAN PENDAPATAN" labelPlacement="floating" formControlName="yuran_pendapatan" [value]="yuran_pendapatan" readonly></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input label="PENAJA" labelPlacement="floating" formControlName="penaja" [value]="penaja" readonly></ion-input>
-          </ion-item>
-        </ion-list>
-        <p></p>
+<mat-card class="surface-card" appearance="outlined">
+  <h2 class="section-title">Laporan Kewangan</h2>
+  <form [formGroup]="myData">
+    <div class="two-column">
+      <div class="form-stack">
+        <h3 class="section-title">Pendapatan</h3>
+      <mat-form-field appearance="outline">
+        <mat-label>Peruntukan</mat-label>
+        <input matInput formControlName="peruntukan_hep" [value]="peruntukan_hep" readonly>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Yuran pendapatan</mat-label>
+        <input matInput formControlName="yuran_pendapatan" [value]="yuran_pendapatan" readonly>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Penaja</mat-label>
+        <input matInput formControlName="penaja" [value]="penaja" readonly>
+      </mat-form-field>
       </div>
-      <div class="col">
-        <h3>Perbelanjaan</h3>
-        <ion-list [inset]="true">
-          <ion-item>
-            <ion-input label="SPEAKER" labelPlacement="floating" formControlName="speaker" [value]="speaker" readonly></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input label="TEMPAT PERTAMA" labelPlacement="floating" formControlName="tempat_pertama" [value]="tempat_pertama" readonly></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input label="TEMPAT KEDUA" labelPlacement="floating" formControlName="tempat_kedua" [value]="tempat_kedua" readonly></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input label="TEMPAT KETIGA" labelPlacement="floating" formControlName="tempat_ketiga" [value]="tempat_ketiga" readonly></ion-input>
-          </ion-item>
-        </ion-list>
+      <div class="form-stack">
+        <h3 class="section-title">Perbelanjaan</h3>
+      <mat-form-field appearance="outline">
+        <mat-label>Speaker</mat-label>
+        <input matInput formControlName="speaker" [value]="speaker" readonly>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Tempat pertama</mat-label>
+        <input matInput formControlName="tempat_pertama" [value]="tempat_pertama" readonly>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Tempat kedua</mat-label>
+        <input matInput formControlName="tempat_kedua" [value]="tempat_kedua" readonly>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Tempat ketiga</mat-label>
+        <input matInput formControlName="tempat_ketiga" [value]="tempat_ketiga" readonly>
+      </mat-form-field>
       </div>
     </div>
-  </div>
-</form>
+  </form>
+</mat-card>

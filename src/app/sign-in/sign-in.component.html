@@ -1,40 +1,38 @@
-<div class="heading">
-  <div><img src="assets/images/logo.png" alt=""></div>
-  <div><h2>PMFKI activity management system</h2></div>
-</div>
-<div class="container-fluid main-body">
-  <div class="body-login">
-    <div class="login-head">
-      <h1>LOGIN</h1>
+<div class="auth-page">
+  <mat-card class="auth-card">
+    <div class="auth-brand">
+      <span class="auth-mark"><mat-icon>event_available</mat-icon></span>
+      <h1>{{ appName }}</h1>
+      <p>Sign in to continue</p>
     </div>
-    <form action="" class="form-body" [formGroup]= "LoginForm" (ngSubmit)="onLogin()">
-      <div>
-        <select name="" id="" formControlName="user_role">
-          @for (roles of role; track roles) {
-            <option value="" [ngValue]="roles.id">{{ roles.name }}</option>
+    <form class="form-stack" [formGroup]="LoginForm" (ngSubmit)="onLogin()">
+      <mat-form-field appearance="outline">
+        <mat-label>Sign in as</mat-label>
+        <mat-select formControlName="user_role">
+          @for (roles of role; track roles.id) {
+            <mat-option [value]="roles.id">{{ roles.name }}</mat-option>
           }
-        </select>
-      </div>
-      <div>
-        <label for="" class="form-label">Username</label>
-        <input type="text" class="form-control" formControlName="email_address" required>
-      </div>
-      <div>
-        <label for="" class="form-label">Password</label>
-        <input class="passwordcheck" type="password" [type]="showPass" class="form-control" formControlName="password" required>
-      </div>
-      <div class="pt-2">
-        <ion-checkbox labelPlacement="end" (ionChange)="showPassword($event)">Show Password</ion-checkbox>
-      </div>
-      <div>
-        <button class="btn btn-primary" type="submit">Login</button>
-      </div>
-      <div>
-        <a href="">Forgot your password ?</a>
-      </div>
-      <div>
-        <a href="" routerLink="/new-register">Register as a new member</a>
-      </div>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <mat-icon matPrefix>person</mat-icon>
+        <input matInput type="text" formControlName="email_address" autocomplete="username" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <mat-icon matPrefix>lock</mat-icon>
+        <input matInput [type]="showPass" formControlName="password" autocomplete="current-password" required>
+        <button matIconButton matSuffix type="button" (click)="togglePassword()"
+          [attr.aria-label]="showPass == 'password' ? 'Show password' : 'Hide password'">
+          <mat-icon>{{ showPass == 'password' ? 'visibility' : 'visibility_off' }}</mat-icon>
+        </button>
+      </mat-form-field>
+      <button matButton="filled" type="submit">Login</button>
     </form>
-  </div>
+    <div class="auth-links">
+      <a routerLink="/new-register">Register as a new member</a>
+      <a routerLink="/upcoming">See upcoming activities</a>
+    </div>
+  </mat-card>
 </div>

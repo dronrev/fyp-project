@@ -1,18 +1,11 @@
-ion-modal{
-  --border-color:pink;
+.report-tabs {
+  margin-bottom: 24px;
 }
 
-.comment-content{
-  --background: #373737;
+.report-tabs a {
+  cursor: pointer;
 }
 
-
-
-ion-textarea.comment-section{
-  --background: #373737;
-  --color: #fff;
-
-}
-ion-segment{
-  --background: grey;
+.comment-field {
+  margin-top: 8px;
 }

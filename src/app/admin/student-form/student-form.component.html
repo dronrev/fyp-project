@@ -1,40 +1,44 @@
-<div class="stu-form container mt-2 pb-2">
-  <form action="" class="form" (ngSubmit)="sendUser(stuForm.value)" #stuForm="ngForm">
-    <div>
-      <label for="" class="form-label">Student Name</label>
-      <input type="text" class="form-control" ngModel name="name" required>
-    </div>
-    <div>
-      <label for="" class="form-label">Matric Number</label>
-      <input type="text" class="form-control" ngModel name="mat_number" required>
-    </div>
-    <div>
-      <label for="" class="form-label">Password</label>
-      <input type="password" class="form-control" ngModel name="passwd" required>
-    </div>
-    <div>
-      <label for="" class="form-label">Email Address</label>
-      <input type="text" class="form-control" ngModel name="email" required>
-    </div>
-    <div>
-      <label for="" class="form-label">Course Code</label>
-      <select name="course_code" id="" class="form-select" ngModel required>
-        @for (item of programmes_list; track item; let key = $index) {
-          <option  [value]="item">{{item}}</option>
+<mat-card class="surface-card narrow" appearance="outlined">
+  <h2 class="section-title">New member</h2>
+  <form class="form-stack" (ngSubmit)="sendUser(stuForm.value)" #stuForm="ngForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Member name</mat-label>
+      <input matInput type="text" ngModel name="name" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Member ID</mat-label>
+      <input matInput type="text" ngModel name="mat_number" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" ngModel name="passwd" autocomplete="new-password" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Email address</mat-label>
+      <input matInput type="text" ngModel name="email" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Course code</mat-label>
+      <input matInput type="text" ngModel name="course_code" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Group</mat-label>
+      <mat-select name="group_id" ngModel required>
+        @for (item of groups; track item.group_id) {
+          <mat-option [value]="item.group_id">{{ item.name }}</mat-option>
         }
-      </select>
-    </div>
-    <div>
-      <label for="" class="form-label">User Role</label>
-      <select class="form-select" aria-label="Default select example" ngModel name="role" required>
-        <option selected>Open this select menu</option>
-        <option value="student">Student</option>
-        <option value="PMFKIKK">PMFKIKK</option>
-        <option value="PMFKIKAL">PMFKIKAL</option>
-      </select>
-    </div>
-    <div class="mt-2">
-      <button class="btn btn-submit" type="submit">Submit</button>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>User role</mat-label>
+      <mat-select name="role" ngModel required>
+        @for (item of roles; track item.value) {
+          <mat-option [value]="item.value">{{ item.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <div class="form-actions">
+      <button matButton="filled" type="submit">Submit</button>
     </div>
   </form>
-</div>
+</mat-card>

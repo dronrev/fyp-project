@@ -1,199 +1,109 @@
-<!--ion-breadcrumbs color="secondary">
-<ion-breadcrumb routerLink="/report">Report</ion-breadcrumb>
-<ion-breadcrumb routerLink="/report">My Report</ion-breadcrumb>
-<ion-breadcrumb [routerLink]="['/report/editreport',report_id]">Current Report</ion-breadcrumb>
-</!--ion-breadcrumbs-->
-<ion-segment value="default" color="light">
-  <ion-segment-button value="actRep" (click)="actReport()">
-    <ion-label>Activity Reports</ion-label>
-  </ion-segment-button>
-  <ion-segment-button value="commentRep" (click)="commentReport()">
-    <ion-label>Comment</ion-label>
-  </ion-segment-button>
-  <ion-segment-button value="finRep" (click)="finReport()">
-    <ion-label>Financial Reports</ion-label>
-  </ion-segment-button>
-  <ion-segment-button value="attacRep" (click)="attachmentReport()">
-    <ion-label>Attachments</ion-label>
-  </ion-segment-button>
-  <ion-segment-button value="partRep" (click)="partReport()">
-    <ion-label>Participants</ion-label>
-  </ion-segment-button>
-</ion-segment>
-<div class="container" [hidden]="!actRep">
-  <h1>Laporan Aktiviti</h1>
-  <div class="pb-2">
-    <button class="btn btn-primary" (click)="editButton()" [hidden]="edit">EDIT</button>
-    <button class="btn btn-success" (click)="editButton()" [hidden]="!edit" >STOP EDITING</button>
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a routerLink="/report">My Report</a>
+  <mat-icon>chevron_right</mat-icon>
+  <span>{{ title || 'Current Report' }}</span>
+</nav>
+<nav mat-tab-nav-bar [tabPanel]="reportPanel" class="report-tabs">
+  <a mat-tab-link [active]="actRep" (click)="actReport()">Activity report</a>
+  <a mat-tab-link [active]="comRep" (click)="commentReport()">Comment</a>
+  <a mat-tab-link [active]="finRep" (click)="finReport()">Financial report</a>
+  <a mat-tab-link [active]="attacRep" (click)="attachmentReport()">Attachments</a>
+  <a mat-tab-link [active]="partRep" (click)="partReport()">Participants</a>
+</nav>
+<mat-tab-nav-panel #reportPanel class="report-panel">
+  <div [hidden]="!actRep">
+    <div class="page-header">
+      <h1 class="page-title">Laporan Aktiviti</h1>
+      <div class="actions">
+        <button matButton="outlined" (click)="editButton()" [hidden]="edit">
+          <mat-icon>edit</mat-icon>
+          Edit
+        </button>
+        <button matButton="tonal" (click)="editButton()" [hidden]="!edit">
+          <mat-icon>edit_off</mat-icon>
+          Stop editing
+        </button>
+      </div>
+    </div>
+    <mat-card class="surface-card" appearance="outlined">
+      <form class="form-stack" [formGroup]="thereport">
+      <mat-form-field appearance="outline">
+        <mat-label>Tajuk</mat-label>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="2" placeholder="Type something here"
+          formControlName="title" [(ngModel)]="this.title" [readonly]="!edit"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Objektif</mat-label>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="2" placeholder="Type something here"
+          formControlName="objective" [(ngModel)]="this.objective" [readonly]="!edit"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Pendahuluan</mat-label>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="2" placeholder="Type something here"
+          formControlName="introduction" [(ngModel)]="this.introduction" [readonly]="!edit"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Penglibatan</mat-label>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="2" placeholder="Type something here"
+          formControlName="involvement" [(ngModel)]="this.involvement" [readonly]="!edit"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Perkara hendak dimaklumkan</mat-label>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="2" placeholder="Type something here"
+          formControlName="perkara" [(ngModel)]="this.perkara_hendak_maklum" [readonly]="!edit"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Jemputan VIP</mat-label>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="2" placeholder="Type something here"
+          formControlName="vip" [(ngModel)]="this.jemputan_vip" [readonly]="!edit"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Impak Program</mat-label>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="2" placeholder="Type something here"
+          formControlName="impak" [(ngModel)]="this.impak_program" [readonly]="!edit"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Pencapaian</mat-label>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="2" placeholder="Type something here"
+          formControlName="pencapaian" [(ngModel)]="this.pencapaian" [readonly]="!edit"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Rumusan</mat-label>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="2" placeholder="Type something here"
+          formControlName="rumusan" [(ngModel)]="this.rumusan" [readonly]="!edit"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Cadangan</mat-label>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="2" placeholder="Type something here"
+          formControlName="cadangan" [(ngModel)]="this.cadangan" [readonly]="!edit"></textarea>
+      </mat-form-field>
+        <div class="form-actions">
+          <button matButton="filled" type="button" (click)="saveReport()">Save report</button>
+          <button matButton class="danger" type="button" (click)="clearForm()">Clear all text</button>
+        </div>
+      </form>
+    </mat-card>
   </div>
-
-  <div class="form">
-    <form action="" class="" [formGroup]="thereport">
-      <!--Title-->
-      <div class="title">
-        <label for="" class="form-label">Tajuk : </label>
-        <ion-item>
-          <ion-textarea placeholder="Type something here"
-            [autoGrow]="true"
-            formControlName="title"
-            [(ngModel)]="this.title"
-            [readonly]="!edit">
-          </ion-textarea>
-
-        </ion-item>
+  @if (comRep) {
+    <mat-card class="surface-card" appearance="outlined">
+      <h2 class="section-title">Comment</h2>
+      <p class="comment-text">{{ comment || 'No comment' }}</p>
+    </mat-card>
+  }
+  @if (finRep) {
+    <app-financial-report></app-financial-report>
+  }
+  @if (attacRep) {
+    <app-upload-image></app-upload-image>
+  }
+  @if (partRep) {
+    <div class="page-header">
+      <h1 class="page-title">Participants for {{ title }}</h1>
+      <div class="actions">
+        <button matButton="filled" (click)="sendToLeader(thereport.value)" [hidden]="isLeader">Send to leader</button>
+        <button matButton="filled" (click)="sendToReviewer(thereport.value)" [hidden]="!isLeader">Send to reviewer</button>
       </div>
-      <!--Objective-->
-      <div class="objective">
-        <label for="" class="form-label">Objektif : </label>
-        <ion-item>
-          <ion-textarea placeholder="Type something here"
-            [autoGrow]="true"
-            formControlName="objective"
-            [readonly]="!edit"
-            [(ngModel)]="this.objective">
-          </ion-textarea>
-
-        </ion-item>
-      </div>
-      <!--Introduction-->
-      <div class="introduction">
-        <label for="" class="form-label">Pendahuluan :</label>
-        <ion-item>
-          <ion-textarea placeholder="Type something here"
-            [autoGrow]="true"
-            [(ngModel)]="this.introduction"
-            [readonly]="!edit"
-            formControlName="introduction">
-          </ion-textarea>
-
-        </ion-item>
-      </div>
-      <!--Involvement-->
-      <div class="involvement">
-        <label for="" class="form-label">Penglibatan :</label>
-        <ion-item>
-          <ion-textarea placeholder="Type something here"
-            [autoGrow]="true"
-            [(ngModel)]="this.involvement"
-            [readonly]="!edit"
-            formControlName="involvement">
-          </ion-textarea>
-
-        </ion-item>
-      </div>
-      <!--Perkara hendak maklum-->
-      <div class="perkara-hendak">
-        <label for="" class="form-label">Perkara hendak dimaklumkan  :</label>
-        <ion-item>
-          <ion-textarea placeholder="Type something here"
-            [autoGrow]="true"
-            [(ngModel)]="this.perkara_hendak_maklum"
-            [readonly]="!edit"
-            formControlName="perkara">
-          </ion-textarea>
-
-        </ion-item>
-      </div>
-      <!--VIP-->
-      <div class="VIP">
-        <label for="" class="form-label">Jemputan VIP :</label>
-        <ion-item>
-          <ion-textarea placeholder="Type something here"
-            [autoGrow]="true"
-            [(ngModel)]="this.jemputan_vip"
-            [readonly]="!edit"
-            formControlName="vip">
-          </ion-textarea>
-
-        </ion-item>
-      </div>
-      <!--Impak-->
-      <div class="impak">
-        <label for="" class="form-label">Impak Program :</label>
-        <ion-item>
-          <ion-textarea placeholder="Type something here"
-            [autoGrow]="true"
-            [(ngModel)]="this.impak_program"
-            [readonly]="!edit"
-            formControlName="impak">
-          </ion-textarea>
-
-        </ion-item>
-      </div>
-      <!--Pencapaian-->
-      <div class="pencapaian">
-        <label for="" class="form-label">Pencapaian :</label>
-        <ion-item>
-          <ion-textarea placeholder="Type something here"
-            [autoGrow]="true"
-            [(ngModel)]="this.pencapaian"
-            [readonly]="!edit"
-            formControlName="pencapaian">
-          </ion-textarea>
-
-        </ion-item>
-      </div>
-      <!--Rumusan-->
-      <div class="rumusan">
-        <label for="" class="form-label">Rumusan :</label>
-        <ion-item>
-          <ion-textarea placeholder="Type something here"
-            [autoGrow]="true"
-            [(ngModel)]="this.rumusan"
-            [readonly]="!edit"
-            formControlName="rumusan">
-          </ion-textarea>
-
-        </ion-item>
-      </div>
-      <!--Cadangan-->
-      <div class="cadangan">
-        <label for="" class="form-label">Cadangan :</label>
-        <ion-item>
-          <ion-textarea placeholder="Type something here"
-            [autoGrow]="true"
-            [(ngModel)]="this.cadangan"
-            [readonly]="!edit"
-            formControlName="cadangan">
-          </ion-textarea>
-
-        </ion-item>
-      </div>
-      <!--Attachment Preview-->
-      <div class="attachment-part"></div>
-      <!--Button-->
-      <div class="submit-button mt-2 column">
-        <button class="btn btn-success" (click)="saveReport()">SAVE REPORT</button>
-        <button class="btn btn-danger" (click)="clearForm()">CLEAR ALL TEXT</button>
-      </div>
-    </form>
-  </div>
-</div>
-@if (finRep) {
-  <app-financial-report></app-financial-report>
-}
-@if (attacRep) {
-  <app-upload-image></app-upload-image>
-}
-@if (partRep) {
-  <h1>Add Participants For : {{title}}</h1>
-}
-@if (partRep) {
-  <app-add-participant></app-add-participant>
-}
-@if (partRep) {
-  <div>
-    <button class="btn btn-success"(click)="sendToPresident(thereport.value)" [hidden]="toLecturer">SEND TO PRESIDENT</button>
-    <button class="btn btn-success" (click)="sendToLecturer(thereport.value)" [hidden]="!toLecturer">SEND TO LECTURER</button>
-  </div>
-}
-@if (comRep) {
-  <div class="comment-section">
-    <label for="" class="form-label">Comment :</label>
-    <ion-textarea placeholder="No Comment"
-      [autoGrow]="true"
-      [value]="this.comment"
-      [readonly]="!edit">
-    </ion-textarea>
-  </div>
-}
+    </div>
+    <app-add-participant></app-add-participant>
+  }
+</mat-tab-nav-panel>

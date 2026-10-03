@@ -1,31 +1,32 @@
-<div class="shadow p-3 mb-5 bg-white rounded">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Date</th>
-        <th>Vote</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (item of list; track item; let key = $index) {
-        <tr>
-          <td>
-            {{key+1}}
-          </td>
-          <td>
-            {{ item.name_activity | uppercase}}
-          </td>
-          <td>
-            {{ item.date }}
-          </td>
-          <td>
-            <div><ion-button color="secondary" id="open-modal" hidden>Vote Member</ion-button></div>
-            <button class="btn btn-warning" (click)="selectActivity(item.activity_id)" [routerLink]="['selecting',item.activity_id]">Vote Member</button>
-          </td>
-        </tr>
-      }
-    </tbody>
-  </table>
+<div class="page-header">
+  <h1 class="page-title">Select member</h1>
 </div>
+<mat-card class="table-card" appearance="outlined">
+  <div class="table-scroll">
+    <table mat-table [dataSource]="list || []">
+      <ng-container matColumnDef="index">
+        <th mat-header-cell *matHeaderCellDef>#</th>
+        <td mat-cell *matCellDef="let item; let i = index">{{ i + 1 }}</td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let item">{{ item.name_activity | uppercase }}</td>
+      </ng-container>
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let item">{{ item.date }}</td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Vote</th>
+        <td mat-cell *matCellDef="let item">
+          <button matButton="tonal" (click)="selectActivity(item.activity_id)" [routerLink]="['selecting',item.activity_id]">Vote member</button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="['index', 'name', 'date', 'actions']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['index', 'name', 'date', 'actions']"></tr>
+      <tr *matNoDataRow>
+        <td class="empty-state" colspan="4">No activities to vote on.</td>
+      </tr>
+    </table>
+  </div>
+</mat-card>

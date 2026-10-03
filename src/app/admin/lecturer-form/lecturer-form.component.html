@@ -1,29 +1,27 @@
-<div class="lect-form container mt-2 pb-2">
-  <form action="" class="form" [formGroup]="myForm">
-    <div>
-      <label for="" class="form-label">Lecturer Name</label>
-      <input type="text" class="form-control" name="lecturername" formControlName="name" required>
-    </div>
-    <div>
-      <label for="" class="form-label">Password</label>
-      <input type="password" class="form-control" name="password" formControlName="passwd" required>
-    </div>
-    <div>
-      <label for="" class="form-label">Email Address</label>
-      <input type="text" class="form-control" name="email" formControlName="email" required>
-    </div>
-    <div>
-      <label for="" class="form-label">User Role</label>
-      <select class="form-select" aria-label="Default select example" formControlName="role" name="role">
-        <option selected>Open this select menu</option>
-        <option value="DEKAN">DEKAN</option>
-        <option value="TDA">TDA</option>
-        <option value="lecturer">Lecturer</option>
-      </select>
-    </div>
-    <div class="mt-2">
-      <button class="btn btn-success" (click)="addLecturer()">Submit</button>
+<mat-card class="surface-card narrow" appearance="outlined">
+  <h2 class="section-title">New reviewer</h2>
+  <form class="form-stack" [formGroup]="myForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Reviewer name</mat-label>
+      <input matInput type="text" name="lecturername" formControlName="name" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" name="password" formControlName="passwd" autocomplete="new-password" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Email address</mat-label>
+      <input matInput type="text" name="email" formControlName="email" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>User role</mat-label>
+      <mat-select formControlName="role">
+        <mat-option value="reviewer">Reviewer</mat-option>
+        <mat-option value="approver">Approver</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="form-actions">
+      <button matButton="filled" type="button" (click)="addLecturer()">Submit</button>
     </div>
   </form>
-</div>
-
+</mat-card>

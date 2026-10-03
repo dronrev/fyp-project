@@ -1,21 +1,24 @@
-<div class="container">
-  @for (item of myitem; track item) {
-    <form action="" [formGroup]="send_data" (ngSubmit)="saveEdit()">
-      <div class="title">
-        <label for="" class="form-label">Title</label>
-        <input type="text" class="form-control" [(ngModel)]="myitem[0].title" formControlName="title">
-      </div>
-      <div class="subject">
-        <label for="" class="form-label">Subject</label>
-        <input type="text" class="form-control" [(ngModel)]="myitem[0].subject" formControlName="subject">
-      </div>
-      <div class="message">
-        <label for="" class="form-label">Message</label>
-        <textarea name="" [(ngModel)]="myitem[0].message" id="" cols="30" rows="10" class="form-control" formControlName="message"></textarea>
-      </div>
-      <div class="save-button mt-2">
-        <button class="btn btn-success" type="submit">Save</button>
+<div class="page-header">
+  <h1 class="page-title">Edit announcement</h1>
+</div>
+@for (item of myitem; track item) {
+  <mat-card class="surface-card narrow" appearance="outlined">
+    <form class="form-stack" [formGroup]="send_data" (ngSubmit)="saveEdit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput type="text" [(ngModel)]="myitem[0].title" formControlName="title">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Subject</mat-label>
+        <input matInput type="text" [(ngModel)]="myitem[0].subject" formControlName="subject">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Message</mat-label>
+        <textarea matInput rows="10" [(ngModel)]="myitem[0].message" formControlName="message"></textarea>
+      </mat-form-field>
+      <div class="form-actions">
+        <button matButton="filled" type="submit">Save</button>
       </div>
     </form>
-  }
-</div>
+  </mat-card>
+}

@@ -1,28 +1,11 @@
-.form textarea,label{
-  font-family: Tahoma;
-  color: black;
+.report-tabs {
+  margin-bottom: 24px;
 }
 
-ion-content{
-  --ion-background-color:#99CCED;
-  --color:black;
-}
-ion-modal{
-  --border-color:pink;
+.report-tabs a {
+  cursor: pointer;
 }
 
-.comment-content{
-  --background: #373737;
+.comment-text {
+  white-space: pre-line;
 }
-
-
-
-ion-textarea.comment-section{
-  --background: #373737;
-  --color: #fff;
-
-}
-ion-segment{
-  --background: grey;
-}
-

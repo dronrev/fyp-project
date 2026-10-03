@@ -1,6 +1,12 @@
-<div class="container error">
-  <p>You have found a page that does not exist.</p>
-  <p>Calm down</p>
-  <p>Breathe in and breathe out three times</p>
-  <a href="#" routerLink="/sign-in">Back to mainpage</a>
+<div class="auth-page">
+  <mat-card class="auth-card">
+    <div class="auth-brand">
+      <mat-icon class="error-icon">travel_explore</mat-icon>
+      <h1>Page not found</h1>
+      <p>The page you are looking for does not exist.</p>
+    </div>
+    <div class="form-actions error-actions">
+      <a matButton="filled" routerLink="/sign-in">Back to sign in</a>
+    </div>
+  </mat-card>
 </div>

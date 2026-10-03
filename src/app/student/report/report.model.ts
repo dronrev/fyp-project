@@ -16,7 +16,7 @@ export class Report{
   budget_id?:string;
   activity_id?:string;
   user_id?: string;
-  lecturer_id?: string;
+  reviewer_id?: string;
   status?: string;
   comment?: string;
   name_activity?: string;
@@ -33,7 +33,7 @@ export class Report{
     budget_id?:string,
     activity_id?:string,
     user_id?: string,
-    lecturer_id?: string,
+    reviewer_id?: string,
     status?: string,
     comment?: string,
     name_activity?:string){
@@ -53,7 +53,7 @@ export class Report{
     this.budget_id = budget_id;
     this.activity_id = activity_id;
     this.user_id = user_id;
-    this.lecturer_id = lecturer_id;
+    this.reviewer_id = reviewer_id;
     this.status = status;
     this.comment = comment;
   }

@@ -1,20 +1,18 @@
-@for (title of list; track title) {
-  <h2>Vote member for this upcoming activity : {{title.name_activity}}</h2>
-}
-<form action="">
-  <div class="the-content">
-    @for (item of list_student; track item; let key = $index) {
-      <div class="mycard" >
-        <div class="head"><h2>{{ item.username | uppercase }}</h2></div>
-        <div class="body"><img [src]="imageURL+item.profilepic" alt="" height="100" width="100"></div>
-        <ion-checkbox (ionChange)="sendData($event,item)"></ion-checkbox>
-      </div>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Vote members</h1>
+    @for (title of list; track title) {
+      <p class="page-subtitle">Upcoming activity: {{ title.name_activity }}</p>
     }
-    <!--ion-item color="medium">
-
-    <ion-label>{{ item.username }}</ion-label>
-    <img [src]="imageURL+item.profilepic" alt="" height="50" width="50">
-    </!--ion-item-->
   </div>
-  <ion-button color="warning" (click)="sending_to_db()">Send Vote</ion-button>
-</form>
+  <button matButton="filled" type="button" (click)="sending_to_db()">Send vote</button>
+</div>
+<div class="card-grid">
+  @for (item of list_student; track item) {
+    <mat-card class="surface-card member-card" appearance="outlined">
+      <img class="avatar" [src]="imageURL+item.profilepic" alt="" height="96" width="96" (error)="$any($event.target).src = 'assets/images/default-image.jpg'">
+      <div class="member-name">{{ item.username | uppercase }}</div>
+      <mat-checkbox (change)="sendData($event,item)">Select</mat-checkbox>
+    </mat-card>
+  }
+</div>

@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 import { VoteService } from './vote.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { VoteService } from './vote.service';
 })
 export class AdminVoteActivityComponent implements OnInit {
 
-  constructor(private service : VoteService,private alertcontrol : AlertController) { }
+  constructor(private service : VoteService,private alertcontrol : AlertService) { }
 
   list : any
 
@@ -23,9 +23,9 @@ export class AdminVoteActivityComponent implements OnInit {
     )
   }
 
-  detail(data:any,cawangan:any){
+  detail(data:any,group_id:any){
     localStorage.setItem('_vote_id_',data);
-    localStorage.setItem('_cawangan_',cawangan)
+    localStorage.setItem('_vote_group_id_',group_id)
   }
 
   edit(data:any){

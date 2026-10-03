@@ -1,23 +1,24 @@
-<h2>List Of Participants</h2>
-<div class="shadow p-3 mb-5 bg-white rounded">
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">
-          #
-        </th>
-        <th>Name</th>
-        <th>Matric Number</th>
+<h2 class="section-title">List of participants</h2>
+<mat-card class="table-card" appearance="outlined">
+  <div class="table-scroll">
+    <table mat-table [dataSource]="list || []">
+      <ng-container matColumnDef="index">
+        <th mat-header-cell *matHeaderCellDef>#</th>
+        <td mat-cell *matCellDef="let item; let i = index">{{ i + 1 }}</td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let item; let i = index">{{ item.name }}</td>
+      </ng-container>
+      <ng-container matColumnDef="matric">
+        <th mat-header-cell *matHeaderCellDef>Member ID</th>
+        <td mat-cell *matCellDef="let item; let i = index">{{ item.matric_no }}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="['index', 'name', 'matric']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['index', 'name', 'matric']"></tr>
+      <tr *matNoDataRow>
+        <td class="empty-state" colspan="3">No participants.</td>
       </tr>
-    </thead>
-    <tbody>
-      @for (item of list; track item; let key = $index) {
-        <tr scope="row">
-          <td>{{key+1}}</td>
-          <td>{{ item.name}}</td>
-          <td>{{item.matric_no}}</td>
-        </tr>
-      }
-    </tbody>
-  </table>
-</div>
+    </table>
+  </div>
+</mat-card>

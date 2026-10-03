@@ -14,32 +14,25 @@ export class UsersService {
   url = `${environment.apiUrl}/send-data`;
   regStu: any;
 
-  fetchStudent(){
-    return this.http.get(this.baseUrl+'user/get-students')
+  fetchMembers(){
+    return this.http.get(this.baseUrl+'user/get-members')
   }
 
   deleteService(data:any){
     return this.http.post(this.baseUrl+'user/delete-user',data,{responseType: 'text'})
   }
 
-  sendLecturer(data:any){
-    return this.http.post(this.baseUrl+'lecturer/sendData',data,{responseType : 'text'})
+  // data: { group_id, user_id }
+  assignLeader(data:any){
+    return this.http.post(this.baseUrl+'group/assign-leader',data,{responseType : 'text'})
   }
 
-  assignPresident(data:any){
-    return this.http.post(this.baseUrl+'user/assignPresident',data,{responseType : 'text'})
+  // data: { group_id, user_id }
+  removeLeader(data:any){
+    return this.http.post(this.baseUrl+'group/remove-leader',data,{responseType : 'text'})
   }
 
-  assignPresidentLabuan(data:any){
-    return this.http.post(this.baseUrl+'user/assignPresidentLabuan',data,{responseType : 'text'})
-  }
-
-
-  updateRole(data:any){
-    return this.http.post(this.baseUrl+'user/update-role',data,{responseType : 'text'})
-  }
-
-  getCawangan(data:any){
+  getGroup(data:any){
     return this.http.post(this.baseUrl+'user/get-personal-information',data)
   }
 }

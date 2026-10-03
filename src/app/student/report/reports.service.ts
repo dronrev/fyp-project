@@ -30,8 +30,8 @@ export class ReportsService {
     return this.http.post(this.theUrl+'get-report-details',id,{responseType:'text'})
   }
 
-  getLecturer(){
-    return this.http.get(this.theUrl+'get-all-lecturer')
+  getReviewers(){
+    return this.http.get(`${environment.apiUrl}/reviewer/get-reviewers`)
   }
 
   sendReport(data:any){

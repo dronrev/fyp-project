@@ -2,7 +2,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 import { UsersService } from '../users.service';
 
 @Component({
@@ -14,7 +14,7 @@ import { UsersService } from '../users.service';
 })
 export class LecturerFormComponent implements OnInit {
 
-  constructor(private http:HttpClient,private alertcontrol : AlertController) { }
+  constructor(private http:HttpClient,private alertcontrol : AlertService) { }
 
   ngOnInit(): void {
   }
@@ -30,10 +30,10 @@ export class LecturerFormComponent implements OnInit {
 //lecturer:{name:string, passwd:string, email:string, role : string}
   addLecturer(){
     if(!this.myForm.valid){
-      alert("WOI ISI SEMUA FORM");
+      this.notify("Please fill in all the fields.");
       return}
 
-    this.http.post(`${environment.apiUrl}/lecturer/sendData`,this.myForm.value,{responseType: 'text'}).subscribe(
+    this.http.post(`${environment.apiUrl}/reviewer/create`,this.myForm.value,{responseType: 'text'}).subscribe(
       res=>{
         this.message = res;
         this.notify(this.message);

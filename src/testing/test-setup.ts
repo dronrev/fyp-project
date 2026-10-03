@@ -1,18 +1,13 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideRouter } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
-import { NgxPaginationModule } from 'ngx-pagination';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 // Shared TestBed configuration for the generated component and service specs.
 // HTTP calls are captured by the testing backend, so no spec reaches the backend API.
 export const TEST_IMPORTS = [
-  FormsModule,
-  ReactiveFormsModule,
-  IonicModule.forRoot(),
-  NgxPaginationModule
+  SharedModule
 ];
 
 export const TEST_PROVIDERS = [

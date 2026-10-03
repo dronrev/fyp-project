@@ -1,25 +1,29 @@
-<div class="container">
-  @if (list?.length) {
-    <form action="" [formGroup]="send_data" (ngSubmit)="sendAnnouncement()">
-      <div>
-        <label for="" class="form-label">Title</label>
-        <input type="text" class="form-control" formControlName="title" [(ngModel)]="list[0].title">
-      </div>
-      <div>
-        <label for="" class="form-label">Subject</label>
-        <input type="text" class="form-control" formControlName="subject" [(ngModel)]="list[0].subject">
-      </div>
-      <div>
-        <label for="" class="form-label">Message</label>
-        <textarea name="" id="" cols="30" rows="10" class="form-control" formControlName="message" [(ngModel)]="list[0].message"></textarea>
-      </div>
-      <div class="mt-4" hidden>
-        <img  width="300" height="300" alt="">
-        <input type="file" >
-      </div>
-      <div class="mt-2">
-        <button class="btn btn-success" type="submit">Send</button>
-      </div>
-    </form>
-  }
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a routerLink="/admin-announcement">Announcement</a>
+  <mat-icon>chevron_right</mat-icon>
+  <span>Edit</span>
+</nav>
+<div class="page-header">
+  <h1 class="page-title">Edit announcement</h1>
 </div>
+@if (list?.length) {
+<mat-card class="surface-card narrow" appearance="outlined">
+  <form class="form-stack" [formGroup]="send_data" (ngSubmit)="sendAnnouncement()">
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput type="text" formControlName="title" [(ngModel)]="list[0].title">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Subject</mat-label>
+      <input matInput type="text" formControlName="subject" [(ngModel)]="list[0].subject">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Message</mat-label>
+      <textarea matInput rows="10" formControlName="message" [(ngModel)]="list[0].message"></textarea>
+    </mat-form-field>
+    <div class="form-actions">
+      <button matButton="filled" type="submit">Send</button>
+    </div>
+  </form>
+</mat-card>
+}

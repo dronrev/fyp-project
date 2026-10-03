@@ -2,7 +2,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 import { ImageService } from 'src/app/student/image.service';
 
 @Component({
@@ -31,7 +31,7 @@ export class UploadImageComponent implements OnInit {
     this.isModalOpen = isOpen;
   }
   constructor(private service : ImageService,private http : HttpClient,
-    private alertController : AlertController
+    private alertController : AlertService
     ,private fb : UntypedFormBuilder) {
   }
 
@@ -79,7 +79,7 @@ export class UploadImageComponent implements OnInit {
   deleteImg(event:any,data:any){
     this.checking = true;
     let info = {file_name : data, report_id : localStorage.getItem('ReportID')};
-    if(event.detail.checked){
+    if(event.checked){
       this.data_sent.value['img'].push(info);
     }
     else{

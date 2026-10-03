@@ -1,8 +1,17 @@
-.add-body-form{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+.candidate-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: 0 16px;
+  align-items: start;
 }
-.add-body-form>div{
-  margin: 10px;
+
+.candidate-row button {
+  margin-top: 8px;
+}
+
+@media (max-width: 767px) {
+  .candidate-row {
+    grid-template-columns: 1fr;
+    padding-bottom: 12px;
+  }
 }

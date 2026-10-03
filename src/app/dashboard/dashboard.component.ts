@@ -1,3 +1,4 @@
+import { APP_NAME } from 'src/app/shared/app-config';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { EventsService } from '../student/event/events.service';
@@ -11,6 +12,7 @@ import { Event } from '../student/event/event.model';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  appName = APP_NAME;
 
   constructor(private service : EventsService) { }
   myEvent: Event[] = [];

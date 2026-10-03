@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 import { EventsService } from 'src/app/student/event/events.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class ListOfEventAdminComponent implements OnInit {
 
   TabHeaders = ["#","Title","Activity ID",""];
 
-  constructor(private service : EventsService,private alertcontrol : AlertController) { }
+  constructor(private service : EventsService,private alertcontrol : AlertService) { }
 
   ngOnInit(): void {
     this.service.displayEvent().subscribe(

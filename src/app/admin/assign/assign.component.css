@@ -1,17 +1,43 @@
-img{
-  max-width: 100%;
-  height: 20vh;
-}
-.item{
-  min-height: 120px;
-  max-height: auto;
-}
-.ion-padding{
-  --ion-background-color: rgba(67, 151, 151, 0.553);
+.leader-card {
+  text-align: center;
 }
 
-ion-modal{
-  --width : 100%;
-  --height : 90vh;
+.leader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 0;
 }
 
+.leader-name {
+  font: var(--mat-sys-title-medium);
+}
+
+.leader-empty {
+  width: 64px;
+  height: 64px;
+  font-size: 64px;
+  color: var(--mat-sys-outline);
+}
+
+.picker-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.picker-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 0;
+}
+
+.picker-option > span {
+  display: flex;
+  flex-direction: column;
+}
+
+.picker-name {
+  font: var(--mat-sys-body-large);
+}

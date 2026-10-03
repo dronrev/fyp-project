@@ -15,7 +15,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { StudentDashboardComponent } from './dashboard/student-dashboard/student-dashboard.component';
 import { AddParticipantComponent } from './report/editreport/add-participant/add-participant.component';
 import { AuthenticationGuard } from '../guard/authentication.guard';
-import { HeaderComponent } from './header/header.component';
 import { StudentComponent } from './student.component';
 import { UploadImageComponent } from './report/editreport/upload-image/upload-image.component';
 import { AddEventComponent } from './event/add-event/add-event.component';
@@ -64,8 +63,7 @@ const routes: Routes = [
     {path : 'pending-user',component : PendingUserComponent},
     {path : 'report/editreport/:report_id/image', component : UploadImageComponent}],canActivate:[AuthenticationGuard]},
 
-    {path : 'graph',component : FinancialChartComponent},
-    {path : 'header',component : HeaderComponent}
+    {path : 'graph',component : FinancialChartComponent}
 
   //{path : '**', component : ErrorPageComponent}
 ];

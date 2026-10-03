@@ -1,28 +1,37 @@
-<ion-breadcrumbs color="primary">
-  <ion-breadcrumb routerLink="/announcement">Announcement</ion-breadcrumb>
-  <ion-breadcrumb>Create New Announcement</ion-breadcrumb>
-</ion-breadcrumbs>
-<div class="container">
-  <form action="" [formGroup]="data" (ngSubmit)="sendData()">
-    <div>
-      <label for="" class="form-label">Title</label>
-      <input type="text" class="form-control" formControlName="title">
-    </div>
-    <div>
-      <label for="" class="form-label">Subject</label>
-      <input type="text" class="form-control" formControlName="subject">
-    </div>
-    <div>
-      <label for="" class="form-label">Message</label>
-      <textarea name="" id="" cols="30" rows="10" class="form-control" formControlName="message"></textarea>
-    </div>
-    <div class="mt-4">
-      <img [src]="imageURL" width="300" height="300" alt="">
-      <input type="file" (change)="sendImage($event)">
-    </div>
-    <button (click)="saveImage()" type="button">Test</button>
-    <div class="mt-2">
-      <button class="btn btn-success" type="submit">Send</button>
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a routerLink="/announcement">Announcement</a>
+  <mat-icon>chevron_right</mat-icon>
+  <span>Create New Announcement</span>
+</nav>
+<div class="page-header">
+  <h1 class="page-title">Create new announcement</h1>
+</div>
+<mat-card class="surface-card narrow" appearance="outlined">
+  <form class="form-stack" [formGroup]="data" (ngSubmit)="sendData()">
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput type="text" formControlName="title">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Subject</mat-label>
+      <input matInput type="text" formControlName="subject">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Message</mat-label>
+      <textarea matInput rows="10" formControlName="message"></textarea>
+    </mat-form-field>
+    @if (imageURL) {
+      <img class="announcement-preview" [src]="imageURL" alt="Attached image preview">
+    }
+    <input #imageInput class="file-input" type="file" accept="image/*" (change)="sendImage($event)">
+    <div class="form-actions">
+      <button matButton="outlined" type="button" (click)="imageInput.click()">
+        <mat-icon>image</mat-icon>
+        Choose image
+      </button>
+      <button matButton="tonal" type="button" (click)="saveImage()">Upload image</button>
+      <span class="spacer"></span>
+      <button matButton="filled" type="submit">Send</button>
     </div>
   </form>
-</div>
+</mat-card>

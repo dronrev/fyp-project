@@ -1,27 +1,29 @@
-<ion-breadcrumbs color="secondary">
-  <ion-breadcrumb routerLink="/report">Report</ion-breadcrumb>
-  <ion-breadcrumb routerLink="/report">My Report</ion-breadcrumb>
-  <ion-breadcrumb routerLink="/report/create-report">New Report</ion-breadcrumb>
-</ion-breadcrumbs>
-<div class="container new-report">
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a routerLink="/report">My Report</a>
+  <mat-icon>chevron_right</mat-icon>
+  <span>New Report</span>
+</nav>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">New report</h1>
+    <p class="page-subtitle">Choose the activity to report on.</p>
+  </div>
+</div>
+<div class="card-grid">
   @for (item of mylist; track item) {
-    <div class="report-card">
-      <div class="card-title">
-        <h2>{{ item.name_activity }}</h2>
-      </div>
-      <div class="body-card">
-        <div class="location-card">
-          Location : {{item.location}}
-        </div>
-        <div class="date-card">
-          Date : {{item.date}}
-        </div>
-      </div>
-      <div class="button-create">
-        <button (click)="addReport(item.activity_id)">Add</button>
-      </div>
-    </div>
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>{{ item.name_activity }}</mat-card-title>
+        <mat-card-subtitle>{{ item.location }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <span class="hint">{{ item.date }}</span>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button matButton="tonal" (click)="addReport(item.activity_id)">Add</button>
+      </mat-card-actions>
+    </mat-card>
+  } @empty {
+    <mat-card appearance="outlined"><p class="empty-state">No activities are waiting for a report.</p></mat-card>
   }
 </div>
-
-

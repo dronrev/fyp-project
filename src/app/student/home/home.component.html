@@ -1,99 +1,43 @@
-<div class="home-header">
-  <div class="welcome">
-    <h1>Welcome To PMFKI Management System {{ yourName }}</h1>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Welcome, {{ yourName }}</h1>
+    <p class="page-subtitle">{{ appName }}</p>
   </div>
 </div>
-<div class="mt-5 home-content">
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <button routerLink="/dashboard">
-          <ion-card>
-            <ion-card-header>
-              <ion-card-subtitle>Go to dashboard to see any updates</ion-card-subtitle>
-              <ion-card-title>Dashboard</ion-card-title>
-            </ion-card-header>
-
-
-          </ion-card>
-        </button>
-      </ion-col>
-      <ion-col>
-        <button routerLink="/event">
-          <ion-card>
-            <ion-card-header>
-              <ion-card-subtitle>To see upcoming activities</ion-card-subtitle>
-              <ion-card-title>Event</ion-card-title>
-            </ion-card-header>
-
-
-          </ion-card>
-        </button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <button routerLink="/report">
-          <ion-card>
-            <ion-card-header>
-              <ion-card-subtitle>Here to see your reports</ion-card-subtitle>
-              <ion-card-title>Report</ion-card-title>
-            </ion-card-header>
-
-
-          </ion-card>
-        </button>
-      </ion-col>
-      <ion-col>
-        <button routerLink="/announcement">
-          <ion-card>
-            <ion-card-header>
-              <ion-card-subtitle>To announce anything related acitivity</ion-card-subtitle>
-              <ion-card-title>Announcement</ion-card-title>
-            </ion-card-header>
-
-          </ion-card>
-        </button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-
-      <ion-col hidden>
-        <button routerLink="/full-report">
-          <ion-card>
-            <ion-card-header>
-              <ion-card-subtitle>List of PMFKI reports</ion-card-subtitle>
-              <ion-card-title>List Of Report</ion-card-title>
-            </ion-card-header>
-
-
-          </ion-card>
-        </button>
-      </ion-col>
-      <ion-col>
-        <button routerLink="/voting-activity">
-          <ion-card>
-            <ion-card-header>
-              <ion-card-subtitle>Voting for upcoming comittee</ion-card-subtitle>
-              <ion-card-title>Vote</ion-card-title>
-            </ion-card-header>
-          </ion-card>
-        </button>
-      </ion-col>
-    </ion-row>
-    <ion-row hidden>
-      <ion-col>
-        <button routerLink="/e-cert">
-          <ion-card>
-            <ion-card-header>
-              <ion-card-subtitle>E-certificate</ion-card-subtitle>
-              <ion-card-title>Get Certificate</ion-card-title>
-            </ion-card-header>
-
-
-          </ion-card>
-        </button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+<div class="card-grid">
+  <a class="link-card" routerLink="/dashboard">
+    <mat-card class="surface-card" appearance="outlined">
+      <div class="link-card-icon"><mat-icon>dashboard</mat-icon></div>
+      <div class="link-card-title">Dashboard</div>
+      <div class="link-card-text">Go to dashboard to see any updates</div>
+    </mat-card>
+  </a>
+  <a class="link-card" routerLink="/event">
+    <mat-card class="surface-card" appearance="outlined">
+      <div class="link-card-icon"><mat-icon>event</mat-icon></div>
+      <div class="link-card-title">Event</div>
+      <div class="link-card-text">See upcoming activities</div>
+    </mat-card>
+  </a>
+  <a class="link-card" routerLink="/report">
+    <mat-card class="surface-card" appearance="outlined">
+      <div class="link-card-icon"><mat-icon>description</mat-icon></div>
+      <div class="link-card-title">Report</div>
+      <div class="link-card-text">See and edit your reports</div>
+    </mat-card>
+  </a>
+  <a class="link-card" routerLink="/announcement">
+    <mat-card class="surface-card" appearance="outlined">
+      <div class="link-card-icon"><mat-icon>campaign</mat-icon></div>
+      <div class="link-card-title">Announcement</div>
+      <div class="link-card-text">Read announcements about activities</div>
+    </mat-card>
+  </a>
+  <a class="link-card" routerLink="/voting-activity">
+    <mat-card class="surface-card" appearance="outlined">
+      <div class="link-card-icon"><mat-icon>how_to_vote</mat-icon></div>
+      <div class="link-card-title">Vote</div>
+      <div class="link-card-text">Vote for the upcoming committee</div>
+    </mat-card>
+  </a>
 </div>

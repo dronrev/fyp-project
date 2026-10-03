@@ -30,7 +30,7 @@ export class AnnouncementService {
     return this.announcementID
   }
   infoStudentAnnounce(){
-    return this.http.get(`${environment.apiUrl}/announcement/get-info-student`)
+    return this.http.get(`${environment.apiUrl}/announcement/get-info-member`)
   }
   emailAnnouncement(data:any){
     return this.http.post(`${environment.apiUrl}/announcement/email-announcement`,data,{responseType : 'text'})

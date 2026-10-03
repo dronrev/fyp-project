@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { GroupService } from 'src/app/shared/group.service';
+import { inject, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UsersService } from 'src/app/admin/users.service';
 
 @Component({
@@ -9,13 +10,20 @@ import { UsersService } from 'src/app/admin/users.service';
   styleUrls: ['./lect-list-of-student.component.css']
 })
 export class LectListOfStudentComponent implements OnInit {
+  private groupService = inject(GroupService);
+  groupNames: { [groupId: string]: string } = {};
 
   students:any;
   constructor(private service : UsersService) { }
 
   ngOnInit(): void {
+    this.groupService.getGroupNames().subscribe(
+      names=>{
+        this.groupNames = names;
+      }
+    )
 
-    this.service.fetchStudent().subscribe(
+    this.service.fetchMembers().subscribe(
       res=>{
         this.students = res;
       }

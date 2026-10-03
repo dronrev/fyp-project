@@ -4,14 +4,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { ReportComponent } from './report/report.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CreateReportComponent } from './report/create-report/create-report.component';
 import { EditreportComponent } from './report/editreport/editreport.component';
-import { HeaderComponent } from './header/header.component';
 import { ComReportComponent } from './report/com-report/com-report.component';
 import { ContactComponent } from './contact/contact.component';
 import { CertificateComponent } from './certificate/certificate.component';
-import { TopNavComponent } from './nav-bar/top-nav/top-nav.component';
 import { AnnouncementComponent } from './announcement/announcement.component';
 import { AnnouncementFormComponent } from './announcement/announcement-form/announcement-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -24,7 +21,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AddParticipantComponent } from './report/editreport/add-participant/add-participant.component';
 import { StudentComponent } from '../student/student.component';
 import { StudentRoutingModule } from './student-routing.module';
-import { IonicModule } from '@ionic/angular';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { UploadImageComponent } from './report/editreport/upload-image/upload-image.component';
 import { ChooseMemberComponent } from './select-member/member/choose-member/choose-member.component';
@@ -41,12 +38,10 @@ import { VoteResultComponent } from './event/vote-result/vote-result.component';
 import { ResultsComponent } from './event/vote-result/results/results.component';
 import { ProfImage } from './profile/prof-img.component';
 import { PendingUserComponent } from './pending-user/pending-user.component';
-import { FooterComponent } from '../footer/footer.component';
 import { MyAnnouncementComponent } from './announcement/my-announcement/my-announcement.component';
 import { DetailsComponent } from './announcement/my-announcement/details/details.component';
 import { VotingComponent } from './voting/voting.component';
 import { VotingDetailsComponent } from './voting/voting-details/voting-details.component';
-import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -54,14 +49,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
   declarations: [
     HomeComponent,
     ReportComponent,
-    NavBarComponent,
     CreateReportComponent,
     EditreportComponent,
-    HeaderComponent,
     ComReportComponent,
     ContactComponent,
     CertificateComponent,
-    TopNavComponent,
     AnnouncementComponent,
     AnnouncementFormComponent,
     DashboardComponent,
@@ -89,7 +81,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ResultsComponent,
     ProfImage,
     PendingUserComponent,
-    FooterComponent,
     MyAnnouncementComponent,
     DetailsComponent,
     VotingComponent,
@@ -100,9 +91,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CommonModule,
     BrowserModule,
     StudentRoutingModule,
-    IonicModule,
-    ReactiveFormsModule,
-    NgxPaginationModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class StudentModule { }

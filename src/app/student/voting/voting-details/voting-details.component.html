@@ -1,38 +1,32 @@
-<div class="container">
-  <div class="title"><h2>ELECTION TITLE : {{ title }}</h2><hr></div>
-  @for (myitem of listOfRole; track myitem) {
-    <div class="body">
-      <div class="position-candidate">
-        <div class="position-title">
-          <h3>{{ myitem }}</h3>
-          <div class="list-of-candidate">
-            @for (item of list; track item) {
-              @if (item.candidate == myitem) {
-                <div >
-                  <div style="display: flex;justify-content: center;flex-direction: column;">
-                    <img [src]="[imageURL + item.user_id+'prof_pic.png']" alt="" width="100" height="100">
-                    <p style="text-align: center;">{{name[item.user_id]}}</p>
-                    <p style="text-align: center;">{{item.user_id}}</p>
-                    <input type="radio" [name]="myitem" (change)="getCandidate($event,item)" [value]="item.user_id">
-                  </div>
-                </div>
-              } @else {
-                <div style="display: none;" hidden></div>
-              }
-            }
-            <!--div *ngFor="let item of list">
-            <div *ngIf="item.candidate == myitem; else noData">
-              <img src="" alt="" width="100" height="100">
-              <p>{{item.user_id}}</p>
-              <input type="radio" name="candidate">
-            </div>
-            </!--div-->
-          </div>
-        </div>
-      </div>
-    </div>
-  }
-  <div class="send-button">
-    <ion-button color="success" (click)="submit()">Send vote</ion-button>
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a routerLink="/voting-activity">Voting</a>
+  <mat-icon>chevron_right</mat-icon>
+  <span>{{ title }}</span>
+</nav>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">{{ title }}</h1>
+    <p class="page-subtitle">Choose one candidate for each position.</p>
   </div>
+  <button matButton="filled" type="button" (click)="submit()">Send vote</button>
+</div>
+<div class="stack">
+  @for (myitem of listOfRole; track myitem) {
+    <mat-card class="surface-card" appearance="outlined">
+      <h2 class="section-title">{{ myitem }}</h2>
+      <mat-radio-group class="candidate-grid" [name]="myitem" [attr.aria-label]="myitem">
+        @for (item of list; track item) {
+          @if (item.candidate == myitem) {
+            <label class="candidate">
+              <img class="avatar" [src]="imageURL + item.user_id + 'prof_pic.png'" alt="" width="96" height="96" (error)="$any($event.target).src = 'assets/images/default-image.jpg'">
+              <span class="candidate-name">{{ name[item.user_id] }}</span>
+              <span class="hint">{{ item.user_id }}</span>
+              <mat-radio-button [value]="item.user_id" (change)="getCandidate({ target: { name: myitem } }, item)"
+                [attr.aria-label]="name[item.user_id] || item.user_id"></mat-radio-button>
+            </label>
+          }
+        }
+      </mat-radio-group>
+    </mat-card>
+  }
 </div>

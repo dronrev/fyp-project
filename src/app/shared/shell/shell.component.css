@@ -1,0 +1,145 @@
+.shell {
+  height: 100vh;
+}
+
+.shell-sidenav {
+  width: 264px;
+  border-right: 1px solid var(--mat-sys-outline-variant);
+  background: var(--mat-sys-surface-container-low);
+  border-radius: 0;
+}
+
+.shell-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 20px 16px;
+}
+
+.shell-brand-mark {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+}
+
+.shell-brand-name {
+  font: var(--mat-sys-title-medium);
+  letter-spacing: 0.04em;
+  color: var(--mat-sys-primary);
+}
+
+.shell-brand-sub {
+  font: var(--mat-sys-body-small);
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.shell-sidenav mat-nav-list {
+  padding: 4px 12px;
+}
+
+.shell-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--mat-sys-surface-container-lowest);
+}
+
+.shell-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  gap: 8px;
+  background: var(--mat-sys-surface);
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+}
+
+.shell-toolbar-title {
+  font: var(--mat-sys-title-medium);
+  color: var(--mat-sys-primary);
+}
+
+.shell-spacer {
+  flex: 1;
+}
+
+.shell-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px 4px 4px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--mat-sys-on-surface);
+  cursor: pointer;
+  font: inherit;
+}
+
+.shell-user:hover,
+.shell-user:focus-visible {
+  background: var(--mat-sys-surface-container-high);
+}
+
+.shell-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.shell-avatar-icon {
+  width: 36px;
+  height: 36px;
+  font-size: 36px;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.shell-user-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+
+.shell-user-name {
+  font: var(--mat-sys-label-large);
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.shell-user-role {
+  font: var(--mat-sys-body-small);
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.shell-main {
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.shell-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--mat-sys-outline-variant);
+  font: var(--mat-sys-body-small);
+  color: var(--mat-sys-on-surface-variant);
+}
+
+@media (max-width: 599px) {
+  .shell-main {
+    padding: 16px;
+  }
+
+  .shell-user-text {
+    display: none;
+  }
+}

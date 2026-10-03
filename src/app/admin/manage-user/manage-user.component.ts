@@ -1,6 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { GroupService } from 'src/app/shared/group.service';
+import { inject, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 import { map } from 'rxjs/operators';
 import { UsersService } from '../users.service';
 
@@ -13,8 +14,10 @@ import { UsersService } from '../users.service';
   styleUrls: ['./manage-user.component.css']
 })
 export class ManageUserComponent implements OnInit {
+  private groupService = inject(GroupService);
+  groupNames: { [groupId: string]: string } = {};
 
-  constructor(private service : UsersService, private alertcontrol : AlertController) { }
+  constructor(private service : UsersService, private alertcontrol : AlertService) { }
 
   students:any;
   td  !: number;
@@ -23,7 +26,12 @@ export class ManageUserComponent implements OnInit {
   })
 
   ngOnInit(): void {
-    this.service.fetchStudent().subscribe(
+    this.groupService.getGroupNames().subscribe(
+      names=>{
+        this.groupNames = names;
+      }
+    )
+    this.service.fetchMembers().subscribe(
       res=>{
         this.students = res;
       }

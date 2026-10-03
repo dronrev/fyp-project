@@ -1,20 +1,16 @@
-<div class="sum-class">
-  <div class="" style="display:flex;justify-content: center;padding-bottom: 10px;" [hidden]="check">
-    <select name="" id="" (change)="getYear($event.target)">
-      <option value="">Select Year</option>
-      @for (listOfYear of year; track listOfYear) {
-        <option [value]="listOfYear">{{ listOfYear }}</option>
-      }
-    </select>
+<mat-card class="surface-card" appearance="outlined" [hidden]="check">
+  <div class="page-header chart-header">
+    <h2 class="section-title">Financial summary</h2>
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <mat-label>Year</mat-label>
+      <mat-select (selectionChange)="getYear($event)">
+        @for (listOfYear of year; track listOfYear) {
+          <mat-option [value]="listOfYear">{{ listOfYear }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
   </div>
-  <div class="summary" [hidden]="check">
-    <div id="divChart">
-      <div class="first-chart">
-        <canvas id="myChart" #myChart></canvas>
-      </div>
-      <!--div class="second-chart">
-      <canvas id="chart2"></canvas>
-      </!--div-->
-    </div>
+  <div id="divChart">
+    <canvas id="myChart" #myChart></canvas>
   </div>
-</div>
+</mat-card>

@@ -1,3 +1,4 @@
+import { APP_NAME } from 'src/app/shared/app-config';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
@@ -8,6 +9,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./lecturer-home.component.css']
 })
 export class LecturerHomeComponent implements OnInit {
+  appName = APP_NAME;
 
   constructor() { }
 

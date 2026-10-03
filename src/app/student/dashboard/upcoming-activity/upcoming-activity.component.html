@@ -1,21 +1,20 @@
-<div class="upcoming-container shadow p-3 mb-5">
-  <div class="upcoming-header">
-    <ion-list-header>
-      <ion-label>Upcoming activities</ion-label>
-    </ion-list-header>
-  </div>
-  <div class="content">
-    <ion-grid>
-      @for (item of myEvent; track item) {
-        <ion-row class="myCard mb-2 shadow">
-          <ion-col size="3" class="date">
-            {{ item.date | date}}
-          </ion-col>
-          <ion-col class="content">
-            {{ item.name_activity | titlecase }}
-          </ion-col>
-        </ion-row>
-      }
-    </ion-grid>
-  </div>
-</div>
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Upcoming activities</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    @if (myEvent?.length) {
+      <mat-list>
+        @for (item of myEvent; track item) {
+          <mat-list-item>
+            <mat-icon matListItemIcon>event</mat-icon>
+            <span matListItemTitle>{{ item.name_activity | titlecase }}</span>
+            <span matListItemLine>{{ item.date | date }}</span>
+          </mat-list-item>
+        }
+      </mat-list>
+    } @else {
+      <p class="empty-state">No upcoming activities.</p>
+    }
+  </mat-card-content>
+</mat-card>

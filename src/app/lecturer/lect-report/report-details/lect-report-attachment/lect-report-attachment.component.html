@@ -1,7 +1,12 @@
-<div class="show-image">
-  <div class="image-list">
-    @for (item of listOfImage; track item) {
-      <img [src]="item" alt="" width="300" height="300">
-    }
-  </div>
-</div>
+<mat-card class="surface-card" appearance="outlined">
+  <h2 class="section-title">Attachments</h2>
+  @if (listOfImage?.length) {
+    <div class="image-grid">
+      @for (item of listOfImage; track item) {
+        <img [src]="item" alt="Report attachment">
+      }
+    </div>
+  } @else {
+    <p class="empty-state">No attachments.</p>
+  }
+</mat-card>

@@ -1,10 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { Component, OnInit, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { forkJoin } from 'rxjs';
+import { ROLE } from 'src/app/shared/app-config';
+import { AlertService } from 'src/app/shared/alert.service';
+import { Group, GroupService } from 'src/app/shared/group.service';
 import { UsersService } from '../users.service';
-import { ViewChild } from '@angular/core';
-import { IonModal } from '@ionic/angular';
-import { OverlayEventDetail } from '@ionic/core/components';
-import { map } from 'rxjs/operators';
 
 @Component({
   standalone: false,
@@ -14,107 +14,81 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./assign.component.css']
 })
 export class AssignComponent implements OnInit {
-  roleMessage: string = "";
-  defaultImg = "../assets/images/default-image-jpeg"
-  imageURL = '../assets/images/profile-picture/'
-  presidentKK :any;
-  presidentKAL :any;
+  imageURL = 'assets/images/profile-picture/'
+  groups: Group[] = [];
+  members: any[] = [];
 
-  @ViewChild(IonModal)
-  modal!: IonModal ;
+  // The group and member chosen in the picker dialog.
+  pickerGroup?: Group;
+  pickedUserId: any;
+  private pickerRef?: MatDialogRef<any>;
 
-  message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
-  name!: string;
+  constructor(private alertcontrol:AlertService,private service : UsersService,
+    private groupService : GroupService,private dialog : MatDialog) { }
+
+  ngOnInit(): void {
+    this.load();
+  }
+
+  load(){
+    forkJoin([this.groupService.getGroups(), this.service.fetchMembers()]).subscribe(
+      ([groups, members]:any)=>{
+        this.groups = groups;
+        this.members = members;
+      }
+    )
+  }
+
+  leaderOf(group: Group){
+    return this.members.find((member:any)=>member.group_id == group.group_id && member.role == ROLE.leader);
+  }
+
+  candidatesOf(group: Group){
+    return this.members.filter((member:any)=>member.group_id == group.group_id && member.role != ROLE.leader);
+  }
+
+  openPicker(template: TemplateRef<any>, group: Group){
+    this.pickerGroup = group;
+    this.pickedUserId = null;
+    this.pickerRef = this.dialog.open(template, { width: '560px', maxWidth: '95vw' });
+  }
 
   cancel() {
-    this.modal.dismiss(null, 'cancel');
+    this.pickerRef?.close();
   }
 
   confirm() {
-    this.modal.dismiss(this.name, 'confirm');
-  }
-
-  onWillDismiss(event: Event) {
-    const ev = event as CustomEvent<OverlayEventDetail<string>>;
-    if (ev.detail.role === 'confirm') {
-      this.message = `Hello, ${ev.detail.data}!`;
+    this.pickerRef?.close();
+    if(!this.pickerGroup || !this.pickedUserId){
+      return;
     }
+    this.service.assignLeader({ group_id : this.pickerGroup.group_id, user_id : this.pickedUserId }).subscribe(
+      res=>{
+        this.load();
+      }
+    )
   }
 
-  onWillDismiss1(event: Event) {
-    const ev = event as CustomEvent<OverlayEventDetail<string>>;
-    if (ev.detail.role === 'confirm') {
-      this.message = `Hello, ${ev.detail.data}!`;
+  async removeLeader(group: Group){
+    const leader = this.leaderOf(group);
+    if(!leader){
+      return;
     }
-  }
-
-
-
-  constructor(private alertcontrol:AlertController,private service : UsersService) { }
-  listUser:any;
-  listUserLabuan : any;
-
-  ngOnInit(): void {
-    this.service.fetchStudent().pipe
-    (map((data:any)=>data.filter
-    ((myData:any)=>myData.user_role != "PMFKIKAL" && "PMFKIKK"))).subscribe(
-      (res:any)=>{
-        this.listUser = res.filter((myData:any)=>myData.cawangan == "KK");
-        this.listUserLabuan = res.filter((myData:any)=>myData.cawangan == "Labuan");
-      }
-    )
-    this.addPresident();
-    this.addPresidentKAL();
-  }
-  click1: boolean = false;
-
-  onClick(){
-    this.click1 = true;
-  }
-
-  radioValueLabuan : any;
-
-  checkValue1(value:any){
-    //console.log(this.radioValue);
-    this.service.assignPresidentLabuan(value).subscribe(
-      res=>{
-      }
-    )
-  }
-
-  //presidentFKILabuan
-  addPresidentKAL(){
-    this.service.fetchStudent().pipe
-    (map((data:any)=>data.filter
-    ((myData:any)=>myData.user_role == "PMFKIKAL")))
-    .subscribe(
-      res=>{
-        this.click1 = true;
-        this.presidentKAL = res;
-        if(this.presidentKAL[0] == undefined){this.click1 = false}
-      }
-    )
-  }
-
-  //pmfkikal alert control
-  async onClick2(){
     const alert = await this.alertcontrol.create({
-      header: 'Alert!',
+      header: 'Remove leader',
+      message: 'Remove ' + leader.username + ' as leader of ' + group.name + '?',
       buttons: [
         {
           text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-            this.click1 = true;
-          },
+          role: 'cancel'
         },
         {
-          text: 'OK',
+          text: 'Remove',
           role: 'confirm',
           handler: () => {
-            this.click1 =  false;
-            this.service.updateRole(this.presidentKAL[0].user_id).subscribe(
+            this.service.removeLeader({ group_id : group.group_id, user_id : leader.user_id }).subscribe(
               res=>{
+                this.load();
               }
             )
           },
@@ -122,68 +96,6 @@ export class AssignComponent implements OnInit {
       ],
     });
     await alert.present();
-
-    const { role } = await alert.onDidDismiss();
-    this.roleMessage = `Dismissed with role: ${role}`;
-  }
-
-  radioValue : any;
-
-  checkValue(value:any){
-    //console.log(this.radioValue);
-    this.service.assignPresident(value).subscribe(
-      res=>{
-      }
-    )
-  }
-
-  //assign pmfkikk president
-
-  click2 : boolean = false;
-
-  addPresident(){
-    this.service.fetchStudent().pipe
-    (map((data:any)=>data.filter
-    ((myData:any)=>myData.user_role == "PMFKIKK")))
-    .subscribe(
-      res=>{
-        this.click2 = true;
-        this.presidentKK = res;
-        if(this.presidentKK[0] == undefined){this.click2 = false}
-      }
-    )
-  }
-
-
-  //pmfkikk alert control
-  async onClick3(){
-    const alert = await this.alertcontrol.create({
-      header: 'Alert!',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-            this.click2 = true;
-          },
-        },
-        {
-          text: 'OK',
-          role: 'confirm',
-          handler: () => {
-            this.click2 =  false;
-            this.service.updateRole(this.presidentKK[0].user_id).subscribe(
-              res=>{
-              }
-            )
-          },
-        },
-      ],
-    });
-    await alert.present();
-
-    const { role } = await alert.onDidDismiss();
-    this.roleMessage = `Dismissed with role: ${role}`;
   }
 
 }

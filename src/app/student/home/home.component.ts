@@ -1,3 +1,4 @@
+import { APP_NAME } from 'src/app/shared/app-config';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
@@ -8,6 +9,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  appName = APP_NAME;
   loadedFeature = 'recipe';
   onNavigate(feature: string){
     this.loadedFeature = feature;

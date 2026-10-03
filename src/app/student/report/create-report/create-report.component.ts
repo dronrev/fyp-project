@@ -1,6 +1,7 @@
+import { ROLE } from 'src/app/shared/app-config';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { AlertController, mdTransitionAnimation } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 import { map } from 'rxjs/operators';
 import { EventsService } from '../../event/events.service';
 import { ReportsService } from '../reports.service';
@@ -20,7 +21,7 @@ export class CreateReportComponent implements OnInit {
   notCreatedReport:any= [];
   mylist:any = [];
 
-  constructor(private service:ReportsService,private serviceE : EventsService, private alertcontrol : AlertController) { }
+  constructor(private service:ReportsService,private serviceE : EventsService, private alertcontrol : AlertService) { }
   exform!: UntypedFormGroup;
   ngOnInit(): void {
     this.exform = new UntypedFormGroup({
@@ -29,9 +30,9 @@ export class CreateReportComponent implements OnInit {
       'value' : new UntypedFormControl(null)
     });
 
-    this.service.getLecturer().pipe
+    this.service.getReviewers().pipe
     (map((data:any)=>data.filter
-    ((myData:any)=>myData.role != "TDA"))).subscribe(
+    ((myData:any)=>myData.role != ROLE.approver))).subscribe(
       res=>{
         this.lecturer = res;
       }

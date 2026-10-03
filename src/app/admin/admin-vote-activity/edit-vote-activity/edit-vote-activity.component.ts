@@ -1,6 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Group, GroupService } from 'src/app/shared/group.service';
+import { inject, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, UntypedFormArray } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 import { UsersService } from '../../users.service';
 import { Voting } from '../vote-activity.model';
 import { VoteService } from '../vote.service';
@@ -13,16 +14,18 @@ import { VoteService } from '../vote.service';
   styleUrls: ['./edit-vote-activity.component.css']
 })
 export class EditVoteActivityComponent implements OnInit {
+  private groupService = inject(GroupService);
+  groups: Group[] = [];
 
   votingForm: UntypedFormGroup;
 
-  constructor(private alertcontrol : AlertController,private fb:UntypedFormBuilder, private service : UsersService,private service2:VoteService) {
+  constructor(private alertcontrol : AlertService,private fb:UntypedFormBuilder, private service : UsersService,private service2:VoteService) {
 
     this.votingForm = this.fb.group({
       vote_id:localStorage.getItem('_vote_id_'),
       title: '',
       date:'',
-      cawangan:'',
+      group_id:'',
       detail: this.fb.array([])
     });
   }
@@ -53,7 +56,7 @@ export class EditVoteActivityComponent implements OnInit {
   }
 
   onSubmit() {
-    this.votingForm.value.cawangan = this.cawangan
+    this.votingForm.value.group_id = this.group_id
     this.service2.editVote(this.votingForm.value).subscribe(
       res=>{
         this.notify(JSON.parse(res).message)
@@ -64,14 +67,18 @@ export class EditVoteActivityComponent implements OnInit {
   student : any;
   vote !: Voting;
   votearray = [];
-  cawangan :any;
+  group_id :any;
   stuCand:any;
   testingg : any;
   voteTitle : any;
   dateVote : any;
-  branch : any = ["KK","Labuan"]
   ngOnInit(): void {
-    this.service.fetchStudent().subscribe(
+    this.groupService.getGroups().subscribe(
+      groups=>{
+        this.groups = groups;
+      }
+    )
+    this.service.fetchMembers().subscribe(
       res=>{
         this.student = res;
       }
@@ -81,8 +88,8 @@ export class EditVoteActivityComponent implements OnInit {
       res=>{
         this.voteTitle = JSON.parse(res)[0].title;
         this.dateVote = JSON.parse(res)[0].date;
-        this.cawangan = JSON.parse(res)[0].cawangan;
-        this.stuCand = this.student.filter((data:any)=>data.cawangan == this.cawangan)
+        this.group_id = JSON.parse(res)[0].group_id;
+        this.stuCand = this.student.filter((data:any)=>data.group_id == this.group_id)
         for(let item of JSON.parse(res)){
           this.detail().push(this.fb.group({
             matric_no: item.user_id,
@@ -94,12 +101,10 @@ export class EditVoteActivityComponent implements OnInit {
 
   }
 
-  getCawangan(event:any){
-    event.target.value
-    this.cawangan=event.target.value;
-    this.stuCand = this.student.filter((data:any)=>data.cawangan == this.cawangan)
+  selectGroup(groupId:any){
+    this.group_id = groupId;
+    this.stuCand = this.student.filter((data:any)=>data.group_id == this.group_id)
   }
-
 
   testAdd(event : any){
     this.testingg = event.value;

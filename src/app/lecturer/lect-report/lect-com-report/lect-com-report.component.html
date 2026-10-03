@@ -1,17 +1,18 @@
-@for (report of reports || allReport; track report; let key = $index) {
-  <ion-card>
-    <ion-item>
-      <ion-label><h1><a href="" class="nav-link">{{ report.title || report.name_activity }}</a></h1></ion-label>
-      <ion-button fill="outline" slot="end" routerLink="/lectEditReport" (click)="getReport(key)" color="dark">Review Report</ion-button>
-    </ion-item>
-    <ion-card-content>
-      <div>
-        Location : {{ report.location || report.location}}
-      </div>
-      <div>
-        Report Status : {{ report.status || report.status }}
-      </div>
-    </ion-card-content>
-  </ion-card>
-}
-
+<div class="stack">
+  @for (report of reports || allReport; track report; let key = $index) {
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>{{ report.title || report.name_activity }}</mat-card-title>
+        <mat-card-subtitle>{{ report.location }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <span class="status-chip" [class]="'status-' + report.status">{{ report.status | reportStatus }}</span>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button matButton="tonal" routerLink="/reviewer-reports/review" (click)="getReport(key)">Review report</button>
+      </mat-card-actions>
+    </mat-card>
+  } @empty {
+    <mat-card appearance="outlined"><p class="empty-state">No reports are waiting for your review.</p></mat-card>
+  }
+</div>

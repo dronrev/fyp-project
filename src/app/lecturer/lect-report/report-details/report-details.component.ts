@@ -1,10 +1,12 @@
-import { Component, Inject, Injector, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { REPORT_STATUS, ROLE } from 'src/app/shared/app-config';
+import { Component, Inject, Injector, OnInit, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LectReportService } from '../lect-report.service';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Detail } from 'src/app/student/report/editreport/editreport.component';
 import { Report } from 'src/app/student/report/report.model';
 import { ReportsService } from 'src/app/student/report/reports.service';
-import { AlertController, IonModal } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 @Component({
   standalone: false,
   selector: 'app-report-details',
@@ -30,18 +32,19 @@ export class ReportDetailsComponent implements OnInit {
   budget_id?:string;
   activity_id?:string;
   user_id?: string;
-  lecturer_id?: string;
+  reviewer_id?: string;
   edit = false;
   comment?: string;
   actRep = true;
   finRep = false;
   attacRep = false;
   partRep = false;
-  hideSendTDA = true;
+  isReviewerStep = true;
 
   constructor(private service : ReportsService,
-    private alertcontrol : AlertController,
-    private commentService : LectReportService) { }
+    private alertcontrol : AlertService,
+    private commentService : LectReportService,
+    private dialog : MatDialog) { }
 
   value!: string;
   reports!: Report[];
@@ -62,8 +65,8 @@ export class ReportDetailsComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    if(localStorage.getItem('_sepesial_elor_rof_') == 'TDA')
-    this.hideSendTDA = false;
+    if(localStorage.getItem('role') == ROLE.approver)
+    this.isReviewerStep = false;
 
 
     this.service.getDetail(this.thereport.value['report_id']).subscribe(
@@ -94,7 +97,7 @@ export class ReportDetailsComponent implements OnInit {
 
   approve(data: { reportId?: any, myStatus?: any }){
     this.thereport.value['report_id'] = localStorage.getItem('ReportID');
-    this.thereport.value['status'] = 3;
+    this.thereport.value['status'] = REPORT_STATUS.finalApproval;
     data.reportId = "woi";
     this.service.approveReport(this.thereport.value).subscribe(
       res=>{
@@ -103,9 +106,9 @@ export class ReportDetailsComponent implements OnInit {
     this.alertMessage();
   }
 
-  approveTDA(data: { reportId?: any, myStatus?: any }){
+  approveFinal(data: { reportId?: any, myStatus?: any }){
     this.thereport.value['report_id'] = localStorage.getItem('ReportID');
-    this.thereport.value['status'] = 4;
+    this.thereport.value['status'] = REPORT_STATUS.approved;
     data.reportId = "woi";
     this.service.approveReport(this.thereport.value).subscribe(
       res=>{
@@ -125,7 +128,7 @@ export class ReportDetailsComponent implements OnInit {
 
   reject(data: { reportId?: any, myStatus?: any }){
     this.thereport.value['report_id'] = localStorage.getItem('ReportID');
-    this.thereport.value['status'] = 0;
+    this.thereport.value['status'] = REPORT_STATUS.draft;
     data.reportId = "woi";
     this.service.approveReport(data).subscribe(
       res=>{
@@ -133,9 +136,9 @@ export class ReportDetailsComponent implements OnInit {
     )
     this.alertRejectMessage();
   }
-  rejectTDA(data: { reportId?: any, myStatus?: any }){
+  rejectFinal(data: { reportId?: any, myStatus?: any }){
     this.thereport.value['report_id'] = localStorage.getItem('ReportID');
-    this.thereport.value['status'] = 0;
+    this.thereport.value['status'] = REPORT_STATUS.draft;
     data.reportId = "woi";
     this.service.approveReport(data).subscribe(
       res=>{
@@ -153,11 +156,15 @@ export class ReportDetailsComponent implements OnInit {
     await alert.present();
   }
 
-  @ViewChild(IonModal)
-  modal!: IonModal;
+  private commentRef?: MatDialogRef<any>;
+
+  openComment(template: TemplateRef<any>){
+    this.commentData();
+    this.commentRef = this.dialog.open(template, { width: '560px', maxWidth: '95vw' });
+  }
 
   cancel(){
-    this.modal.dismiss(null, 'cancel');
+    this.commentRef?.close();
   }
 
   sendComment(){
@@ -166,6 +173,7 @@ export class ReportDetailsComponent implements OnInit {
     //console.log(this.reports[0].report_id);
     this.commentService.sendComment(this.thereport.value).subscribe(
       res=>{
+        this.commentRef?.close();
         this.alertComment(JSON.parse(res).comment)
       }
     )
@@ -180,10 +188,10 @@ export class ReportDetailsComponent implements OnInit {
     await alert.present();
   }
 
-  //send report to TDA
-  sendToTDA(data: { reportId?: any, myStatus?: any }){
+  //send report to the approver
+  sendToApprover(data: { reportId?: any, myStatus?: any }){
     this.thereport.value['report_id'] = localStorage.getItem('ReportID');
-    this.thereport.value['status'] = 3;
+    this.thereport.value['status'] = REPORT_STATUS.finalApproval;
     data.reportId = "woi";
     this.service.approveReport(this.thereport.value).subscribe(
       res=>{

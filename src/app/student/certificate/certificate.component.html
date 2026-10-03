@@ -1,30 +1,39 @@
-
-<h1>E-certificate</h1>
-<table class="table table-hover">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Location</th>
-      <th scope="col">Total Participants</th>
-      <th scope="col">E-Certificate</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (item of list; track item; let key = $index) {
-      <tr>
-        <td>
-          <a>download</a>
+<div class="page-header">
+  <h1 class="page-title">E-certificate</h1>
+</div>
+<mat-card class="table-card" appearance="outlined">
+  <div class="table-scroll">
+    <table mat-table [dataSource]="list || []">
+      <ng-container matColumnDef="index">
+        <th mat-header-cell *matHeaderCellDef>#</th>
+        <td mat-cell *matCellDef="let item; let i = index">{{ i + 1 }}</td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let item">{{ item.name_activity }}</td>
+      </ng-container>
+      <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef>Location</th>
+        <td mat-cell *matCellDef="let item">{{ item.location }}</td>
+      </ng-container>
+      <ng-container matColumnDef="participants">
+        <th mat-header-cell *matHeaderCellDef>Total participants</th>
+        <td mat-cell *matCellDef="let item; let i = index">{{ myData[i] }}</td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>E-certificate</th>
+        <td mat-cell *matCellDef="let item">
+          <button matButton="tonal" (click)="downloadFolder()">
+            <mat-icon>download</mat-icon>
+            Download
+          </button>
         </td>
-        <td>{{ item.name_activity }}</td>
-        <td>{{ item.location }}</td>
-        <td>{{ myData[key] }}</td>
-        <td><!--a href="../assets/images/certificate/yeahh.rar" class="nav-link" download>Download E-certificate</!--a-->
-          <ion-button (click)="downloadFolder()">Download</ion-button>
-        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="['index', 'name', 'location', 'participants', 'actions']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['index', 'name', 'location', 'participants', 'actions']"></tr>
+      <tr *matNoDataRow>
+        <td class="empty-state" colspan="5">No certificates available.</td>
       </tr>
-    }
-  </tbody>
-</table>
-
-
+    </table>
+  </div>
+</mat-card>

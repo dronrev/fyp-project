@@ -2,7 +2,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 
 @Component({
   standalone: false,
@@ -13,7 +13,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class PendingUserComponent implements OnInit {
 
-  constructor(private http : HttpClient,private alertcontrol : AlertController) { }
+  constructor(private http : HttpClient,private alertcontrol : AlertService) { }
 
   list : any;
   student_data : any;
@@ -36,7 +36,7 @@ export class PendingUserComponent implements OnInit {
       'email' : new UntypedFormControl(data.email_id),
       'mat_number' : new UntypedFormControl(data.user_id),
       'course_code' : new UntypedFormControl(data.course_id),
-      'role' : new UntypedFormControl(data.user_role)
+      'role' : new UntypedFormControl(data.role)
 
     })
     this.http.post(`${environment.apiUrl}/send-data`,myForm.value,{responseType : 'text'}).subscribe(

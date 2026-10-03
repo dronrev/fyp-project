@@ -1,48 +1,65 @@
-<div class="container">
-  <div class="header">
-    <h2>New Vote Activity</h2>
-  </div>
-  <div class="body">
-    <form action="" [formGroup]="votingForm" (ngSubmit)="onSubmit()">
-      <div class="title">
-        <label for="" class="form-label"><b>Title</b></label>
-        <input type="text" class="form-control" formControlName="title" oninput="this.value = this.value.toUpperCase()">
-        <label for="" class="form-label"><b>Branch</b></label>
-        <select class="form-select" formControlName="cawangan" (change)="getCawangan($event)">
-          <option value="KK">KK</option>
-          <option value="Labuan">LABUAN</option>
-        </select>
-        <label for="" class="form-label"><b>Date</b></label>
-        <input type="date" class="form-control" formControlName="date">
-      </div>
-
-      <div class="add-section-form" formArrayName="detail" style="margin-top: 10px;">
-        @for (candidate of detail().controls; track candidate; let i = $index) {
-          <div class="add-body-form" [formGroupName]="i">
-            <div class="section1">
-              <label for="" class="form-label"><b>Candidate Name</b></label>
-              <select class="form-select" formControlName="matric_no" (change)="testAdd($event.target)">
-                @for (item of stuCand; track item) {
-                  <option [value]="item.user_id">{{ item.username }}</option>
-                }
-              </select>
-            </div>
-            <div class="section2">
-              <label for="" class="form-label"><b>Matric No</b></label>
-              <input type="text" class="form-control" [value]="votingForm.value.detail[i].matric_no" readonly>
-            </div>
-            <div class="section3">
-              <label for="" class="form-label"><b>Position</b></label>
-              <input type="text" class="form-control" formControlName="candidate" oninput="this.value = this.value.toUpperCase()">
-            </div>
-            <div class="section4" style="margin-top: 35px;">
-              <ion-button color="danger" (click)="removeCandidate(i)">-</ion-button>
-            </div>
-          </div>
-        }
-      </div>
-      <button class="btn btn-primary mt-3" type="button" (click)="addCandidate()">+</button>
-      <button class="btn btn-success mt-3" style="margin-left: 10px;" type="submit">Add Vote Activity</button>
-    </form>
-  </div>
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a routerLink="/voting">Voting Activity</a>
+  <mat-icon>chevron_right</mat-icon>
+  <span>New Vote Activity</span>
+</nav>
+<div class="page-header">
+  <h1 class="page-title">New vote activity</h1>
 </div>
+<mat-card class="surface-card" appearance="outlined">
+  <form [formGroup]="votingForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput class="uppercase-input" type="text" formControlName="title" oninput="this.value = this.value.toUpperCase()">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Group</mat-label>
+        <mat-select formControlName="group_id" (selectionChange)="selectGroup($event.value)">
+          @for (item of groups; track item.group_id) {
+            <mat-option [value]="item.group_id">{{ item.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Date</mat-label>
+        <input matInput type="date" formControlName="date">
+      </mat-form-field>
+    </div>
+
+    <h2 class="section-title">Candidates</h2>
+    <div formArrayName="detail">
+      @for (candidate of detail().controls; track candidate; let i = $index) {
+        <div class="candidate-row" [formGroupName]="i">
+          <mat-form-field appearance="outline">
+            <mat-label>Candidate name</mat-label>
+            <mat-select formControlName="matric_no" (selectionChange)="testAdd($event)">
+              @for (item of stuCand; track item) {
+                <mat-option [value]="item.user_id">{{ item.username }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Member ID</mat-label>
+            <input matInput type="text" [value]="votingForm.value.detail[i].matric_no" readonly>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Position</mat-label>
+            <input matInput type="text" formControlName="candidate" oninput="this.value = this.value.toUpperCase()">
+          </mat-form-field>
+          <button matIconButton class="danger" type="button" (click)="removeCandidate(i)" aria-label="Remove candidate">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      }
+    </div>
+    <div class="form-actions">
+      <button matButton="outlined" type="button" (click)="addCandidate()">
+        <mat-icon>add</mat-icon>
+        Add candidate
+      </button>
+      <span class="spacer"></span>
+      <button matButton="filled" type="submit">Add vote activity</button>
+    </div>
+  </form>
+</mat-card>

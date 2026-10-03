@@ -1,44 +1,31 @@
-<!--div class="row grid" style="--bs-gap: .25rem 1rem;">
-  <div class="col-4">
-    <div class="card" style="width: 18rem;">
-      <img src="robertomancini.jpg" alt="" class="card-img-top">
-      <div class="card-body">
-        <h5 class="card-title">Roberto Mancini</h5>
-        <p class="card-text">Address : Blok A</p>
-        <p>Phone number : 0123456789</p>
-        <a href="#" class="btn btn-primary">Email Now</a>
-      </div>
-    </div>
-  </div>
-</!--div-->
-<h2>Lecturer Contact</h2>
-<div style="display: flex;">
-  <ion-card color="light">
-    <img alt="Silhouette of mountains" src="https://ichef.bbci.co.uk/news/976/cpsprodpb/17DA4/production/_127400779_muskgetty.png" style="width: 100%;">
-    <ion-card-header>
-      <ion-card-title>Elon Musk</ion-card-title>
-      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-    </ion-card-header>
-
-    <ion-card-content>
+<div class="page-header">
+  <h1 class="page-title">Reviewer contact</h1>
+</div>
+<div class="card-grid">
+  <mat-card appearance="outlined">
+    <img mat-card-image alt="" src="https://ichef.bbci.co.uk/news/976/cpsprodpb/17DA4/production/_127400779_muskgetty.png">
+    <mat-card-header>
+      <mat-card-title>Elon Musk</mat-card-title>
+      <mat-card-subtitle>Card Subtitle</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
       Here's a small text description for the card content. Nothing more, nothing less.
-    </ion-card-content>
-    <ion-buttons class="pb-2">
-      <ion-button fill="solid" color="primary" shape="round">Contact Now</ion-button>
-    </ion-buttons>
-  </ion-card>
-  <ion-card color="light">
-    <img [src]="imageURL">
-    <ion-card-header>
-      <ion-card-title>Elon Musk</ion-card-title>
-      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-    </ion-card-header>
-
-    <ion-card-content>
+    </mat-card-content>
+    <mat-card-actions>
+      <button matButton="filled">Contact Now</button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card appearance="outlined">
+    <img mat-card-image alt="" [src]="imageURL">
+    <mat-card-header>
+      <mat-card-title>Elon Musk</mat-card-title>
+      <mat-card-subtitle>Card Subtitle</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
       Here's a small text description for the card content. Nothing more, nothing less.
-    </ion-card-content>
-    <ion-buttons>
-      <ion-button fill="solid" color="primary" shape="round">Contact Now</ion-button>
-    </ion-buttons>
-  </ion-card>
+    </mat-card-content>
+    <mat-card-actions>
+      <button matButton="filled">Contact Now</button>
+    </mat-card-actions>
+  </mat-card>
 </div>

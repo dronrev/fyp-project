@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 import { AnnouncementService } from 'src/app/student/announcement/announcement.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { AnnouncementService } from 'src/app/student/announcement/announcement.s
 })
 export class AdminAnnouncementComponent implements OnInit {
 
-  constructor(private service : AnnouncementService,private alertcontrol : AlertController) { }
+  constructor(private service : AnnouncementService,private alertcontrol : AlertService) { }
   td!:number;
   announcements : any;
   myMessage :any;

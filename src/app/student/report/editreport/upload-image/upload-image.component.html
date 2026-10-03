@@ -1,23 +1,26 @@
-<!--ion-breadcrumbs color="secondary">
-<ion-breadcrumb routerLink="/report">Report</ion-breadcrumb>
-<ion-breadcrumb routerLink="/report">My Report</ion-breadcrumb>
-<ion-breadcrumb [routerLink]="['/report/editreport',report_id]">Current Report</ion-breadcrumb>
-<ion-breadcrumb [routerLink]="['/report/editreport',report_id,'image']">Upload Image</ion-breadcrumb>
-</!--ion-breadcrumbs-->
-
-<div class="container" [hidden]="!check">
-  <div class="upload-border">
-    <input type="file" class="btn btn-primary" (change)="uploadImage($event)" multiple>
+<div class="page-header">
+  <h2 class="section-title">Attachments</h2>
+  <div class="actions">
+    <input #attachmentInput class="file-input" type="file" accept="image/*" (change)="uploadImage($event)" multiple>
+    <button matButton="outlined" type="button" (click)="attachmentInput.click()">
+      <mat-icon>add_photo_alternate</mat-icon>
+      Choose images
+    </button>
+    <button matButton="filled" type="button" (click)="uploadImg()">Save image</button>
   </div>
 </div>
-
-<div class="show-image" [hidden]="check">
-  @for (item of listOfImage; track item) {
-    <div class="image-list">
-      <img [src]="item" alt="" width="300" height="300">
-      <ion-checkbox (ionChange)="deleteImg($event,item)"></ion-checkbox>
+<mat-card class="surface-card" appearance="outlined">
+  @if (listOfImage?.length) {
+    <p class="hint attachment-hint">Tick an image to mark it for removal.</p>
+    <div class="image-grid">
+      @for (item of listOfImage; track item) {
+        <div class="attachment">
+          <img [src]="item" alt="Report attachment">
+          <mat-checkbox (change)="deleteImg($event,item)">Remove</mat-checkbox>
+        </div>
+      }
     </div>
+  } @else {
+    <p class="empty-state">No attachments yet. Choose images to upload.</p>
   }
-</div>
-<button class="btn btn-primary" (click)="uploadImg()" style="margin-right: 10px;">Save Image</button>
-<input class="btn btn-warning"(change)="uploadImage($event)" multiple type="file">
+</mat-card>

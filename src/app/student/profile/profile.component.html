@@ -1,23 +1,26 @@
-<ion-item>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <div class="image-preview">
-          <img [src]=" imageURL || defaultImg" alt="" id="profilepicture">
-        </div>
-        <input type="file" (change)="showPreview($event)" accept="image/*">
-        <button (click)="submit()">Submit Picture</button>
-        <ion-item>
-          <ion-input>
-              <span>Name : </span> {{ name }}
-          </ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input>
-              Email : {{ email }}
-          </ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-item>
+<div class="page-header">
+  <h1 class="page-title">Profile</h1>
+</div>
+<mat-card class="surface-card narrow" appearance="outlined">
+  <div class="profile">
+    <img class="avatar profile-picture" [src]="imageURL || defaultImg" alt="Profile picture" id="profilepicture">
+    <div class="profile-details">
+      <div>
+        <div class="hint">Name</div>
+        <div>{{ name }}</div>
+      </div>
+      <div>
+        <div class="hint">Email</div>
+        <div>{{ email }}</div>
+      </div>
+      <input #pictureInput class="file-input" type="file" (change)="showPreview($event)" accept="image/*">
+      <div class="form-actions">
+        <button matButton="outlined" type="button" (click)="pictureInput.click()">
+          <mat-icon>image</mat-icon>
+          Choose picture
+        </button>
+        <button matButton="filled" type="button" (click)="submit()">Submit picture</button>
+      </div>
+    </div>
+  </div>
+</mat-card>

@@ -1,7 +1,3 @@
-ion-content{
-  --ion-background-color: #00b4d8;
-}
-
-ion-segment{
-  --background: grey;
+.register-toggle {
+  margin-bottom: 24px;
 }

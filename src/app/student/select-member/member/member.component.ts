@@ -1,8 +1,6 @@
-import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { EventsService } from '../../event/events.service';
-import { IonModal } from '@ionic/angular';
-import { OverlayEventDetail } from '@ionic/core/components';
 import { UsersService } from 'src/app/admin/users.service';
 import { UntypedFormControl, FormControlName, UntypedFormGroup } from '@angular/forms';
 
@@ -33,17 +31,17 @@ export class MemberComponent implements OnInit {
   })
 
   ngOnInit(): void {
-    this.stuService.fetchStudent().pipe
+    this.stuService.fetchMembers().pipe
     (map((data:any)=>data.filter
     ((myData:any)=>myData.user_id == localStorage.getItem('id')))).subscribe(
       (res:any)=>{
-        localStorage.setItem('_caw_angan_',res[0].cawangan);
+        localStorage.setItem('group_id',res[0].group_id);
       }
     )
     this.service.displayEvent().pipe(map((data:any)=>data.filter(
       (myData:any)=>myData.date >= this.today.toISOString().split('T')[0]))).subscribe(
       res=>{
-        this.list = res.filter((bahagian:any)=>bahagian.cawangan == localStorage.getItem('_caw_angan_'));
+        this.list = res.filter((bahagian:any)=>bahagian.group_id == localStorage.getItem('group_id'));
         //console.log(res);
         //to check if already voting for the activity
         for(var test of res){
@@ -64,27 +62,6 @@ export class MemberComponent implements OnInit {
   incNumber(){
     this.clicking = this.clicking+0.2;
   }
-
-  @ViewChild(IonModal) mymodal!: IonModal;
-
-  message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
-  name?: string;
-
-  cancel() {
-    this.mymodal.dismiss(null, 'cancel');
-  }
-
-  confirm() {
-    this.mymodal.dismiss(this.name, 'confirm');
-  }
-
-  onWillDismiss(event: Event) {
-    const ev = event as CustomEvent<OverlayEventDetail<string>>;
-    if (ev.detail.role === 'confirm') {
-      this.message = `Hello, ${ev.detail.data}!`;
-    }
-  }
-
 
   selectActivity(data:any){
     localStorage.setItem('_deidofact_current',data)

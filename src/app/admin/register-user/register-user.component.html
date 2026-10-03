@@ -1,32 +1,16 @@
-<div class="container flex">
-  <div class="row justify-content-between mt-5">
-    <button class="btn btn-primary col-4" (click)="onStudent()" hidden>Student</button>
-    <button class="btn btn-primary col-4" (click)="onLecturer()" hidden>Lecturer</button>
-
-    <ion-segment value="default" color="light">
-      <ion-segment-button value="student" (click)="onStudent()">
-        <ion-label>Student</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="lecturer" (click)="onLecturer()">
-        <ion-label>Lecturer</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-    @if (student) {
-      <div>
-        <app-student-form></app-student-form>
-      </div>
-    }
-    @if (lecturer) {
-      <div>
-        <app-lecturer-form></app-lecturer-form>
-      </div>
-    }
-  </div>
+<div class="page-header">
+  <h1 class="page-title">Register user</h1>
 </div>
-<!--div *ngIf="student;hidden">
-<app-student-form></app-student-form>
-</!--div>
-<div-- *ngIf="lecturer;hidden">
+<mat-button-toggle-group class="register-toggle" aria-label="User type" hideSingleSelectionIndicator>
+  <mat-button-toggle value="student" [checked]="student" (change)="onStudent()">Member</mat-button-toggle>
+  <mat-button-toggle value="lecturer" [checked]="lecturer" (change)="onLecturer()">Reviewer</mat-button-toggle>
+</mat-button-toggle-group>
+@if (student) {
+  <app-student-form></app-student-form>
+}
+@if (lecturer) {
   <app-lecturer-form></app-lecturer-form>
-</div-->
-
+}
+@if (!student && !lecturer) {
+  <mat-card class="narrow" appearance="outlined"><p class="empty-state">Choose the type of user to register.</p></mat-card>
+}

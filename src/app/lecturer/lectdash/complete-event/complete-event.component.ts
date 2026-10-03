@@ -1,3 +1,4 @@
+import { ROLE } from 'src/app/shared/app-config';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EventsService } from 'src/app/student/event/events.service';
 
@@ -14,7 +15,7 @@ export class CompleteEventComponent implements OnInit {
   list :any;
   check : boolean = false
   ngOnInit(): void {
-    if(localStorage.getItem('_sepesial_elor_rof_') != "TDA"){
+    if(localStorage.getItem('role') != ROLE.approver){
       this.check = true;
     }
     this.service.completeEvent().subscribe(

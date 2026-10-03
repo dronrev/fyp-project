@@ -1,18 +1,9 @@
-.the-content{
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  row-gap: 10px;
-  column-gap: 10px;
+.member-card {
+  align-items: center;
+  gap: 8px;
+  text-align: center;
 }
 
-ion-item{
-    margin: auto;
-}
-.mycard{
-  background-color: rgb(166, 171, 169);
-  min-height: 200px;
-  min-width: 350px;
-  display: flex;
-  align-items: center;
-  text-align: center;
+.member-name {
+  font: var(--mat-sys-title-medium);
 }

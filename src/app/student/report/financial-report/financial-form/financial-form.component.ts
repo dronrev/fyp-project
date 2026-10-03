@@ -3,7 +3,7 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { ReportsService } from '../../reports.service';
 import { FinancialForm } from './financial-form.mode';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 
 @Component({
   standalone: false,
@@ -14,7 +14,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class FinancialFormComponent implements OnInit {
 
-  constructor(private service : ReportsService,private alertcontrol : AlertController) { }
+  constructor(private service : ReportsService,private alertcontrol : AlertService) { }
   name_activity?: string;
   pengarah?:string;
   penganjur?:string;
@@ -46,7 +46,7 @@ export class FinancialFormComponent implements OnInit {
 
   get_data_form = new UntypedFormGroup({
     'id' : new UntypedFormControl(localStorage.getItem('id')),
-    'auth' : new UntypedFormControl(localStorage.getItem('auth'))
+    'auth' : new UntypedFormControl(localStorage.getItem('portal'))
   })
 
   form1_data !: FinancialForm[]

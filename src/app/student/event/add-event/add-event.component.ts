@@ -1,8 +1,9 @@
+import { ROLE } from 'src/app/shared/app-config';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EventsService } from '../events.service';
 import { Event } from '../event.model';
 import { UntypedFormControl, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 import { ReportsService } from '../../report/reports.service';
 import { map } from 'rxjs/operators';
 
@@ -20,13 +21,13 @@ export class AddEventComponent implements OnInit {
   Event: any;
   lecturer:any;
 
-  constructor(private service:ReportsService,private eventService:EventsService, private alertController : AlertController) { }
+  constructor(private service:ReportsService,private eventService:EventsService, private alertController : AlertService) { }
 
   ngOnInit(): void {
     //console.log(localStorage.getItem('id'))
-    this.service.getLecturer().pipe
+    this.service.getReviewers().pipe
     (map((data:any)=>data.filter
-    ((myData:any)=>myData.role != "TDA" && myData.role != "DEKAN"))).subscribe(
+    ((myData:any)=>myData.role != ROLE.approver))).subscribe(
       res=>{
         this.lecturer = res;
       }

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 import { EditreportService } from '../editreport.service';
 import * as XLSX from 'xlsx';
 
@@ -21,7 +21,7 @@ export interface DeleteReport{
 })
 export class AddParticipantComponent implements OnInit {
 
-  constructor(private http:HttpClient, private service:EditreportService,private route:Router, private alertcontroller : AlertController) { }
+  constructor(private http:HttpClient, private service:EditreportService,private route:Router, private alertcontroller : AlertService) { }
 
   importParticipants!: any;
 

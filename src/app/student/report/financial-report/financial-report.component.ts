@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/shared/alert.service';
 import { ReportsService } from '../reports.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class FinancialReportComponent implements OnInit {
 
   report_id = localStorage.getItem('GetreportID')
   message :any;
-  constructor(private service : ReportsService,private alertcontrol : AlertController) { }
+  constructor(private service : ReportsService,private alertcontrol : AlertService) { }
   myData = new UntypedFormGroup(
     {
       'report_id' : new UntypedFormControl(localStorage.getItem('ReportID')),
